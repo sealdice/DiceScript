@@ -5,8 +5,10 @@
     <title>DiceScript 测试页</title>
 </head>
 <body>
-<script src="./dicescript.js"></script>
+<script src="./dicescript.js?v=1"></script>
 <script src="https://unpkg.com/vue@3"></script>
+<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>
 
 <div id="app">
     <div>
@@ -15,6 +17,11 @@
     <div>
         <input type="text" id="prompt" v-model="message"/>
         <button @click="doSend">发送</button>
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <div>提示: 还在开发中，支持语法详情看<a target="_blank" href="https://github.com/sealdice/dicescript">主页</a></div>
+        <div style="margin-left: 2rem">控制台里有上一条指令的字节码。建议多ctrl+f5以免遇到旧版</div>
     </div>
 </div>
 
@@ -29,6 +36,8 @@
         },
         methods: {
             doSend () {
+                this.message = this.message.trim()
+                if (this.message === '') return;
                 let ctx = dice.newVM();
                 this.items.push(`>>> ${this.message}`)
                 try {
@@ -41,6 +50,7 @@
                 } catch (e) {
                     this.items.push(`错误: 未知错误`)
                 }
+                console.log(ctx.GetAsmText())
                 this.message = '';
             }
         }
