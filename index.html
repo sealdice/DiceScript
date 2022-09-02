@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>DiceScript 测试页</title>
+</head>
+<body>
+<script src="./dicescript.js"></script>
+<script src="https://unpkg.com/vue@3"></script>
+
+<div id="app">
+    <div>
+        <div v-for="i in items">{{i}}</div>
+    </div>
+    <div>
+        <input type="text" id="prompt" v-model="message"/>
+        <button @click="doSend">发送</button>
+    </div>
+</div>
+
+<script>
+    const { createApp } = Vue
+    createApp({
+        data() {
+            return {
+                items: ['DiceScript Shell'],
+                message: 'd20'
+            }
+        },
+        methods: {
+            doSend () {
+                let ctx = dice.newVM();
+                this.items.push(`>>> ${this.message}`)
+                try {
+                    ctx.Run(this.message)
+                    if (ctx.Error) {
+                        this.items.push(`错误: ${ctx.Error.Error()}`)
+                    } else {
+                        this.items.push(ctx.Ret.ToString())
+                    }
+                } catch (e) {
+                    this.items.push(`错误: 未知错误`)
+                }
+                this.message = '';
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>
