@@ -29401,7 +29401,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$pkg.DiceRoll64 = DiceRoll64;
 	Parser.ptr.prototype.Evaluate = function() {
-		var {_1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, i, i$1, i$2, i$3, index, name, name$1, num, num$1, numOpCountAdd, nums, oneDice, opErr, opFunc, opIndex, outStr, pickNum, ret, s, stack, stackPop, stackPop2, stackPush, startTime, storeFunc, storeFunc$1, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v1, v2, val, val$1, val$2, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
+		var {_1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, i, i$1, i$2, i$3, index, loadFunc, name, name$1, num, num$1, numOpCountAdd, nums, oneDice, opErr, opFunc, opIndex, outStr, pickNum, ret, s, stack, stackPop, stackPop2, stackPush, startTime, storeFunc, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v1, v2, val, val$1, val$2, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = [ctx];
 		diceStateIndex = [diceStateIndex];
@@ -29540,11 +29540,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					$s = 30; continue;
 				/* } else if (_1 === (43)) { */ case 18:
 					name = $assertType(code.Value, $String);
-					storeFunc = ctx[0].ValueLoadNameFunc;
-					/* */ if (!(storeFunc === $throwNilPointerError)) { $s = 31; continue; }
+					loadFunc = ctx[0].ValueLoadNameFunc;
+					/* */ if (!(loadFunc === $throwNilPointerError)) { $s = 31; continue; }
 					/* */ $s = 32; continue;
-					/* if (!(storeFunc === $throwNilPointerError)) { */ case 31:
-						_r$8 = storeFunc(name); /* */ $s = 34; case 34: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+					/* if (!(loadFunc === $throwNilPointerError)) { */ case 31:
+						_r$8 = loadFunc(name); /* */ $s = 34; case 34: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
 						val$1 = _r$8;
 						if (val$1 === ptrType.nil) {
 							val$1 = VMValueNewNone();
@@ -29552,7 +29552,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						$r = stackPush(val$1); /* */ $s = 35; case 35: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						$s = 33; continue;
 					/* } else { */ case 32:
-						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueStoreNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE5\x82\xA8\xE5\xAD\x98\xE5\x8F\x98\xE9\x87\x8F");
+						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueLoadNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE8\x8E\xB7\xE5\x8F\x96\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
 					/* } */ case 33:
 					$s = 30; continue;
@@ -29560,11 +29560,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_r$9 = stackPop[0](); /* */ $s = 36; case 36: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 					v = _r$9;
 					name$1 = $assertType(code.Value, $String);
-					storeFunc$1 = ctx[0].ValueStoreNameFunc;
-					/* */ if (!(storeFunc$1 === $throwNilPointerError)) { $s = 37; continue; }
+					storeFunc = ctx[0].ValueStoreNameFunc;
+					/* */ if (!(storeFunc === $throwNilPointerError)) { $s = 37; continue; }
 					/* */ $s = 38; continue;
-					/* if (!(storeFunc$1 === $throwNilPointerError)) { */ case 37:
-						$r = storeFunc$1(name$1, v); /* */ $s = 40; case 40: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* if (!(storeFunc === $throwNilPointerError)) { */ case 37:
+						$r = storeFunc(name$1, v); /* */ $s = 40; case 40: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						$s = 39; continue;
 					/* } else { */ case 38:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueStoreNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE5\x82\xA8\xE5\xAD\x98\xE5\x8F\x98\xE9\x87\x8F");
@@ -29719,7 +29719,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$s = 3; continue;
 		case 4:
 		$s = -1; return;
-		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, i, i$1, i$2, i$3, index, name, name$1, num, num$1, numOpCountAdd, nums, oneDice, opErr, opFunc, opIndex, outStr, pickNum, ret, s, stack, stackPop, stackPop2, stackPush, startTime, storeFunc, storeFunc$1, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v1, v2, val, val$1, val$2, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
+		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, i, i$1, i$2, i$3, index, loadFunc, name, name$1, num, num$1, numOpCountAdd, nums, oneDice, opErr, opFunc, opIndex, outStr, pickNum, ret, s, stack, stackPop, stackPop2, stackPush, startTime, storeFunc, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v1, v2, val, val$1, val$2, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
 	};
 	Parser.prototype.Evaluate = function() { return this.$val.Evaluate(); };
 	Context.ptr.prototype.GetAsmText = function() {
