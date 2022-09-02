@@ -9,7 +9,18 @@ import (
 )
 
 func newVM(name string) *js.Object {
+	attrs := map[string]*dicescript.VMValue{}
 	vm := dicescript.NewVM()
+	vm.ValueStoreNameFunc = func(name string, v *dicescript.VMValue) {
+		attrs[name] = v
+	}
+	vm.ValueLoadNameFunc = func(name string) *dicescript.VMValue {
+		if val, ok := attrs[name]; ok {
+			return val
+		}
+		return nil
+	}
+
 	return js.MakeFullWrapper(vm)
 }
 
