@@ -8,8 +8,9 @@ import (
 	"github.com/sealdice/dicescript"
 )
 
+var attrs = map[string]*dicescript.VMValue{}
+
 func newVM(name string) *js.Object {
-	attrs := map[string]*dicescript.VMValue{}
 	vm := dicescript.NewVM()
 	vm.ValueStoreNameFunc = func(name string, v *dicescript.VMValue) {
 		attrs[name] = v

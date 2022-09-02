@@ -34530,7 +34530,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/sealdice/dicescript/jsport"] = (function() {
-	var $pkg = {}, $init, js, dicescript, ptrType, ptrType$1, funcType, funcType$1, funcType$2, funcType$3, mapType, newVM, main;
+	var $pkg = {}, $init, js, dicescript, ptrType, ptrType$1, funcType, funcType$1, funcType$2, funcType$3, mapType, attrs, newVM, main;
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	dicescript = $packages["github.com/sealdice/dicescript"];
 	ptrType = $ptrType(dicescript.VMValue);
@@ -34541,29 +34541,27 @@ $packages["github.com/sealdice/dicescript/jsport"] = (function() {
 	funcType$3 = $funcType([$String], [ptrType], false);
 	mapType = $mapType($String, $emptyInterface);
 	newVM = function(name) {
-		var {$24r, _r, attrs, name, vm, $s, $r, $c} = $restore(this, {name});
+		var {$24r, _r, name, vm, $s, $r, $c} = $restore(this, {name});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-		attrs = [attrs];
-		attrs[0] = $makeMap($String.keyFor, []);
 		vm = dicescript.NewVM();
-		vm.ValueStoreNameFunc = (function(attrs) { return function(name$1, v) {
+		vm.ValueStoreNameFunc = (function(name$1, v) {
 			var _key, name$1, v;
-			_key = name$1; (attrs[0] || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: v };
-		}; })(attrs);
-		vm.ValueLoadNameFunc = (function(attrs) { return function(name$1) {
+			_key = name$1; (attrs || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: v };
+		});
+		vm.ValueLoadNameFunc = (function(name$1) {
 			var _entry, _tuple, name$1, ok, val;
-			_tuple = (_entry = attrs[0][$String.keyFor(name$1)], _entry !== undefined ? [_entry.v, true] : [ptrType.nil, false]);
+			_tuple = (_entry = attrs[$String.keyFor(name$1)], _entry !== undefined ? [_entry.v, true] : [ptrType.nil, false]);
 			val = _tuple[0];
 			ok = _tuple[1];
 			if (ok) {
 				return val;
 			}
 			return ptrType.nil;
-		}; })(attrs);
+		});
 		_r = js.MakeFullWrapper(vm); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		$24r = _r;
 		$s = 2; case 2: return $24r;
-		/* */ } return; } var $f = {$blk: newVM, $c: true, $r, $24r, _r, attrs, name, vm, $s};return $f;
+		/* */ } return; } var $f = {$blk: newVM, $c: true, $r, $24r, _r, name, vm, $s};return $f;
 	};
 	main = function() {
 		$global.dice = $externalize($makeMap($String.keyFor, [{ k: "newVM", v: new funcType(newVM) }, { k: "vmNewInt64", v: new $jsObjectPtr(js.MakeWrapper(new funcType$1(dicescript.VMValueNewInt64))) }, { k: "vmNewFloat64", v: new $jsObjectPtr(js.MakeWrapper(new funcType$2(dicescript.VMValueNewFloat64))) }, { k: "vmNewStr", v: new $jsObjectPtr(js.MakeWrapper(new funcType$3(dicescript.VMValueNewStr))) }, { k: "help", v: new $jsObjectPtr(js.MakeWrapper(new $String("\xE6\xAD\xA4\xE9\xA1\xB9\xE7\x9B\xAE\xE7\x9A\x84js\xE7\xBB\x91\xE5\xAE\x9A: https://github.com/sealdice/dicescript"))) }]), mapType);
@@ -34573,6 +34571,7 @@ $packages["github.com/sealdice/dicescript/jsport"] = (function() {
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		$r = js.$init(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = dicescript.$init(); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		attrs = $makeMap($String.keyFor, []);
 		if ($pkg === $mainPkg) {
 			main();
 			$mainFinished = true;
