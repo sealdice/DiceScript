@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>DiceScript 测试页</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 </head>
 <body>
-<script src="./dicescript.js?v=1"></script>
-<script src="https://unpkg.com/vue@3"></script>
-<script src="//cdn.jsdelivr.net/npm/eruda"></script>
+<script src="./dicescript.js?v=2"></script>
+<script src="https://unpkg.zhimg.com/vue@3.2.38/dist/vue.global.prod.js"></script>
+<script src="https://unpkg.zhimg.com/eruda@2.4.1"></script>
 <script>eruda.init();</script>
 
 <div id="app">
@@ -15,7 +16,9 @@
         <div v-for="i in items">{{i}}</div>
     </div>
     <div>
-        <input type="text" id="prompt" v-model="message"/>
+        <div>
+            <textarea id="prompt" v-model="message"></textarea>
+        </div>
         <button @click="doSend">发送</button>
     </div>
 
