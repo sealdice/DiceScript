@@ -49,6 +49,8 @@
                         this.items.push(`错误: ${ctx.Error.Error()}`)
                     } else {
                         this.items.push(ctx.Ret.ToString())
+                        console.log((2222, ctx))
+                        console.log(`剩余文本: ${ctx.RestInput || '无'}`)
                     }
                 } catch (e) {
                     this.items.push(`错误: 未知错误`)
