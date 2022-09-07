@@ -9317,7 +9317,7 @@ $packages["internal/race"] = (function() {
 	return $pkg;
 })();
 $packages["sync/atomic"] = (function() {
-	var $pkg = {}, $init, js, Value, ptrType, CompareAndSwapInt32, CompareAndSwapUint64, AddInt32, LoadInt32, LoadUint64, StoreInt32, StoreUint32, sameType;
+	var $pkg = {}, $init, js, Value, ptrType, CompareAndSwapInt32, CompareAndSwapUint64, CompareAndSwapPointer, AddInt32, LoadInt32, LoadUint64, LoadPointer, StoreInt32, StoreUint32, StorePointer, sameType;
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	Value = $pkg.Value = $newType(0, $kindStruct, "atomic.Value", true, "sync/atomic", true, function(v_) {
 		this.$val = this;
@@ -9346,6 +9346,15 @@ $packages["sync/atomic"] = (function() {
 		return false;
 	};
 	$pkg.CompareAndSwapUint64 = CompareAndSwapUint64;
+	CompareAndSwapPointer = function(addr, old, new$1) {
+		var addr, new$1, old;
+		if (addr.$get() === old) {
+			addr.$set(new$1);
+			return true;
+		}
+		return false;
+	};
+	$pkg.CompareAndSwapPointer = CompareAndSwapPointer;
 	AddInt32 = function(addr, delta) {
 		var addr, delta, new$1;
 		new$1 = addr.$get() + delta >> 0;
@@ -9363,6 +9372,11 @@ $packages["sync/atomic"] = (function() {
 		return addr.$get();
 	};
 	$pkg.LoadUint64 = LoadUint64;
+	LoadPointer = function(addr) {
+		var addr;
+		return addr.$get();
+	};
+	$pkg.LoadPointer = LoadPointer;
 	StoreInt32 = function(addr, val) {
 		var addr, val;
 		addr.$set(val);
@@ -9373,6 +9387,11 @@ $packages["sync/atomic"] = (function() {
 		addr.$set(val);
 	};
 	$pkg.StoreUint32 = StoreUint32;
+	StorePointer = function(addr, val) {
+		var addr, val;
+		addr.$set(val);
+	};
+	$pkg.StorePointer = StorePointer;
 	Value.ptr.prototype.Load = function() {
 		var v, x;
 		x = $ifaceNil;
@@ -28741,7 +28760,7 @@ $packages["strings"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/sealdice/dicescript"] = (function() {
-	var $pkg = {}, $init, errors, fmt, io, math, rand, os, sort, strconv, strings, time, VMValueType, RollExtraFlags, Context, VMValue, ComputedData, FunctionData, pegRule, token32, node32, tokens32, Parser, textPosition, parseError, ParserData, CodeType, ByteCode, element, ptrType, ptrType$1, funcType, sliceType, sliceType$1, sliceType$2, ptrType$2, ptrType$3, sliceType$3, sliceType$4, structType, sliceType$5, ptrType$4, sliceType$6, sliceType$7, funcType$1, arrayType, sliceType$8, funcType$2, sliceType$9, sliceType$10, ptrType$5, structType$1, sliceType$11, sliceType$12, ptrType$6, ptrType$7, ptrType$8, sliceType$13, funcType$3, mapType, funcType$4, ptrType$9, ptrType$10, funcType$5, funcType$6, ptrType$11, ptrType$12, ptrType$13, binOperator, rul3s, boolToVMValue, VMValueNewInt64, VMValueNewFloat64, VMValueNewStr, VMValueNewUndefined, VMValueNewArray, VMValueNewComputedRaw, VMValueNewFunctionRaw, NewVM, DiceRoll64, translatePositions;
+	var $pkg = {}, $init, errors, fmt, io, math, rand, os, sort, strconv, strings, sync, atomic, time, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, RollExtraFlags, Context, VMValue, ComputedData, FunctionData, pegRule, token32, node32, tokens32, Parser, textPosition, parseError, ParserData, CodeType, ByteCode, element, ptrType, ptrType$1, funcType, sliceType, ptrType$2, ptrType$3, ptrType$4, sliceType$1, sliceType$2, ptrType$5, ptrType$6, ptrType$7, sliceType$3, sliceType$4, structType, sliceType$5, ptrType$8, sliceType$6, sliceType$7, funcType$1, arrayType, sliceType$8, funcType$2, sliceType$9, sliceType$10, ptrType$9, structType$1, sliceType$11, sliceType$12, ptrType$10, ptrType$11, ptrType$12, sliceType$13, funcType$3, mapType, funcType$4, funcType$5, ptrType$13, ptrType$14, funcType$6, funcType$7, ptrType$15, ptrType$16, ptrType$17, expungedValueMap, binOperator, rul3s, newEntryValueMap, boolToVMValue, VMValueNewInt64, VMValueNewFloat64, VMValueNewStr, VMValueNewUndefined, VMValueNewArray, VMValueNewComputedRaw, VMValueNewFunctionRaw, NewVM, DiceRoll64, translatePositions;
 	errors = $packages["errors"];
 	fmt = $packages["fmt"];
 	io = $packages["io"];
@@ -28751,7 +28770,41 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	sort = $packages["sort"];
 	strconv = $packages["strconv"];
 	strings = $packages["strings"];
+	sync = $packages["sync"];
+	atomic = $packages["sync/atomic"];
 	time = $packages["time"];
+	ValueMap = $pkg.ValueMap = $newType(0, $kindStruct, "dicescript.ValueMap", true, "github.com/sealdice/dicescript", true, function(mu_, read_, dirty_, misses_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.mu = new sync.Mutex.ptr(0, 0);
+			this.read = new atomic.Value.ptr($ifaceNil);
+			this.dirty = false;
+			this.misses = 0;
+			return;
+		}
+		this.mu = mu_;
+		this.read = read_;
+		this.dirty = dirty_;
+		this.misses = misses_;
+	});
+	readOnlyValueMap = $pkg.readOnlyValueMap = $newType(0, $kindStruct, "dicescript.readOnlyValueMap", true, "github.com/sealdice/dicescript", false, function(m_, amended_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.m = false;
+			this.amended = false;
+			return;
+		}
+		this.m = m_;
+		this.amended = amended_;
+	});
+	entryValueMap = $pkg.entryValueMap = $newType(0, $kindStruct, "dicescript.entryValueMap", true, "github.com/sealdice/dicescript", false, function(p_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.p = 0;
+			return;
+		}
+		this.p = p_;
+	});
 	VMValueType = $pkg.VMValueType = $newType(4, $kindInt, "dicescript.VMValueType", true, "github.com/sealdice/dicescript", true, null);
 	RollExtraFlags = $pkg.RollExtraFlags = $newType(0, $kindStruct, "dicescript.RollExtraFlags", true, "github.com/sealdice/dicescript", true, function(DiceMinMode_, DiceMaxMode_, DisableLoadVarname_, IgnoreDiv0_, DefaultDiceSideNum_, PrintBytecode_) {
 		this.$val = this;
@@ -28774,10 +28827,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Context = $pkg.Context = $newType(0, $kindStruct, "dicescript.Context", true, "github.com/sealdice/dicescript", true, function(parser_, currentThis_, subThreadDepth_, attrs_, code_, codeIndex_, stack_, top_, NumOpCount_, Flags_, Error_, Ret_, RestInput_, Matched_, ValueStoreNameFunc_, ValueLoadNameFunc_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.parser = ptrType$4.nil;
+			this.parser = ptrType$8.nil;
 			this.currentThis = ptrType.nil;
 			this.subThreadDepth = 0;
-			this.attrs = false;
+			this.attrs = ptrType$7.nil;
 			this.code = sliceType$1.nil;
 			this.codeIndex = 0;
 			this.stack = sliceType$6.nil;
@@ -28825,7 +28878,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Expr = "";
-			this.Attrs = false;
+			this.Attrs = ptrType$7.nil;
 			this.code = sliceType$1.nil;
 			this.codeIndex = 0;
 			return;
@@ -28870,8 +28923,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.token32 = new token32.ptr(0, 0, 0);
-			this.up = ptrType$6.nil;
-			this.next = ptrType$6.nil;
+			this.up = ptrType$10.nil;
+			this.next = ptrType$10.nil;
 			return;
 		}
 		this.token32 = token32_;
@@ -28890,7 +28943,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.ParserData = new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$5.nil);
-			this.Context = new Context.ptr(ptrType$4.nil, ptrType.nil, 0, false, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError);
+			this.Context = new Context.ptr(ptrType$8.nil, ptrType.nil, 0, ptrType$7.nil, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError);
 			this.Buffer = "";
 			this.buffer = sliceType$7.nil;
 			this.rules = arrayType.zero();
@@ -28923,7 +28976,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	parseError = $pkg.parseError = $newType(0, $kindStruct, "dicescript.parseError", true, "github.com/sealdice/dicescript", false, function(p_, max_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.p = ptrType$4.nil;
+			this.p = ptrType$8.nil;
 			this.max = new token32.ptr(0, 0, 0);
 			return;
 		}
@@ -28958,8 +29011,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	element = $newType(0, $kindStruct, "dicescript.element", true, "github.com/sealdice/dicescript", false, function(node_, down_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.node = ptrType$6.nil;
-			this.down = ptrType$7.nil;
+			this.node = ptrType$10.nil;
+			this.down = ptrType$11.nil;
 			return;
 		}
 		this.node = node_;
@@ -28969,41 +29022,494 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$1 = $ptrType(Context);
 	funcType = $funcType([ptrType, ptrType$1, ptrType], [ptrType], false);
 	sliceType = $sliceType(funcType);
+	ptrType$2 = $ptrType(ptrType);
+	ptrType$3 = $ptrType(entryValueMap);
+	ptrType$4 = $ptrType($UnsafePointer);
 	sliceType$1 = $sliceType(ByteCode);
 	sliceType$2 = $sliceType(ptrType);
-	ptrType$2 = $ptrType(ComputedData);
-	ptrType$3 = $ptrType(FunctionData);
+	ptrType$5 = $ptrType(ComputedData);
+	ptrType$6 = $ptrType(FunctionData);
+	ptrType$7 = $ptrType(ValueMap);
 	sliceType$3 = $sliceType($Int64);
 	sliceType$4 = $sliceType($String);
 	structType = $structType("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	sliceType$5 = $sliceType(structType);
-	ptrType$4 = $ptrType(Parser);
+	ptrType$8 = $ptrType(Parser);
 	sliceType$6 = $sliceType(VMValue);
 	sliceType$7 = $sliceType($Int32);
 	funcType$1 = $funcType([], [$Bool], false);
 	arrayType = $arrayType(funcType$1, 175);
 	sliceType$8 = $sliceType(token32);
-	funcType$2 = $funcType([ptrType$4], [$error], false);
+	funcType$2 = $funcType([ptrType$8], [$error], false);
 	sliceType$9 = $sliceType(funcType$2);
 	sliceType$10 = $sliceType($Int);
-	ptrType$5 = $ptrType($Int64);
-	structType$1 = $structType("github.com/sealdice/dicescript", [{prop: "times", name: "times", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "isKeepLH", name: "isKeepLH", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "lowNum", name: "lowNum", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "highNum", name: "highNum", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "min", name: "min", embedded: false, exported: false, typ: ptrType$5, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: ptrType$5, tag: ""}]);
+	ptrType$9 = $ptrType($Int64);
+	structType$1 = $structType("github.com/sealdice/dicescript", [{prop: "times", name: "times", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "isKeepLH", name: "isKeepLH", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "lowNum", name: "lowNum", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "highNum", name: "highNum", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "min", name: "min", embedded: false, exported: false, typ: ptrType$9, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: ptrType$9, tag: ""}]);
 	sliceType$11 = $sliceType(structType$1);
 	sliceType$12 = $sliceType($emptyInterface);
-	ptrType$6 = $ptrType(node32);
-	ptrType$7 = $ptrType(element);
-	ptrType$8 = $ptrType(strings.Builder);
+	ptrType$10 = $ptrType(node32);
+	ptrType$11 = $ptrType(element);
+	ptrType$12 = $ptrType(strings.Builder);
 	sliceType$13 = $sliceType($Uint8);
-	funcType$3 = $funcType([$String], [ptrType], false);
-	mapType = $mapType($String, ptrType);
-	funcType$4 = $funcType([$String, ptrType], [], false);
-	ptrType$9 = $ptrType(token32);
-	ptrType$10 = $ptrType(tokens32);
-	funcType$5 = $funcType([sliceType$10], [$error], true);
-	funcType$6 = $funcType([], [], false);
-	ptrType$11 = $ptrType(parseError);
-	ptrType$12 = $ptrType(ParserData);
-	ptrType$13 = $ptrType(ByteCode);
+	funcType$3 = $funcType([$String, ptrType], [$Bool], false);
+	mapType = $mapType($String, ptrType$3);
+	funcType$4 = $funcType([$String], [ptrType], false);
+	funcType$5 = $funcType([$String, ptrType], [], false);
+	ptrType$13 = $ptrType(token32);
+	ptrType$14 = $ptrType(tokens32);
+	funcType$6 = $funcType([sliceType$10], [$error], true);
+	funcType$7 = $funcType([], [], false);
+	ptrType$15 = $ptrType(parseError);
+	ptrType$16 = $ptrType(ParserData);
+	ptrType$17 = $ptrType(ByteCode);
+	newEntryValueMap = function(i) {
+		var i, i$24ptr;
+		return new entryValueMap.ptr(((i$24ptr || (i$24ptr = new ptrType$2(function() { return i; }, function($v) { i = $v; })))));
+	};
+	ValueMap.ptr.prototype.Get = function(key) {
+		var {_entry, _entry$1, _entry$2, _tmp, _tmp$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, e, key, m, ok, read, value, $s, $r, $c} = $restore(this, {key});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		value = ptrType.nil;
+		ok = false;
+		m = this;
+		_tuple = $assertType(m.read.Load(), readOnlyValueMap, true);
+		read = $clone(_tuple[0], readOnlyValueMap);
+		_tuple$1 = (_entry = read.m[$String.keyFor(key)], _entry !== undefined ? [_entry.v, true] : [ptrType$3.nil, false]);
+		e = _tuple$1[0];
+		ok = _tuple$1[1];
+		/* */ if (!ok && read.amended) { $s = 1; continue; }
+		/* */ $s = 2; continue;
+		/* if (!ok && read.amended) { */ case 1:
+			$r = m.mu.Lock(); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_tuple$2 = $assertType(m.read.Load(), readOnlyValueMap, true);
+			readOnlyValueMap.copy(read, _tuple$2[0]);
+			_tuple$3 = (_entry$1 = read.m[$String.keyFor(key)], _entry$1 !== undefined ? [_entry$1.v, true] : [ptrType$3.nil, false]);
+			e = _tuple$3[0];
+			ok = _tuple$3[1];
+			if (!ok && read.amended) {
+				_tuple$4 = (_entry$2 = m.dirty[$String.keyFor(key)], _entry$2 !== undefined ? [_entry$2.v, true] : [ptrType$3.nil, false]);
+				e = _tuple$4[0];
+				ok = _tuple$4[1];
+				m.missLocked();
+			}
+			$r = m.mu.Unlock(); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* } */ case 2:
+		if (!ok) {
+			_tmp = value;
+			_tmp$1 = false;
+			value = _tmp;
+			ok = _tmp$1;
+			$s = -1; return [value, ok];
+		}
+		_tuple$5 = e.load();
+		value = _tuple$5[0];
+		ok = _tuple$5[1];
+		$s = -1; return [value, ok];
+		/* */ } return; } var $f = {$blk: ValueMap.ptr.prototype.Get, $c: true, $r, _entry, _entry$1, _entry$2, _tmp, _tmp$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, e, key, m, ok, read, value, $s};return $f;
+	};
+	ValueMap.prototype.Get = function(key) { return this.$val.Get(key); };
+	entryValueMap.ptr.prototype.load = function() {
+		var _tmp, _tmp$1, _tmp$2, _tmp$3, e, ok, p, value;
+		value = ptrType.nil;
+		ok = false;
+		e = this;
+		p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+		if (p === 0 || p === expungedValueMap) {
+			_tmp = value;
+			_tmp$1 = false;
+			value = _tmp;
+			ok = _tmp$1;
+			return [value, ok];
+		}
+		_tmp$2 = (p).$get();
+		_tmp$3 = true;
+		value = _tmp$2;
+		ok = _tmp$3;
+		return [value, ok];
+	};
+	entryValueMap.prototype.load = function() { return this.$val.load(); };
+	ValueMap.ptr.prototype.Put = function(key, value) {
+		var {_entry, _entry$1, _entry$2, _key, _key$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, e, e$1, e$2, key, m, ok, ok$1, ok$2, read, value, x, $s, $r, $c} = $restore(this, {key, value});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		value = [value];
+		m = this;
+		_tuple = $assertType(m.read.Load(), readOnlyValueMap, true);
+		read = $clone(_tuple[0], readOnlyValueMap);
+		_tuple$1 = (_entry = read.m[$String.keyFor(key)], _entry !== undefined ? [_entry.v, true] : [ptrType$3.nil, false]);
+		e = _tuple$1[0];
+		ok = _tuple$1[1];
+		if (ok && e.tryStore((value.$ptr || (value.$ptr = new ptrType$2(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, value))))) {
+			$s = -1; return;
+		}
+		$r = m.mu.Lock(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		_tuple$2 = $assertType(m.read.Load(), readOnlyValueMap, true);
+		readOnlyValueMap.copy(read, _tuple$2[0]);
+		_tuple$3 = (_entry$1 = read.m[$String.keyFor(key)], _entry$1 !== undefined ? [_entry$1.v, true] : [ptrType$3.nil, false]);
+		e$1 = _tuple$3[0];
+		ok$1 = _tuple$3[1];
+		if (ok$1) {
+			if (e$1.unexpungeLocked()) {
+				_key = key; (m.dirty || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: e$1 };
+			}
+			e$1.storeLocked((value.$ptr || (value.$ptr = new ptrType$2(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, value))));
+		} else {
+			_tuple$4 = (_entry$2 = m.dirty[$String.keyFor(key)], _entry$2 !== undefined ? [_entry$2.v, true] : [ptrType$3.nil, false]);
+			e$2 = _tuple$4[0];
+			ok$2 = _tuple$4[1];
+			if (ok$2) {
+				e$2.storeLocked((value.$ptr || (value.$ptr = new ptrType$2(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, value))));
+			} else {
+				if (!read.amended) {
+					m.dirtyLocked();
+					m.read.Store((x = new readOnlyValueMap.ptr(read.m, true), new x.constructor.elem(x)));
+				}
+				_key$1 = key; (m.dirty || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key$1)] = { k: _key$1, v: newEntryValueMap(value[0]) };
+			}
+		}
+		$r = m.mu.Unlock(); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$s = -1; return;
+		/* */ } return; } var $f = {$blk: ValueMap.ptr.prototype.Put, $c: true, $r, _entry, _entry$1, _entry$2, _key, _key$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, e, e$1, e$2, key, m, ok, ok$1, ok$2, read, value, x, $s};return $f;
+	};
+	ValueMap.prototype.Put = function(key, value) { return this.$val.Put(key, value); };
+	entryValueMap.ptr.prototype.tryStore = function(i) {
+		var e, i, p;
+		e = this;
+		while (true) {
+			p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+			if (p === expungedValueMap) {
+				return false;
+			}
+			if (atomic.CompareAndSwapPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))), p, (i))) {
+				return true;
+			}
+		}
+	};
+	entryValueMap.prototype.tryStore = function(i) { return this.$val.tryStore(i); };
+	entryValueMap.ptr.prototype.unexpungeLocked = function() {
+		var e, wasExpunged;
+		wasExpunged = false;
+		e = this;
+		wasExpunged = atomic.CompareAndSwapPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))), expungedValueMap, 0);
+		return wasExpunged;
+	};
+	entryValueMap.prototype.unexpungeLocked = function() { return this.$val.unexpungeLocked(); };
+	entryValueMap.ptr.prototype.storeLocked = function(i) {
+		var e, i;
+		e = this;
+		atomic.StorePointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))), (i));
+	};
+	entryValueMap.prototype.storeLocked = function(i) { return this.$val.storeLocked(i); };
+	ValueMap.ptr.prototype.LoadOrStore = function(key, value) {
+		var {_entry, _entry$1, _entry$2, _key, _key$1, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, actual, actual$1, e, e$1, e$2, key, loaded, loaded$1, m, ok, ok$1, ok$2, ok$3, read, value, x, $s, $r, $c} = $restore(this, {key, value});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		actual = ptrType.nil;
+		loaded = false;
+		m = this;
+		_tuple = $assertType(m.read.Load(), readOnlyValueMap, true);
+		read = $clone(_tuple[0], readOnlyValueMap);
+		_tuple$1 = (_entry = read.m[$String.keyFor(key)], _entry !== undefined ? [_entry.v, true] : [ptrType$3.nil, false]);
+		e = _tuple$1[0];
+		ok = _tuple$1[1];
+		if (ok) {
+			_tuple$2 = e.tryLoadOrStore(value);
+			actual$1 = _tuple$2[0];
+			loaded$1 = _tuple$2[1];
+			ok$1 = _tuple$2[2];
+			if (ok$1) {
+				_tmp = actual$1;
+				_tmp$1 = loaded$1;
+				actual = _tmp;
+				loaded = _tmp$1;
+				$s = -1; return [actual, loaded];
+			}
+		}
+		$r = m.mu.Lock(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		_tuple$3 = $assertType(m.read.Load(), readOnlyValueMap, true);
+		readOnlyValueMap.copy(read, _tuple$3[0]);
+		_tuple$4 = (_entry$1 = read.m[$String.keyFor(key)], _entry$1 !== undefined ? [_entry$1.v, true] : [ptrType$3.nil, false]);
+		e$1 = _tuple$4[0];
+		ok$2 = _tuple$4[1];
+		if (ok$2) {
+			if (e$1.unexpungeLocked()) {
+				_key = key; (m.dirty || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: e$1 };
+			}
+			_tuple$5 = e$1.tryLoadOrStore(value);
+			actual = _tuple$5[0];
+			loaded = _tuple$5[1];
+		} else {
+			_tuple$6 = (_entry$2 = m.dirty[$String.keyFor(key)], _entry$2 !== undefined ? [_entry$2.v, true] : [ptrType$3.nil, false]);
+			e$2 = _tuple$6[0];
+			ok$3 = _tuple$6[1];
+			if (ok$3) {
+				_tuple$7 = e$2.tryLoadOrStore(value);
+				actual = _tuple$7[0];
+				loaded = _tuple$7[1];
+				m.missLocked();
+			} else {
+				if (!read.amended) {
+					m.dirtyLocked();
+					m.read.Store((x = new readOnlyValueMap.ptr(read.m, true), new x.constructor.elem(x)));
+				}
+				_key$1 = key; (m.dirty || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key$1)] = { k: _key$1, v: newEntryValueMap(value) };
+				_tmp$2 = value;
+				_tmp$3 = false;
+				actual = _tmp$2;
+				loaded = _tmp$3;
+			}
+		}
+		$r = m.mu.Unlock(); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		_tmp$4 = actual;
+		_tmp$5 = loaded;
+		actual = _tmp$4;
+		loaded = _tmp$5;
+		$s = -1; return [actual, loaded];
+		/* */ } return; } var $f = {$blk: ValueMap.ptr.prototype.LoadOrStore, $c: true, $r, _entry, _entry$1, _entry$2, _key, _key$1, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, actual, actual$1, e, e$1, e$2, key, loaded, loaded$1, m, ok, ok$1, ok$2, ok$3, read, value, x, $s};return $f;
+	};
+	ValueMap.prototype.LoadOrStore = function(key, value) { return this.$val.LoadOrStore(key, value); };
+	entryValueMap.ptr.prototype.tryLoadOrStore = function(i) {
+		var _tmp, _tmp$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, actual, e, i, ic, ic$24ptr, loaded, ok, p;
+		actual = ptrType.nil;
+		loaded = false;
+		ok = false;
+		e = this;
+		p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+		if (p === expungedValueMap) {
+			_tmp = actual;
+			_tmp$1 = false;
+			_tmp$2 = false;
+			actual = _tmp;
+			loaded = _tmp$1;
+			ok = _tmp$2;
+			return [actual, loaded, ok];
+		}
+		if (!(p === 0)) {
+			_tmp$3 = (p).$get();
+			_tmp$4 = true;
+			_tmp$5 = true;
+			actual = _tmp$3;
+			loaded = _tmp$4;
+			ok = _tmp$5;
+			return [actual, loaded, ok];
+		}
+		ic = i;
+		while (true) {
+			if (atomic.CompareAndSwapPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))), 0, ((ic$24ptr || (ic$24ptr = new ptrType$2(function() { return ic; }, function($v) { ic = $v; })))))) {
+				_tmp$6 = i;
+				_tmp$7 = false;
+				_tmp$8 = true;
+				actual = _tmp$6;
+				loaded = _tmp$7;
+				ok = _tmp$8;
+				return [actual, loaded, ok];
+			}
+			p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+			if (p === expungedValueMap) {
+				_tmp$9 = actual;
+				_tmp$10 = false;
+				_tmp$11 = false;
+				actual = _tmp$9;
+				loaded = _tmp$10;
+				ok = _tmp$11;
+				return [actual, loaded, ok];
+			}
+			if (!(p === 0)) {
+				_tmp$12 = (p).$get();
+				_tmp$13 = true;
+				_tmp$14 = true;
+				actual = _tmp$12;
+				loaded = _tmp$13;
+				ok = _tmp$14;
+				return [actual, loaded, ok];
+			}
+		}
+	};
+	entryValueMap.prototype.tryLoadOrStore = function(i) { return this.$val.tryLoadOrStore(i); };
+	ValueMap.ptr.prototype.LoadAndDelete = function(key) {
+		var {_entry, _entry$1, _entry$2, _tmp, _tmp$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, e, key, loaded, m, ok, read, value, $s, $r, $c} = $restore(this, {key});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		value = ptrType.nil;
+		loaded = false;
+		m = this;
+		_tuple = $assertType(m.read.Load(), readOnlyValueMap, true);
+		read = $clone(_tuple[0], readOnlyValueMap);
+		_tuple$1 = (_entry = read.m[$String.keyFor(key)], _entry !== undefined ? [_entry.v, true] : [ptrType$3.nil, false]);
+		e = _tuple$1[0];
+		ok = _tuple$1[1];
+		/* */ if (!ok && read.amended) { $s = 1; continue; }
+		/* */ $s = 2; continue;
+		/* if (!ok && read.amended) { */ case 1:
+			$r = m.mu.Lock(); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_tuple$2 = $assertType(m.read.Load(), readOnlyValueMap, true);
+			readOnlyValueMap.copy(read, _tuple$2[0]);
+			_tuple$3 = (_entry$1 = read.m[$String.keyFor(key)], _entry$1 !== undefined ? [_entry$1.v, true] : [ptrType$3.nil, false]);
+			e = _tuple$3[0];
+			ok = _tuple$3[1];
+			if (!ok && read.amended) {
+				_tuple$4 = (_entry$2 = m.dirty[$String.keyFor(key)], _entry$2 !== undefined ? [_entry$2.v, true] : [ptrType$3.nil, false]);
+				e = _tuple$4[0];
+				ok = _tuple$4[1];
+				delete m.dirty[$String.keyFor(key)];
+				m.missLocked();
+			}
+			$r = m.mu.Unlock(); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* } */ case 2:
+		if (ok) {
+			_tuple$5 = e.delete$();
+			value = _tuple$5[0];
+			loaded = _tuple$5[1];
+			$s = -1; return [value, loaded];
+		}
+		_tmp = value;
+		_tmp$1 = false;
+		value = _tmp;
+		loaded = _tmp$1;
+		$s = -1; return [value, loaded];
+		/* */ } return; } var $f = {$blk: ValueMap.ptr.prototype.LoadAndDelete, $c: true, $r, _entry, _entry$1, _entry$2, _tmp, _tmp$1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, e, key, loaded, m, ok, read, value, $s};return $f;
+	};
+	ValueMap.prototype.LoadAndDelete = function(key) { return this.$val.LoadAndDelete(key); };
+	ValueMap.ptr.prototype.Delete = function(key) {
+		var {_r, key, m, $s, $r, $c} = $restore(this, {key});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		m = this;
+		_r = m.LoadAndDelete(key); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_r;
+		$s = -1; return;
+		/* */ } return; } var $f = {$blk: ValueMap.ptr.prototype.Delete, $c: true, $r, _r, key, m, $s};return $f;
+	};
+	ValueMap.prototype.Delete = function(key) { return this.$val.Delete(key); };
+	entryValueMap.ptr.prototype.delete$ = function() {
+		var _tmp, _tmp$1, _tmp$2, _tmp$3, e, ok, p, value;
+		value = ptrType.nil;
+		ok = false;
+		e = this;
+		while (true) {
+			p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+			if (p === 0 || p === expungedValueMap) {
+				_tmp = value;
+				_tmp$1 = false;
+				value = _tmp;
+				ok = _tmp$1;
+				return [value, ok];
+			}
+			if (atomic.CompareAndSwapPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))), p, 0)) {
+				_tmp$2 = (p).$get();
+				_tmp$3 = true;
+				value = _tmp$2;
+				ok = _tmp$3;
+				return [value, ok];
+			}
+		}
+	};
+	entryValueMap.prototype.delete$ = function() { return this.$val.delete$(); };
+	ValueMap.ptr.prototype.Range = function(f) {
+		var {_entry, _i, _keys, _r, _ref, _tuple, _tuple$1, _tuple$2, e, f, k, m, ok, read, v, $s, $r, $c} = $restore(this, {f});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		m = this;
+		_tuple = $assertType(m.read.Load(), readOnlyValueMap, true);
+		read = $clone(_tuple[0], readOnlyValueMap);
+		/* */ if (read.amended) { $s = 1; continue; }
+		/* */ $s = 2; continue;
+		/* if (read.amended) { */ case 1:
+			$r = m.mu.Lock(); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_tuple$1 = $assertType(m.read.Load(), readOnlyValueMap, true);
+			readOnlyValueMap.copy(read, _tuple$1[0]);
+			if (read.amended) {
+				readOnlyValueMap.copy(read, new readOnlyValueMap.ptr(m.dirty, false));
+				m.read.Store(new read.constructor.elem(read));
+				m.dirty = false;
+				m.misses = 0;
+			}
+			$r = m.mu.Unlock(); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		/* } */ case 2:
+		_ref = read.m;
+		_i = 0;
+		_keys = $keys(_ref);
+		/* while (true) { */ case 5:
+			/* if (!(_i < _keys.length)) { break; } */ if(!(_i < _keys.length)) { $s = 6; continue; }
+			_entry = _ref[_keys[_i]];
+			if (_entry === undefined) {
+				_i++;
+				/* continue; */ $s = 5; continue;
+			}
+			k = _entry.k;
+			e = _entry.v;
+			_tuple$2 = e.load();
+			v = _tuple$2[0];
+			ok = _tuple$2[1];
+			if (!ok) {
+				_i++;
+				/* continue; */ $s = 5; continue;
+			}
+			_r = f(k, v); /* */ $s = 9; case 9: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+			/* */ if (!_r) { $s = 7; continue; }
+			/* */ $s = 8; continue;
+			/* if (!_r) { */ case 7:
+				/* break; */ $s = 6; continue;
+			/* } */ case 8:
+			_i++;
+		$s = 5; continue;
+		case 6:
+		$s = -1; return;
+		/* */ } return; } var $f = {$blk: ValueMap.ptr.prototype.Range, $c: true, $r, _entry, _i, _keys, _r, _ref, _tuple, _tuple$1, _tuple$2, e, f, k, m, ok, read, v, $s};return $f;
+	};
+	ValueMap.prototype.Range = function(f) { return this.$val.Range(f); };
+	ValueMap.ptr.prototype.missLocked = function() {
+		var m, x;
+		m = this;
+		m.misses = m.misses + (1) >> 0;
+		if (m.misses < $keys(m.dirty).length) {
+			return;
+		}
+		m.read.Store((x = new readOnlyValueMap.ptr(m.dirty, false), new x.constructor.elem(x)));
+		m.dirty = false;
+		m.misses = 0;
+	};
+	ValueMap.prototype.missLocked = function() { return this.$val.missLocked(); };
+	ValueMap.ptr.prototype.dirtyLocked = function() {
+		var _entry, _i, _key, _keys, _ref, _tuple, e, k, m, read, x;
+		m = this;
+		if (!(m.dirty === false)) {
+			return;
+		}
+		_tuple = $assertType(m.read.Load(), readOnlyValueMap, true);
+		read = $clone(_tuple[0], readOnlyValueMap);
+		m.dirty = (x = $keys(read.m).length, ((x < 0 || x > 2147483647) ? $throwRuntimeError("makemap: size out of range") : {}));
+		_ref = read.m;
+		_i = 0;
+		_keys = $keys(_ref);
+		while (true) {
+			if (!(_i < _keys.length)) { break; }
+			_entry = _ref[_keys[_i]];
+			if (_entry === undefined) {
+				_i++;
+				continue;
+			}
+			k = _entry.k;
+			e = _entry.v;
+			if (!e.tryExpungeLocked()) {
+				_key = k; (m.dirty || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: e };
+			}
+			_i++;
+		}
+	};
+	ValueMap.prototype.dirtyLocked = function() { return this.$val.dirtyLocked(); };
+	entryValueMap.ptr.prototype.tryExpungeLocked = function() {
+		var e, isExpunged, p;
+		isExpunged = false;
+		e = this;
+		p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+		while (true) {
+			if (!(p === 0)) { break; }
+			if (atomic.CompareAndSwapPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))), 0, expungedValueMap)) {
+				isExpunged = true;
+				return isExpunged;
+			}
+			p = atomic.LoadPointer((e.$ptr_p || (e.$ptr_p = new ptrType$4(function() { return this.$target.p; }, function($v) { this.$target.p = $v; }, e))));
+		}
+		isExpunged = p === expungedValueMap;
+		return isExpunged;
+	};
+	entryValueMap.prototype.tryExpungeLocked = function() { return this.$val.tryExpungeLocked(); };
 	Context.ptr.prototype.Init = function(stackLength) {
 		var e, stackLength;
 		e = this;
@@ -29047,9 +29553,6 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = this;
 		if (v === ptrType.nil) {
 			return "NIL";
-		}
-		if ($interfaceIsEqual(v.Value, $ifaceNil)) {
-			return "unknown";
 		}
 		_1 = v.TypeId;
 		if (_1 === (0)) {
@@ -29136,18 +29639,18 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var v;
 		v = this;
 		if (v.TypeId === 5) {
-			return [$assertType(v.Value, ptrType$2), true];
+			return [$assertType(v.Value, ptrType$5), true];
 		}
-		return [ptrType$2.nil, false];
+		return [ptrType$5.nil, false];
 	};
 	VMValue.prototype.ReadComputed = function() { return this.$val.ReadComputed(); };
 	VMValue.ptr.prototype.ReadFunctionData = function() {
 		var v;
 		v = this;
 		if (v.TypeId === 8) {
-			return [$assertType(v.Value, ptrType$3), true];
+			return [$assertType(v.Value, ptrType$6), true];
 		}
-		return [ptrType$3.nil, false];
+		return [ptrType$6.nil, false];
 	};
 	VMValue.prototype.ReadFunctionData = function() { return this.$val.ReadFunctionData(); };
 	VMValue.ptr.prototype.OpAdd = function(ctx, v2) {
@@ -29515,47 +30018,66 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpNegation = function() { return this.$val.OpNegation(); };
 	VMValue.ptr.prototype.SetAttr = function(name, val) {
-		var _1, _key, _tuple, cd, name, v, val;
+		var {_1, _tuple, cd, name, v, val, $s, $r, $c} = $restore(this, {name, val});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		v = this;
-		_1 = v.TypeId;
-		if (_1 === (5)) {
-			_tuple = v.ReadComputed();
-			cd = _tuple[0];
-			if (cd.Attrs === false) {
-				cd.Attrs = $makeMap($String.keyFor, []);
-			}
-			_key = name; (cd.Attrs || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: val };
-			return val;
-		}
-		return ptrType.nil;
+			_1 = v.TypeId;
+			/* */ if (_1 === (5)) { $s = 2; continue; }
+			/* */ $s = 3; continue;
+			/* if (_1 === (5)) { */ case 2:
+				_tuple = v.ReadComputed();
+				cd = _tuple[0];
+				if (cd.Attrs === ptrType$7.nil) {
+					cd.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
+				}
+				$r = cd.Attrs.Put(name, val); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				$s = -1; return val;
+			/* } */ case 3:
+		case 1:
+		$s = -1; return ptrType.nil;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.SetAttr, $c: true, $r, _1, _tuple, cd, name, v, val, $s};return $f;
 	};
 	VMValue.prototype.SetAttr = function(name, val) { return this.$val.SetAttr(name, val); };
 	VMValue.ptr.prototype.GetAttr = function(ctx, name) {
-		var _1, _entry, _entry$1, _tuple, cd, ctx, name, ret, ret$1, v;
+		var {_1, _r, _r$1, _tuple, _tuple$1, _tuple$2, cd, ctx, name, ret, ret$1, v, $s, $r, $c} = $restore(this, {ctx, name});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		v = this;
-		_1 = v.TypeId;
-		if (_1 === (5)) {
-			_tuple = v.ReadComputed();
-			cd = _tuple[0];
-			ret = ptrType.nil;
-			if (!(cd.Attrs === false)) {
-				ret = (_entry = cd.Attrs[$String.keyFor(name)], _entry !== undefined ? _entry.v : ptrType.nil);
-			}
-			if (ret === ptrType.nil) {
-				ret = VMValueNewUndefined();
-			}
-			return ret;
-		} else if (_1 === (8)) {
-			ret$1 = ptrType.nil;
-			if (!(ctx.attrs === false)) {
-				ret$1 = (_entry$1 = ctx.attrs[$String.keyFor(name)], _entry$1 !== undefined ? _entry$1.v : ptrType.nil);
-			}
-			if (ret$1 === ptrType.nil) {
-				ret$1 = VMValueNewUndefined();
-			}
-			return ret$1;
-		}
-		return ptrType.nil;
+			_1 = v.TypeId;
+			/* */ if (_1 === (5)) { $s = 2; continue; }
+			/* */ if (_1 === (8)) { $s = 3; continue; }
+			/* */ $s = 4; continue;
+			/* if (_1 === (5)) { */ case 2:
+				_tuple = v.ReadComputed();
+				cd = _tuple[0];
+				ret = ptrType.nil;
+				/* */ if (!(cd.Attrs === ptrType$7.nil)) { $s = 5; continue; }
+				/* */ $s = 6; continue;
+				/* if (!(cd.Attrs === ptrType$7.nil)) { */ case 5:
+					_r = cd.Attrs.Get(name); /* */ $s = 7; case 7: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+					_tuple$1 = _r;
+					ret = _tuple$1[0];
+				/* } */ case 6:
+				if (ret === ptrType.nil) {
+					ret = VMValueNewUndefined();
+				}
+				$s = -1; return ret;
+			/* } else if (_1 === (8)) { */ case 3:
+				ret$1 = ptrType.nil;
+				/* */ if (!(ctx.attrs === ptrType$7.nil)) { $s = 8; continue; }
+				/* */ $s = 9; continue;
+				/* if (!(ctx.attrs === ptrType$7.nil)) { */ case 8:
+					_r$1 = ctx.attrs.Get(name); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+					_tuple$2 = _r$1;
+					ret$1 = _tuple$2[0];
+				/* } */ case 9:
+				if (ret$1 === ptrType.nil) {
+					ret$1 = VMValueNewUndefined();
+				}
+				$s = -1; return ret$1;
+			/* } */ case 4:
+		case 1:
+		$s = -1; return ptrType.nil;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.GetAttr, $c: true, $r, _1, _r, _r$1, _tuple, _tuple$1, _tuple$2, cd, ctx, name, ret, ret$1, v, $s};return $f;
 	};
 	VMValue.prototype.GetAttr = function(ctx, name) { return this.$val.GetAttr(ctx, name); };
 	VMValue.ptr.prototype.CallFunc = function(ctx, name, values) {
@@ -29736,25 +30258,26 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.ComputedExecute = function(ctx) { return this.$val.ComputedExecute(ctx); };
 	VMValue.ptr.prototype.FuncInvoke = function(ctx, params) {
-		var {_i, _key, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s, $r, $c} = $restore(this, {ctx, params});
+		var {_i, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s, $r, $c} = $restore(this, {ctx, params});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		v = this;
 		vm = NewVM();
 		_tuple = v.ReadFunctionData();
 		cd = _tuple[0];
-		vm.attrs = $makeMap($String.keyFor, []);
+		vm.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		_ref = cd.Params;
 		_i = 0;
-		while (true) {
-			if (!(_i < _ref.$length)) { break; }
+		/* while (true) { */ case 1:
+			/* if (!(_i < _ref.$length)) { break; } */ if(!(_i < _ref.$length)) { $s = 2; continue; }
 			index = _i;
 			i = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
 			if (index >= params.$length) {
-				break;
+				/* break; */ $s = 2; continue;
 			}
-			_key = i; (vm.attrs || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: ((index < 0 || index >= params.$length) ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + index]) };
+			$r = vm.attrs.Put(i, ((index < 0 || index >= params.$length) ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + index])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_i++;
-		}
+		$s = 1; continue;
+		case 2:
 		RollExtraFlags.copy(vm.Flags, ctx.Flags);
 		vm.ValueStoreNameFunc = ctx.ValueStoreNameFunc;
 		vm.ValueLoadNameFunc = ctx.ValueLoadNameFunc;
@@ -29763,7 +30286,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		vm.NumOpCount = (x = ctx.NumOpCount, new $Int64(x.$high + 0, x.$low + 100));
 		vm.code = cd.code;
 		vm.codeIndex = cd.codeIndex;
-		$r = vm.parser.Evaluate(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = vm.parser.Evaluate(); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		if (!($interfaceIsEqual(vm.Error, $ifaceNil))) {
 			ctx.Error = vm.Error;
 			$s = -1; return ptrType.nil;
@@ -29775,9 +30298,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			ret = VMValueNewUndefined();
 		}
 		ctx.NumOpCount = vm.NumOpCount;
-		vm.attrs = $makeMap($String.keyFor, []);
+		vm.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		$s = -1; return ret;
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.FuncInvoke, $c: true, $r, _i, _key, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.FuncInvoke, $c: true, $r, _i, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s};return $f;
 	};
 	VMValue.prototype.FuncInvoke = function(ctx, params) { return this.$val.FuncInvoke(ctx, params); };
 	VMValueNewInt64 = function(i) {
@@ -29825,7 +30348,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	$pkg.VMValueNewFunctionRaw = VMValueNewFunctionRaw;
 	NewVM = function() {
 		var p;
-		p = new Parser.ptr(new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$5.nil), new Context.ptr(ptrType$4.nil, ptrType.nil, 0, false, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError), "", sliceType$7.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$8.nil));
+		p = new Parser.ptr(new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$5.nil), new Context.ptr(ptrType$8.nil, ptrType.nil, 0, ptrType$7.nil, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError), "", sliceType$7.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$8.nil));
 		p.ParserData.init();
 		p.Context.Init(512);
 		p.Context.parser = p;
@@ -29885,7 +30408,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$pkg.DiceRoll64 = DiceRoll64;
 	Parser.ptr.prototype.Evaluate = function() {
-		var {_1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, arr, arr$1, arr$2, attrName, attrName$1, attrVal, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, funcObj, i, i$1, i$2, i$3, index, itemIndex, loadFunc, loadFunc$1, name, name$1, name$2, num, num$1, num$2, numOpCountAdd, nums, obj, obj$1, oneDice, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, paramsNum$1, pickNum, ret, ret$1, ret$2, ret$3, ret$4, s, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, storeFunc, subThread, t, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
+		var {_1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, arr, arr$1, arr$2, attrName, attrName$1, attrVal, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, funcObj, i, i$1, i$2, i$3, index, itemIndex, loadFunc, loadFunc$1, name, name$1, name$2, num, num$1, num$2, numOpCountAdd, nums, obj, obj$1, oneDice, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, paramsNum$1, pickNum, ret, ret$1, ret$2, ret$3, ret$4, s, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, storeFunc, subThread, t, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = [ctx];
 		diceStateIndex = [diceStateIndex];
@@ -29910,7 +30433,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		diceStates[0] = sliceType$11.nil;
 		diceInit = (function(ctx, diceStateIndex, diceStates, e, stackPop) { return function() {
 			diceStateIndex[0] = diceStateIndex[0] + (1) >> 0;
-			diceStates[0] = $append(diceStates[0], new structType$1.ptr(new $Int64(0, 1), new $Int64(0, 0), new $Int64(0, 0), new $Int64(0, 0), ptrType$5.nil, ptrType$5.nil));
+			diceStates[0] = $append(diceStates[0], new structType$1.ptr(new $Int64(0, 1), new $Int64(0, 0), new $Int64(0, 0), new $Int64(0, 0), ptrType$9.nil, ptrType$9.nil));
 		}; })(ctx, diceStateIndex, diceStates, e, stackPop);
 		stackPop[0] = (function(ctx, diceStateIndex, diceStates, e, stackPop) { return function() {
 			var v, x, x$1;
@@ -30127,7 +30650,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					attrVal = _tuple$3[0];
 					obj = _tuple$3[1];
 					attrName = $assertType(code.Value, $String);
-					ret$1 = obj.SetAttr(attrName, attrVal);
+					_r$21 = obj.SetAttr(attrName, attrVal); /* */ $s = 73; case 73: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
+					ret$1 = _r$21;
 					if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$1 === ptrType.nil) {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE8\xAE\xBE\xE7\xBD\xAE\xE5\xB1\x9E\xE6\x80\xA7");
 					}
@@ -30136,10 +30660,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					}
 					$s = 46; continue;
 				/* } else if (_1 === (17)) { */ case 28:
-					_r$21 = stackPop[0](); /* */ $s = 73; case 73: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
-					obj$1 = _r$21;
+					_r$22 = stackPop[0](); /* */ $s = 74; case 74: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
+					obj$1 = _r$22;
 					attrName$1 = $assertType(code.Value, $String);
-					ret$2 = obj$1.GetAttr(ctx[0], attrName$1);
+					_r$23 = obj$1.GetAttr(ctx[0], attrName$1); /* */ $s = 75; case 75: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
+					ret$2 = _r$23;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
@@ -30147,7 +30672,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE5\x8F\x96\xE5\xB1\x9E\xE6\x80\xA7");
 						$s = -1; return;
 					}
-					$r = stackPush(ret$2); /* */ $s = 74; case 74: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = stackPush(ret$2); /* */ $s = 76; case 76: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 46; continue;
 				/* } else if (_1 === (9)) { */ case 29:
 					num$1 = (((x$8 = $assertType(code.Value, $Int64), x$8.$low + ((x$8.$high >> 31) * 4294967296)) >> 0));
@@ -30177,66 +30702,66 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					if (loadFunc === $throwNilPointerError) {
 						loadFunc = ctx[0].ValueLoadNameFunc;
 					}
-					/* */ if (!(loadFunc === $throwNilPointerError)) { $s = 75; continue; }
-					/* */ $s = 76; continue;
-					/* if (!(loadFunc === $throwNilPointerError)) { */ case 75:
-						_r$22 = loadFunc(name); /* */ $s = 78; case 78: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
-						val$2 = _r$22;
+					/* */ if (!(loadFunc === $throwNilPointerError)) { $s = 77; continue; }
+					/* */ $s = 78; continue;
+					/* if (!(loadFunc === $throwNilPointerError)) { */ case 77:
+						_r$24 = loadFunc(name); /* */ $s = 80; case 80: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+						val$2 = _r$24;
 						if (val$2 === ptrType.nil) {
 							val$2 = VMValueNewUndefined();
 						}
-						/* */ if (val$2.TypeId === 5) { $s = 79; continue; }
-						/* */ $s = 80; continue;
-						/* if (val$2.TypeId === 5) { */ case 79:
-							_r$23 = val$2.ComputedExecute(ctx[0]); /* */ $s = 81; case 81: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
-							val$2 = _r$23;
+						/* */ if (val$2.TypeId === 5) { $s = 81; continue; }
+						/* */ $s = 82; continue;
+						/* if (val$2.TypeId === 5) { */ case 81:
+							_r$25 = val$2.ComputedExecute(ctx[0]); /* */ $s = 83; case 83: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+							val$2 = _r$25;
 							if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 								$s = -1; return;
 							}
-						/* } */ case 80:
-						$r = stackPush(val$2); /* */ $s = 82; case 82: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 77; continue;
-					/* } else { */ case 76:
+						/* } */ case 82:
+						$r = stackPush(val$2); /* */ $s = 84; case 84: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 79; continue;
+					/* } else { */ case 78:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueLoadNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE8\x8E\xB7\xE5\x8F\x96\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
-					/* } */ case 77:
+					/* } */ case 79:
 					$s = 46; continue;
 				/* } else if (_1 === (11)) { */ case 31:
 					name$1 = $assertType(code.Value, $String);
 					loadFunc$1 = ctx[0].ValueLoadNameFunc;
-					/* */ if (!(loadFunc$1 === $throwNilPointerError)) { $s = 83; continue; }
-					/* */ $s = 84; continue;
-					/* if (!(loadFunc$1 === $throwNilPointerError)) { */ case 83:
-						_r$24 = loadFunc$1(name$1); /* */ $s = 86; case 86: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
-						val$3 = _r$24;
+					/* */ if (!(loadFunc$1 === $throwNilPointerError)) { $s = 85; continue; }
+					/* */ $s = 86; continue;
+					/* if (!(loadFunc$1 === $throwNilPointerError)) { */ case 85:
+						_r$26 = loadFunc$1(name$1); /* */ $s = 88; case 88: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+						val$3 = _r$26;
 						if (val$3 === ptrType.nil) {
 							val$3 = VMValueNewUndefined();
 						}
-						$r = stackPush(val$3); /* */ $s = 87; case 87: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 85; continue;
-					/* } else { */ case 84:
+						$r = stackPush(val$3); /* */ $s = 89; case 89: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 87; continue;
+					/* } else { */ case 86:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueLoadNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE8\x8E\xB7\xE5\x8F\x96\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
-					/* } */ case 85:
+					/* } */ case 87:
 					$s = 46; continue;
 				/* } else if (_1 === (12)) { */ case 32:
-					_r$25 = stackPop[0](); /* */ $s = 88; case 88: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
-					v$1 = _r$25;
+					_r$27 = stackPop[0](); /* */ $s = 90; case 90: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+					v$1 = _r$27;
 					name$2 = $assertType(code.Value, $String);
 					storeFunc = ctx[0].ValueStoreNameFunc;
-					/* */ if (!(storeFunc === $throwNilPointerError)) { $s = 89; continue; }
-					/* */ $s = 90; continue;
-					/* if (!(storeFunc === $throwNilPointerError)) { */ case 89:
-						$r = storeFunc(name$2, v$1.Clone()); /* */ $s = 92; case 92: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 91; continue;
-					/* } else { */ case 90:
+					/* */ if (!(storeFunc === $throwNilPointerError)) { $s = 91; continue; }
+					/* */ $s = 92; continue;
+					/* if (!(storeFunc === $throwNilPointerError)) { */ case 91:
+						$r = storeFunc(name$2, v$1.Clone()); /* */ $s = 94; case 94: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 93; continue;
+					/* } else { */ case 92:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueStoreNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE5\x82\xA8\xE5\xAD\x98\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
-					/* } */ case 91:
+					/* } */ case 93:
 					$s = 46; continue;
 				/* } else if (_1 === (68)) { */ case 33:
-					_r$26 = stackPop[0](); /* */ $s = 93; case 93: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
-					t = _r$26;
+					_r$28 = stackPop[0](); /* */ $s = 95; case 95: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+					t = _r$28;
 					if (!t.AsBool()) {
 						opIndex = opIndex + ((((x$12 = $assertType(code.Value, $Int64), x$12.$low + ((x$12.$high >> 31) * 4294967296)) >> 0))) >> 0;
 					}
@@ -30245,100 +30770,100 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					opIndex = opIndex + ((((x$13 = $assertType(code.Value, $Int64), x$13.$low + ((x$13.$high >> 31) * 4294967296)) >> 0))) >> 0;
 					$s = 46; continue;
 				/* } else if ((_1 === (18)) || (_1 === (19)) || (_1 === (20)) || (_1 === (21)) || (_1 === (22)) || (_1 === (23)) || (_1 === (24)) || (_1 === (25)) || (_1 === (26)) || (_1 === (27)) || (_1 === (28)) || (_1 === (29))) { */ case 35:
-					_r$27 = stackPop2(); /* */ $s = 94; case 94: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
-					_tuple$4 = _r$27;
+					_r$29 = stackPop2(); /* */ $s = 96; case 96: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+					_tuple$4 = _r$29;
 					v1 = _tuple$4[0];
 					v2 = _tuple$4[1];
 					opFunc = (x$14 = code.T - 18 << 24 >>> 24, ((x$14 < 0 || x$14 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$14]));
-					_r$28 = opFunc(v1, ctx[0], v2); /* */ $s = 95; case 95: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
-					ret$3 = _r$28;
-					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { $s = 96; continue; }
-					/* */ $s = 97; continue;
-					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { */ case 96:
-						_r$29 = code.CodeString(); /* */ $s = 98; case 98: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
-						_arg$4 = new $String(_r$29);
+					_r$30 = opFunc(v1, ctx[0], v2); /* */ $s = 97; case 97: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+					ret$3 = _r$30;
+					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { $s = 98; continue; }
+					/* */ $s = 99; continue;
+					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { */ case 98:
+						_r$31 = code.CodeString(); /* */ $s = 100; case 100: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+						_arg$4 = new $String(_r$31);
 						_arg$5 = new $String(v1.GetTypeName());
 						_arg$6 = new $String(v2.GetTypeName());
-						_r$30 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$12([_arg$4, _arg$5, _arg$6])); /* */ $s = 99; case 99: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
-						opErr = _r$30;
+						_r$32 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$12([_arg$4, _arg$5, _arg$6])); /* */ $s = 101; case 101: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
+						opErr = _r$32;
 						ctx[0].Error = errors.New(opErr);
-					/* } */ case 97:
+					/* } */ case 99:
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$3); /* */ $s = 100; case 100: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = stackPush(ret$3); /* */ $s = 102; case 102: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 46; continue;
 				/* } else if ((_1 === (35)) || (_1 === (34))) { */ case 36:
-					_r$31 = stackPop[0](); /* */ $s = 101; case 101: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
-					v$2 = _r$31;
+					_r$33 = stackPop[0](); /* */ $s = 103; case 103: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+					v$2 = _r$33;
 					ret$4 = ptrType.nil;
 					if (code.T === 35) {
 						ret$4 = v$2.OpPositive();
 					} else {
 						ret$4 = v$2.OpNegation();
 					}
-					/* */ if (ret$4 === ptrType.nil) { $s = 102; continue; }
-					/* */ $s = 103; continue;
-					/* if (ret$4 === ptrType.nil) { */ case 102:
-						_r$32 = code.CodeString(); /* */ $s = 104; case 104: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
-						_arg$7 = new $String(_r$32);
+					/* */ if (ret$4 === ptrType.nil) { $s = 104; continue; }
+					/* */ $s = 105; continue;
+					/* if (ret$4 === ptrType.nil) { */ case 104:
+						_r$34 = code.CodeString(); /* */ $s = 106; case 106: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
+						_arg$7 = new $String(_r$34);
 						_arg$8 = new $String(v$2.GetTypeName());
-						_r$33 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$12([_arg$7, _arg$8])); /* */ $s = 105; case 105: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
-						opErr$1 = _r$33;
+						_r$35 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$12([_arg$7, _arg$8])); /* */ $s = 107; case 107: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+						opErr$1 = _r$35;
 						ctx[0].Error = errors.New(opErr$1);
-					/* } */ case 103:
+					/* } */ case 105:
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$4); /* */ $s = 106; case 106: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = stackPush(ret$4); /* */ $s = 108; case 108: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 46; continue;
 				/* } else if (_1 === (36)) { */ case 37:
-					$r = diceInit(); /* */ $s = 107; case 107: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = diceInit(); /* */ $s = 109; case 109: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 46; continue;
 				/* } else if (_1 === (37)) { */ case 38:
-					_r$34 = stackPop[0](); /* */ $s = 108; case 108: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
-					v$3 = _r$34;
+					_r$36 = stackPop[0](); /* */ $s = 110; case 110: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
+					v$3 = _r$36;
 					_tuple$5 = v$3.ReadInt64();
 					(x$15 = diceStates[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$15])).times = _tuple$5[0];
 					$s = 46; continue;
 				/* } else if (_1 === (38)) { */ case 39:
-					_r$35 = stackPop[0](); /* */ $s = 109; case 109: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
-					v$4 = _r$35;
+					_r$37 = stackPop[0](); /* */ $s = 111; case 111: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
+					v$4 = _r$37;
 					(x$16 = diceStates[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$16])).isKeepLH = new $Int64(0, 1);
 					_tuple$6 = v$4.ReadInt64();
 					(x$17 = diceStates[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$17])).lowNum = _tuple$6[0];
 					$s = 46; continue;
 				/* } else if (_1 === (39)) { */ case 40:
-					_r$36 = stackPop[0](); /* */ $s = 110; case 110: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
-					v$5 = _r$36;
+					_r$38 = stackPop[0](); /* */ $s = 112; case 112: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
+					v$5 = _r$38;
 					(x$18 = diceStates[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$18])).isKeepLH = new $Int64(0, 2);
 					_tuple$7 = v$5.ReadInt64();
 					(x$19 = diceStates[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$19])).highNum = _tuple$7[0];
 					$s = 46; continue;
 				/* } else if (_1 === (40)) { */ case 41:
-					_r$37 = stackPop[0](); /* */ $s = 111; case 111: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
-					v$6 = _r$37;
+					_r$39 = stackPop[0](); /* */ $s = 113; case 113: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
+					v$6 = _r$39;
 					(x$20 = diceStates[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$20])).isKeepLH = new $Int64(0, 3);
 					_tuple$8 = v$6.ReadInt64();
 					(x$21 = diceStates[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$21])).lowNum = _tuple$8[0];
 					$s = 46; continue;
 				/* } else if (_1 === (42)) { */ case 42:
-					_r$38 = stackPop[0](); /* */ $s = 112; case 112: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
-					v$7 = _r$38;
+					_r$40 = stackPop[0](); /* */ $s = 114; case 114: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
+					v$7 = _r$40;
 					_tuple$9 = v$7.ReadInt64();
 					i[0] = _tuple$9[0];
-					(x$22 = diceStates[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$22])).min = (i.$ptr || (i.$ptr = new ptrType$5(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i)));
+					(x$22 = diceStates[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$22])).min = (i.$ptr || (i.$ptr = new ptrType$9(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i)));
 					$s = 46; continue;
 				/* } else if (_1 === (43)) { */ case 43:
-					_r$39 = stackPop[0](); /* */ $s = 113; case 113: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
-					v$8 = _r$39;
+					_r$41 = stackPop[0](); /* */ $s = 115; case 115: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
+					v$8 = _r$41;
 					_tuple$10 = v$8.ReadInt64();
 					i$1[0] = _tuple$10[0];
-					(x$23 = diceStates[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$23])).max = (i$1.$ptr || (i$1.$ptr = new ptrType$5(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i$1)));
+					(x$23 = diceStates[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$23])).max = (i$1.$ptr || (i$1.$ptr = new ptrType$9(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i$1)));
 					$s = 46; continue;
 				/* } else if (_1 === (41)) { */ case 44:
-					_r$40 = stackPop[0](); /* */ $s = 114; case 114: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
-					v$9 = _r$40;
+					_r$42 = stackPop[0](); /* */ $s = 116; case 116: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
+					v$9 = _r$42;
 					(x$24 = diceStates[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$24])).isKeepLH = new $Int64(0, 4);
 					_tuple$11 = v$9.ReadInt64();
 					(x$25 = diceStates[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$25])).highNum = _tuple$11[0];
@@ -30346,58 +30871,58 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				/* } else if (_1 === (44)) { */ case 45:
 					diceState = $clone((x$26 = diceStates[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$26])), structType$1);
 					nums[0] = sliceType$3.nil;
-					_r$41 = stackPop[0](); /* */ $s = 115; case 115: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
-					val$4 = _r$41;
+					_r$43 = stackPop[0](); /* */ $s = 117; case 117: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
+					val$4 = _r$43;
 					_tuple$12 = val$4.ReadInt64();
 					bInt = _tuple$12[0];
-					_r$42 = numOpCountAdd(diceState.times); /* */ $s = 116; case 116: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
-					_r$42;
+					_r$44 = numOpCountAdd(diceState.times); /* */ $s = 118; case 118: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
+					_r$44;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
 					i$2 = new $Int64(0, 0);
-					/* while (true) { */ case 117:
-						/* if (!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { break; } */ if(!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { $s = 118; continue; }
-						_r$43 = DiceRoll64(bInt); /* */ $s = 119; case 119: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
-						oneDice = _r$43;
-						if (!(diceState.max === ptrType$5.nil)) {
+					/* while (true) { */ case 119:
+						/* if (!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { break; } */ if(!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { $s = 120; continue; }
+						_r$45 = DiceRoll64(bInt); /* */ $s = 121; case 121: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
+						oneDice = _r$45;
+						if (!(diceState.max === ptrType$9.nil)) {
 							if ((x$28 = diceState.max.$get(), (oneDice.$high > x$28.$high || (oneDice.$high === x$28.$high && oneDice.$low > x$28.$low)))) {
 								oneDice = diceState.max.$get();
 							}
 						}
-						if (!(diceState.min === ptrType$5.nil)) {
+						if (!(diceState.min === ptrType$9.nil)) {
 							if ((x$29 = diceState.min.$get(), (oneDice.$high < x$29.$high || (oneDice.$high === x$29.$high && oneDice.$low < x$29.$low)))) {
 								oneDice = diceState.min.$get();
 							}
 						}
 						nums[0] = $append(nums[0], oneDice);
 						i$2 = (x$30 = new $Int64(0, 1), new $Int64(i$2.$high + x$30.$high, i$2.$low + x$30.$low));
-					$s = 117; continue;
-					case 118:
+					$s = 119; continue;
+					case 120:
 					pickNum = diceState.times;
-					/* */ if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { $s = 120; continue; }
-					/* */ $s = 121; continue;
-					/* if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { */ case 120:
-						/* */ if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { $s = 122; continue; }
-						/* */ $s = 123; continue;
-						/* if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { */ case 122:
+					/* */ if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { $s = 122; continue; }
+					/* */ $s = 123; continue;
+					/* if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { */ case 122:
+						/* */ if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { $s = 124; continue; }
+						/* */ $s = 125; continue;
+						/* if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { */ case 124:
 							pickNum = diceState.lowNum;
 							$r = sort.Slice(nums[0], (function(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop) { return function(i$3, j) {
 								var i$3, j, x$34, x$35;
 								return (x$34 = ((i$3 < 0 || i$3 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$3]), x$35 = ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]), (x$34.$high < x$35.$high || (x$34.$high === x$35.$high && x$34.$low < x$35.$low)));
-							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 125; case 125: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$s = 124; continue;
-						/* } else { */ case 123:
+							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 127; case 127: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$s = 126; continue;
+						/* } else { */ case 125:
 							pickNum = diceState.highNum;
 							$r = sort.Slice(nums[0], (function(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop) { return function(i$3, j) {
 								var i$3, j, x$34, x$35;
 								return (x$34 = ((i$3 < 0 || i$3 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$3]), x$35 = ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]), (x$34.$high > x$35.$high || (x$34.$high === x$35.$high && x$34.$low > x$35.$low)));
-							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 126; case 126: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						/* } */ case 124:
+							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 128; case 128: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						/* } */ case 126:
 						if ((x$34 = diceState.isKeepLH, (x$34.$high > 0 || (x$34.$high === 0 && x$34.$low > 2)))) {
 							pickNum = (x$35 = diceState.times, new $Int64(x$35.$high - pickNum.$high, x$35.$low - pickNum.$low));
 						}
-					/* } */ case 121:
+					/* } */ case 123:
 					num$2 = new $Int64(0, 0);
 					i$3 = new $Int64(0, 0);
 					while (true) {
@@ -30409,14 +30934,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						num$2 = (x$38 = (($flatten64(i$3) < 0 || $flatten64(i$3) >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + $flatten64(i$3)]), new $Int64(num$2.$high + x$38.$high, num$2.$low + x$38.$low));
 						i$3 = (x$39 = new $Int64(0, 1), new $Int64(i$3.$high + x$39.$high, i$3.$low + x$39.$low));
 					}
-					$r = stackPush(VMValueNewInt64(num$2)); /* */ $s = 127; case 127: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = stackPush(VMValueNewInt64(num$2)); /* */ $s = 129; case 129: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				/* } */ case 46:
 			case 16:
 			opIndex = opIndex + (1) >> 0;
 		$s = 3; continue;
 		case 4:
 		$s = -1; return;
-		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, arr, arr$1, arr$2, attrName, attrName$1, attrVal, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, funcObj, i, i$1, i$2, i$3, index, itemIndex, loadFunc, loadFunc$1, name, name$1, name$2, num, num$1, num$2, numOpCountAdd, nums, obj, obj$1, oneDice, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, paramsNum$1, pickNum, ret, ret$1, ret$2, ret$3, ret$4, s, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, storeFunc, subThread, t, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
+		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$5, _r$6, _r$7, _r$8, _r$9, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, arr, arr$1, arr$2, attrName, attrName$1, attrVal, bInt, cIndex, code, ctx, diceInit, diceState, diceStateIndex, diceStates, e, err, funcObj, i, i$1, i$2, i$3, index, itemIndex, loadFunc, loadFunc$1, name, name$1, name$2, num, num$1, num$2, numOpCountAdd, nums, obj, obj$1, oneDice, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, paramsNum$1, pickNum, ret, ret$1, ret$2, ret$3, ret$4, s, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, storeFunc, subThread, t, unquote, v, v$1, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
 	};
 	Parser.prototype.Evaluate = function() { return this.$val.Evaluate(); };
 	Context.ptr.prototype.GetAsmText = function() {
@@ -30472,7 +30997,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			var {_r, _r$1, _r$2, c, depth, node$1, quote, rule, x, $s, $r, $c} = $restore(this, {node$1, depth});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			/* while (true) { */ case 1:
-				/* if (!(!(node$1 === ptrType$6.nil))) { break; } */ if(!(!(node$1 === ptrType$6.nil))) { $s = 2; continue; }
+				/* if (!(!(node$1 === ptrType$10.nil))) { break; } */ if(!(!(node$1 === ptrType$10.nil))) { $s = 2; continue; }
 				c = 0;
 				/* while (true) { */ case 3:
 					/* if (!(c < depth)) { break; } */ if(!(c < depth)) { $s = 4; continue; }
@@ -30493,9 +31018,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_r$2 = fmt.Fprintf(w[0], "\x1B[36m%v\x1B[m %v\n", new sliceType$12([new $String(rule), new $String(quote)])); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 					_r$2;
 				/* } */ case 8:
-				/* */ if (!(node$1.up === ptrType$6.nil)) { $s = 11; continue; }
+				/* */ if (!(node$1.up === ptrType$10.nil)) { $s = 11; continue; }
 				/* */ $s = 12; continue;
-				/* if (!(node$1.up === ptrType$6.nil)) { */ case 11:
+				/* if (!(node$1.up === ptrType$10.nil)) { */ case 11:
 					$r = print[0](node$1.up, depth + 1 >> 0); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				/* } */ case 12:
 				node$1 = node$1.next;
@@ -30556,7 +31081,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _i, _ref, node, stack, t, token, tokens;
 		t = this;
 		tokens = t.Tokens();
-		stack = ptrType$7.nil;
+		stack = ptrType$11.nil;
 		_ref = tokens;
 		_i = 0;
 		while (true) {
@@ -30566,9 +31091,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				_i++;
 				continue;
 			}
-			node = new node32.ptr($clone(token, token32), ptrType$6.nil, ptrType$6.nil);
+			node = new node32.ptr($clone(token, token32), ptrType$10.nil, ptrType$10.nil);
 			while (true) {
-				if (!(!(stack === ptrType$7.nil) && stack.node.token32.begin >= token.begin && stack.node.token32.end <= token.end)) { break; }
+				if (!(!(stack === ptrType$11.nil) && stack.node.token32.begin >= token.begin && stack.node.token32.end <= token.end)) { break; }
 				stack.node.next = node.up;
 				node.up = stack.node;
 				stack = stack.down;
@@ -30576,10 +31101,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			stack = new element.ptr(node, stack);
 			_i++;
 		}
-		if (!(stack === ptrType$7.nil)) {
+		if (!(stack === ptrType$11.nil)) {
 			return stack.node;
 		}
-		return ptrType$6.nil;
+		return ptrType$10.nil;
 	};
 	tokens32.prototype.AST = function() { return this.$val.AST(); };
 	tokens32.ptr.prototype.PrintSyntaxTree = function(buffer) {
@@ -30776,7 +31301,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		bldr = [bldr];
 		p = this;
-		bldr[0] = new strings.Builder.ptr(ptrType$8.nil, sliceType$13.nil);
+		bldr[0] = new strings.Builder.ptr(ptrType$12.nil, sliceType$13.nil);
 		$r = p.WriteSyntaxTree(bldr[0]); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$s = -1; return bldr[0].String();
 		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.SprintSyntaxTree, $c: true, $r, bldr, p, $s};return $f;
@@ -36758,7 +37283,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		_tuple = p.CodePop();
 		code = _tuple[0];
 		length = _tuple[1];
-		val = VMValueNewComputedRaw(new ComputedData.ptr(text, false, code, length));
+		val = VMValueNewComputedRaw(new ComputedData.ptr(text, ptrType$7.nil, code, length));
 		p.WriteCode(4, val);
 		p.WriteCode(12, new $String(name));
 	};
@@ -37046,29 +37571,34 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ } return; } var $f = {$blk: ByteCode.ptr.prototype.CodeString, $c: true, $r, $24r, $24r$1, $24r$2, $24r$3, $24r$4, _1, _r, _r$1, _r$2, _r$3, _r$4, _tuple, _tuple$1, code, computed, computed$1, $s};return $f;
 	};
 	ByteCode.prototype.CodeString = function() { return this.$val.CodeString(); };
-	ptrType$1.methods = [{prop: "Init", name: "Init", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "loadInnerVar", name: "loadInnerVar", pkg: "github.com/sealdice/dicescript", typ: $funcType([$String], [funcType$3], false)}, {prop: "Run", name: "Run", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "GetAsmText", name: "GetAsmText", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType.methods = [{prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt64", name: "ReadInt64", pkg: "", typ: $funcType([], [$Int64, $Bool], false)}, {prop: "ReadFloat64", name: "ReadFloat64", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [sliceType$2, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$2, $Bool], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$3, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "SetAttr", name: "SetAttr", pkg: "", typ: $funcType([$String, ptrType], [ptrType], false)}, {prop: "GetAttr", name: "GetAttr", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "CallFunc", name: "CallFunc", pkg: "", typ: $funcType([ptrType$1, $String, sliceType$2], [ptrType], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayGetItem", name: "ArrayGetItem", pkg: "", typ: $funcType([ptrType$1, $Int64], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}];
-	ptrType$9.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType$6.methods = [{prop: "print", name: "print", pkg: "github.com/sealdice/dicescript", typ: $funcType([io.Writer, $Bool, $String], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrint", name: "PrettyPrint", pkg: "", typ: $funcType([io.Writer, $String], [], false)}];
-	ptrType$10.methods = [{prop: "Trim", name: "Trim", pkg: "", typ: $funcType([$Uint32], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([], [], false)}, {prop: "AST", name: "AST", pkg: "", typ: $funcType([], [ptrType$6], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrintSyntaxTree", name: "PrettyPrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([pegRule, $Uint32, $Uint32, $Uint32], [], false)}, {prop: "Tokens", name: "Tokens", pkg: "", typ: $funcType([], [sliceType$8], false)}];
-	ptrType$4.methods = [{prop: "Evaluate", name: "Evaluate", pkg: "", typ: $funcType([], [], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([sliceType$10], [$error], true)}, {prop: "Reset", name: "Reset", pkg: "", typ: $funcType([], [], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer], [], false)}, {prop: "SprintSyntaxTree", name: "SprintSyntaxTree", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Execute", name: "Execute", pkg: "", typ: $funcType([], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([sliceType$9], [$error], true)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "LMark", name: "LMark", pkg: "", typ: $funcType([], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "PushUndefined", name: "PushUndefined", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$4, $String], [], false)}, {prop: "AddSetAttr", name: "AddSetAttr", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$1, $Int], false)}];
-	ptrType$11.methods = [{prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType$12.methods = [{prop: "init", name: "init", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
-	ptrType$13.methods = [{prop: "CodeString", name: "CodeString", pkg: "", typ: $funcType([], [$String], false)}];
+	ptrType$7.methods = [{prop: "Get", name: "Get", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Put", name: "Put", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "LoadOrStore", name: "LoadOrStore", pkg: "", typ: $funcType([$String, ptrType], [ptrType, $Bool], false)}, {prop: "LoadAndDelete", name: "LoadAndDelete", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Delete", name: "Delete", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$3], [], false)}, {prop: "missLocked", name: "missLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "dirtyLocked", name: "dirtyLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
+	ptrType$3.methods = [{prop: "load", name: "load", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryStore", name: "tryStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [$Bool], false)}, {prop: "unexpungeLocked", name: "unexpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "storeLocked", name: "storeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [], false)}, {prop: "tryLoadOrStore", name: "tryLoadOrStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType], [ptrType, $Bool, $Bool], false)}, {prop: "delete$", name: "delete", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryExpungeLocked", name: "tryExpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}];
+	ptrType$1.methods = [{prop: "Init", name: "Init", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "loadInnerVar", name: "loadInnerVar", pkg: "github.com/sealdice/dicescript", typ: $funcType([$String], [funcType$4], false)}, {prop: "Run", name: "Run", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "GetAsmText", name: "GetAsmText", pkg: "", typ: $funcType([], [$String], false)}];
+	ptrType.methods = [{prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt64", name: "ReadInt64", pkg: "", typ: $funcType([], [$Int64, $Bool], false)}, {prop: "ReadFloat64", name: "ReadFloat64", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [sliceType$2, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$5, $Bool], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$6, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "SetAttr", name: "SetAttr", pkg: "", typ: $funcType([$String, ptrType], [ptrType], false)}, {prop: "GetAttr", name: "GetAttr", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "CallFunc", name: "CallFunc", pkg: "", typ: $funcType([ptrType$1, $String, sliceType$2], [ptrType], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayGetItem", name: "ArrayGetItem", pkg: "", typ: $funcType([ptrType$1, $Int64], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}];
+	ptrType$13.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
+	ptrType$10.methods = [{prop: "print", name: "print", pkg: "github.com/sealdice/dicescript", typ: $funcType([io.Writer, $Bool, $String], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrint", name: "PrettyPrint", pkg: "", typ: $funcType([io.Writer, $String], [], false)}];
+	ptrType$14.methods = [{prop: "Trim", name: "Trim", pkg: "", typ: $funcType([$Uint32], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([], [], false)}, {prop: "AST", name: "AST", pkg: "", typ: $funcType([], [ptrType$10], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrintSyntaxTree", name: "PrettyPrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([pegRule, $Uint32, $Uint32, $Uint32], [], false)}, {prop: "Tokens", name: "Tokens", pkg: "", typ: $funcType([], [sliceType$8], false)}];
+	ptrType$8.methods = [{prop: "Evaluate", name: "Evaluate", pkg: "", typ: $funcType([], [], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([sliceType$10], [$error], true)}, {prop: "Reset", name: "Reset", pkg: "", typ: $funcType([], [], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer], [], false)}, {prop: "SprintSyntaxTree", name: "SprintSyntaxTree", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Execute", name: "Execute", pkg: "", typ: $funcType([], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([sliceType$9], [$error], true)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "LMark", name: "LMark", pkg: "", typ: $funcType([], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "PushUndefined", name: "PushUndefined", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$4, $String], [], false)}, {prop: "AddSetAttr", name: "AddSetAttr", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$1, $Int], false)}];
+	ptrType$15.methods = [{prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
+	ptrType$16.methods = [{prop: "init", name: "init", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
+	ptrType$17.methods = [{prop: "CodeString", name: "CodeString", pkg: "", typ: $funcType([], [$String], false)}];
+	ValueMap.init("github.com/sealdice/dicescript", [{prop: "mu", name: "mu", embedded: false, exported: false, typ: sync.Mutex, tag: ""}, {prop: "read", name: "read", embedded: false, exported: false, typ: atomic.Value, tag: ""}, {prop: "dirty", name: "dirty", embedded: false, exported: false, typ: mapType, tag: ""}, {prop: "misses", name: "misses", embedded: false, exported: false, typ: $Int, tag: ""}]);
+	readOnlyValueMap.init("github.com/sealdice/dicescript", [{prop: "m", name: "m", embedded: false, exported: false, typ: mapType, tag: ""}, {prop: "amended", name: "amended", embedded: false, exported: false, typ: $Bool, tag: ""}]);
+	entryValueMap.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: $UnsafePointer, tag: ""}]);
 	RollExtraFlags.init("", [{prop: "DiceMinMode", name: "DiceMinMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMaxMode", name: "DiceMaxMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableLoadVarname", name: "DisableLoadVarname", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "IgnoreDiv0", name: "IgnoreDiv0", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DefaultDiceSideNum", name: "DefaultDiceSideNum", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "PrintBytecode", name: "PrintBytecode", embedded: false, exported: true, typ: $Bool, tag: ""}]);
-	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "currentThis", name: "currentThis", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: mapType, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$6, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "Flags", name: "Flags", embedded: false, exported: true, typ: RollExtraFlags, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "ValueStoreNameFunc", name: "ValueStoreNameFunc", embedded: false, exported: true, typ: funcType$4, tag: ""}, {prop: "ValueLoadNameFunc", name: "ValueLoadNameFunc", embedded: false, exported: true, typ: funcType$3, tag: ""}]);
+	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "currentThis", name: "currentThis", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$7, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$6, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "Flags", name: "Flags", embedded: false, exported: true, typ: RollExtraFlags, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "ValueStoreNameFunc", name: "ValueStoreNameFunc", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "ValueLoadNameFunc", name: "ValueLoadNameFunc", embedded: false, exported: true, typ: funcType$4, tag: ""}]);
 	VMValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"value\""}, {prop: "ExpiredTime", name: "ExpiredTime", embedded: false, exported: true, typ: $Int64, tag: "json:\"expiredTime\""}]);
-	ComputedData.init("github.com/sealdice/dicescript", [{prop: "Expr", name: "Expr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Attrs", name: "Attrs", embedded: false, exported: true, typ: mapType, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}]);
+	ComputedData.init("github.com/sealdice/dicescript", [{prop: "Expr", name: "Expr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Attrs", name: "Attrs", embedded: false, exported: true, typ: ptrType$7, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	FunctionData.init("github.com/sealdice/dicescript", [{prop: "Expr", name: "Expr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Name", name: "Name", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Params", name: "Params", embedded: false, exported: true, typ: sliceType$4, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "ctx", name: "ctx", embedded: false, exported: false, typ: ptrType$1, tag: ""}]);
 	token32.init("github.com/sealdice/dicescript", [{prop: "pegRule", name: "pegRule", embedded: true, exported: false, typ: pegRule, tag: ""}, {prop: "begin", name: "begin", embedded: false, exported: false, typ: $Uint32, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: $Uint32, tag: ""}]);
-	node32.init("github.com/sealdice/dicescript", [{prop: "token32", name: "token32", embedded: true, exported: false, typ: token32, tag: ""}, {prop: "up", name: "up", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "next", name: "next", embedded: false, exported: false, typ: ptrType$6, tag: ""}]);
+	node32.init("github.com/sealdice/dicescript", [{prop: "token32", name: "token32", embedded: true, exported: false, typ: token32, tag: ""}, {prop: "up", name: "up", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "next", name: "next", embedded: false, exported: false, typ: ptrType$10, tag: ""}]);
 	tokens32.init("github.com/sealdice/dicescript", [{prop: "tree", name: "tree", embedded: false, exported: false, typ: sliceType$8, tag: ""}]);
-	Parser.init("github.com/sealdice/dicescript", [{prop: "ParserData", name: "ParserData", embedded: true, exported: true, typ: ParserData, tag: ""}, {prop: "Context", name: "Context", embedded: true, exported: true, typ: Context, tag: ""}, {prop: "Buffer", name: "Buffer", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "buffer", name: "buffer", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: arrayType, tag: ""}, {prop: "parse", name: "parse", embedded: false, exported: false, typ: funcType$5, tag: ""}, {prop: "reset", name: "reset", embedded: false, exported: false, typ: funcType$6, tag: ""}, {prop: "Pretty", name: "Pretty", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "tokens32", name: "tokens32", embedded: true, exported: false, typ: tokens32, tag: ""}]);
+	Parser.init("github.com/sealdice/dicescript", [{prop: "ParserData", name: "ParserData", embedded: true, exported: true, typ: ParserData, tag: ""}, {prop: "Context", name: "Context", embedded: true, exported: true, typ: Context, tag: ""}, {prop: "Buffer", name: "Buffer", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "buffer", name: "buffer", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: arrayType, tag: ""}, {prop: "parse", name: "parse", embedded: false, exported: false, typ: funcType$6, tag: ""}, {prop: "reset", name: "reset", embedded: false, exported: false, typ: funcType$7, tag: ""}, {prop: "Pretty", name: "Pretty", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "tokens32", name: "tokens32", embedded: true, exported: false, typ: tokens32, tag: ""}]);
 	textPosition.init("github.com/sealdice/dicescript", [{prop: "line", name: "line", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "symbol", name: "symbol", embedded: false, exported: false, typ: $Int, tag: ""}]);
-	parseError.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: token32, tag: ""}]);
+	parseError.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: token32, tag: ""}]);
 	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$4, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$5, tag: ""}]);
 	ByteCode.init("", [{prop: "T", name: "T", embedded: false, exported: true, typ: CodeType, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: ""}]);
-	element.init("github.com/sealdice/dicescript", [{prop: "node", name: "node", embedded: false, exported: false, typ: ptrType$6, tag: ""}, {prop: "down", name: "down", embedded: false, exported: false, typ: ptrType$7, tag: ""}]);
+	element.init("github.com/sealdice/dicescript", [{prop: "node", name: "node", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "down", name: "down", embedded: false, exported: false, typ: ptrType$11, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -37081,7 +37611,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$r = sort.$init(); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = strconv.$init(); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = strings.$init(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = time.$init(); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = sync.$init(); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = atomic.$init(); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = time.$init(); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		expungedValueMap = (new Uint8Array(4));
 		binOperator = new sliceType([$methodExpr(ptrType, "OpAdd"), $methodExpr(ptrType, "OpSub"), $methodExpr(ptrType, "OpMultiply"), $methodExpr(ptrType, "OpDivide"), $methodExpr(ptrType, "OpModulus"), $methodExpr(ptrType, "OpPower"), $methodExpr(ptrType, "OpCompLT"), $methodExpr(ptrType, "OpCompLE"), $methodExpr(ptrType, "OpCompEQ"), $methodExpr(ptrType, "OpCompNE"), $methodExpr(ptrType, "OpCompGE"), $methodExpr(ptrType, "OpCompGT")]);
 		rul3s = $toNativeArray($kindString, ["Unknown", "dicescript", "stmtRoot", "stmtLines", "stmtWithSemicolon", "stmtWithBlock", "block", "stmtElse", "stmtIf", "func_def_params", "stmtFunc", "stmtAssign", "exprRoot", "exprValueIfExists", "exprTernary", "exprBitwise", "exprCompare", "exprAdditive", "exprMultiplicative", "exprExp", "exprUnaryNeg", "exprUnaryPos", "_diceMod", "_diceMod2", "_dicePearMod", "exprDice", "get_item", "array_call", "get_attr", "func_invoke", "value", "number", "float", "strPart", "strPart1", "strPart2", "strPart3", "fstring", "identifier", "sub", "parenOpen", "parenClose", "add", "minus", "multiply", "divide", "modulus", "exponentiation", "bitwiseOr", "bitwiseAnd", "logicOr", "logicAnd", "lt", "gt", "le", "ge", "eq", "ne", "sp", "sp1", "escape", "Action0", "Action1", "Action2", "Action3", "Action4", "Action5", "Action6", "Action7", "Action8", "Action9", "Action10", "PegText", "Action11", "Action12", "Action13", "Action14", "Action15", "Action16", "Action17", "Action18", "Action19", "Action20", "Action21", "Action22", "Action23", "Action24", "Action25", "Action26", "Action27", "Action28", "Action29", "Action30", "Action31", "Action32", "Action33", "Action34", "Action35", "Action36", "Action37", "Action38", "Action39", "Action40", "Action41", "Action42", "Action43", "Action44", "Action45", "Action46", "Action47", "Action48", "Action49", "Action50", "Action51", "Action52", "Action53", "Action54", "Action55", "Action56", "Action57", "Action58", "Action59", "Action60", "Action61", "Action62", "Action63", "Action64", "Action65", "Action66", "Action67", "Action68", "Action69", "Action70", "Action71", "Action72", "Action73", "Action74", "Action75", "Action76", "Action77", "Action78", "Action79", "Action80", "Action81", "Action82", "Action83", "Action84", "Action85", "Action86", "Action87", "Action88", "Action89", "Action90", "Action91", "Action92", "Action93", "Action94", "Action95", "Action96", "Action97", "Action98", "Action99", "Action100", "Action101", "Action102", "Action103", "Action104", "Action105", "Action106", "Action107", "Action108", "Action109", "Action110", "Action111", "Action112"]);
 		/* */ } return; } if ($f === undefined) { $f = { $blk: $init }; } $f.$s = $s; $f.$r = $r; return $f;
