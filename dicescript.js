@@ -28942,7 +28942,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser = $pkg.Parser = $newType(0, $kindStruct, "dicescript.Parser", true, "github.com/sealdice/dicescript", true, function(ParserData_, Context_, Buffer_, buffer_, rules_, parse_, reset_, Pretty_, tokens32_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.ParserData = new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$5.nil);
+			this.ParserData = new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$3.nil, sliceType$3.nil, sliceType$5.nil);
 			this.Context = new Context.ptr(ptrType$8.nil, ptrType.nil, 0, ptrType$7.nil, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError);
 			this.Buffer = "";
 			this.buffer = sliceType$7.nil;
@@ -28983,18 +28983,22 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.p = p_;
 		this.max = max_;
 	});
-	ParserData = $pkg.ParserData = $newType(0, $kindStruct, "dicescript.ParserData", true, "github.com/sealdice/dicescript", true, function(counterStack_, varnameStack_, jmpStack_, codeStack_) {
+	ParserData = $pkg.ParserData = $newType(0, $kindStruct, "dicescript.ParserData", true, "github.com/sealdice/dicescript", true, function(counterStack_, varnameStack_, jmpStack_, breakStack_, continueStack_, codeStack_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.counterStack = sliceType$3.nil;
 			this.varnameStack = sliceType$4.nil;
 			this.jmpStack = sliceType$3.nil;
+			this.breakStack = sliceType$3.nil;
+			this.continueStack = sliceType$3.nil;
 			this.codeStack = sliceType$5.nil;
 			return;
 		}
 		this.counterStack = counterStack_;
 		this.varnameStack = varnameStack_;
 		this.jmpStack = jmpStack_;
+		this.breakStack = breakStack_;
+		this.continueStack = continueStack_;
 		this.codeStack = codeStack_;
 	});
 	CodeType = $pkg.CodeType = $newType(1, $kindUint8, "dicescript.CodeType", true, "github.com/sealdice/dicescript", true, null);
@@ -29038,7 +29042,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	sliceType$6 = $sliceType(VMValue);
 	sliceType$7 = $sliceType($Int32);
 	funcType$1 = $funcType([], [$Bool], false);
-	arrayType = $arrayType(funcType$1, 185);
+	arrayType = $arrayType(funcType$1, 192);
 	sliceType$8 = $sliceType(token32);
 	funcType$2 = $funcType([ptrType$8], [$error], false);
 	sliceType$9 = $sliceType(funcType$2);
@@ -30286,15 +30290,16 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		_tuple = v.ReadFunctionData();
 		cd = _tuple[0];
 		vm.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
+		if (!((cd.Params.$length === params.$length))) {
+			ctx.Error = errors.New("\xE8\xB0\x83\xE7\x94\xA8\xE5\x8F\x82\xE6\x95\xB0\xE4\xB8\xAA\xE6\x95\xB0\xE4\xB8\x8E\xE5\x87\xBD\xE6\x95\xB0\xE5\xAE\x9A\xE4\xB9\x89\xE4\xB8\x8D\xE7\xAC\xA6");
+			$s = -1; return ptrType.nil;
+		}
 		_ref = cd.Params;
 		_i = 0;
 		/* while (true) { */ case 1:
 			/* if (!(_i < _ref.$length)) { break; } */ if(!(_i < _ref.$length)) { $s = 2; continue; }
 			index = _i;
 			i = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-			if (index >= params.$length) {
-				/* break; */ $s = 2; continue;
-			}
 			$r = vm.attrs.Put(i, ((index < 0 || index >= params.$length) ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + index])); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_i++;
 		$s = 1; continue;
@@ -30369,7 +30374,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	$pkg.VMValueNewFunctionRaw = VMValueNewFunctionRaw;
 	NewVM = function() {
 		var p;
-		p = new Parser.ptr(new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$5.nil), new Context.ptr(ptrType$8.nil, ptrType.nil, 0, ptrType$7.nil, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError), "", sliceType$7.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$8.nil));
+		p = new Parser.ptr(new ParserData.ptr(sliceType$3.nil, sliceType$4.nil, sliceType$3.nil, sliceType$3.nil, sliceType$3.nil, sliceType$5.nil), new Context.ptr(ptrType$8.nil, ptrType.nil, 0, ptrType$7.nil, sliceType$1.nil, 0, sliceType$6.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, new $Int64(0, 0), false), $ifaceNil, ptrType.nil, "", "", $throwNilPointerError, $throwNilPointerError), "", sliceType$7.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$8.nil));
 		p.ParserData.init();
 		p.Context.Init(512);
 		p.Context.parser = p;
@@ -30561,35 +30566,36 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				/* */ if (_1 === (16)) { $s = 27; continue; }
 				/* */ if (_1 === (17)) { $s = 28; continue; }
 				/* */ if (_1 === (18)) { $s = 29; continue; }
-				/* */ if (_1 === (9)) { $s = 30; continue; }
-				/* */ if (_1 === (10)) { $s = 31; continue; }
-				/* */ if (_1 === (11)) { $s = 32; continue; }
-				/* */ if (_1 === (12)) { $s = 33; continue; }
-				/* */ if (_1 === (69)) { $s = 34; continue; }
-				/* */ if (_1 === (67)) { $s = 35; continue; }
-				/* */ if (_1 === (65)) { $s = 36; continue; }
-				/* */ if ((_1 === (19)) || (_1 === (20)) || (_1 === (21)) || (_1 === (22)) || (_1 === (23)) || (_1 === (24)) || (_1 === (25)) || (_1 === (26)) || (_1 === (27)) || (_1 === (28)) || (_1 === (29)) || (_1 === (30))) { $s = 37; continue; }
-				/* */ if ((_1 === (36)) || (_1 === (35))) { $s = 38; continue; }
-				/* */ if (_1 === (37)) { $s = 39; continue; }
-				/* */ if (_1 === (38)) { $s = 40; continue; }
-				/* */ if (_1 === (39)) { $s = 41; continue; }
-				/* */ if (_1 === (40)) { $s = 42; continue; }
-				/* */ if (_1 === (41)) { $s = 43; continue; }
-				/* */ if (_1 === (43)) { $s = 44; continue; }
-				/* */ if (_1 === (44)) { $s = 45; continue; }
-				/* */ if (_1 === (42)) { $s = 46; continue; }
-				/* */ if (_1 === (45)) { $s = 47; continue; }
-				/* */ $s = 48; continue;
+				/* */ if (_1 === (70)) { $s = 30; continue; }
+				/* */ if (_1 === (9)) { $s = 31; continue; }
+				/* */ if (_1 === (10)) { $s = 32; continue; }
+				/* */ if (_1 === (11)) { $s = 33; continue; }
+				/* */ if (_1 === (12)) { $s = 34; continue; }
+				/* */ if (_1 === (69)) { $s = 35; continue; }
+				/* */ if (_1 === (67)) { $s = 36; continue; }
+				/* */ if (_1 === (65)) { $s = 37; continue; }
+				/* */ if ((_1 === (19)) || (_1 === (20)) || (_1 === (21)) || (_1 === (22)) || (_1 === (23)) || (_1 === (24)) || (_1 === (25)) || (_1 === (26)) || (_1 === (27)) || (_1 === (28)) || (_1 === (29)) || (_1 === (30))) { $s = 38; continue; }
+				/* */ if ((_1 === (36)) || (_1 === (35))) { $s = 39; continue; }
+				/* */ if (_1 === (37)) { $s = 40; continue; }
+				/* */ if (_1 === (38)) { $s = 41; continue; }
+				/* */ if (_1 === (39)) { $s = 42; continue; }
+				/* */ if (_1 === (40)) { $s = 43; continue; }
+				/* */ if (_1 === (41)) { $s = 44; continue; }
+				/* */ if (_1 === (43)) { $s = 45; continue; }
+				/* */ if (_1 === (44)) { $s = 46; continue; }
+				/* */ if (_1 === (42)) { $s = 47; continue; }
+				/* */ if (_1 === (45)) { $s = 48; continue; }
+				/* */ $s = 49; continue;
 				/* if (_1 === (0)) { */ case 17:
 					(x$2 = e[0].Context.top, ((x$2 < 0 || x$2 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$2])).TypeId = 0;
 					(x$3 = e[0].Context.top, ((x$3 < 0 || x$3 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$3])).Value = code.Value;
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 48; continue;
+					$s = 49; continue;
 				/* } else if (_1 === (1)) { */ case 18:
 					(x$4 = e[0].Context.top, ((x$4 < 0 || x$4 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$4])).TypeId = 1;
 					(x$5 = e[0].Context.top, ((x$5 < 0 || x$5 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$5])).Value = code.Value;
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 48; continue;
+					$s = 49; continue;
 				/* } else if (_1 === (2)) { */ case 19:
 					s = $assertType(code.Value, $String);
 					_tuple = strconv.Unquote("\"" + strings.ReplaceAll(s, "\"", "\\\"") + "\"");
@@ -30601,93 +30607,93 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					(x$6 = e[0].Context.top, ((x$6 < 0 || x$6 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$6])).TypeId = 2;
 					(x$7 = e[0].Context.top, ((x$7 < 0 || x$7 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$7])).Value = new $String(unquote);
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 48; continue;
+					$s = 49; continue;
 				/* } else if (_1 === (3)) { */ case 20:
 					num = $assertType(code.Value, $Int64);
-					_r$9 = stackPopN(num); /* */ $s = 49; case 49: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
-					_r$10 = VMValueNewArray(_r$9); /* */ $s = 50; case 50: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
-					$r = stackPush(_r$10); /* */ $s = 51; case 51: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
+					_r$9 = stackPopN(num); /* */ $s = 50; case 50: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+					_r$10 = VMValueNewArray(_r$9); /* */ $s = 51; case 51: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+					$r = stackPush(_r$10); /* */ $s = 52; case 52: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
 				/* } else if ((_1 === (4)) || (_1 === (8))) { */ case 21:
 					val = $assertType(code.Value, ptrType);
-					$r = stackPush(val); /* */ $s = 52; case 52: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
+					$r = stackPush(val); /* */ $s = 53; case 53: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
 				/* } else if (_1 === (5)) { */ case 22:
-					$r = stackPush(VMValueNewUndefined()); /* */ $s = 53; case 53: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
+					$r = stackPush(VMValueNewUndefined()); /* */ $s = 54; case 54: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
 				/* } else if (_1 === (7)) { */ case 23:
-					/* */ if (!(ctx[0].currentThis === ptrType.nil)) { $s = 54; continue; }
-					/* */ $s = 55; continue;
-					/* if (!(ctx[0].currentThis === ptrType.nil)) { */ case 54:
-						$r = stackPush(ctx[0].currentThis); /* */ $s = 57; case 57: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 56; continue;
-					/* } else { */ case 55:
-						$r = stackPush(VMValueNewUndefined()); /* */ $s = 58; case 58: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* } */ case 56:
-					$s = 48; continue;
+					/* */ if (!(ctx[0].currentThis === ptrType.nil)) { $s = 55; continue; }
+					/* */ $s = 56; continue;
+					/* if (!(ctx[0].currentThis === ptrType.nil)) { */ case 55:
+						$r = stackPush(ctx[0].currentThis); /* */ $s = 58; case 58: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 57; continue;
+					/* } else { */ case 56:
+						$r = stackPush(VMValueNewUndefined()); /* */ $s = 59; case 59: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 57:
+					$s = 49; continue;
 				/* } else if (_1 === (13)) { */ case 24:
 					paramsNum = $assertType(code.Value, $Int64);
-					_r$11 = stackPopN(paramsNum); /* */ $s = 59; case 59: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+					_r$11 = stackPopN(paramsNum); /* */ $s = 60; case 60: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
 					arr = _r$11;
-					_r$12 = stackPop[0](); /* */ $s = 60; case 60: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+					_r$12 = stackPop[0](); /* */ $s = 61; case 61: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
 					funcObj = _r$12;
-					/* */ if (funcObj.TypeId === 8) { $s = 61; continue; }
-					/* */ $s = 62; continue;
-					/* if (funcObj.TypeId === 8) { */ case 61:
-						_r$13 = funcObj.FuncInvoke(ctx[0], arr); /* */ $s = 64; case 64: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+					/* */ if (funcObj.TypeId === 8) { $s = 62; continue; }
+					/* */ $s = 63; continue;
+					/* if (funcObj.TypeId === 8) { */ case 62:
+						_r$13 = funcObj.FuncInvoke(ctx[0], arr); /* */ $s = 65; case 65: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
 						ret = _r$13;
 						if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 							$s = -1; return;
 						}
-						$r = stackPush(ret); /* */ $s = 65; case 65: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 63; continue;
-					/* } else { */ case 62:
+						$r = stackPush(ret); /* */ $s = 66; case 66: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 64; continue;
+					/* } else { */ case 63:
 						ctx[0].Error = errors.New("\xE6\x97\xA0\xE6\xB3\x95\xE8\xB0\x83\xE7\x94\xA8");
-					/* } */ case 63:
-					$s = 48; continue;
+					/* } */ case 64:
+					$s = 49; continue;
 				/* } else if (_1 === (14)) { */ case 25:
-					_r$14 = stackPop[0](); /* */ $s = 66; case 66: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
-					_r$15 = _r$14.ReadInt64(); /* */ $s = 67; case 67: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
+					_r$14 = stackPop[0](); /* */ $s = 67; case 67: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
+					_r$15 = _r$14.ReadInt64(); /* */ $s = 68; case 68: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
 					_tuple$1 = _r$15;
 					paramsNum$1 = _tuple$1[0];
-					_r$16 = stackPopN(paramsNum$1); /* */ $s = 68; case 68: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
+					_r$16 = stackPopN(paramsNum$1); /* */ $s = 69; case 69: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
 					arr$1 = _r$16;
-					$r = stackPush((0 >= arr$1.$length ? ($throwRuntimeError("index out of range"), undefined) : arr$1.$array[arr$1.$offset + 0]).CallFunc(ctx[0], $assertType(code.Value, $String), $subslice(arr$1, 1))); /* */ $s = 69; case 69: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
+					$r = stackPush((0 >= arr$1.$length ? ($throwRuntimeError("index out of range"), undefined) : arr$1.$array[arr$1.$offset + 0]).CallFunc(ctx[0], $assertType(code.Value, $String), $subslice(arr$1, 1))); /* */ $s = 70; case 70: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
 				/* } else if (_1 === (15)) { */ case 26:
-					_r$17 = stackPop[0](); /* */ $s = 70; case 70: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
-					_r$18 = _r$17.ReadInt64(); /* */ $s = 71; case 71: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
+					_r$17 = stackPop[0](); /* */ $s = 71; case 71: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
+					_r$18 = _r$17.ReadInt64(); /* */ $s = 72; case 72: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
 					_tuple$2 = _r$18;
 					itemIndex = _tuple$2[0];
-					_r$19 = stackPop[0](); /* */ $s = 72; case 72: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
+					_r$19 = stackPop[0](); /* */ $s = 73; case 73: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
 					arr$2 = _r$19;
 					v = arr$2.ArrayGetItem(ctx[0], itemIndex);
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(v); /* */ $s = 73; case 73: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
+					$r = stackPush(v); /* */ $s = 74; case 74: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
 				/* } else if (_1 === (16)) { */ case 27:
-					_r$20 = stackPop[0](); /* */ $s = 74; case 74: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
+					_r$20 = stackPop[0](); /* */ $s = 75; case 75: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
 					val$1 = _r$20;
-					_r$21 = stackPop[0](); /* */ $s = 75; case 75: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
-					_r$22 = _r$21.ReadInt64(); /* */ $s = 76; case 76: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
+					_r$21 = stackPop[0](); /* */ $s = 76; case 76: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
+					_r$22 = _r$21.ReadInt64(); /* */ $s = 77; case 77: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
 					_tuple$3 = _r$22;
 					itemIndex$1 = _tuple$3[0];
-					_r$23 = stackPop[0](); /* */ $s = 77; case 77: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
+					_r$23 = stackPop[0](); /* */ $s = 78; case 78: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
 					arr$3 = _r$23;
 					arr$3.ArraySetItem(ctx[0], itemIndex$1, val$1);
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$s = 48; continue;
+					$s = 49; continue;
 				/* } else if (_1 === (17)) { */ case 28:
-					_r$24 = stackPop2(); /* */ $s = 78; case 78: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+					_r$24 = stackPop2(); /* */ $s = 79; case 79: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 					_tuple$4 = _r$24;
 					attrVal = _tuple$4[0];
 					obj = _tuple$4[1];
 					attrName = $assertType(code.Value, $String);
-					_r$25 = obj.SetAttr(attrName, attrVal); /* */ $s = 79; case 79: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+					_r$25 = obj.SetAttr(attrName, attrVal); /* */ $s = 80; case 80: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 					ret$1 = _r$25;
 					if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$1 === ptrType.nil) {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE8\xAE\xBE\xE7\xBD\xAE\xE5\xB1\x9E\xE6\x80\xA7");
@@ -30695,12 +30701,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$s = 48; continue;
+					$s = 49; continue;
 				/* } else if (_1 === (18)) { */ case 29:
-					_r$26 = stackPop[0](); /* */ $s = 80; case 80: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+					_r$26 = stackPop[0](); /* */ $s = 81; case 81: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 					obj$1 = _r$26;
 					attrName$1 = $assertType(code.Value, $String);
-					_r$27 = obj$1.GetAttr(ctx[0], attrName$1); /* */ $s = 81; case 81: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+					_r$27 = obj$1.GetAttr(ctx[0], attrName$1); /* */ $s = 82; case 82: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
 					ret$2 = _r$27;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
@@ -30709,9 +30715,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE5\x8F\x96\xE5\xB1\x9E\xE6\x80\xA7");
 						$s = -1; return;
 					}
-					$r = stackPush(ret$2); /* */ $s = 82; case 82: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
-				/* } else if (_1 === (9)) { */ case 30:
+					$r = stackPush(ret$2); /* */ $s = 83; case 83: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (70)) { */ case 30:
+					/* break; */ $s = 16; continue;
+					$s = 49; continue;
+				/* } else if (_1 === (9)) { */ case 31:
 					num$1 = (((x$8 = $assertType(code.Value, $Int64), x$8.$low + ((x$8.$high >> 31) * 4294967296)) >> 0));
 					outStr = "";
 					index = 0;
@@ -30731,111 +30740,111 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					(x$10 = e[0].Context.top, ((x$10 < 0 || x$10 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$10])).TypeId = 2;
 					(x$11 = e[0].Context.top, ((x$11 < 0 || x$11 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$11])).Value = new $String(outStr);
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 48; continue;
-				/* } else if (_1 === (10)) { */ case 31:
+					$s = 49; continue;
+				/* } else if (_1 === (10)) { */ case 32:
 					name = $assertType(code.Value, $String);
 					loadFunc = $throwNilPointerError;
 					loadFunc = ctx[0].loadInnerVar(name);
 					if (loadFunc === $throwNilPointerError) {
 						loadFunc = ctx[0].ValueLoadNameFunc;
 					}
-					/* */ if (!(loadFunc === $throwNilPointerError)) { $s = 83; continue; }
-					/* */ $s = 84; continue;
-					/* if (!(loadFunc === $throwNilPointerError)) { */ case 83:
-						_r$28 = loadFunc(name); /* */ $s = 86; case 86: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+					/* */ if (!(loadFunc === $throwNilPointerError)) { $s = 84; continue; }
+					/* */ $s = 85; continue;
+					/* if (!(loadFunc === $throwNilPointerError)) { */ case 84:
+						_r$28 = loadFunc(name); /* */ $s = 87; case 87: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 						val$3 = _r$28;
 						if (val$3 === ptrType.nil) {
 							val$3 = VMValueNewUndefined();
 						}
-						/* */ if (val$3.TypeId === 5) { $s = 87; continue; }
-						/* */ $s = 88; continue;
-						/* if (val$3.TypeId === 5) { */ case 87:
-							_r$29 = val$3.ComputedExecute(ctx[0]); /* */ $s = 89; case 89: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+						/* */ if (val$3.TypeId === 5) { $s = 88; continue; }
+						/* */ $s = 89; continue;
+						/* if (val$3.TypeId === 5) { */ case 88:
+							_r$29 = val$3.ComputedExecute(ctx[0]); /* */ $s = 90; case 90: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 							val$3 = _r$29;
 							if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 								$s = -1; return;
 							}
-						/* } */ case 88:
-						$r = stackPush(val$3); /* */ $s = 90; case 90: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 85; continue;
-					/* } else { */ case 84:
+						/* } */ case 89:
+						$r = stackPush(val$3); /* */ $s = 91; case 91: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 86; continue;
+					/* } else { */ case 85:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueLoadNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE8\x8E\xB7\xE5\x8F\x96\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
-					/* } */ case 85:
-					$s = 48; continue;
-				/* } else if (_1 === (11)) { */ case 32:
+					/* } */ case 86:
+					$s = 49; continue;
+				/* } else if (_1 === (11)) { */ case 33:
 					name$1 = $assertType(code.Value, $String);
 					loadFunc$1 = ctx[0].ValueLoadNameFunc;
-					/* */ if (!(loadFunc$1 === $throwNilPointerError)) { $s = 91; continue; }
-					/* */ $s = 92; continue;
-					/* if (!(loadFunc$1 === $throwNilPointerError)) { */ case 91:
-						_r$30 = loadFunc$1(name$1); /* */ $s = 94; case 94: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+					/* */ if (!(loadFunc$1 === $throwNilPointerError)) { $s = 92; continue; }
+					/* */ $s = 93; continue;
+					/* if (!(loadFunc$1 === $throwNilPointerError)) { */ case 92:
+						_r$30 = loadFunc$1(name$1); /* */ $s = 95; case 95: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 						val$4 = _r$30;
 						if (val$4 === ptrType.nil) {
 							val$4 = VMValueNewUndefined();
 						}
-						$r = stackPush(val$4); /* */ $s = 95; case 95: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 93; continue;
-					/* } else { */ case 92:
+						$r = stackPush(val$4); /* */ $s = 96; case 96: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 94; continue;
+					/* } else { */ case 93:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueLoadNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE8\x8E\xB7\xE5\x8F\x96\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
-					/* } */ case 93:
-					$s = 48; continue;
-				/* } else if (_1 === (12)) { */ case 33:
-					_r$31 = stackPop[0](); /* */ $s = 96; case 96: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+					/* } */ case 94:
+					$s = 49; continue;
+				/* } else if (_1 === (12)) { */ case 34:
+					_r$31 = stackPop[0](); /* */ $s = 97; case 97: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
 					v$1 = _r$31;
 					name$2 = $assertType(code.Value, $String);
 					storeFunc = ctx[0].ValueStoreNameFunc;
-					/* */ if (!(storeFunc === $throwNilPointerError)) { $s = 97; continue; }
-					/* */ $s = 98; continue;
-					/* if (!(storeFunc === $throwNilPointerError)) { */ case 97:
-						$r = storeFunc(name$2, v$1.Clone()); /* */ $s = 100; case 100: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 99; continue;
-					/* } else { */ case 98:
+					/* */ if (!(storeFunc === $throwNilPointerError)) { $s = 98; continue; }
+					/* */ $s = 99; continue;
+					/* if (!(storeFunc === $throwNilPointerError)) { */ case 98:
+						$r = storeFunc(name$2, v$1.Clone()); /* */ $s = 101; case 101: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 100; continue;
+					/* } else { */ case 99:
 						ctx[0].Error = errors.New("\xE6\x9C\xAA\xE8\xAE\xBE\xE7\xBD\xAE ValueStoreNameFunc\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE5\x82\xA8\xE5\xAD\x98\xE5\x8F\x98\xE9\x87\x8F");
 						$s = -1; return;
-					/* } */ case 99:
-					$s = 48; continue;
-				/* } else if (_1 === (69)) { */ case 34:
-					_r$32 = stackPop[0](); /* */ $s = 101; case 101: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
+					/* } */ case 100:
+					$s = 49; continue;
+				/* } else if (_1 === (69)) { */ case 35:
+					_r$32 = stackPop[0](); /* */ $s = 102; case 102: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
 					t = _r$32;
 					if (!t.AsBool()) {
 						opIndex = opIndex + ((((x$12 = $assertType(code.Value, $Int64), x$12.$low + ((x$12.$high >> 31) * 4294967296)) >> 0))) >> 0;
 					}
-					$s = 48; continue;
-				/* } else if (_1 === (67)) { */ case 35:
+					$s = 49; continue;
+				/* } else if (_1 === (67)) { */ case 36:
 					opIndex = opIndex + ((((x$13 = $assertType(code.Value, $Int64), x$13.$low + ((x$13.$high >> 31) * 4294967296)) >> 0))) >> 0;
-					$s = 48; continue;
-				/* } else if (_1 === (65)) { */ case 36:
-					_r$33 = stackPop[0](); /* */ $s = 102; case 102: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (65)) { */ case 37:
+					_r$33 = stackPop[0](); /* */ $s = 103; case 103: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
 					_r$33;
-					$s = 48; continue;
-				/* } else if ((_1 === (19)) || (_1 === (20)) || (_1 === (21)) || (_1 === (22)) || (_1 === (23)) || (_1 === (24)) || (_1 === (25)) || (_1 === (26)) || (_1 === (27)) || (_1 === (28)) || (_1 === (29)) || (_1 === (30))) { */ case 37:
-					_r$34 = stackPop2(); /* */ $s = 103; case 103: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if ((_1 === (19)) || (_1 === (20)) || (_1 === (21)) || (_1 === (22)) || (_1 === (23)) || (_1 === (24)) || (_1 === (25)) || (_1 === (26)) || (_1 === (27)) || (_1 === (28)) || (_1 === (29)) || (_1 === (30))) { */ case 38:
+					_r$34 = stackPop2(); /* */ $s = 104; case 104: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
 					_tuple$5 = _r$34;
 					v1 = _tuple$5[0];
 					v2 = _tuple$5[1];
 					opFunc = (x$14 = code.T - 19 << 24 >>> 24, ((x$14 < 0 || x$14 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$14]));
-					_r$35 = opFunc(v1, ctx[0], v2); /* */ $s = 104; case 104: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+					_r$35 = opFunc(v1, ctx[0], v2); /* */ $s = 105; case 105: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
 					ret$3 = _r$35;
-					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { $s = 105; continue; }
-					/* */ $s = 106; continue;
-					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { */ case 105:
-						_r$36 = code.CodeString(); /* */ $s = 107; case 107: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
+					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { $s = 106; continue; }
+					/* */ $s = 107; continue;
+					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) { */ case 106:
+						_r$36 = code.CodeString(); /* */ $s = 108; case 108: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
 						_arg$4 = new $String(_r$36);
 						_arg$5 = new $String(v1.GetTypeName());
 						_arg$6 = new $String(v2.GetTypeName());
-						_r$37 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$12([_arg$4, _arg$5, _arg$6])); /* */ $s = 108; case 108: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
+						_r$37 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$12([_arg$4, _arg$5, _arg$6])); /* */ $s = 109; case 109: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
 						opErr = _r$37;
 						ctx[0].Error = errors.New(opErr);
-					/* } */ case 106:
+					/* } */ case 107:
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$3); /* */ $s = 109; case 109: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
-				/* } else if ((_1 === (36)) || (_1 === (35))) { */ case 38:
-					_r$38 = stackPop[0](); /* */ $s = 110; case 110: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
+					$r = stackPush(ret$3); /* */ $s = 110; case 110: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if ((_1 === (36)) || (_1 === (35))) { */ case 39:
+					_r$38 = stackPop[0](); /* */ $s = 111; case 111: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
 					v$2 = _r$38;
 					ret$4 = ptrType.nil;
 					if (code.T === 36) {
@@ -30843,88 +30852,88 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					} else {
 						ret$4 = v$2.OpNegation();
 					}
-					/* */ if (ret$4 === ptrType.nil) { $s = 111; continue; }
-					/* */ $s = 112; continue;
-					/* if (ret$4 === ptrType.nil) { */ case 111:
-						_r$39 = code.CodeString(); /* */ $s = 113; case 113: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
+					/* */ if (ret$4 === ptrType.nil) { $s = 112; continue; }
+					/* */ $s = 113; continue;
+					/* if (ret$4 === ptrType.nil) { */ case 112:
+						_r$39 = code.CodeString(); /* */ $s = 114; case 114: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
 						_arg$7 = new $String(_r$39);
 						_arg$8 = new $String(v$2.GetTypeName());
-						_r$40 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$12([_arg$7, _arg$8])); /* */ $s = 114; case 114: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
+						_r$40 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$12([_arg$7, _arg$8])); /* */ $s = 115; case 115: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
 						opErr$1 = _r$40;
 						ctx[0].Error = errors.New(opErr$1);
-					/* } */ case 112:
+					/* } */ case 113:
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$4); /* */ $s = 115; case 115: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
-				/* } else if (_1 === (37)) { */ case 39:
-					$r = diceInit(); /* */ $s = 116; case 116: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 48; continue;
-				/* } else if (_1 === (38)) { */ case 40:
-					_r$41 = stackPop[0](); /* */ $s = 117; case 117: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
+					$r = stackPush(ret$4); /* */ $s = 116; case 116: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (37)) { */ case 40:
+					$r = diceInit(); /* */ $s = 117; case 117: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (38)) { */ case 41:
+					_r$41 = stackPop[0](); /* */ $s = 118; case 118: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
 					v$3 = _r$41;
 					_tuple$6 = v$3.ReadInt64();
 					(x$15 = diceStates[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$15])).times = _tuple$6[0];
-					$s = 48; continue;
-				/* } else if (_1 === (39)) { */ case 41:
-					_r$42 = stackPop[0](); /* */ $s = 118; case 118: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (39)) { */ case 42:
+					_r$42 = stackPop[0](); /* */ $s = 119; case 119: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
 					v$4 = _r$42;
 					(x$16 = diceStates[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$16])).isKeepLH = new $Int64(0, 1);
 					_tuple$7 = v$4.ReadInt64();
 					(x$17 = diceStates[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$17])).lowNum = _tuple$7[0];
-					$s = 48; continue;
-				/* } else if (_1 === (40)) { */ case 42:
-					_r$43 = stackPop[0](); /* */ $s = 119; case 119: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (40)) { */ case 43:
+					_r$43 = stackPop[0](); /* */ $s = 120; case 120: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
 					v$5 = _r$43;
 					(x$18 = diceStates[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$18])).isKeepLH = new $Int64(0, 2);
 					_tuple$8 = v$5.ReadInt64();
 					(x$19 = diceStates[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$19])).highNum = _tuple$8[0];
-					$s = 48; continue;
-				/* } else if (_1 === (41)) { */ case 43:
-					_r$44 = stackPop[0](); /* */ $s = 120; case 120: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (41)) { */ case 44:
+					_r$44 = stackPop[0](); /* */ $s = 121; case 121: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
 					v$6 = _r$44;
 					(x$20 = diceStates[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$20])).isKeepLH = new $Int64(0, 3);
 					_tuple$9 = v$6.ReadInt64();
 					(x$21 = diceStates[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$21])).lowNum = _tuple$9[0];
-					$s = 48; continue;
-				/* } else if (_1 === (43)) { */ case 44:
-					_r$45 = stackPop[0](); /* */ $s = 121; case 121: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (43)) { */ case 45:
+					_r$45 = stackPop[0](); /* */ $s = 122; case 122: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
 					v$7 = _r$45;
 					_tuple$10 = v$7.ReadInt64();
 					i[0] = _tuple$10[0];
 					(x$22 = diceStates[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$22])).min = (i.$ptr || (i.$ptr = new ptrType$9(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i)));
-					$s = 48; continue;
-				/* } else if (_1 === (44)) { */ case 45:
-					_r$46 = stackPop[0](); /* */ $s = 122; case 122: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (44)) { */ case 46:
+					_r$46 = stackPop[0](); /* */ $s = 123; case 123: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
 					v$8 = _r$46;
 					_tuple$11 = v$8.ReadInt64();
 					i$1[0] = _tuple$11[0];
 					(x$23 = diceStates[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$23])).max = (i$1.$ptr || (i$1.$ptr = new ptrType$9(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i$1)));
-					$s = 48; continue;
-				/* } else if (_1 === (42)) { */ case 46:
-					_r$47 = stackPop[0](); /* */ $s = 123; case 123: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
+					$s = 49; continue;
+				/* } else if (_1 === (42)) { */ case 47:
+					_r$47 = stackPop[0](); /* */ $s = 124; case 124: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
 					v$9 = _r$47;
 					(x$24 = diceStates[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$24])).isKeepLH = new $Int64(0, 4);
 					_tuple$12 = v$9.ReadInt64();
 					(x$25 = diceStates[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$25])).highNum = _tuple$12[0];
-					$s = 48; continue;
-				/* } else if (_1 === (45)) { */ case 47:
+					$s = 49; continue;
+				/* } else if (_1 === (45)) { */ case 48:
 					diceState = $clone((x$26 = diceStates[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$26])), structType$1);
 					nums[0] = sliceType$3.nil;
-					_r$48 = stackPop[0](); /* */ $s = 124; case 124: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
+					_r$48 = stackPop[0](); /* */ $s = 125; case 125: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
 					val$5 = _r$48;
 					_tuple$13 = val$5.ReadInt64();
 					bInt = _tuple$13[0];
-					_r$49 = numOpCountAdd(diceState.times); /* */ $s = 125; case 125: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
+					_r$49 = numOpCountAdd(diceState.times); /* */ $s = 126; case 126: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
 					_r$49;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
 					i$2 = new $Int64(0, 0);
-					/* while (true) { */ case 126:
-						/* if (!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { break; } */ if(!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { $s = 127; continue; }
-						_r$50 = DiceRoll64(bInt); /* */ $s = 128; case 128: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
+					/* while (true) { */ case 127:
+						/* if (!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { break; } */ if(!((x$27 = diceState.times, (i$2.$high < x$27.$high || (i$2.$high === x$27.$high && i$2.$low < x$27.$low))))) { $s = 128; continue; }
+						_r$50 = DiceRoll64(bInt); /* */ $s = 129; case 129: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
 						oneDice = _r$50;
 						if (!(diceState.max === ptrType$9.nil)) {
 							if ((x$28 = diceState.max.$get(), (oneDice.$high > x$28.$high || (oneDice.$high === x$28.$high && oneDice.$low > x$28.$low)))) {
@@ -30938,32 +30947,32 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						}
 						nums[0] = $append(nums[0], oneDice);
 						i$2 = (x$30 = new $Int64(0, 1), new $Int64(i$2.$high + x$30.$high, i$2.$low + x$30.$low));
-					$s = 126; continue;
-					case 127:
+					$s = 127; continue;
+					case 128:
 					pickNum = diceState.times;
-					/* */ if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { $s = 129; continue; }
-					/* */ $s = 130; continue;
-					/* if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { */ case 129:
-						/* */ if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { $s = 131; continue; }
-						/* */ $s = 132; continue;
-						/* if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { */ case 131:
+					/* */ if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { $s = 130; continue; }
+					/* */ $s = 131; continue;
+					/* if (!((x$31 = diceState.isKeepLH, (x$31.$high === 0 && x$31.$low === 0)))) { */ case 130:
+						/* */ if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { $s = 132; continue; }
+						/* */ $s = 133; continue;
+						/* if ((x$32 = diceState.isKeepLH, (x$32.$high === 0 && x$32.$low === 1)) || (x$33 = diceState.isKeepLH, (x$33.$high === 0 && x$33.$low === 3))) { */ case 132:
 							pickNum = diceState.lowNum;
 							$r = sort.Slice(nums[0], (function(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop) { return function(i$3, j) {
 								var i$3, j, x$34, x$35;
 								return (x$34 = ((i$3 < 0 || i$3 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$3]), x$35 = ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]), (x$34.$high < x$35.$high || (x$34.$high === x$35.$high && x$34.$low < x$35.$low)));
-							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 134; case 134: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$s = 133; continue;
-						/* } else { */ case 132:
+							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 135; case 135: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$s = 134; continue;
+						/* } else { */ case 133:
 							pickNum = diceState.highNum;
 							$r = sort.Slice(nums[0], (function(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop) { return function(i$3, j) {
 								var i$3, j, x$34, x$35;
 								return (x$34 = ((i$3 < 0 || i$3 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$3]), x$35 = ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]), (x$34.$high > x$35.$high || (x$34.$high === x$35.$high && x$34.$low > x$35.$low)));
-							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 135; case 135: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						/* } */ case 133:
+							}; })(ctx, diceStateIndex, diceStates, e, i, i$1, nums, stackPop)); /* */ $s = 136; case 136: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						/* } */ case 134:
 						if ((x$34 = diceState.isKeepLH, (x$34.$high > 0 || (x$34.$high === 0 && x$34.$low > 2)))) {
 							pickNum = (x$35 = diceState.times, new $Int64(x$35.$high - pickNum.$high, x$35.$low - pickNum.$low));
 						}
-					/* } */ case 130:
+					/* } */ case 131:
 					num$2 = new $Int64(0, 0);
 					i$3 = new $Int64(0, 0);
 					while (true) {
@@ -30975,8 +30984,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						num$2 = (x$38 = (($flatten64(i$3) < 0 || $flatten64(i$3) >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + $flatten64(i$3)]), new $Int64(num$2.$high + x$38.$high, num$2.$low + x$38.$low));
 						i$3 = (x$39 = new $Int64(0, 1), new $Int64(i$3.$high + x$39.$high, i$3.$low + x$39.$low));
 					}
-					$r = stackPush(VMValueNewInt64(num$2)); /* */ $s = 136; case 136: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-				/* } */ case 48:
+					$r = stackPush(VMValueNewInt64(num$2)); /* */ $s = 137; case 137: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				/* } */ case 49:
 			case 16:
 			opIndex = opIndex + (1) >> 0;
 		$s = 3; continue;
@@ -31367,50 +31376,61 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			if (!(_i < _ref.$length)) { break; }
 			token = $clone(((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]), token32);
 			_1 = token.pegRule;
-			if (_1 === (79)) {
+			if (_1 === (86)) {
 				_tmp$5 = ((token.begin >> 0));
 				_tmp$6 = ((token.end >> 0));
 				begin = _tmp$5;
 				end = _tmp$6;
 				text = ($runesToString($subslice(_buffer, begin, end)));
-			} else if (_1 === (65)) {
+			} else if (_1 === (68)) {
 				p.AddOp(59);
-			} else if (_1 === (66)) {
+			} else if (_1 === (69)) {
+				p.BreakPush();
+			} else if (_1 === (70)) {
+				p.ContinuePush();
+			} else if (_1 === (71)) {
+				p.AddOp(70);
+			} else if (_1 === (72)) {
+				p.PushUndefined();
+				p.AddOp(70);
+			} else if (_1 === (73)) {
 				p.OffsetPush();
-			} else if (_1 === (67)) {
+			} else if (_1 === (74)) {
 				p.AddOp(69);
 				p.OffsetPush();
-			} else if (_1 === (68)) {
+			} else if (_1 === (75)) {
 				p.AddOp(67);
 				p.OffsetPush();
 				p.OffsetJmpSetX(0, 2, true);
 				p.OffsetJmpSetX(1, 1, false);
+				p.ContinueSet(2);
+				p.BreakSet();
 				p.OffsetPopN(3);
-			} else if (_1 === (69)) {
+			} else if (_1 === (76)) {
 				p.AddOp(69);
 				p.OffsetPush();
-			} else if (_1 === (70)) {
+			} else if (_1 === (77)) {
 				p.AddOp(67);
 				p.OffsetPopAndSet();
 				p.OffsetPush();
-			} else if (_1 === (71)) {
-				p.OffsetPopAndSet();
-			} else if (_1 === (72)) {
-				p.CounterPush();
-			} else if (_1 === (73)) {
-				p.CounterPush();
-				p.CounterAdd(new $Int64(0, 1));
-			} else if (_1 === (74)) {
-				p.NamePush(text);
-			} else if (_1 === (75)) {
-				p.NamePush(text);
-			} else if (_1 === (76)) {
-				p.CounterAdd(new $Int64(0, 1));
-			} else if (_1 === (77)) {
-				p.NamePush(text);
 			} else if (_1 === (78)) {
-				p.CodePush();
+				p.OffsetPopAndSet();
+			} else if (_1 === (79)) {
+				p.CounterPush();
 			} else if (_1 === (80)) {
+				p.CounterPush();
+				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (81)) {
+				p.NamePush(text);
+			} else if (_1 === (82)) {
+				p.NamePush(text);
+			} else if (_1 === (83)) {
+				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (84)) {
+				p.NamePush(text);
+			} else if (_1 === (85)) {
+				p.CodePush();
+			} else if (_1 === (87)) {
 				num = p.CounterPop();
 				arr = new sliceType$4([]);
 				i = new $Int64(0, 0);
@@ -31420,49 +31440,49 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					i = (x = new $Int64(0, 1), new $Int64(i.$high + x.$high, i.$low + x.$low));
 				}
 				p.AddStoreFunction(p.NamePop(), arr, (text));
-			} else if (_1 === (81)) {
-				p.NamePush(text);
-			} else if (_1 === (82)) {
-				p.AddStore(p.NamePop());
-			} else if (_1 === (83)) {
-				p.NamePush(text);
-			} else if (_1 === (84)) {
-				p.CodePush();
-			} else if (_1 === (85)) {
-				p.AddStoreComputed(p.NamePop(), (text));
-			} else if (_1 === (86)) {
-				p.NamePush(text);
-			} else if (_1 === (87)) {
-				p.NamePush(text);
 			} else if (_1 === (88)) {
+				p.NamePush(text);
+			} else if (_1 === (89)) {
+				p.AddStore(p.NamePop());
+			} else if (_1 === (90)) {
+				p.NamePush(text);
+			} else if (_1 === (91)) {
+				p.CodePush();
+			} else if (_1 === (92)) {
+				p.AddStoreComputed(p.NamePop(), (text));
+			} else if (_1 === (93)) {
+				p.NamePush(text);
+			} else if (_1 === (94)) {
+				p.NamePush(text);
+			} else if (_1 === (95)) {
 				_tmp$7 = p.NamePop();
 				_tmp$8 = p.NamePop();
 				attr = _tmp$7;
 				objName = _tmp$8;
 				p.AddSetAttr(objName, attr);
-			} else if (_1 === (89)) {
-				p.AddOp(16);
-			} else if (_1 === (90)) {
-				p.AddOp(69);
-				p.OffsetPush();
-			} else if (_1 === (91)) {
-				p.AddOp(67);
-				p.OffsetPopAndSet();
-				p.OffsetPush();
-			} else if (_1 === (92)) {
-				p.AddOp(69);
-				p.OffsetPush();
-			} else if (_1 === (93)) {
-				p.AddOp(67);
-				p.OffsetPopAndSet();
-				p.OffsetPush();
-			} else if (_1 === (94)) {
-				p.OffsetPopAndSet();
-			} else if (_1 === (95)) {
-				p.CounterPush();
 			} else if (_1 === (96)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.AddOp(16);
 			} else if (_1 === (97)) {
+				p.AddOp(69);
+				p.OffsetPush();
+			} else if (_1 === (98)) {
+				p.AddOp(67);
+				p.OffsetPopAndSet();
+				p.OffsetPush();
+			} else if (_1 === (99)) {
+				p.AddOp(69);
+				p.OffsetPush();
+			} else if (_1 === (100)) {
+				p.AddOp(67);
+				p.OffsetPopAndSet();
+				p.OffsetPush();
+			} else if (_1 === (101)) {
+				p.OffsetPopAndSet();
+			} else if (_1 === (102)) {
+				p.CounterPush();
+			} else if (_1 === (103)) {
+				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (104)) {
 				p.PushStr("");
 				limit = (x$1 = p.CounterPop(), new $Int64(x$1.$high + 0, x$1.$low + 1));
 				i$1 = new $Int64(0, 0);
@@ -31471,198 +31491,198 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					p.OffsetPopAndSet();
 					i$1 = (x$2 = new $Int64(0, 1), new $Int64(i$1.$high + x$2.$high, i$1.$low + x$2.$low));
 				}
-			} else if (_1 === (98)) {
-				p.LMark();
-			} else if (_1 === (99)) {
-				p.AddOp(32);
-			} else if (_1 === (100)) {
-				p.LMark();
-			} else if (_1 === (101)) {
-				p.AddOp(31);
-			} else if (_1 === (102)) {
-				p.LMark();
-			} else if (_1 === (103)) {
-				p.AddOp(25);
-			} else if (_1 === (104)) {
-				p.LMark();
 			} else if (_1 === (105)) {
-				p.AddOp(26);
+				p.LMark();
 			} else if (_1 === (106)) {
-				p.LMark();
+				p.AddOp(32);
 			} else if (_1 === (107)) {
-				p.AddOp(27);
+				p.LMark();
 			} else if (_1 === (108)) {
-				p.LMark();
+				p.AddOp(31);
 			} else if (_1 === (109)) {
-				p.AddOp(28);
+				p.LMark();
 			} else if (_1 === (110)) {
-				p.LMark();
+				p.AddOp(25);
 			} else if (_1 === (111)) {
-				p.AddOp(29);
+				p.LMark();
 			} else if (_1 === (112)) {
-				p.LMark();
+				p.AddOp(26);
 			} else if (_1 === (113)) {
-				p.AddOp(30);
+				p.LMark();
 			} else if (_1 === (114)) {
-				p.LMark();
+				p.AddOp(27);
 			} else if (_1 === (115)) {
-				p.AddOp(19);
+				p.LMark();
 			} else if (_1 === (116)) {
-				p.LMark();
+				p.AddOp(28);
 			} else if (_1 === (117)) {
-				p.AddOp(20);
+				p.LMark();
 			} else if (_1 === (118)) {
-				p.LMark();
+				p.AddOp(29);
 			} else if (_1 === (119)) {
-				p.AddOp(21);
+				p.LMark();
 			} else if (_1 === (120)) {
-				p.LMark();
+				p.AddOp(30);
 			} else if (_1 === (121)) {
-				p.AddOp(22);
+				p.LMark();
 			} else if (_1 === (122)) {
-				p.LMark();
+				p.AddOp(19);
 			} else if (_1 === (123)) {
-				p.AddOp(23);
-			} else if (_1 === (124)) {
 				p.LMark();
+			} else if (_1 === (124)) {
+				p.AddOp(20);
 			} else if (_1 === (125)) {
-				p.AddOp(24);
+				p.LMark();
 			} else if (_1 === (126)) {
-				p.AddOp(35);
+				p.AddOp(21);
 			} else if (_1 === (127)) {
-				p.AddOp(36);
+				p.LMark();
 			} else if (_1 === (128)) {
-				p.AddOp(39);
+				p.AddOp(22);
 			} else if (_1 === (129)) {
+				p.LMark();
+			} else if (_1 === (130)) {
+				p.AddOp(23);
+			} else if (_1 === (131)) {
+				p.LMark();
+			} else if (_1 === (132)) {
+				p.AddOp(24);
+			} else if (_1 === (133)) {
+				p.AddOp(35);
+			} else if (_1 === (134)) {
+				p.AddOp(36);
+			} else if (_1 === (135)) {
+				p.AddOp(39);
+			} else if (_1 === (136)) {
 				p.PushIntNumber("1");
 				p.AddOp(39);
-			} else if (_1 === (130)) {
-				p.AddOp(40);
-			} else if (_1 === (131)) {
-				p.PushIntNumber("1");
-				p.AddOp(40);
-			} else if (_1 === (132)) {
-				p.AddOp(42);
-			} else if (_1 === (133)) {
-				p.PushIntNumber("1");
-				p.AddOp(42);
-			} else if (_1 === (134)) {
-				p.AddOp(41);
-			} else if (_1 === (135)) {
-				p.PushIntNumber("1");
-				p.AddOp(41);
-			} else if (_1 === (136)) {
-				p.AddOp(43);
 			} else if (_1 === (137)) {
-				p.AddOp(44);
+				p.AddOp(40);
 			} else if (_1 === (138)) {
-				p.PushIntNumber("2");
-				p.AddOp(38);
 				p.PushIntNumber("1");
 				p.AddOp(40);
 			} else if (_1 === (139)) {
+				p.AddOp(42);
+			} else if (_1 === (140)) {
+				p.PushIntNumber("1");
+				p.AddOp(42);
+			} else if (_1 === (141)) {
+				p.AddOp(41);
+			} else if (_1 === (142)) {
+				p.PushIntNumber("1");
+				p.AddOp(41);
+			} else if (_1 === (143)) {
+				p.AddOp(43);
+			} else if (_1 === (144)) {
+				p.AddOp(44);
+			} else if (_1 === (145)) {
+				p.PushIntNumber("2");
+				p.AddOp(38);
+				p.PushIntNumber("1");
+				p.AddOp(40);
+			} else if (_1 === (146)) {
 				p.PushIntNumber("2");
 				p.AddOp(38);
 				p.PushIntNumber("1");
 				p.AddOp(39);
-			} else if (_1 === (140)) {
+			} else if (_1 === (147)) {
 				p.AddOp(37);
 				p.AddOp(38);
 				p.LMark();
-			} else if (_1 === (141)) {
+			} else if (_1 === (148)) {
 				p.AddOp(45);
-			} else if (_1 === (142)) {
+			} else if (_1 === (149)) {
 				p.AddOp(37);
 				p.LMark();
-			} else if (_1 === (143)) {
-				p.AddOp(45);
-			} else if (_1 === (144)) {
-				p.AddOp(15);
-			} else if (_1 === (145)) {
-				p.AddInvokeMethod("kh", new $Int64(0, 1));
-			} else if (_1 === (146)) {
-				p.AddInvokeMethod("kl", new $Int64(0, 1));
-			} else if (_1 === (147)) {
-				p.AddOp(15);
-			} else if (_1 === (148)) {
-				p.WriteCode(18, new $String((text)));
-			} else if (_1 === (149)) {
-				p.AddInvoke(new $Int64(0, 0));
 			} else if (_1 === (150)) {
-				p.CounterPush();
-				p.CounterAdd(new $Int64(0, 1));
+				p.AddOp(45);
 			} else if (_1 === (151)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.AddOp(15);
 			} else if (_1 === (152)) {
-				p.AddInvoke(p.CounterPop());
+				p.AddInvokeMethod("kh", new $Int64(0, 1));
 			} else if (_1 === (153)) {
-				p.PushIntNumber("1");
+				p.AddInvokeMethod("kl", new $Int64(0, 1));
 			} else if (_1 === (154)) {
-				p.PushIntNumber("0");
+				p.AddOp(15);
 			} else if (_1 === (155)) {
-				p.PushUndefined();
+				p.WriteCode(18, new $String((text)));
 			} else if (_1 === (156)) {
-				p.PushThis();
+				p.AddInvoke(new $Int64(0, 0));
 			} else if (_1 === (157)) {
-				p.WriteCode(11, new $String((text)));
-			} else if (_1 === (158)) {
-				p.AddLoadName((text));
-			} else if (_1 === (159)) {
-				p.PushArray(new $Int64(0, 0));
-			} else if (_1 === (160)) {
 				p.CounterPush();
 				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (158)) {
+				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (159)) {
+				p.AddInvoke(p.CounterPop());
+			} else if (_1 === (160)) {
+				p.PushIntNumber("1");
 			} else if (_1 === (161)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.PushIntNumber("0");
 			} else if (_1 === (162)) {
-				p.PushArray(p.CounterPop());
+				p.PushUndefined();
 			} else if (_1 === (163)) {
-				p.PushIntNumber((text));
+				p.PushThis();
 			} else if (_1 === (164)) {
-				p.PushFloatNumber((text));
+				p.WriteCode(11, new $String((text)));
 			} else if (_1 === (165)) {
-				p.PushStr((text));
-				p.CounterAdd(new $Int64(0, 1));
+				p.AddLoadName((text));
 			} else if (_1 === (166)) {
-				p.PushStr((text));
-				p.CounterAdd(new $Int64(0, 1));
+				p.PushArray(new $Int64(0, 0));
 			} else if (_1 === (167)) {
-				p.PushStr((text));
+				p.CounterPush();
 				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (168)) {
-				p.PushStr((text));
 				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (169)) {
-				p.PushStr("");
+				p.PushArray(p.CounterPop());
 			} else if (_1 === (170)) {
-				p.PushStr("");
+				p.PushIntNumber((text));
 			} else if (_1 === (171)) {
-				p.PushStr("");
+				p.PushFloatNumber((text));
 			} else if (_1 === (172)) {
-				p.PushStr("");
+				p.PushStr((text));
+				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (173)) {
-				p.CounterPush();
+				p.PushStr((text));
+				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (174)) {
+				p.PushStr((text));
 				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (175)) {
+				p.PushStr((text));
 				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (176)) {
-				p.AddFormatString((text), p.CounterPop());
+				p.PushStr("");
 			} else if (_1 === (177)) {
-				p.CounterPush();
+				p.PushStr("");
 			} else if (_1 === (178)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.PushStr("");
 			} else if (_1 === (179)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.PushStr("");
 			} else if (_1 === (180)) {
-				p.AddFormatString((text), p.CounterPop());
+				p.CounterPush();
 			} else if (_1 === (181)) {
-				p.CounterPush();
+				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (182)) {
-				p.CounterPop();
+				p.CounterAdd(new $Int64(0, 1));
 			} else if (_1 === (183)) {
-				p.CounterPush();
+				p.AddFormatString((text), p.CounterPop());
 			} else if (_1 === (184)) {
+				p.CounterPush();
+			} else if (_1 === (185)) {
+				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (186)) {
+				p.CounterAdd(new $Int64(0, 1));
+			} else if (_1 === (187)) {
+				p.AddFormatString((text), p.CounterPop());
+			} else if (_1 === (188)) {
+				p.CounterPush();
+			} else if (_1 === (189)) {
+				p.CounterPop();
+			} else if (_1 === (190)) {
+				p.CounterPush();
+			} else if (_1 === (191)) {
 				p.CounterPop();
 			}
 			_i++;
@@ -31768,7 +31788,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* if (!_r$1) { */ case 1:
 				/* goto l0 */ $s = 4; continue;
 			/* } */ case 2:
-			$r = add[0](65, position[0]); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](68, position[0]); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$r = add[0](1, position1); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
 			/* l0: */ case 4:
@@ -31786,7 +31806,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			position3 = _tmp$2;
 			tokenIndex3 = _tmp$3;
 			position4 = position[0];
-			_r$1 = _rules[0][3](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][4](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
@@ -31801,3093 +31821,3397 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			tokenIndex[0] = _tmp$5;
 			$s = -1; return false;
 			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position3, position4, tokenIndex3, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$10, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position10, position13, position14, position17, position19, position21, position5, position6, position7, tokenIndex10, tokenIndex13, tokenIndex14, tokenIndex17, tokenIndex19, tokenIndex21, tokenIndex5, tokenIndex7, $s, $r, $c} = $restore(this, {});
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$10, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position11, position14, position15, position18, position20, position22, position6, position7, position8, tokenIndex11, tokenIndex14, tokenIndex15, tokenIndex18, tokenIndex20, tokenIndex22, tokenIndex6, tokenIndex8, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position5 = _tmp$2;
-			tokenIndex5 = _tmp$3;
-			position6 = position[0];
+			position6 = _tmp$2;
+			tokenIndex6 = _tmp$3;
+			position7 = position[0];
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position7 = _tmp$4;
-			tokenIndex7 = _tmp$5;
-			_r$1 = _rules[0][5](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position8 = _tmp$4;
+			tokenIndex8 = _tmp$5;
+			_r$1 = _rules[0][7](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l8 */ $s = 4; continue;
+				/* goto l9 */ $s = 4; continue;
 			/* } */ case 2:
-			/* l9: */ case 5:
+			/* l10: */ case 5:
 			_tmp$6 = position[0];
 			_tmp$7 = tokenIndex[0];
-			position10 = _tmp$6;
-			tokenIndex10 = _tmp$7;
-			_r$2 = _rules[0][3](); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			position11 = _tmp$6;
+			tokenIndex11 = _tmp$7;
+			_r$2 = _rules[0][4](); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if (!_r$2) { */ case 6:
-				/* goto l10 */ $s = 9; continue;
+				/* goto l11 */ $s = 9; continue;
 			/* } */ case 7:
-			/* goto l9 */ $s = 5; continue;
-			/* l10: */ case 9:
-			_tmp$8 = position10;
-			_tmp$9 = tokenIndex10;
+			/* goto l10 */ $s = 5; continue;
+			/* l11: */ case 9:
+			_tmp$8 = position11;
+			_tmp$9 = tokenIndex11;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
-			/* goto l7 */ $s = 10; continue;
-			/* l8: */ case 4:
-			_tmp$10 = position7;
-			_tmp$11 = tokenIndex7;
+			/* goto l8 */ $s = 10; continue;
+			/* l9: */ case 4:
+			_tmp$10 = position8;
+			_tmp$11 = tokenIndex8;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
-			_r$3 = _rules[0][4](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][6](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!_r$3) { */ case 11:
-				/* goto l11 */ $s = 14; continue;
+				/* goto l12 */ $s = 14; continue;
 			/* } */ case 12:
-			/* l12: */ case 15:
+			/* l13: */ case 15:
 			_tmp$12 = position[0];
 			_tmp$13 = tokenIndex[0];
-			position13 = _tmp$12;
-			tokenIndex13 = _tmp$13;
+			position14 = _tmp$12;
+			tokenIndex14 = _tmp$13;
 			_tmp$14 = position[0];
 			_tmp$15 = tokenIndex[0];
-			position14 = _tmp$14;
-			tokenIndex14 = _tmp$15;
+			position15 = _tmp$14;
+			tokenIndex15 = _tmp$15;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 16; continue; }
 			/* */ $s = 17; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 16:
-				/* goto l15 */ $s = 18; continue;
+				/* goto l16 */ $s = 18; continue;
 			/* } */ case 17:
 			position[0] = position[0] + (1) >>> 0;
-			_r$4 = _rules[0][62](); /* */ $s = 21; case 21: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][65](); /* */ $s = 21; case 21: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 19; continue; }
 			/* */ $s = 20; continue;
 			/* if (!_r$4) { */ case 19:
-				/* goto l15 */ $s = 18; continue;
+				/* goto l16 */ $s = 18; continue;
 			/* } */ case 20:
-			/* l16: */ case 22:
+			/* l17: */ case 22:
 			_tmp$16 = position[0];
 			_tmp$17 = tokenIndex[0];
-			position17 = _tmp$16;
-			tokenIndex17 = _tmp$17;
+			position18 = _tmp$16;
+			tokenIndex18 = _tmp$17;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 23; continue; }
 			/* */ $s = 24; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 23:
-				/* goto l17 */ $s = 25; continue;
+				/* goto l18 */ $s = 25; continue;
 			/* } */ case 24:
 			position[0] = position[0] + (1) >>> 0;
-			_r$5 = _rules[0][62](); /* */ $s = 28; case 28: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][65](); /* */ $s = 28; case 28: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 26; continue; }
 			/* */ $s = 27; continue;
 			/* if (!_r$5) { */ case 26:
-				/* goto l17 */ $s = 25; continue;
+				/* goto l18 */ $s = 25; continue;
 			/* } */ case 27:
-			/* goto l16 */ $s = 22; continue;
-			/* l17: */ case 25:
-			_tmp$18 = position17;
-			_tmp$19 = tokenIndex17;
+			/* goto l17 */ $s = 22; continue;
+			/* l18: */ case 25:
+			_tmp$18 = position18;
+			_tmp$19 = tokenIndex18;
 			position[0] = _tmp$18;
 			tokenIndex[0] = _tmp$19;
-			_r$6 = _rules[0][4](); /* */ $s = 31; case 31: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			_r$6 = _rules[0][6](); /* */ $s = 31; case 31: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 			/* */ if (!_r$6) { $s = 29; continue; }
 			/* */ $s = 30; continue;
 			/* if (!_r$6) { */ case 29:
-				/* goto l15 */ $s = 18; continue;
+				/* goto l16 */ $s = 18; continue;
 			/* } */ case 30:
-			/* goto l14 */ $s = 32; continue;
-			/* l15: */ case 18:
-			_tmp$20 = position14;
-			_tmp$21 = tokenIndex14;
+			/* goto l15 */ $s = 32; continue;
+			/* l16: */ case 18:
+			_tmp$20 = position15;
+			_tmp$21 = tokenIndex15;
 			position[0] = _tmp$20;
 			tokenIndex[0] = _tmp$21;
-			/* l18: */ case 33:
+			/* l19: */ case 33:
 			_tmp$22 = position[0];
 			_tmp$23 = tokenIndex[0];
-			position19 = _tmp$22;
-			tokenIndex19 = _tmp$23;
+			position20 = _tmp$22;
+			tokenIndex20 = _tmp$23;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 34; continue; }
 			/* */ $s = 35; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 34:
-				/* goto l19 */ $s = 36; continue;
+				/* goto l20 */ $s = 36; continue;
 			/* } */ case 35:
 			position[0] = position[0] + (1) >>> 0;
-			_r$7 = _rules[0][62](); /* */ $s = 39; case 39: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			_r$7 = _rules[0][65](); /* */ $s = 39; case 39: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 			/* */ if (!_r$7) { $s = 37; continue; }
 			/* */ $s = 38; continue;
 			/* if (!_r$7) { */ case 37:
-				/* goto l19 */ $s = 36; continue;
+				/* goto l20 */ $s = 36; continue;
 			/* } */ case 38:
-			/* goto l18 */ $s = 33; continue;
-			/* l19: */ case 36:
-			_tmp$24 = position19;
-			_tmp$25 = tokenIndex19;
+			/* goto l19 */ $s = 33; continue;
+			/* l20: */ case 36:
+			_tmp$24 = position20;
+			_tmp$25 = tokenIndex20;
 			position[0] = _tmp$24;
 			tokenIndex[0] = _tmp$25;
-			_r$8 = _rules[0][5](); /* */ $s = 42; case 42: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+			_r$8 = _rules[0][7](); /* */ $s = 42; case 42: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
 			/* */ if (!_r$8) { $s = 40; continue; }
 			/* */ $s = 41; continue;
 			/* if (!_r$8) { */ case 40:
-				/* goto l13 */ $s = 43; continue;
+				/* goto l14 */ $s = 43; continue;
 			/* } */ case 41:
-			/* l14: */ case 32:
-			/* goto l12 */ $s = 15; continue;
-			/* l13: */ case 43:
-			_tmp$26 = position13;
-			_tmp$27 = tokenIndex13;
+			/* l15: */ case 32:
+			/* goto l13 */ $s = 15; continue;
+			/* l14: */ case 43:
+			_tmp$26 = position14;
+			_tmp$27 = tokenIndex14;
 			position[0] = _tmp$26;
 			tokenIndex[0] = _tmp$27;
-			/* goto l7 */ $s = 10; continue;
-			/* l11: */ case 14:
-			_tmp$28 = position7;
-			_tmp$29 = tokenIndex7;
+			/* goto l8 */ $s = 10; continue;
+			/* l12: */ case 14:
+			_tmp$28 = position8;
+			_tmp$29 = tokenIndex8;
 			position[0] = _tmp$28;
 			tokenIndex[0] = _tmp$29;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 44; continue; }
 			/* */ $s = 45; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 44:
-				/* goto l5 */ $s = 46; continue;
+				/* goto l6 */ $s = 46; continue;
 			/* } */ case 45:
 			position[0] = position[0] + (1) >>> 0;
-			_r$9 = _rules[0][62](); /* */ $s = 49; case 49: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+			_r$9 = _rules[0][65](); /* */ $s = 49; case 49: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 			/* */ if (!_r$9) { $s = 47; continue; }
 			/* */ $s = 48; continue;
 			/* if (!_r$9) { */ case 47:
-				/* goto l5 */ $s = 46; continue;
+				/* goto l6 */ $s = 46; continue;
 			/* } */ case 48:
-			/* l20: */ case 50:
+			/* l21: */ case 50:
 			_tmp$30 = position[0];
 			_tmp$31 = tokenIndex[0];
-			position21 = _tmp$30;
-			tokenIndex21 = _tmp$31;
+			position22 = _tmp$30;
+			tokenIndex22 = _tmp$31;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 51; continue; }
 			/* */ $s = 52; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 51:
-				/* goto l21 */ $s = 53; continue;
+				/* goto l22 */ $s = 53; continue;
 			/* } */ case 52:
 			position[0] = position[0] + (1) >>> 0;
-			_r$10 = _rules[0][62](); /* */ $s = 56; case 56: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+			_r$10 = _rules[0][65](); /* */ $s = 56; case 56: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
 			/* */ if (!_r$10) { $s = 54; continue; }
 			/* */ $s = 55; continue;
 			/* if (!_r$10) { */ case 54:
-				/* goto l21 */ $s = 53; continue;
+				/* goto l22 */ $s = 53; continue;
 			/* } */ case 55:
-			/* goto l20 */ $s = 50; continue;
-			/* l21: */ case 53:
-			_tmp$32 = position21;
-			_tmp$33 = tokenIndex21;
+			/* goto l21 */ $s = 50; continue;
+			/* l22: */ case 53:
+			_tmp$32 = position22;
+			_tmp$33 = tokenIndex22;
 			position[0] = _tmp$32;
 			tokenIndex[0] = _tmp$33;
-			/* l7: */ case 10:
-			$r = add[0](3, position6); /* */ $s = 57; case 57: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l8: */ case 10:
+			$r = add[0](4, position7); /* */ $s = 57; case 57: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l5: */ case 46:
-			_tmp$34 = position5;
-			_tmp$35 = tokenIndex5;
+			/* l6: */ case 46:
+			_tmp$34 = position6;
+			_tmp$35 = tokenIndex6;
 			position[0] = _tmp$34;
 			tokenIndex[0] = _tmp$35;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$10, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position10, position13, position14, position17, position19, position21, position5, position6, position7, tokenIndex10, tokenIndex13, tokenIndex14, tokenIndex17, tokenIndex19, tokenIndex21, tokenIndex5, tokenIndex7, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position22, position23, position24, position26, position27, position34, tokenIndex22, tokenIndex24, tokenIndex27, $s, $r, $c} = $restore(this, {});
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$10, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position11, position14, position15, position18, position20, position22, position6, position7, position8, tokenIndex11, tokenIndex14, tokenIndex15, tokenIndex18, tokenIndex20, tokenIndex22, tokenIndex6, tokenIndex8, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position24, position25, position26, position28, position29, position36, tokenIndex24, tokenIndex26, tokenIndex29, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position22 = _tmp$2;
-			tokenIndex22 = _tmp$3;
-			position23 = position[0];
+			position24 = _tmp$2;
+			tokenIndex24 = _tmp$3;
+			position25 = position[0];
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position24 = _tmp$4;
-			tokenIndex24 = _tmp$5;
-			position26 = position[0];
+			position26 = _tmp$4;
+			tokenIndex26 = _tmp$5;
+			position28 = position[0];
 			_tmp$6 = position[0];
 			_tmp$7 = tokenIndex[0];
-			position27 = _tmp$6;
-			tokenIndex27 = _tmp$7;
-			_r$1 = _rules[0][42](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position29 = _tmp$6;
+			tokenIndex29 = _tmp$7;
+			_r$1 = _rules[0][45](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l28 */ $s = 4; continue;
+				/* goto l30 */ $s = 4; continue;
 			/* } */ case 2:
-			$r = add[0](81, position[0]); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](88, position[0]); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 6:
-				/* goto l28 */ $s = 4; continue;
+				/* goto l30 */ $s = 4; continue;
 			/* } */ case 7:
 			position[0] = position[0] + (1) >>> 0;
-			_r$2 = _rules[0][62](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][65](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 8; continue; }
 			/* */ $s = 9; continue;
 			/* if (!_r$2) { */ case 8:
-				/* goto l28 */ $s = 4; continue;
+				/* goto l30 */ $s = 4; continue;
 			/* } */ case 9:
-			_r$3 = _rules[0][16](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][19](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!_r$3) { */ case 11:
-				/* goto l28 */ $s = 4; continue;
+				/* goto l30 */ $s = 4; continue;
 			/* } */ case 12:
-			$r = add[0](82, position[0]); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l27 */ $s = 15; continue;
-			/* l28: */ case 4:
-			_tmp$8 = position27;
-			_tmp$9 = tokenIndex27;
+			$r = add[0](89, position[0]); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l29 */ $s = 15; continue;
+			/* l30: */ case 4:
+			_tmp$8 = position29;
+			_tmp$9 = tokenIndex29;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 16; continue; }
 			/* */ $s = 17; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 16:
-				/* goto l31 */ $s = 18; continue;
+				/* goto l33 */ $s = 18; continue;
 			/* } */ case 17:
 			position[0] = position[0] + (1) >>> 0;
-			_r$4 = _rules[0][42](); /* */ $s = 21; case 21: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][45](); /* */ $s = 21; case 21: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 19; continue; }
 			/* */ $s = 20; continue;
 			/* if (!_r$4) { */ case 19:
-				/* goto l31 */ $s = 18; continue;
+				/* goto l33 */ $s = 18; continue;
 			/* } */ case 20:
-			$r = add[0](83, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](90, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 23; continue; }
 			/* */ $s = 24; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 23:
-				/* goto l31 */ $s = 18; continue;
+				/* goto l33 */ $s = 18; continue;
 			/* } */ case 24:
 			position[0] = position[0] + (1) >>> 0;
-			_r$5 = _rules[0][62](); /* */ $s = 27; case 27: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][65](); /* */ $s = 27; case 27: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 25; continue; }
 			/* */ $s = 26; continue;
 			/* if (!_r$5) { */ case 25:
-				/* goto l31 */ $s = 18; continue;
+				/* goto l33 */ $s = 18; continue;
 			/* } */ case 26:
-			$r = add[0](84, position[0]); /* */ $s = 28; case 28: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			position34 = position[0];
-			_r$6 = _rules[0][16](); /* */ $s = 31; case 31: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			$r = add[0](91, position[0]); /* */ $s = 28; case 28: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			position36 = position[0];
+			_r$6 = _rules[0][19](); /* */ $s = 31; case 31: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 			/* */ if (!_r$6) { $s = 29; continue; }
 			/* */ $s = 30; continue;
 			/* if (!_r$6) { */ case 29:
-				/* goto l31 */ $s = 18; continue;
+				/* goto l33 */ $s = 18; continue;
 			/* } */ case 30:
-			$r = add[0](79, position34); /* */ $s = 32; case 32: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](85, position[0]); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l27 */ $s = 15; continue;
-			/* l31: */ case 18:
-			_tmp$10 = position27;
-			_tmp$11 = tokenIndex27;
+			$r = add[0](86, position36); /* */ $s = 32; case 32: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](92, position[0]); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l29 */ $s = 15; continue;
+			/* l33: */ case 18:
+			_tmp$10 = position29;
+			_tmp$11 = tokenIndex29;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
-			_r$7 = _rules[0][42](); /* */ $s = 36; case 36: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			_r$7 = _rules[0][45](); /* */ $s = 36; case 36: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 			/* */ if (!_r$7) { $s = 34; continue; }
 			/* */ $s = 35; continue;
 			/* if (!_r$7) { */ case 34:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 35:
-			$r = add[0](86, position[0]); /* */ $s = 38; case 38: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](93, position[0]); /* */ $s = 38; case 38: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 46))) { $s = 39; continue; }
 			/* */ $s = 40; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 46))) { */ case 39:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 40:
 			position[0] = position[0] + (1) >>> 0;
-			_r$8 = _rules[0][62](); /* */ $s = 43; case 43: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+			_r$8 = _rules[0][65](); /* */ $s = 43; case 43: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
 			/* */ if (!_r$8) { $s = 41; continue; }
 			/* */ $s = 42; continue;
 			/* if (!_r$8) { */ case 41:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 42:
-			_r$9 = _rules[0][42](); /* */ $s = 46; case 46: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+			_r$9 = _rules[0][45](); /* */ $s = 46; case 46: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 			/* */ if (!_r$9) { $s = 44; continue; }
 			/* */ $s = 45; continue;
 			/* if (!_r$9) { */ case 44:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 45:
-			$r = add[0](87, position[0]); /* */ $s = 47; case 47: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](94, position[0]); /* */ $s = 47; case 47: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 48; continue; }
 			/* */ $s = 49; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 48:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 49:
 			position[0] = position[0] + (1) >>> 0;
-			_r$10 = _rules[0][62](); /* */ $s = 52; case 52: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+			_r$10 = _rules[0][65](); /* */ $s = 52; case 52: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
 			/* */ if (!_r$10) { $s = 50; continue; }
 			/* */ $s = 51; continue;
 			/* if (!_r$10) { */ case 50:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 51:
-			_r$11 = _rules[0][16](); /* */ $s = 55; case 55: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+			_r$11 = _rules[0][19](); /* */ $s = 55; case 55: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
 			/* */ if (!_r$11) { $s = 53; continue; }
 			/* */ $s = 54; continue;
 			/* if (!_r$11) { */ case 53:
-				/* goto l36 */ $s = 37; continue;
+				/* goto l38 */ $s = 37; continue;
 			/* } */ case 54:
-			$r = add[0](88, position[0]); /* */ $s = 56; case 56: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l27 */ $s = 15; continue;
-			/* l36: */ case 37:
-			_tmp$12 = position27;
-			_tmp$13 = tokenIndex27;
+			$r = add[0](95, position[0]); /* */ $s = 56; case 56: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l29 */ $s = 15; continue;
+			/* l38: */ case 37:
+			_tmp$12 = position29;
+			_tmp$13 = tokenIndex29;
 			position[0] = _tmp$12;
 			tokenIndex[0] = _tmp$13;
-			_r$12 = _rules[0][16](); /* */ $s = 59; case 59: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+			_r$12 = _rules[0][19](); /* */ $s = 59; case 59: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
 			/* */ if (!_r$12) { $s = 57; continue; }
 			/* */ $s = 58; continue;
 			/* if (!_r$12) { */ case 57:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 58:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 61; continue; }
 			/* */ $s = 62; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 61:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 62:
 			position[0] = position[0] + (1) >>> 0;
-			_r$13 = _rules[0][62](); /* */ $s = 65; case 65: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+			_r$13 = _rules[0][65](); /* */ $s = 65; case 65: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
 			/* */ if (!_r$13) { $s = 63; continue; }
 			/* */ $s = 64; continue;
 			/* if (!_r$13) { */ case 63:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 64:
-			_r$14 = _rules[0][16](); /* */ $s = 68; case 68: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
+			_r$14 = _rules[0][19](); /* */ $s = 68; case 68: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
 			/* */ if (!_r$14) { $s = 66; continue; }
 			/* */ $s = 67; continue;
 			/* if (!_r$14) { */ case 66:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 67:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 69; continue; }
 			/* */ $s = 70; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 69:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 70:
 			position[0] = position[0] + (1) >>> 0;
-			_r$15 = _rules[0][62](); /* */ $s = 73; case 73: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
+			_r$15 = _rules[0][65](); /* */ $s = 73; case 73: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
 			/* */ if (!_r$15) { $s = 71; continue; }
 			/* */ $s = 72; continue;
 			/* if (!_r$15) { */ case 71:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 72:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 74; continue; }
 			/* */ $s = 75; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 74:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 75:
 			position[0] = position[0] + (1) >>> 0;
-			_r$16 = _rules[0][62](); /* */ $s = 78; case 78: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
+			_r$16 = _rules[0][65](); /* */ $s = 78; case 78: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
 			/* */ if (!_r$16) { $s = 76; continue; }
 			/* */ $s = 77; continue;
 			/* if (!_r$16) { */ case 76:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 77:
-			_r$17 = _rules[0][16](); /* */ $s = 81; case 81: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
+			_r$17 = _rules[0][19](); /* */ $s = 81; case 81: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
 			/* */ if (!_r$17) { $s = 79; continue; }
 			/* */ $s = 80; continue;
 			/* if (!_r$17) { */ case 79:
-				/* goto l25 */ $s = 60; continue;
+				/* goto l27 */ $s = 60; continue;
 			/* } */ case 80:
-			$r = add[0](89, position[0]); /* */ $s = 82; case 82: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l27: */ case 15:
-			$r = add[0](15, position26); /* */ $s = 83; case 83: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l24 */ $s = 84; continue;
-			/* l25: */ case 60:
-			_tmp$14 = position24;
-			_tmp$15 = tokenIndex24;
+			$r = add[0](96, position[0]); /* */ $s = 82; case 82: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l29: */ case 15:
+			$r = add[0](18, position28); /* */ $s = 83; case 83: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l26 */ $s = 84; continue;
+			/* l27: */ case 60:
+			_tmp$14 = position26;
+			_tmp$15 = tokenIndex26;
 			position[0] = _tmp$14;
 			tokenIndex[0] = _tmp$15;
-			_r$18 = _rules[0][16](); /* */ $s = 87; case 87: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
+			_r$18 = _rules[0][19](); /* */ $s = 87; case 87: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
 			/* */ if (!_r$18) { $s = 85; continue; }
 			/* */ $s = 86; continue;
 			/* if (!_r$18) { */ case 85:
-				/* goto l22 */ $s = 88; continue;
+				/* goto l24 */ $s = 88; continue;
 			/* } */ case 86:
-			/* l24: */ case 84:
-			$r = add[0](4, position23); /* */ $s = 89; case 89: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l26: */ case 84:
+			$r = add[0](6, position25); /* */ $s = 89; case 89: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l22: */ case 88:
-			_tmp$16 = position22;
-			_tmp$17 = tokenIndex22;
+			/* l24: */ case 88:
+			_tmp$16 = position24;
+			_tmp$17 = tokenIndex24;
 			position[0] = _tmp$16;
 			tokenIndex[0] = _tmp$17;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position22, position23, position24, position26, position27, position34, tokenIndex22, tokenIndex24, tokenIndex27, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position24, position25, position26, position28, position29, position36, tokenIndex24, tokenIndex26, tokenIndex29, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_1, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position41, position42, position43, position45, position47, position48, position50, position51, position55, position57, position58, position64, position68, position69, tokenIndex41, tokenIndex43, tokenIndex48, tokenIndex58, tokenIndex64, tokenIndex69, $s, $r, $c} = $restore(this, {});
+			var {_1, _2, _3, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position43, position44, position46, position47, position51, position54, position55, position57, position58, position59, position63, position66, position67, position70, position72, position75, position77, position79, position80, position86, position90, position91, tokenIndex43, tokenIndex47, tokenIndex55, tokenIndex59, tokenIndex63, tokenIndex66, tokenIndex67, tokenIndex70, tokenIndex72, tokenIndex75, tokenIndex80, tokenIndex86, tokenIndex91, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position41 = _tmp$2;
-			tokenIndex41 = _tmp$3;
-			position42 = position[0];
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position43 = _tmp$4;
-			tokenIndex43 = _tmp$5;
-			position45 = position[0];
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { */ case 1:
-				/* goto l44 */ $s = 3; continue;
-			/* } */ case 2:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 4; continue; }
-			/* */ $s = 5; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 4:
-				/* goto l44 */ $s = 3; continue;
-			/* } */ case 5:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 6; continue; }
-			/* */ $s = 7; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 6:
-				/* goto l44 */ $s = 3; continue;
-			/* } */ case 7:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { $s = 8; continue; }
-			/* */ $s = 9; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { */ case 8:
-				/* goto l44 */ $s = 3; continue;
-			/* } */ case 9:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 10; continue; }
-			/* */ $s = 11; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 10:
-				/* goto l44 */ $s = 3; continue;
-			/* } */ case 11:
-			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][62](); /* */ $s = 14; case 14: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 12; continue; }
-			/* */ $s = 13; continue;
-			/* if (!_r$1) { */ case 12:
-				/* goto l44 */ $s = 3; continue;
-			/* } */ case 13:
-			$r = add[0](6, position45); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l43 */ $s = 16; continue;
-			/* l44: */ case 3:
-			_tmp$6 = position43;
-			_tmp$7 = tokenIndex43;
-			position[0] = _tmp$6;
-			tokenIndex[0] = _tmp$7;
+			position43 = _tmp$2;
+			tokenIndex43 = _tmp$3;
+			position44 = position[0];
 				_1 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_1 === (114)) { $s = 18; continue; }
-				/* */ if (_1 === (98)) { $s = 19; continue; }
-				/* */ if (_1 === (119)) { $s = 20; continue; }
-				/* */ if (_1 === (102)) { $s = 21; continue; }
-				_r$2 = _rules[0][12](); /* */ $s = 24; case 24: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-				/* */ if (!_r$2) { $s = 22; continue; }
-				/* */ $s = 23; continue;
-				/* if (_1 === (114)) { */ case 18:
-					position47 = position[0];
-					_tmp$8 = position[0];
-					_tmp$9 = tokenIndex[0];
-					position48 = _tmp$8;
-					tokenIndex48 = _tmp$9;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 25; continue; }
-					/* */ $s = 26; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 25:
-						/* goto l49 */ $s = 27; continue;
-					/* } */ case 26:
+				/* */ if (_1 === (114)) { $s = 2; continue; }
+				/* */ if (_1 === (119)) { $s = 3; continue; }
+				/* */ if (_1 === (102)) { $s = 4; continue; }
+				_r$1 = _rules[0][15](); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+				/* */ if (!_r$1) { $s = 5; continue; }
+				/* */ $s = 6; continue;
+				/* if (_1 === (114)) { */ case 2:
+					position46 = position[0];
+					_tmp$4 = position[0];
+					_tmp$5 = tokenIndex[0];
+					position47 = _tmp$4;
+					tokenIndex47 = _tmp$5;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 8; continue; }
+					/* */ $s = 9; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 8:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 9:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 28; continue; }
-					/* */ $s = 29; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 28:
-						/* goto l49 */ $s = 27; continue;
-					/* } */ case 29:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 11; continue; }
+					/* */ $s = 12; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 11:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 12:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 30; continue; }
-					/* */ $s = 31; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 30:
-						/* goto l49 */ $s = 27; continue;
-					/* } */ case 31:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 13; continue; }
+					/* */ $s = 14; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 13:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 14:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 32; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 15; continue; }
+					/* */ $s = 16; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 15:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 16:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 17; continue; }
+					/* */ $s = 18; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 17:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 18:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 19; continue; }
+					/* */ $s = 20; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 19:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 20:
+					position[0] = position[0] + (1) >>> 0;
+					_r$2 = _rules[0][66](); /* */ $s = 23; case 23: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					/* */ if (!_r$2) { $s = 21; continue; }
+					/* */ $s = 22; continue;
+					/* if (!_r$2) { */ case 21:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 22:
+					_r$3 = _rules[0][19](); /* */ $s = 26; case 26: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+					/* */ if (!_r$3) { $s = 24; continue; }
+					/* */ $s = 25; continue;
+					/* if (!_r$3) { */ case 24:
+						/* goto l48 */ $s = 10; continue;
+					/* } */ case 25:
+					$r = add[0](71, position[0]); /* */ $s = 27; case 27: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l47 */ $s = 28; continue;
+					/* l48: */ case 10:
+					_tmp$6 = position47;
+					_tmp$7 = tokenIndex47;
+					position[0] = _tmp$6;
+					tokenIndex[0] = _tmp$7;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 29; continue; }
+					/* */ $s = 30; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 29:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 30:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 32; continue; }
 					/* */ $s = 33; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 32:
-						/* goto l49 */ $s = 27; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 32:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 33:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 34; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 34; continue; }
 					/* */ $s = 35; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 34:
-						/* goto l49 */ $s = 27; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 34:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 35:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 36; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 36; continue; }
 					/* */ $s = 37; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 36:
-						/* goto l49 */ $s = 27; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 36:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 37:
 					position[0] = position[0] + (1) >>> 0;
-					_r$3 = _rules[0][62](); /* */ $s = 40; case 40: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-					/* */ if (!_r$3) { $s = 38; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 38; continue; }
 					/* */ $s = 39; continue;
-					/* if (!_r$3) { */ case 38:
-						/* goto l49 */ $s = 27; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 38:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 39:
-					/* goto l48 */ $s = 41; continue;
-					/* l49: */ case 27:
-					_tmp$10 = position48;
-					_tmp$11 = tokenIndex48;
-					position[0] = _tmp$10;
-					tokenIndex[0] = _tmp$11;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 42; continue; }
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 40; continue; }
+					/* */ $s = 41; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 40:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 41:
+					position[0] = position[0] + (1) >>> 0;
+					_r$4 = _rules[0][65](); /* */ $s = 44; case 44: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+					/* */ if (!_r$4) { $s = 42; continue; }
 					/* */ $s = 43; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 42:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!_r$4) { */ case 42:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 43:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 45; continue; }
-					/* */ $s = 46; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 45:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 46:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 47; continue; }
+					$r = add[0](72, position[0]); /* */ $s = 45; case 45: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* l47: */ case 28:
+					$r = add[0](10, position46); /* */ $s = 46; case 46: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 6; continue;
+				/* } else if (_1 === (119)) { */ case 3:
+					position51 = position[0];
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 119))) { $s = 47; continue; }
 					/* */ $s = 48; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 47:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 119))) { */ case 47:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 48:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 49; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 49; continue; }
 					/* */ $s = 50; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 49:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 49:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 50:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 51; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 51; continue; }
 					/* */ $s = 52; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 51:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 51:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 52:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 53; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 53; continue; }
 					/* */ $s = 54; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 53:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 53:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 54:
 					position[0] = position[0] + (1) >>> 0;
-					_r$4 = _rules[0][63](); /* */ $s = 57; case 57: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-					/* */ if (!_r$4) { $s = 55; continue; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 55; continue; }
 					/* */ $s = 56; continue;
-					/* if (!_r$4) { */ case 55:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 55:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 56:
-					_r$5 = _rules[0][16](); /* */ $s = 60; case 60: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+					position[0] = position[0] + (1) >>> 0;
+					$r = add[0](73, position[0]); /* */ $s = 57; case 57: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$5 = _rules[0][66](); /* */ $s = 60; case 60: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 					/* */ if (!_r$5) { $s = 58; continue; }
 					/* */ $s = 59; continue;
 					/* if (!_r$5) { */ case 58:
-						/* goto l41 */ $s = 44; continue;
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 59:
-					/* l48: */ case 41:
-					$r = add[0](8, position47); /* */ $s = 61; case 61: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 23; continue;
-				/* } else if (_1 === (98)) { */ case 19:
-					position50 = position[0];
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { $s = 62; continue; }
-					/* */ $s = 63; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { */ case 62:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 63:
+					_r$6 = _rules[0][19](); /* */ $s = 63; case 63: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+					/* */ if (!_r$6) { $s = 61; continue; }
+					/* */ $s = 62; continue;
+					/* if (!_r$6) { */ case 61:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 62:
+					$r = add[0](74, position[0]); /* */ $s = 64; case 64: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					position54 = position[0];
+					_tmp$8 = position[0];
+					_tmp$9 = tokenIndex[0];
+					position55 = _tmp$8;
+					tokenIndex55 = _tmp$9;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 65; continue; }
+					/* */ $s = 66; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 65:
+						/* goto l56 */ $s = 67; continue;
+					/* } */ case 66:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 64; continue; }
-					/* */ $s = 65; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 64:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 65:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 66; continue; }
-					/* */ $s = 67; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 66:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 67:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { $s = 68; continue; }
+					_r$7 = _rules[0][65](); /* */ $s = 70; case 70: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+					/* */ if (!_r$7) { $s = 68; continue; }
 					/* */ $s = 69; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { */ case 68:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!_r$7) { */ case 68:
+						/* goto l56 */ $s = 67; continue;
 					/* } */ case 69:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 71; continue; }
+					/* */ $s = 72; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 71:
+						/* goto l56 */ $s = 67; continue;
+					/* } */ case 72:
 					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 70; continue; }
-					/* */ $s = 71; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 70:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 71:
+					/* goto l55 */ $s = 73; continue;
+					/* l56: */ case 67:
+					_tmp$10 = position55;
+					_tmp$11 = tokenIndex55;
+					position[0] = _tmp$10;
+					tokenIndex[0] = _tmp$11;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 74; continue; }
+					/* */ $s = 75; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 74:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 75:
 					position[0] = position[0] + (1) >>> 0;
-					_r$6 = _rules[0][62](); /* */ $s = 74; case 74: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-					/* */ if (!_r$6) { $s = 72; continue; }
-					/* */ $s = 73; continue;
-					/* if (!_r$6) { */ case 72:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 73:
-					$r = add[0](7, position50); /* */ $s = 75; case 75: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 23; continue;
-				/* } else if (_1 === (119)) { */ case 20:
-					position51 = position[0];
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 119))) { $s = 76; continue; }
+					_r$8 = _rules[0][65](); /* */ $s = 78; case 78: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+					/* */ if (!_r$8) { $s = 76; continue; }
 					/* */ $s = 77; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 119))) { */ case 76:
-						/* goto l41 */ $s = 44; continue;
+					/* if (!_r$8) { */ case 76:
+						/* goto l43 */ $s = 31; continue;
 					/* } */ case 77:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 78; continue; }
-					/* */ $s = 79; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 78:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 79:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 80; continue; }
-					/* */ $s = 81; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 80:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 81:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 82; continue; }
-					/* */ $s = 83; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 82:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 83:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 84; continue; }
-					/* */ $s = 85; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 84:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 85:
-					position[0] = position[0] + (1) >>> 0;
-					$r = add[0](66, position[0]); /* */ $s = 86; case 86: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$7 = _rules[0][63](); /* */ $s = 89; case 89: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-					/* */ if (!_r$7) { $s = 87; continue; }
-					/* */ $s = 88; continue;
-					/* if (!_r$7) { */ case 87:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 88:
-					_r$8 = _rules[0][16](); /* */ $s = 92; case 92: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-					/* */ if (!_r$8) { $s = 90; continue; }
-					/* */ $s = 91; continue;
-					/* if (!_r$8) { */ case 90:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 91:
-					$r = add[0](67, position[0]); /* */ $s = 93; case 93: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$9 = _rules[0][10](); /* */ $s = 96; case 96: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
-					/* */ if (!_r$9) { $s = 94; continue; }
-					/* */ $s = 95; continue;
-					/* if (!_r$9) { */ case 94:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 95:
-					$r = add[0](68, position[0]); /* */ $s = 97; case 97: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](9, position51); /* */ $s = 98; case 98: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 23; continue;
-				/* } else if (_1 === (102)) { */ case 21:
-					position55 = position[0];
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 99; continue; }
-					/* */ $s = 100; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 99:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 100:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 101; continue; }
-					/* */ $s = 102; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 101:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 102:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 103; continue; }
-					/* */ $s = 104; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 103:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 104:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { $s = 105; continue; }
-					/* */ $s = 106; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { */ case 105:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 106:
-					position[0] = position[0] + (1) >>> 0;
-					_r$10 = _rules[0][63](); /* */ $s = 109; case 109: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
-					/* */ if (!_r$10) { $s = 107; continue; }
-					/* */ $s = 108; continue;
-					/* if (!_r$10) { */ case 107:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 108:
-					_r$11 = _rules[0][42](); /* */ $s = 112; case 112: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
-					/* */ if (!_r$11) { $s = 110; continue; }
-					/* */ $s = 111; continue;
-					/* if (!_r$11) { */ case 110:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 111:
-					$r = add[0](77, position[0]); /* */ $s = 113; case 113: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					position57 = position[0];
+					position58 = position[0];
 					_tmp$12 = position[0];
 					_tmp$13 = tokenIndex[0];
-					position58 = _tmp$12;
-					tokenIndex58 = _tmp$13;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 114; continue; }
-					/* */ $s = 115; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 114:
-						/* goto l59 */ $s = 116; continue;
-					/* } */ case 115:
-					position[0] = position[0] + (1) >>> 0;
-					_r$12 = _rules[0][62](); /* */ $s = 119; case 119: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
-					/* */ if (!_r$12) { $s = 117; continue; }
-					/* */ $s = 118; continue;
-					/* if (!_r$12) { */ case 117:
-						/* goto l59 */ $s = 116; continue;
-					/* } */ case 118:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 120; continue; }
-					/* */ $s = 121; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 120:
-						/* goto l59 */ $s = 116; continue;
-					/* } */ case 121:
-					position[0] = position[0] + (1) >>> 0;
-					_r$13 = _rules[0][62](); /* */ $s = 124; case 124: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
-					/* */ if (!_r$13) { $s = 122; continue; }
-					/* */ $s = 123; continue;
-					/* if (!_r$13) { */ case 122:
-						/* goto l59 */ $s = 116; continue;
-					/* } */ case 123:
-					$r = add[0](72, position[0]); /* */ $s = 125; case 125: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l58 */ $s = 126; continue;
-					/* l59: */ case 116:
-					_tmp$14 = position58;
-					_tmp$15 = tokenIndex58;
-					position[0] = _tmp$14;
-					tokenIndex[0] = _tmp$15;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 127; continue; }
-					/* */ $s = 128; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 127:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 128:
-					position[0] = position[0] + (1) >>> 0;
-					_r$14 = _rules[0][62](); /* */ $s = 131; case 131: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
-					/* */ if (!_r$14) { $s = 129; continue; }
-					/* */ $s = 130; continue;
-					/* if (!_r$14) { */ case 129:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 130:
-					$r = add[0](73, position[0]); /* */ $s = 132; case 132: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$15 = _rules[0][42](); /* */ $s = 135; case 135: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
-					/* */ if (!_r$15) { $s = 133; continue; }
-					/* */ $s = 134; continue;
-					/* if (!_r$15) { */ case 133:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 134:
-					$r = add[0](74, position[0]); /* */ $s = 136; case 136: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* l63: */ case 137:
-					_tmp$16 = position[0];
-					_tmp$17 = tokenIndex[0];
-					position64 = _tmp$16;
-					tokenIndex64 = _tmp$17;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { $s = 138; continue; }
-					/* */ $s = 139; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { */ case 138:
-						/* goto l64 */ $s = 140; continue;
-					/* } */ case 139:
-					position[0] = position[0] + (1) >>> 0;
-					_r$16 = _rules[0][62](); /* */ $s = 143; case 143: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
-					/* */ if (!_r$16) { $s = 141; continue; }
-					/* */ $s = 142; continue;
-					/* if (!_r$16) { */ case 141:
-						/* goto l64 */ $s = 140; continue;
-					/* } */ case 142:
-					_r$17 = _rules[0][42](); /* */ $s = 146; case 146: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
-					/* */ if (!_r$17) { $s = 144; continue; }
-					/* */ $s = 145; continue;
-					/* if (!_r$17) { */ case 144:
-						/* goto l64 */ $s = 140; continue;
-					/* } */ case 145:
-					$r = add[0](75, position[0]); /* */ $s = 147; case 147: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](76, position[0]); /* */ $s = 148; case 148: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l63 */ $s = 137; continue;
-					/* l64: */ case 140:
-					_tmp$18 = position64;
-					_tmp$19 = tokenIndex64;
+					position59 = _tmp$12;
+					tokenIndex59 = _tmp$13;
+						_2 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+						/* */ if (_2 === (99)) { $s = 80; continue; }
+						/* */ if (_2 === (98)) { $s = 81; continue; }
+						_r$9 = _rules[0][7](); /* */ $s = 84; case 84: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+						/* */ if (!_r$9) { $s = 82; continue; }
+						/* */ $s = 83; continue;
+						/* if (_2 === (99)) { */ case 80:
+							_r$10 = _rules[0][9](); /* */ $s = 87; case 87: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+							/* */ if (!_r$10) { $s = 85; continue; }
+							/* */ $s = 86; continue;
+							/* if (!_r$10) { */ case 85:
+								/* goto l60 */ $s = 88; continue;
+							/* } */ case 86:
+							$s = 83; continue;
+						/* } else if (_2 === (98)) { */ case 81:
+							_r$11 = _rules[0][8](); /* */ $s = 91; case 91: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+							/* */ if (!_r$11) { $s = 89; continue; }
+							/* */ $s = 90; continue;
+							/* if (!_r$11) { */ case 89:
+								/* goto l60 */ $s = 88; continue;
+							/* } */ case 90:
+							$s = 83; continue;
+						/* } else if (!_r$9) { */ case 82:
+							/* goto l60 */ $s = 88; continue;
+						/* } */ case 83:
+					case 79:
+					/* l62: */ case 92:
+					_tmp$14 = position[0];
+					_tmp$15 = tokenIndex[0];
+					position63 = _tmp$14;
+					tokenIndex63 = _tmp$15;
+					_r$12 = _rules[0][4](); /* */ $s = 95; case 95: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+					/* */ if (!_r$12) { $s = 93; continue; }
+					/* */ $s = 94; continue;
+					/* if (!_r$12) { */ case 93:
+						/* goto l63 */ $s = 96; continue;
+					/* } */ case 94:
+					/* goto l62 */ $s = 92; continue;
+					/* l63: */ case 96:
+					_tmp$16 = position63;
+					_tmp$17 = tokenIndex63;
+					position[0] = _tmp$16;
+					tokenIndex[0] = _tmp$17;
+					/* goto l59 */ $s = 97; continue;
+					/* l60: */ case 88:
+					_tmp$18 = position59;
+					_tmp$19 = tokenIndex59;
 					position[0] = _tmp$18;
 					tokenIndex[0] = _tmp$19;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 149; continue; }
-					/* */ $s = 150; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 149:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 150:
-					position[0] = position[0] + (1) >>> 0;
-					_r$18 = _rules[0][62](); /* */ $s = 153; case 153: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
-					/* */ if (!_r$18) { $s = 151; continue; }
-					/* */ $s = 152; continue;
-					/* if (!_r$18) { */ case 151:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 152:
-					/* l58: */ case 126:
-					$r = add[0](13, position57); /* */ $s = 154; case 154: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 155; continue; }
-					/* */ $s = 156; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 155:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 156:
-					position[0] = position[0] + (1) >>> 0;
-					_r$19 = _rules[0][62](); /* */ $s = 159; case 159: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
-					/* */ if (!_r$19) { $s = 157; continue; }
-					/* */ $s = 158; continue;
-					/* if (!_r$19) { */ case 157:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 158:
-					$r = add[0](78, position[0]); /* */ $s = 160; case 160: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					position68 = position[0];
+					_r$13 = _rules[0][6](); /* */ $s = 100; case 100: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+					/* */ if (!_r$13) { $s = 98; continue; }
+					/* */ $s = 99; continue;
+					/* if (!_r$13) { */ case 98:
+						/* goto l64 */ $s = 101; continue;
+					/* } */ case 99:
+					/* l65: */ case 102:
 					_tmp$20 = position[0];
 					_tmp$21 = tokenIndex[0];
-					position69 = _tmp$20;
-					tokenIndex69 = _tmp$21;
-					_r$20 = _rules[0][2](); /* */ $s = 163; case 163: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
-					/* */ if (!_r$20) { $s = 161; continue; }
-					/* */ $s = 162; continue;
-					/* if (!_r$20) { */ case 161:
-						/* goto l69 */ $s = 164; continue;
-					/* } */ case 162:
-					/* goto l70 */ $s = 165; continue;
-					/* l69: */ case 164:
-					_tmp$22 = position69;
-					_tmp$23 = tokenIndex69;
-					position[0] = _tmp$22;
-					tokenIndex[0] = _tmp$23;
-					/* l70: */ case 165:
-					$r = add[0](79, position68); /* */ $s = 166; case 166: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 167; continue; }
-					/* */ $s = 168; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 167:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 168:
+					position66 = _tmp$20;
+					tokenIndex66 = _tmp$21;
+					_tmp$22 = position[0];
+					_tmp$23 = tokenIndex[0];
+					position67 = _tmp$22;
+					tokenIndex67 = _tmp$23;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 103; continue; }
+					/* */ $s = 104; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 103:
+						/* goto l68 */ $s = 105; continue;
+					/* } */ case 104:
 					position[0] = position[0] + (1) >>> 0;
-					_r$21 = _rules[0][62](); /* */ $s = 171; case 171: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
-					/* */ if (!_r$21) { $s = 169; continue; }
-					/* */ $s = 170; continue;
-					/* if (!_r$21) { */ case 169:
-						/* goto l41 */ $s = 44; continue;
-					/* } */ case 170:
-					$r = add[0](80, position[0]); /* */ $s = 172; case 172: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](14, position55); /* */ $s = 173; case 173: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 23; continue;
-				/* } else if (!_r$2) { */ case 22:
-					/* goto l41 */ $s = 44; continue;
-				/* } */ case 23:
-			case 17:
-			/* l43: */ case 16:
-			$r = add[0](5, position42); /* */ $s = 174; case 174: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$14 = _rules[0][65](); /* */ $s = 108; case 108: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
+					/* */ if (!_r$14) { $s = 106; continue; }
+					/* */ $s = 107; continue;
+					/* if (!_r$14) { */ case 106:
+						/* goto l68 */ $s = 105; continue;
+					/* } */ case 107:
+					/* l69: */ case 109:
+					_tmp$24 = position[0];
+					_tmp$25 = tokenIndex[0];
+					position70 = _tmp$24;
+					tokenIndex70 = _tmp$25;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 110; continue; }
+					/* */ $s = 111; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 110:
+						/* goto l70 */ $s = 112; continue;
+					/* } */ case 111:
+					position[0] = position[0] + (1) >>> 0;
+					_r$15 = _rules[0][65](); /* */ $s = 115; case 115: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
+					/* */ if (!_r$15) { $s = 113; continue; }
+					/* */ $s = 114; continue;
+					/* if (!_r$15) { */ case 113:
+						/* goto l70 */ $s = 112; continue;
+					/* } */ case 114:
+					/* goto l69 */ $s = 109; continue;
+					/* l70: */ case 112:
+					_tmp$26 = position70;
+					_tmp$27 = tokenIndex70;
+					position[0] = _tmp$26;
+					tokenIndex[0] = _tmp$27;
+					_r$16 = _rules[0][6](); /* */ $s = 118; case 118: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
+					/* */ if (!_r$16) { $s = 116; continue; }
+					/* */ $s = 117; continue;
+					/* if (!_r$16) { */ case 116:
+						/* goto l68 */ $s = 105; continue;
+					/* } */ case 117:
+					/* goto l67 */ $s = 119; continue;
+					/* l68: */ case 105:
+					_tmp$28 = position67;
+					_tmp$29 = tokenIndex67;
+					position[0] = _tmp$28;
+					tokenIndex[0] = _tmp$29;
+					/* l71: */ case 120:
+					_tmp$30 = position[0];
+					_tmp$31 = tokenIndex[0];
+					position72 = _tmp$30;
+					tokenIndex72 = _tmp$31;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 121; continue; }
+					/* */ $s = 122; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 121:
+						/* goto l72 */ $s = 123; continue;
+					/* } */ case 122:
+					position[0] = position[0] + (1) >>> 0;
+					_r$17 = _rules[0][65](); /* */ $s = 126; case 126: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
+					/* */ if (!_r$17) { $s = 124; continue; }
+					/* */ $s = 125; continue;
+					/* if (!_r$17) { */ case 124:
+						/* goto l72 */ $s = 123; continue;
+					/* } */ case 125:
+					/* goto l71 */ $s = 120; continue;
+					/* l72: */ case 123:
+					_tmp$32 = position72;
+					_tmp$33 = tokenIndex72;
+					position[0] = _tmp$32;
+					tokenIndex[0] = _tmp$33;
+						_3 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+						/* */ if (_3 === (99)) { $s = 128; continue; }
+						/* */ if (_3 === (98)) { $s = 129; continue; }
+						_r$18 = _rules[0][7](); /* */ $s = 132; case 132: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
+						/* */ if (!_r$18) { $s = 130; continue; }
+						/* */ $s = 131; continue;
+						/* if (_3 === (99)) { */ case 128:
+							_r$19 = _rules[0][9](); /* */ $s = 135; case 135: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
+							/* */ if (!_r$19) { $s = 133; continue; }
+							/* */ $s = 134; continue;
+							/* if (!_r$19) { */ case 133:
+								/* goto l66 */ $s = 136; continue;
+							/* } */ case 134:
+							$s = 131; continue;
+						/* } else if (_3 === (98)) { */ case 129:
+							_r$20 = _rules[0][8](); /* */ $s = 139; case 139: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
+							/* */ if (!_r$20) { $s = 137; continue; }
+							/* */ $s = 138; continue;
+							/* if (!_r$20) { */ case 137:
+								/* goto l66 */ $s = 136; continue;
+							/* } */ case 138:
+							$s = 131; continue;
+						/* } else if (!_r$18) { */ case 130:
+							/* goto l66 */ $s = 136; continue;
+						/* } */ case 131:
+					case 127:
+					/* l67: */ case 119:
+					/* goto l65 */ $s = 102; continue;
+					/* l66: */ case 136:
+					_tmp$34 = position66;
+					_tmp$35 = tokenIndex66;
+					position[0] = _tmp$34;
+					tokenIndex[0] = _tmp$35;
+					/* goto l59 */ $s = 97; continue;
+					/* l64: */ case 101:
+					_tmp$36 = position59;
+					_tmp$37 = tokenIndex59;
+					position[0] = _tmp$36;
+					tokenIndex[0] = _tmp$37;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 140; continue; }
+					/* */ $s = 141; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 140:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 141:
+					position[0] = position[0] + (1) >>> 0;
+					_r$21 = _rules[0][65](); /* */ $s = 144; case 144: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
+					/* */ if (!_r$21) { $s = 142; continue; }
+					/* */ $s = 143; continue;
+					/* if (!_r$21) { */ case 142:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 143:
+					/* l74: */ case 145:
+					_tmp$38 = position[0];
+					_tmp$39 = tokenIndex[0];
+					position75 = _tmp$38;
+					tokenIndex75 = _tmp$39;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 146; continue; }
+					/* */ $s = 147; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 146:
+						/* goto l75 */ $s = 148; continue;
+					/* } */ case 147:
+					position[0] = position[0] + (1) >>> 0;
+					_r$22 = _rules[0][65](); /* */ $s = 151; case 151: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
+					/* */ if (!_r$22) { $s = 149; continue; }
+					/* */ $s = 150; continue;
+					/* if (!_r$22) { */ case 149:
+						/* goto l75 */ $s = 148; continue;
+					/* } */ case 150:
+					/* goto l74 */ $s = 145; continue;
+					/* l75: */ case 148:
+					_tmp$40 = position75;
+					_tmp$41 = tokenIndex75;
+					position[0] = _tmp$40;
+					tokenIndex[0] = _tmp$41;
+					/* l59: */ case 97:
+					$r = add[0](5, position58); /* */ $s = 152; case 152: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](3, position57); /* */ $s = 153; case 153: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 154; continue; }
+					/* */ $s = 155; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 154:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 155:
+					position[0] = position[0] + (1) >>> 0;
+					/* l55: */ case 73:
+					_r$23 = _rules[0][65](); /* */ $s = 158; case 158: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
+					/* */ if (!_r$23) { $s = 156; continue; }
+					/* */ $s = 157; continue;
+					/* if (!_r$23) { */ case 156:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 157:
+					$r = add[0](11, position54); /* */ $s = 159; case 159: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](75, position[0]); /* */ $s = 160; case 160: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](12, position51); /* */ $s = 161; case 161: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 6; continue;
+				/* } else if (_1 === (102)) { */ case 4:
+					position77 = position[0];
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 162; continue; }
+					/* */ $s = 163; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 162:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 163:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 164; continue; }
+					/* */ $s = 165; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 164:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 165:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 166; continue; }
+					/* */ $s = 167; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 166:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 167:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { $s = 168; continue; }
+					/* */ $s = 169; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { */ case 168:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 169:
+					position[0] = position[0] + (1) >>> 0;
+					_r$24 = _rules[0][66](); /* */ $s = 172; case 172: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+					/* */ if (!_r$24) { $s = 170; continue; }
+					/* */ $s = 171; continue;
+					/* if (!_r$24) { */ case 170:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 171:
+					_r$25 = _rules[0][45](); /* */ $s = 175; case 175: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+					/* */ if (!_r$25) { $s = 173; continue; }
+					/* */ $s = 174; continue;
+					/* if (!_r$25) { */ case 173:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 174:
+					$r = add[0](84, position[0]); /* */ $s = 176; case 176: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					position79 = position[0];
+					_tmp$42 = position[0];
+					_tmp$43 = tokenIndex[0];
+					position80 = _tmp$42;
+					tokenIndex80 = _tmp$43;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 177; continue; }
+					/* */ $s = 178; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 177:
+						/* goto l81 */ $s = 179; continue;
+					/* } */ case 178:
+					position[0] = position[0] + (1) >>> 0;
+					_r$26 = _rules[0][65](); /* */ $s = 182; case 182: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+					/* */ if (!_r$26) { $s = 180; continue; }
+					/* */ $s = 181; continue;
+					/* if (!_r$26) { */ case 180:
+						/* goto l81 */ $s = 179; continue;
+					/* } */ case 181:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 183; continue; }
+					/* */ $s = 184; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 183:
+						/* goto l81 */ $s = 179; continue;
+					/* } */ case 184:
+					position[0] = position[0] + (1) >>> 0;
+					_r$27 = _rules[0][65](); /* */ $s = 187; case 187: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+					/* */ if (!_r$27) { $s = 185; continue; }
+					/* */ $s = 186; continue;
+					/* if (!_r$27) { */ case 185:
+						/* goto l81 */ $s = 179; continue;
+					/* } */ case 186:
+					$r = add[0](79, position[0]); /* */ $s = 188; case 188: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l80 */ $s = 189; continue;
+					/* l81: */ case 179:
+					_tmp$44 = position80;
+					_tmp$45 = tokenIndex80;
+					position[0] = _tmp$44;
+					tokenIndex[0] = _tmp$45;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 190; continue; }
+					/* */ $s = 191; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 190:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 191:
+					position[0] = position[0] + (1) >>> 0;
+					_r$28 = _rules[0][65](); /* */ $s = 194; case 194: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+					/* */ if (!_r$28) { $s = 192; continue; }
+					/* */ $s = 193; continue;
+					/* if (!_r$28) { */ case 192:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 193:
+					$r = add[0](80, position[0]); /* */ $s = 195; case 195: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$29 = _rules[0][45](); /* */ $s = 198; case 198: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+					/* */ if (!_r$29) { $s = 196; continue; }
+					/* */ $s = 197; continue;
+					/* if (!_r$29) { */ case 196:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 197:
+					$r = add[0](81, position[0]); /* */ $s = 199; case 199: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* l85: */ case 200:
+					_tmp$46 = position[0];
+					_tmp$47 = tokenIndex[0];
+					position86 = _tmp$46;
+					tokenIndex86 = _tmp$47;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { $s = 201; continue; }
+					/* */ $s = 202; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { */ case 201:
+						/* goto l86 */ $s = 203; continue;
+					/* } */ case 202:
+					position[0] = position[0] + (1) >>> 0;
+					_r$30 = _rules[0][65](); /* */ $s = 206; case 206: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+					/* */ if (!_r$30) { $s = 204; continue; }
+					/* */ $s = 205; continue;
+					/* if (!_r$30) { */ case 204:
+						/* goto l86 */ $s = 203; continue;
+					/* } */ case 205:
+					_r$31 = _rules[0][45](); /* */ $s = 209; case 209: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+					/* */ if (!_r$31) { $s = 207; continue; }
+					/* */ $s = 208; continue;
+					/* if (!_r$31) { */ case 207:
+						/* goto l86 */ $s = 203; continue;
+					/* } */ case 208:
+					$r = add[0](82, position[0]); /* */ $s = 210; case 210: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](83, position[0]); /* */ $s = 211; case 211: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l85 */ $s = 200; continue;
+					/* l86: */ case 203:
+					_tmp$48 = position86;
+					_tmp$49 = tokenIndex86;
+					position[0] = _tmp$48;
+					tokenIndex[0] = _tmp$49;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 212; continue; }
+					/* */ $s = 213; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 212:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 213:
+					position[0] = position[0] + (1) >>> 0;
+					_r$32 = _rules[0][65](); /* */ $s = 216; case 216: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
+					/* */ if (!_r$32) { $s = 214; continue; }
+					/* */ $s = 215; continue;
+					/* if (!_r$32) { */ case 214:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 215:
+					/* l80: */ case 189:
+					$r = add[0](16, position79); /* */ $s = 217; case 217: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 218; continue; }
+					/* */ $s = 219; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 218:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 219:
+					position[0] = position[0] + (1) >>> 0;
+					_r$33 = _rules[0][65](); /* */ $s = 222; case 222: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+					/* */ if (!_r$33) { $s = 220; continue; }
+					/* */ $s = 221; continue;
+					/* if (!_r$33) { */ case 220:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 221:
+					$r = add[0](85, position[0]); /* */ $s = 223; case 223: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					position90 = position[0];
+					_tmp$50 = position[0];
+					_tmp$51 = tokenIndex[0];
+					position91 = _tmp$50;
+					tokenIndex91 = _tmp$51;
+					_r$34 = _rules[0][2](); /* */ $s = 226; case 226: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
+					/* */ if (!_r$34) { $s = 224; continue; }
+					/* */ $s = 225; continue;
+					/* if (!_r$34) { */ case 224:
+						/* goto l91 */ $s = 227; continue;
+					/* } */ case 225:
+					/* goto l92 */ $s = 228; continue;
+					/* l91: */ case 227:
+					_tmp$52 = position91;
+					_tmp$53 = tokenIndex91;
+					position[0] = _tmp$52;
+					tokenIndex[0] = _tmp$53;
+					/* l92: */ case 228:
+					$r = add[0](86, position90); /* */ $s = 229; case 229: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 230; continue; }
+					/* */ $s = 231; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 230:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 231:
+					position[0] = position[0] + (1) >>> 0;
+					_r$35 = _rules[0][65](); /* */ $s = 234; case 234: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+					/* */ if (!_r$35) { $s = 232; continue; }
+					/* */ $s = 233; continue;
+					/* if (!_r$35) { */ case 232:
+						/* goto l43 */ $s = 31; continue;
+					/* } */ case 233:
+					$r = add[0](87, position[0]); /* */ $s = 235; case 235: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](17, position77); /* */ $s = 236; case 236: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 6; continue;
+				/* } else if (!_r$1) { */ case 5:
+					/* goto l43 */ $s = 31; continue;
+				/* } */ case 6:
+			case 1:
+			$r = add[0](7, position44); /* */ $s = 237; case 237: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l41: */ case 44:
-			_tmp$24 = position41;
-			_tmp$25 = tokenIndex41;
-			position[0] = _tmp$24;
-			tokenIndex[0] = _tmp$25;
+			/* l43: */ case 31:
+			_tmp$54 = position43;
+			_tmp$55 = tokenIndex43;
+			position[0] = _tmp$54;
+			tokenIndex[0] = _tmp$55;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _1, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position41, position42, position43, position45, position47, position48, position50, position51, position55, position57, position58, position64, position68, position69, tokenIndex41, tokenIndex43, tokenIndex48, tokenIndex58, tokenIndex64, tokenIndex69, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position76, position77, position78, tokenIndex76, tokenIndex78, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position76 = _tmp$2;
-			tokenIndex76 = _tmp$3;
-			position77 = position[0];
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position78 = _tmp$4;
-			tokenIndex78 = _tmp$5;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 1:
-				/* goto l79 */ $s = 3; continue;
-			/* } */ case 2:
-			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][62](); /* */ $s = 6; case 6: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 4; continue; }
-			/* */ $s = 5; continue;
-			/* if (!_r$1) { */ case 4:
-				/* goto l79 */ $s = 3; continue;
-			/* } */ case 5:
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 7; continue; }
-			/* */ $s = 8; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 7:
-				/* goto l79 */ $s = 3; continue;
-			/* } */ case 8:
-			position[0] = position[0] + (1) >>> 0;
-			/* goto l78 */ $s = 9; continue;
-			/* l79: */ case 3:
-			_tmp$6 = position78;
-			_tmp$7 = tokenIndex78;
-			position[0] = _tmp$6;
-			tokenIndex[0] = _tmp$7;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 10; continue; }
-			/* */ $s = 11; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 10:
-				/* goto l76 */ $s = 12; continue;
-			/* } */ case 11:
-			position[0] = position[0] + (1) >>> 0;
-			_r$2 = _rules[0][62](); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-			/* */ if (!_r$2) { $s = 13; continue; }
-			/* */ $s = 14; continue;
-			/* if (!_r$2) { */ case 13:
-				/* goto l76 */ $s = 12; continue;
-			/* } */ case 14:
-			_r$3 = _rules[0][2](); /* */ $s = 18; case 18: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-			/* */ if (!_r$3) { $s = 16; continue; }
-			/* */ $s = 17; continue;
-			/* if (!_r$3) { */ case 16:
-				/* goto l76 */ $s = 12; continue;
-			/* } */ case 17:
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 19; continue; }
-			/* */ $s = 20; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 19:
-				/* goto l76 */ $s = 12; continue;
-			/* } */ case 20:
-			position[0] = position[0] + (1) >>> 0;
-			/* l78: */ case 9:
-			_r$4 = _rules[0][62](); /* */ $s = 23; case 23: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			/* */ if (!_r$4) { $s = 21; continue; }
-			/* */ $s = 22; continue;
-			/* if (!_r$4) { */ case 21:
-				/* goto l76 */ $s = 12; continue;
-			/* } */ case 22:
-			$r = add[0](10, position77); /* */ $s = 24; case 24: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l76: */ case 12:
-			_tmp$8 = position76;
-			_tmp$9 = tokenIndex76;
-			position[0] = _tmp$8;
-			tokenIndex[0] = _tmp$9;
-			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position76, position77, position78, tokenIndex76, tokenIndex78, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position81, position82, position85, position87, position88, tokenIndex81, tokenIndex85, tokenIndex88, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position81 = _tmp$2;
-			tokenIndex81 = _tmp$3;
-			position82 = position[0];
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 1:
-				/* goto l81 */ $s = 3; continue;
-			/* } */ case 2:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 4; continue; }
-			/* */ $s = 5; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 4:
-				/* goto l81 */ $s = 3; continue;
-			/* } */ case 5:
-			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][63](); /* */ $s = 8; case 8: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 6; continue; }
-			/* */ $s = 7; continue;
-			/* if (!_r$1) { */ case 6:
-				/* goto l81 */ $s = 3; continue;
-			/* } */ case 7:
-			_r$2 = _rules[0][16](); /* */ $s = 11; case 11: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-			/* */ if (!_r$2) { $s = 9; continue; }
-			/* */ $s = 10; continue;
-			/* if (!_r$2) { */ case 9:
-				/* goto l81 */ $s = 3; continue;
-			/* } */ case 10:
-			$r = add[0](69, position[0]); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$3 = _rules[0][10](); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-			/* */ if (!_r$3) { $s = 13; continue; }
-			/* */ $s = 14; continue;
-			/* if (!_r$3) { */ case 13:
-				/* goto l81 */ $s = 3; continue;
-			/* } */ case 14:
-			$r = add[0](70, position[0]); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position85 = _tmp$4;
-			tokenIndex85 = _tmp$5;
-			position87 = position[0];
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 17; continue; }
-			/* */ $s = 18; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 17:
-				/* goto l85 */ $s = 19; continue;
-			/* } */ case 18:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 20; continue; }
-			/* */ $s = 21; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 20:
-				/* goto l85 */ $s = 19; continue;
-			/* } */ case 21:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { $s = 22; continue; }
-			/* */ $s = 23; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { */ case 22:
-				/* goto l85 */ $s = 19; continue;
-			/* } */ case 23:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 24; continue; }
-			/* */ $s = 25; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 24:
-				/* goto l85 */ $s = 19; continue;
-			/* } */ case 25:
-			position[0] = position[0] + (1) >>> 0;
-			_r$4 = _rules[0][63](); /* */ $s = 28; case 28: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			/* */ if (!_r$4) { $s = 26; continue; }
-			/* */ $s = 27; continue;
-			/* if (!_r$4) { */ case 26:
-				/* goto l85 */ $s = 19; continue;
-			/* } */ case 27:
-			_tmp$6 = position[0];
-			_tmp$7 = tokenIndex[0];
-			position88 = _tmp$6;
-			tokenIndex88 = _tmp$7;
-			_r$5 = _rules[0][10](); /* */ $s = 31; case 31: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-			/* */ if (!_r$5) { $s = 29; continue; }
-			/* */ $s = 30; continue;
-			/* if (!_r$5) { */ case 29:
-				/* goto l89 */ $s = 32; continue;
-			/* } */ case 30:
-			/* goto l88 */ $s = 33; continue;
-			/* l89: */ case 32:
-			_tmp$8 = position88;
-			_tmp$9 = tokenIndex88;
-			position[0] = _tmp$8;
-			tokenIndex[0] = _tmp$9;
-			_r$6 = _rules[0][12](); /* */ $s = 36; case 36: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-			/* */ if (!_r$6) { $s = 34; continue; }
-			/* */ $s = 35; continue;
-			/* if (!_r$6) { */ case 34:
-				/* goto l85 */ $s = 19; continue;
-			/* } */ case 35:
-			/* l88: */ case 33:
-			$r = add[0](11, position87); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l86 */ $s = 38; continue;
-			/* l85: */ case 19:
-			_tmp$10 = position85;
-			_tmp$11 = tokenIndex85;
-			position[0] = _tmp$10;
-			tokenIndex[0] = _tmp$11;
-			/* l86: */ case 38:
-			$r = add[0](71, position[0]); /* */ $s = 39; case 39: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](12, position82); /* */ $s = 40; case 40: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l81: */ case 3:
-			_tmp$12 = position81;
-			_tmp$13 = tokenIndex81;
-			position[0] = _tmp$12;
-			tokenIndex[0] = _tmp$13;
-			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position81, position82, position85, position87, position88, tokenIndex81, tokenIndex85, tokenIndex88, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position105, position94, position95, position96, position97, tokenIndex105, tokenIndex94, tokenIndex97, $s, $r, $c} = $restore(this, {});
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _1, _2, _3, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position43, position44, position46, position47, position51, position54, position55, position57, position58, position59, position63, position66, position67, position70, position72, position75, position77, position79, position80, position86, position90, position91, tokenIndex43, tokenIndex47, tokenIndex55, tokenIndex59, tokenIndex63, tokenIndex66, tokenIndex67, tokenIndex70, tokenIndex72, tokenIndex75, tokenIndex80, tokenIndex86, tokenIndex91, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position94, position95, tokenIndex94, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
 			position94 = _tmp$2;
 			tokenIndex94 = _tmp$3;
 			position95 = position[0];
-			position96 = position[0];
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position97 = _tmp$4;
-			tokenIndex97 = _tmp$5;
-			_r$1 = _rules[0][19](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 1; continue; }
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
-			/* if (!_r$1) { */ case 1:
-				/* goto l98 */ $s = 4; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { */ case 1:
+				/* goto l94 */ $s = 3; continue;
 			/* } */ case 2:
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 5; continue; }
-			/* */ $s = 6; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 5:
-				/* goto l98 */ $s = 4; continue;
-			/* } */ case 6:
 			position[0] = position[0] + (1) >>> 0;
-			_r$2 = _rules[0][62](); /* */ $s = 9; case 9: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-			/* */ if (!_r$2) { $s = 7; continue; }
-			/* */ $s = 8; continue;
-			/* if (!_r$2) { */ case 7:
-				/* goto l98 */ $s = 4; continue;
-			/* } */ case 8:
-			$r = add[0](92, position[0]); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$3 = _rules[0][19](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-			/* */ if (!_r$3) { $s = 11; continue; }
-			/* */ $s = 12; continue;
-			/* if (!_r$3) { */ case 11:
-				/* goto l98 */ $s = 4; continue;
-			/* } */ case 12:
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { $s = 14; continue; }
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 4; continue; }
+			/* */ $s = 5; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 4:
+				/* goto l94 */ $s = 3; continue;
+			/* } */ case 5:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 6; continue; }
+			/* */ $s = 7; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 6:
+				/* goto l94 */ $s = 3; continue;
+			/* } */ case 7:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { $s = 8; continue; }
+			/* */ $s = 9; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { */ case 8:
+				/* goto l94 */ $s = 3; continue;
+			/* } */ case 9:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 10; continue; }
+			/* */ $s = 11; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 10:
+				/* goto l94 */ $s = 3; continue;
+			/* } */ case 11:
+			position[0] = position[0] + (1) >>> 0;
+			_r$1 = _rules[0][65](); /* */ $s = 14; case 14: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 12; continue; }
+			/* */ $s = 13; continue;
+			/* if (!_r$1) { */ case 12:
+				/* goto l94 */ $s = 3; continue;
+			/* } */ case 13:
+			$r = add[0](69, position[0]); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](8, position95); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l94: */ case 3:
+			_tmp$4 = position94;
+			_tmp$5 = tokenIndex94;
+			position[0] = _tmp$4;
+			tokenIndex[0] = _tmp$5;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position94, position95, tokenIndex94, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position97, position98, tokenIndex97, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position97 = _tmp$2;
+			tokenIndex97 = _tmp$3;
+			position98 = position[0];
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { */ case 1:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 2:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 111))) { $s = 4; continue; }
+			/* */ $s = 5; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 111))) { */ case 4:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 5:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 6; continue; }
+			/* */ $s = 7; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 6:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 7:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 8; continue; }
+			/* */ $s = 9; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 8:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 9:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 10; continue; }
+			/* */ $s = 11; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 10:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 11:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 12; continue; }
+			/* */ $s = 13; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 12:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 13:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 14; continue; }
 			/* */ $s = 15; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { */ case 14:
-				/* goto l98 */ $s = 4; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 14:
+				/* goto l97 */ $s = 3; continue;
 			/* } */ case 15:
 			position[0] = position[0] + (1) >>> 0;
-			_r$4 = _rules[0][62](); /* */ $s = 18; case 18: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			/* */ if (!_r$4) { $s = 16; continue; }
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 16; continue; }
 			/* */ $s = 17; continue;
-			/* if (!_r$4) { */ case 16:
-				/* goto l98 */ $s = 4; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 16:
+				/* goto l97 */ $s = 3; continue;
 			/* } */ case 17:
-			$r = add[0](93, position[0]); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$5 = _rules[0][19](); /* */ $s = 22; case 22: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-			/* */ if (!_r$5) { $s = 20; continue; }
-			/* */ $s = 21; continue;
-			/* if (!_r$5) { */ case 20:
-				/* goto l98 */ $s = 4; continue;
-			/* } */ case 21:
-			$r = add[0](94, position[0]); /* */ $s = 23; case 23: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l97 */ $s = 24; continue;
-			/* l98: */ case 4:
-			_tmp$6 = position97;
-			_tmp$7 = tokenIndex97;
+			position[0] = position[0] + (1) >>> 0;
+			_r$1 = _rules[0][65](); /* */ $s = 20; case 20: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 18; continue; }
+			/* */ $s = 19; continue;
+			/* if (!_r$1) { */ case 18:
+				/* goto l97 */ $s = 3; continue;
+			/* } */ case 19:
+			$r = add[0](70, position[0]); /* */ $s = 21; case 21: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](9, position98); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l97: */ case 3:
+			_tmp$4 = position97;
+			_tmp$5 = tokenIndex97;
+			position[0] = _tmp$4;
+			tokenIndex[0] = _tmp$5;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position97, position98, tokenIndex97, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$2, _r$3, _r$4, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position103, position104, position105, tokenIndex103, tokenIndex105, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position103 = _tmp$2;
+			tokenIndex103 = _tmp$3;
+			position104 = position[0];
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position105 = _tmp$4;
+			tokenIndex105 = _tmp$5;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 1:
+				/* goto l106 */ $s = 3; continue;
+			/* } */ case 2:
+			position[0] = position[0] + (1) >>> 0;
+			_r$1 = _rules[0][65](); /* */ $s = 6; case 6: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 4; continue; }
+			/* */ $s = 5; continue;
+			/* if (!_r$1) { */ case 4:
+				/* goto l106 */ $s = 3; continue;
+			/* } */ case 5:
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 7; continue; }
+			/* */ $s = 8; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 7:
+				/* goto l106 */ $s = 3; continue;
+			/* } */ case 8:
+			position[0] = position[0] + (1) >>> 0;
+			/* goto l105 */ $s = 9; continue;
+			/* l106: */ case 3:
+			_tmp$6 = position105;
+			_tmp$7 = tokenIndex105;
 			position[0] = _tmp$6;
 			tokenIndex[0] = _tmp$7;
-			_r$6 = _rules[0][17](); /* */ $s = 27; case 27: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-			/* */ if (!_r$6) { $s = 25; continue; }
-			/* */ $s = 26; continue;
-			/* if (!_r$6) { */ case 25:
-				/* goto l102 */ $s = 28; continue;
-			/* } */ case 26:
-			$r = add[0](95, position[0]); /* */ $s = 29; case 29: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l104: */ case 30:
-			_tmp$8 = position[0];
-			_tmp$9 = tokenIndex[0];
-			position105 = _tmp$8;
-			tokenIndex105 = _tmp$9;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { $s = 31; continue; }
-			/* */ $s = 32; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { */ case 31:
-				/* goto l105 */ $s = 33; continue;
-			/* } */ case 32:
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 10; continue; }
+			/* */ $s = 11; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 10:
+				/* goto l103 */ $s = 12; continue;
+			/* } */ case 11:
 			position[0] = position[0] + (1) >>> 0;
-			_r$7 = _rules[0][62](); /* */ $s = 36; case 36: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-			/* */ if (!_r$7) { $s = 34; continue; }
-			/* */ $s = 35; continue;
-			/* if (!_r$7) { */ case 34:
-				/* goto l105 */ $s = 33; continue;
-			/* } */ case 35:
-			_r$8 = _rules[0][17](); /* */ $s = 39; case 39: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-			/* */ if (!_r$8) { $s = 37; continue; }
-			/* */ $s = 38; continue;
-			/* if (!_r$8) { */ case 37:
-				/* goto l105 */ $s = 33; continue;
-			/* } */ case 38:
-			$r = add[0](96, position[0]); /* */ $s = 40; case 40: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l104 */ $s = 30; continue;
-			/* l105: */ case 33:
-			_tmp$10 = position105;
-			_tmp$11 = tokenIndex105;
-			position[0] = _tmp$10;
-			tokenIndex[0] = _tmp$11;
-			$r = add[0](97, position[0]); /* */ $s = 41; case 41: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l97 */ $s = 24; continue;
-			/* l102: */ case 28:
-			_tmp$12 = position97;
-			_tmp$13 = tokenIndex97;
-			position[0] = _tmp$12;
-			tokenIndex[0] = _tmp$13;
-			_r$9 = _rules[0][19](); /* */ $s = 44; case 44: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
-			/* */ if (!_r$9) { $s = 42; continue; }
-			/* */ $s = 43; continue;
-			/* if (!_r$9) { */ case 42:
-				/* goto l94 */ $s = 45; continue;
-			/* } */ case 43:
-			/* l97: */ case 24:
-			$r = add[0](18, position96); /* */ $s = 46; case 46: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](16, position95); /* */ $s = 47; case 47: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][65](); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* */ if (!_r$2) { $s = 13; continue; }
+			/* */ $s = 14; continue;
+			/* if (!_r$2) { */ case 13:
+				/* goto l103 */ $s = 12; continue;
+			/* } */ case 14:
+			_r$3 = _rules[0][2](); /* */ $s = 18; case 18: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			/* */ if (!_r$3) { $s = 16; continue; }
+			/* */ $s = 17; continue;
+			/* if (!_r$3) { */ case 16:
+				/* goto l103 */ $s = 12; continue;
+			/* } */ case 17:
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 19; continue; }
+			/* */ $s = 20; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 19:
+				/* goto l103 */ $s = 12; continue;
+			/* } */ case 20:
+			position[0] = position[0] + (1) >>> 0;
+			/* l105: */ case 9:
+			_r$4 = _rules[0][65](); /* */ $s = 23; case 23: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			/* */ if (!_r$4) { $s = 21; continue; }
+			/* */ $s = 22; continue;
+			/* if (!_r$4) { */ case 21:
+				/* goto l103 */ $s = 12; continue;
+			/* } */ case 22:
+			$r = add[0](13, position104); /* */ $s = 24; case 24: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l94: */ case 45:
-			_tmp$14 = position94;
-			_tmp$15 = tokenIndex94;
-			position[0] = _tmp$14;
-			tokenIndex[0] = _tmp$15;
+			/* l103: */ case 12:
+			_tmp$8 = position103;
+			_tmp$9 = tokenIndex103;
+			position[0] = _tmp$8;
+			tokenIndex[0] = _tmp$9;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position105, position94, position95, position96, position97, tokenIndex105, tokenIndex94, tokenIndex97, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position108, position109, tokenIndex108, $s, $r, $c} = $restore(this, {});
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position103, position104, position105, tokenIndex103, tokenIndex105, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position108, position109, position112, position114, position115, tokenIndex108, tokenIndex112, tokenIndex115, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
 			position108 = _tmp$2;
 			tokenIndex108 = _tmp$3;
 			position109 = position[0];
-			_r$1 = _rules[0][19](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 1:
+				/* goto l108 */ $s = 3; continue;
+			/* } */ case 2:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 4; continue; }
+			/* */ $s = 5; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 4:
+				/* goto l108 */ $s = 3; continue;
+			/* } */ case 5:
+			position[0] = position[0] + (1) >>> 0;
+			_r$1 = _rules[0][66](); /* */ $s = 8; case 8: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 6; continue; }
+			/* */ $s = 7; continue;
+			/* if (!_r$1) { */ case 6:
+				/* goto l108 */ $s = 3; continue;
+			/* } */ case 7:
+			_r$2 = _rules[0][19](); /* */ $s = 11; case 11: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* */ if (!_r$2) { $s = 9; continue; }
+			/* */ $s = 10; continue;
+			/* if (!_r$2) { */ case 9:
+				/* goto l108 */ $s = 3; continue;
+			/* } */ case 10:
+			$r = add[0](76, position[0]); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][13](); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			/* */ if (!_r$3) { $s = 13; continue; }
+			/* */ $s = 14; continue;
+			/* if (!_r$3) { */ case 13:
+				/* goto l108 */ $s = 3; continue;
+			/* } */ case 14:
+			$r = add[0](77, position[0]); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position112 = _tmp$4;
+			tokenIndex112 = _tmp$5;
+			position114 = position[0];
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 17; continue; }
+			/* */ $s = 18; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 17:
+				/* goto l112 */ $s = 19; continue;
+			/* } */ case 18:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 20; continue; }
+			/* */ $s = 21; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 20:
+				/* goto l112 */ $s = 19; continue;
+			/* } */ case 21:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { $s = 22; continue; }
+			/* */ $s = 23; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { */ case 22:
+				/* goto l112 */ $s = 19; continue;
+			/* } */ case 23:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 24; continue; }
+			/* */ $s = 25; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 24:
+				/* goto l112 */ $s = 19; continue;
+			/* } */ case 25:
+			position[0] = position[0] + (1) >>> 0;
+			_r$4 = _rules[0][66](); /* */ $s = 28; case 28: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			/* */ if (!_r$4) { $s = 26; continue; }
+			/* */ $s = 27; continue;
+			/* if (!_r$4) { */ case 26:
+				/* goto l112 */ $s = 19; continue;
+			/* } */ case 27:
+			_tmp$6 = position[0];
+			_tmp$7 = tokenIndex[0];
+			position115 = _tmp$6;
+			tokenIndex115 = _tmp$7;
+			_r$5 = _rules[0][13](); /* */ $s = 31; case 31: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			/* */ if (!_r$5) { $s = 29; continue; }
+			/* */ $s = 30; continue;
+			/* if (!_r$5) { */ case 29:
+				/* goto l116 */ $s = 32; continue;
+			/* } */ case 30:
+			/* goto l115 */ $s = 33; continue;
+			/* l116: */ case 32:
+			_tmp$8 = position115;
+			_tmp$9 = tokenIndex115;
+			position[0] = _tmp$8;
+			tokenIndex[0] = _tmp$9;
+			_r$6 = _rules[0][15](); /* */ $s = 36; case 36: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			/* */ if (!_r$6) { $s = 34; continue; }
+			/* */ $s = 35; continue;
+			/* if (!_r$6) { */ case 34:
+				/* goto l112 */ $s = 19; continue;
+			/* } */ case 35:
+			/* l115: */ case 33:
+			$r = add[0](14, position114); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l113 */ $s = 38; continue;
+			/* l112: */ case 19:
+			_tmp$10 = position112;
+			_tmp$11 = tokenIndex112;
+			position[0] = _tmp$10;
+			tokenIndex[0] = _tmp$11;
+			/* l113: */ case 38:
+			$r = add[0](78, position[0]); /* */ $s = 39; case 39: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](15, position109); /* */ $s = 40; case 40: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l108: */ case 3:
+			_tmp$12 = position108;
+			_tmp$13 = tokenIndex108;
+			position[0] = _tmp$12;
+			tokenIndex[0] = _tmp$13;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position108, position109, position112, position114, position115, tokenIndex108, tokenIndex112, tokenIndex115, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position121, position122, position123, position124, position132, tokenIndex121, tokenIndex124, tokenIndex132, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position121 = _tmp$2;
+			tokenIndex121 = _tmp$3;
+			position122 = position[0];
+			position123 = position[0];
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position124 = _tmp$4;
+			tokenIndex124 = _tmp$5;
+			_r$1 = _rules[0][22](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l108 */ $s = 4; continue;
+				/* goto l125 */ $s = 4; continue;
 			/* } */ case 2:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 5:
-				/* goto l108 */ $s = 4; continue;
+				/* goto l125 */ $s = 4; continue;
 			/* } */ case 6:
 			position[0] = position[0] + (1) >>> 0;
-			_r$2 = _rules[0][62](); /* */ $s = 9; case 9: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][65](); /* */ $s = 9; case 9: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 7; continue; }
 			/* */ $s = 8; continue;
 			/* if (!_r$2) { */ case 7:
-				/* goto l108 */ $s = 4; continue;
+				/* goto l125 */ $s = 4; continue;
 			/* } */ case 8:
-			$r = add[0](90, position[0]); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$3 = _rules[0][19](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			$r = add[0](99, position[0]); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][22](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!_r$3) { */ case 11:
-				/* goto l108 */ $s = 4; continue;
+				/* goto l125 */ $s = 4; continue;
 			/* } */ case 12:
-			$r = add[0](91, position[0]); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](17, position109); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { $s = 14; continue; }
+			/* */ $s = 15; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { */ case 14:
+				/* goto l125 */ $s = 4; continue;
+			/* } */ case 15:
+			position[0] = position[0] + (1) >>> 0;
+			_r$4 = _rules[0][65](); /* */ $s = 18; case 18: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			/* */ if (!_r$4) { $s = 16; continue; }
+			/* */ $s = 17; continue;
+			/* if (!_r$4) { */ case 16:
+				/* goto l125 */ $s = 4; continue;
+			/* } */ case 17:
+			$r = add[0](100, position[0]); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][22](); /* */ $s = 22; case 22: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			/* */ if (!_r$5) { $s = 20; continue; }
+			/* */ $s = 21; continue;
+			/* if (!_r$5) { */ case 20:
+				/* goto l125 */ $s = 4; continue;
+			/* } */ case 21:
+			$r = add[0](101, position[0]); /* */ $s = 23; case 23: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l124 */ $s = 24; continue;
+			/* l125: */ case 4:
+			_tmp$6 = position124;
+			_tmp$7 = tokenIndex124;
+			position[0] = _tmp$6;
+			tokenIndex[0] = _tmp$7;
+			_r$6 = _rules[0][20](); /* */ $s = 27; case 27: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			/* */ if (!_r$6) { $s = 25; continue; }
+			/* */ $s = 26; continue;
+			/* if (!_r$6) { */ case 25:
+				/* goto l129 */ $s = 28; continue;
+			/* } */ case 26:
+			$r = add[0](102, position[0]); /* */ $s = 29; case 29: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l131: */ case 30:
+			_tmp$8 = position[0];
+			_tmp$9 = tokenIndex[0];
+			position132 = _tmp$8;
+			tokenIndex132 = _tmp$9;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { $s = 31; continue; }
+			/* */ $s = 32; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { */ case 31:
+				/* goto l132 */ $s = 33; continue;
+			/* } */ case 32:
+			position[0] = position[0] + (1) >>> 0;
+			_r$7 = _rules[0][65](); /* */ $s = 36; case 36: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			/* */ if (!_r$7) { $s = 34; continue; }
+			/* */ $s = 35; continue;
+			/* if (!_r$7) { */ case 34:
+				/* goto l132 */ $s = 33; continue;
+			/* } */ case 35:
+			_r$8 = _rules[0][20](); /* */ $s = 39; case 39: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+			/* */ if (!_r$8) { $s = 37; continue; }
+			/* */ $s = 38; continue;
+			/* if (!_r$8) { */ case 37:
+				/* goto l132 */ $s = 33; continue;
+			/* } */ case 38:
+			$r = add[0](103, position[0]); /* */ $s = 40; case 40: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l131 */ $s = 30; continue;
+			/* l132: */ case 33:
+			_tmp$10 = position132;
+			_tmp$11 = tokenIndex132;
+			position[0] = _tmp$10;
+			tokenIndex[0] = _tmp$11;
+			$r = add[0](104, position[0]); /* */ $s = 41; case 41: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l124 */ $s = 24; continue;
+			/* l129: */ case 28:
+			_tmp$12 = position124;
+			_tmp$13 = tokenIndex124;
+			position[0] = _tmp$12;
+			tokenIndex[0] = _tmp$13;
+			_r$9 = _rules[0][22](); /* */ $s = 44; case 44: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+			/* */ if (!_r$9) { $s = 42; continue; }
+			/* */ $s = 43; continue;
+			/* if (!_r$9) { */ case 42:
+				/* goto l121 */ $s = 45; continue;
+			/* } */ case 43:
+			/* l124: */ case 24:
+			$r = add[0](21, position123); /* */ $s = 46; case 46: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](19, position122); /* */ $s = 47; case 47: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l108: */ case 4:
-			_tmp$4 = position108;
-			_tmp$5 = tokenIndex108;
-			position[0] = _tmp$4;
-			tokenIndex[0] = _tmp$5;
+			/* l121: */ case 45:
+			_tmp$14 = position121;
+			_tmp$15 = tokenIndex121;
+			position[0] = _tmp$14;
+			tokenIndex[0] = _tmp$15;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position108, position109, tokenIndex108, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position113, position114, position116, position117, position119, position121, position122, position125, position127, position128, tokenIndex113, tokenIndex116, tokenIndex117, tokenIndex119, tokenIndex125, $s, $r, $c} = $restore(this, {});
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position121, position122, position123, position124, position132, tokenIndex121, tokenIndex124, tokenIndex132, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position135, position136, tokenIndex135, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position113 = _tmp$2;
-			tokenIndex113 = _tmp$3;
-			position114 = position[0];
-			_r$1 = _rules[0][20](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position135 = _tmp$2;
+			tokenIndex135 = _tmp$3;
+			position136 = position[0];
+			_r$1 = _rules[0][22](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l113 */ $s = 4; continue;
+				/* goto l135 */ $s = 4; continue;
 			/* } */ case 2:
-			/* l115: */ case 5:
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 5; continue; }
+			/* */ $s = 6; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 5:
+				/* goto l135 */ $s = 4; continue;
+			/* } */ case 6:
+			position[0] = position[0] + (1) >>> 0;
+			_r$2 = _rules[0][65](); /* */ $s = 9; case 9: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* */ if (!_r$2) { $s = 7; continue; }
+			/* */ $s = 8; continue;
+			/* if (!_r$2) { */ case 7:
+				/* goto l135 */ $s = 4; continue;
+			/* } */ case 8:
+			$r = add[0](97, position[0]); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][22](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			/* */ if (!_r$3) { $s = 11; continue; }
+			/* */ $s = 12; continue;
+			/* if (!_r$3) { */ case 11:
+				/* goto l135 */ $s = 4; continue;
+			/* } */ case 12:
+			$r = add[0](98, position[0]); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](20, position136); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l135: */ case 4:
+			_tmp$4 = position135;
+			_tmp$5 = tokenIndex135;
+			position[0] = _tmp$4;
+			tokenIndex[0] = _tmp$5;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position135, position136, tokenIndex135, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position140, position141, position143, position144, position146, position148, position149, position152, position154, position155, tokenIndex140, tokenIndex143, tokenIndex144, tokenIndex146, tokenIndex152, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position140 = _tmp$2;
+			tokenIndex140 = _tmp$3;
+			position141 = position[0];
+			_r$1 = _rules[0][23](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!_r$1) { */ case 1:
+				/* goto l140 */ $s = 4; continue;
+			/* } */ case 2:
+			/* l142: */ case 5:
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position116 = _tmp$4;
-			tokenIndex116 = _tmp$5;
+			position143 = _tmp$4;
+			tokenIndex143 = _tmp$5;
 			_tmp$6 = position[0];
 			_tmp$7 = tokenIndex[0];
-			position117 = _tmp$6;
-			tokenIndex117 = _tmp$7;
+			position144 = _tmp$6;
+			tokenIndex144 = _tmp$7;
 			_tmp$8 = position[0];
 			_tmp$9 = tokenIndex[0];
-			position119 = _tmp$8;
-			tokenIndex119 = _tmp$9;
-			position121 = position[0];
+			position146 = _tmp$8;
+			tokenIndex146 = _tmp$9;
+			position148 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 6:
-				/* goto l120 */ $s = 8; continue;
+				/* goto l147 */ $s = 8; continue;
 			/* } */ case 7:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 9; continue; }
 			/* */ $s = 10; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 9:
-				/* goto l120 */ $s = 8; continue;
+				/* goto l147 */ $s = 8; continue;
 			/* } */ case 10:
 			position[0] = position[0] + (1) >>> 0;
-			_r$2 = _rules[0][62](); /* */ $s = 13; case 13: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][65](); /* */ $s = 13; case 13: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!_r$2) { */ case 11:
-				/* goto l120 */ $s = 8; continue;
+				/* goto l147 */ $s = 8; continue;
 			/* } */ case 12:
-			$r = add[0](54, position121); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l119 */ $s = 15; continue;
-			/* l120: */ case 8:
-			_tmp$10 = position119;
-			_tmp$11 = tokenIndex119;
+			$r = add[0](57, position148); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l146 */ $s = 15; continue;
+			/* l147: */ case 8:
+			_tmp$10 = position146;
+			_tmp$11 = tokenIndex146;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
-			position122 = position[0];
+			position149 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 16; continue; }
 			/* */ $s = 17; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 16:
-				/* goto l118 */ $s = 18; continue;
+				/* goto l145 */ $s = 18; continue;
 			/* } */ case 17:
 			position[0] = position[0] + (1) >>> 0;
-			_r$3 = _rules[0][62](); /* */ $s = 21; case 21: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][65](); /* */ $s = 21; case 21: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 19; continue; }
 			/* */ $s = 20; continue;
 			/* if (!_r$3) { */ case 19:
-				/* goto l118 */ $s = 18; continue;
+				/* goto l145 */ $s = 18; continue;
 			/* } */ case 20:
-			$r = add[0](52, position122); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l119: */ case 15:
-			$r = add[0](98, position[0]); /* */ $s = 23; case 23: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$4 = _rules[0][20](); /* */ $s = 26; case 26: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			$r = add[0](55, position149); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l146: */ case 15:
+			$r = add[0](105, position[0]); /* */ $s = 23; case 23: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][23](); /* */ $s = 26; case 26: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 24; continue; }
 			/* */ $s = 25; continue;
 			/* if (!_r$4) { */ case 24:
-				/* goto l118 */ $s = 18; continue;
+				/* goto l145 */ $s = 18; continue;
 			/* } */ case 25:
-			$r = add[0](99, position[0]); /* */ $s = 27; case 27: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l117 */ $s = 28; continue;
-			/* l118: */ case 18:
-			_tmp$12 = position117;
-			_tmp$13 = tokenIndex117;
+			$r = add[0](106, position[0]); /* */ $s = 27; case 27: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l144 */ $s = 28; continue;
+			/* l145: */ case 18:
+			_tmp$12 = position144;
+			_tmp$13 = tokenIndex144;
 			position[0] = _tmp$12;
 			tokenIndex[0] = _tmp$13;
 			_tmp$14 = position[0];
 			_tmp$15 = tokenIndex[0];
-			position125 = _tmp$14;
-			tokenIndex125 = _tmp$15;
-			position127 = position[0];
+			position152 = _tmp$14;
+			tokenIndex152 = _tmp$15;
+			position154 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 29; continue; }
 			/* */ $s = 30; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 29:
-				/* goto l126 */ $s = 31; continue;
+				/* goto l153 */ $s = 31; continue;
 			/* } */ case 30:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 32; continue; }
 			/* */ $s = 33; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 32:
-				/* goto l126 */ $s = 31; continue;
+				/* goto l153 */ $s = 31; continue;
 			/* } */ case 33:
 			position[0] = position[0] + (1) >>> 0;
-			_r$5 = _rules[0][62](); /* */ $s = 36; case 36: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][65](); /* */ $s = 36; case 36: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 34; continue; }
 			/* */ $s = 35; continue;
 			/* if (!_r$5) { */ case 34:
-				/* goto l126 */ $s = 31; continue;
+				/* goto l153 */ $s = 31; continue;
 			/* } */ case 35:
-			$r = add[0](55, position127); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l125 */ $s = 38; continue;
-			/* l126: */ case 31:
-			_tmp$16 = position125;
-			_tmp$17 = tokenIndex125;
+			$r = add[0](58, position154); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l152 */ $s = 38; continue;
+			/* l153: */ case 31:
+			_tmp$16 = position152;
+			_tmp$17 = tokenIndex152;
 			position[0] = _tmp$16;
 			tokenIndex[0] = _tmp$17;
-			position128 = position[0];
+			position155 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 39; continue; }
 			/* */ $s = 40; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 39:
-				/* goto l116 */ $s = 41; continue;
+				/* goto l143 */ $s = 41; continue;
 			/* } */ case 40:
 			position[0] = position[0] + (1) >>> 0;
-			_r$6 = _rules[0][62](); /* */ $s = 44; case 44: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			_r$6 = _rules[0][65](); /* */ $s = 44; case 44: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 			/* */ if (!_r$6) { $s = 42; continue; }
 			/* */ $s = 43; continue;
 			/* if (!_r$6) { */ case 42:
-				/* goto l116 */ $s = 41; continue;
+				/* goto l143 */ $s = 41; continue;
 			/* } */ case 43:
-			$r = add[0](53, position128); /* */ $s = 45; case 45: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l125: */ case 38:
-			$r = add[0](100, position[0]); /* */ $s = 46; case 46: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$7 = _rules[0][20](); /* */ $s = 49; case 49: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			$r = add[0](56, position155); /* */ $s = 45; case 45: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l152: */ case 38:
+			$r = add[0](107, position[0]); /* */ $s = 46; case 46: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$7 = _rules[0][23](); /* */ $s = 49; case 49: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 			/* */ if (!_r$7) { $s = 47; continue; }
 			/* */ $s = 48; continue;
 			/* if (!_r$7) { */ case 47:
-				/* goto l116 */ $s = 41; continue;
+				/* goto l143 */ $s = 41; continue;
 			/* } */ case 48:
-			$r = add[0](101, position[0]); /* */ $s = 50; case 50: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l117: */ case 28:
-			/* goto l115 */ $s = 5; continue;
-			/* l116: */ case 41:
-			_tmp$18 = position116;
-			_tmp$19 = tokenIndex116;
+			$r = add[0](108, position[0]); /* */ $s = 50; case 50: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l144: */ case 28:
+			/* goto l142 */ $s = 5; continue;
+			/* l143: */ case 41:
+			_tmp$18 = position143;
+			_tmp$19 = tokenIndex143;
 			position[0] = _tmp$18;
 			tokenIndex[0] = _tmp$19;
-			$r = add[0](19, position114); /* */ $s = 51; case 51: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](22, position141); /* */ $s = 51; case 51: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l113: */ case 4:
-			_tmp$20 = position113;
-			_tmp$21 = tokenIndex113;
+			/* l140: */ case 4:
+			_tmp$20 = position140;
+			_tmp$21 = tokenIndex140;
 			position[0] = _tmp$20;
 			tokenIndex[0] = _tmp$21;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position113, position114, position116, position117, position119, position121, position122, position125, position127, position128, tokenIndex113, tokenIndex116, tokenIndex117, tokenIndex119, tokenIndex125, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position140, position141, position143, position144, position146, position148, position149, position152, position154, position155, tokenIndex140, tokenIndex143, tokenIndex144, tokenIndex146, tokenIndex152, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_2, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position131, position132, position134, position135, position137, position138, position143, position144, position149, position150, position154, position155, position159, position160, position164, position165, tokenIndex131, tokenIndex134, tokenIndex135, tokenIndex138, tokenIndex144, tokenIndex150, tokenIndex155, tokenIndex160, tokenIndex165, $s, $r, $c} = $restore(this, {});
+			var {_4, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position158, position159, position161, position162, position164, position165, position170, position171, position176, position177, position181, position182, position186, position187, position191, position192, tokenIndex158, tokenIndex161, tokenIndex162, tokenIndex165, tokenIndex171, tokenIndex177, tokenIndex182, tokenIndex187, tokenIndex192, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position131 = _tmp$2;
-			tokenIndex131 = _tmp$3;
-			position132 = position[0];
-			_r$1 = _rules[0][21](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position158 = _tmp$2;
+			tokenIndex158 = _tmp$3;
+			position159 = position[0];
+			_r$1 = _rules[0][24](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l131 */ $s = 4; continue;
+				/* goto l158 */ $s = 4; continue;
 			/* } */ case 2:
-			/* l133: */ case 5:
+			/* l160: */ case 5:
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position134 = _tmp$4;
-			tokenIndex134 = _tmp$5;
+			position161 = _tmp$4;
+			tokenIndex161 = _tmp$5;
 			_tmp$6 = position[0];
 			_tmp$7 = tokenIndex[0];
-			position135 = _tmp$6;
-			tokenIndex135 = _tmp$7;
-			position137 = position[0];
+			position162 = _tmp$6;
+			tokenIndex162 = _tmp$7;
+			position164 = position[0];
 			_tmp$8 = position[0];
 			_tmp$9 = tokenIndex[0];
-			position138 = _tmp$8;
-			tokenIndex138 = _tmp$9;
+			position165 = _tmp$8;
+			tokenIndex165 = _tmp$9;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 6:
-				/* goto l139 */ $s = 8; continue;
+				/* goto l166 */ $s = 8; continue;
 			/* } */ case 7:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l138 */ $s = 9; continue;
-			/* l139: */ case 8:
-			_tmp$10 = position138;
-			_tmp$11 = tokenIndex138;
+			/* goto l165 */ $s = 9; continue;
+			/* l166: */ case 8:
+			_tmp$10 = position165;
+			_tmp$11 = tokenIndex165;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65308))) { $s = 10; continue; }
 			/* */ $s = 11; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65308))) { */ case 10:
-				/* goto l136 */ $s = 12; continue;
+				/* goto l163 */ $s = 12; continue;
 			/* } */ case 11:
 			position[0] = position[0] + (1) >>> 0;
-			/* l138: */ case 9:
-			_r$2 = _rules[0][62](); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* l165: */ case 9:
+			_r$2 = _rules[0][65](); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 13; continue; }
 			/* */ $s = 14; continue;
 			/* if (!_r$2) { */ case 13:
-				/* goto l136 */ $s = 12; continue;
+				/* goto l163 */ $s = 12; continue;
 			/* } */ case 14:
-			$r = add[0](56, position137); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](102, position[0]); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$3 = _rules[0][21](); /* */ $s = 20; case 20: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			$r = add[0](59, position164); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](109, position[0]); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][24](); /* */ $s = 20; case 20: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 18; continue; }
 			/* */ $s = 19; continue;
 			/* if (!_r$3) { */ case 18:
-				/* goto l136 */ $s = 12; continue;
+				/* goto l163 */ $s = 12; continue;
 			/* } */ case 19:
-			$r = add[0](103, position[0]); /* */ $s = 21; case 21: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l135 */ $s = 22; continue;
-			/* l136: */ case 12:
-			_tmp$12 = position135;
-			_tmp$13 = tokenIndex135;
+			$r = add[0](110, position[0]); /* */ $s = 21; case 21: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l162 */ $s = 22; continue;
+			/* l163: */ case 12:
+			_tmp$12 = position162;
+			_tmp$13 = tokenIndex162;
 			position[0] = _tmp$12;
 			tokenIndex[0] = _tmp$13;
-			position143 = position[0];
+			position170 = position[0];
 			_tmp$14 = position[0];
 			_tmp$15 = tokenIndex[0];
-			position144 = _tmp$14;
-			tokenIndex144 = _tmp$15;
+			position171 = _tmp$14;
+			tokenIndex171 = _tmp$15;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 23; continue; }
 			/* */ $s = 24; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 23:
-				/* goto l145 */ $s = 25; continue;
+				/* goto l172 */ $s = 25; continue;
 			/* } */ case 24:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 26; continue; }
 			/* */ $s = 27; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 26:
-				/* goto l145 */ $s = 25; continue;
+				/* goto l172 */ $s = 25; continue;
 			/* } */ case 27:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l144 */ $s = 28; continue;
-			/* l145: */ case 25:
-			_tmp$16 = position144;
-			_tmp$17 = tokenIndex144;
+			/* goto l171 */ $s = 28; continue;
+			/* l172: */ case 25:
+			_tmp$16 = position171;
+			_tmp$17 = tokenIndex171;
 			position[0] = _tmp$16;
 			tokenIndex[0] = _tmp$17;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65310))) { $s = 29; continue; }
 			/* */ $s = 30; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65310))) { */ case 29:
-				/* goto l142 */ $s = 31; continue;
+				/* goto l169 */ $s = 31; continue;
 			/* } */ case 30:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { $s = 32; continue; }
 			/* */ $s = 33; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { */ case 32:
-				/* goto l142 */ $s = 31; continue;
+				/* goto l169 */ $s = 31; continue;
 			/* } */ case 33:
 			position[0] = position[0] + (1) >>> 0;
-			/* l144: */ case 28:
-			_r$4 = _rules[0][62](); /* */ $s = 36; case 36: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			/* l171: */ case 28:
+			_r$4 = _rules[0][65](); /* */ $s = 36; case 36: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 34; continue; }
 			/* */ $s = 35; continue;
 			/* if (!_r$4) { */ case 34:
-				/* goto l142 */ $s = 31; continue;
+				/* goto l169 */ $s = 31; continue;
 			/* } */ case 35:
-			$r = add[0](59, position143); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](110, position[0]); /* */ $s = 38; case 38: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$5 = _rules[0][21](); /* */ $s = 41; case 41: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			$r = add[0](62, position170); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](117, position[0]); /* */ $s = 38; case 38: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][24](); /* */ $s = 41; case 41: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 39; continue; }
 			/* */ $s = 40; continue;
 			/* if (!_r$5) { */ case 39:
-				/* goto l142 */ $s = 31; continue;
+				/* goto l169 */ $s = 31; continue;
 			/* } */ case 40:
-			$r = add[0](111, position[0]); /* */ $s = 42; case 42: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l135 */ $s = 22; continue;
-			/* l142: */ case 31:
-			_tmp$18 = position135;
-			_tmp$19 = tokenIndex135;
+			$r = add[0](118, position[0]); /* */ $s = 42; case 42: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l162 */ $s = 22; continue;
+			/* l169: */ case 31:
+			_tmp$18 = position162;
+			_tmp$19 = tokenIndex162;
 			position[0] = _tmp$18;
 			tokenIndex[0] = _tmp$19;
-				_2 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_2 === (62)) { $s = 44; continue; }
-				/* */ if (_2 === (33)) { $s = 45; continue; }
-				/* */ if (_2 === (61)) { $s = 46; continue; }
+				_4 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_4 === (62)) { $s = 44; continue; }
+				/* */ if (_4 === (33)) { $s = 45; continue; }
+				/* */ if (_4 === (61)) { $s = 46; continue; }
 				/* */ $s = 47; continue;
-				/* if (_2 === (62)) { */ case 44:
-					position149 = position[0];
+				/* if (_4 === (62)) { */ case 44:
+					position176 = position[0];
 					_tmp$20 = position[0];
 					_tmp$21 = tokenIndex[0];
-					position150 = _tmp$20;
-					tokenIndex150 = _tmp$21;
+					position177 = _tmp$20;
+					tokenIndex177 = _tmp$21;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 49; continue; }
 					/* */ $s = 50; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 49:
-						/* goto l151 */ $s = 51; continue;
+						/* goto l178 */ $s = 51; continue;
 					/* } */ case 50:
 					position[0] = position[0] + (1) >>> 0;
-					/* goto l150 */ $s = 52; continue;
-					/* l151: */ case 51:
-					_tmp$22 = position150;
-					_tmp$23 = tokenIndex150;
+					/* goto l177 */ $s = 52; continue;
+					/* l178: */ case 51:
+					_tmp$22 = position177;
+					_tmp$23 = tokenIndex177;
 					position[0] = _tmp$22;
 					tokenIndex[0] = _tmp$23;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65310))) { $s = 53; continue; }
 					/* */ $s = 54; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65310))) { */ case 53:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 54:
 					position[0] = position[0] + (1) >>> 0;
-					/* l150: */ case 52:
-					_r$6 = _rules[0][62](); /* */ $s = 58; case 58: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+					/* l177: */ case 52:
+					_r$6 = _rules[0][65](); /* */ $s = 58; case 58: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 					/* */ if (!_r$6) { $s = 56; continue; }
 					/* */ $s = 57; continue;
 					/* if (!_r$6) { */ case 56:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 57:
-					$r = add[0](57, position149); /* */ $s = 59; case 59: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](112, position[0]); /* */ $s = 60; case 60: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$7 = _rules[0][21](); /* */ $s = 63; case 63: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+					$r = add[0](60, position176); /* */ $s = 59; case 59: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](119, position[0]); /* */ $s = 60; case 60: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$7 = _rules[0][24](); /* */ $s = 63; case 63: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 					/* */ if (!_r$7) { $s = 61; continue; }
 					/* */ $s = 62; continue;
 					/* if (!_r$7) { */ case 61:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 62:
-					$r = add[0](113, position[0]); /* */ $s = 64; case 64: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](120, position[0]); /* */ $s = 64; case 64: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 48; continue;
-				/* } else if (_2 === (33)) { */ case 45:
-					position154 = position[0];
+				/* } else if (_4 === (33)) { */ case 45:
+					position181 = position[0];
 					_tmp$24 = position[0];
 					_tmp$25 = tokenIndex[0];
-					position155 = _tmp$24;
-					tokenIndex155 = _tmp$25;
+					position182 = _tmp$24;
+					tokenIndex182 = _tmp$25;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { $s = 65; continue; }
 					/* */ $s = 66; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { */ case 65:
-						/* goto l156 */ $s = 67; continue;
+						/* goto l183 */ $s = 67; continue;
 					/* } */ case 66:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 68; continue; }
 					/* */ $s = 69; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 68:
-						/* goto l156 */ $s = 67; continue;
+						/* goto l183 */ $s = 67; continue;
 					/* } */ case 69:
 					position[0] = position[0] + (1) >>> 0;
-					/* goto l155 */ $s = 70; continue;
-					/* l156: */ case 67:
-					_tmp$26 = position155;
-					_tmp$27 = tokenIndex155;
+					/* goto l182 */ $s = 70; continue;
+					/* l183: */ case 67:
+					_tmp$26 = position182;
+					_tmp$27 = tokenIndex182;
 					position[0] = _tmp$26;
 					tokenIndex[0] = _tmp$27;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65281))) { $s = 71; continue; }
 					/* */ $s = 72; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65281))) { */ case 71:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 72:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { $s = 73; continue; }
 					/* */ $s = 74; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { */ case 73:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 74:
 					position[0] = position[0] + (1) >>> 0;
-					/* l155: */ case 70:
-					_r$8 = _rules[0][62](); /* */ $s = 77; case 77: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+					/* l182: */ case 70:
+					_r$8 = _rules[0][65](); /* */ $s = 77; case 77: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
 					/* */ if (!_r$8) { $s = 75; continue; }
 					/* */ $s = 76; continue;
 					/* if (!_r$8) { */ case 75:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 76:
-					$r = add[0](61, position154); /* */ $s = 78; case 78: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](108, position[0]); /* */ $s = 79; case 79: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$9 = _rules[0][21](); /* */ $s = 82; case 82: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+					$r = add[0](64, position181); /* */ $s = 78; case 78: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](115, position[0]); /* */ $s = 79; case 79: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$9 = _rules[0][24](); /* */ $s = 82; case 82: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 					/* */ if (!_r$9) { $s = 80; continue; }
 					/* */ $s = 81; continue;
 					/* if (!_r$9) { */ case 80:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 81:
-					$r = add[0](109, position[0]); /* */ $s = 83; case 83: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](116, position[0]); /* */ $s = 83; case 83: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 48; continue;
-				/* } else if (_2 === (61)) { */ case 46:
-					position159 = position[0];
+				/* } else if (_4 === (61)) { */ case 46:
+					position186 = position[0];
 					_tmp$28 = position[0];
 					_tmp$29 = tokenIndex[0];
-					position160 = _tmp$28;
-					tokenIndex160 = _tmp$29;
+					position187 = _tmp$28;
+					tokenIndex187 = _tmp$29;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 84; continue; }
 					/* */ $s = 85; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 84:
-						/* goto l161 */ $s = 86; continue;
+						/* goto l188 */ $s = 86; continue;
 					/* } */ case 85:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 87; continue; }
 					/* */ $s = 88; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 87:
-						/* goto l161 */ $s = 86; continue;
+						/* goto l188 */ $s = 86; continue;
 					/* } */ case 88:
 					position[0] = position[0] + (1) >>> 0;
-					/* goto l160 */ $s = 89; continue;
-					/* l161: */ case 86:
-					_tmp$30 = position160;
-					_tmp$31 = tokenIndex160;
+					/* goto l187 */ $s = 89; continue;
+					/* l188: */ case 86:
+					_tmp$30 = position187;
+					_tmp$31 = tokenIndex187;
 					position[0] = _tmp$30;
 					tokenIndex[0] = _tmp$31;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { $s = 90; continue; }
 					/* */ $s = 91; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { */ case 90:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 91:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { $s = 92; continue; }
 					/* */ $s = 93; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { */ case 92:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 93:
 					position[0] = position[0] + (1) >>> 0;
-					/* l160: */ case 89:
-					_r$10 = _rules[0][62](); /* */ $s = 96; case 96: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+					/* l187: */ case 89:
+					_r$10 = _rules[0][65](); /* */ $s = 96; case 96: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
 					/* */ if (!_r$10) { $s = 94; continue; }
 					/* */ $s = 95; continue;
 					/* if (!_r$10) { */ case 94:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 95:
-					$r = add[0](60, position159); /* */ $s = 97; case 97: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](106, position[0]); /* */ $s = 98; case 98: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$11 = _rules[0][21](); /* */ $s = 101; case 101: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+					$r = add[0](63, position186); /* */ $s = 97; case 97: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](113, position[0]); /* */ $s = 98; case 98: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$11 = _rules[0][24](); /* */ $s = 101; case 101: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
 					/* */ if (!_r$11) { $s = 99; continue; }
 					/* */ $s = 100; continue;
 					/* if (!_r$11) { */ case 99:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 100:
-					$r = add[0](107, position[0]); /* */ $s = 102; case 102: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](114, position[0]); /* */ $s = 102; case 102: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 48; continue;
 				/* } else { */ case 47:
-					position164 = position[0];
+					position191 = position[0];
 					_tmp$32 = position[0];
 					_tmp$33 = tokenIndex[0];
-					position165 = _tmp$32;
-					tokenIndex165 = _tmp$33;
+					position192 = _tmp$32;
+					tokenIndex192 = _tmp$33;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 103; continue; }
 					/* */ $s = 104; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 103:
-						/* goto l166 */ $s = 105; continue;
+						/* goto l193 */ $s = 105; continue;
 					/* } */ case 104:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 106; continue; }
 					/* */ $s = 107; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 106:
-						/* goto l166 */ $s = 105; continue;
+						/* goto l193 */ $s = 105; continue;
 					/* } */ case 107:
 					position[0] = position[0] + (1) >>> 0;
-					/* goto l165 */ $s = 108; continue;
-					/* l166: */ case 105:
-					_tmp$34 = position165;
-					_tmp$35 = tokenIndex165;
+					/* goto l192 */ $s = 108; continue;
+					/* l193: */ case 105:
+					_tmp$34 = position192;
+					_tmp$35 = tokenIndex192;
 					position[0] = _tmp$34;
 					tokenIndex[0] = _tmp$35;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65308))) { $s = 109; continue; }
 					/* */ $s = 110; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65308))) { */ case 109:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 110:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { $s = 111; continue; }
 					/* */ $s = 112; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65309))) { */ case 111:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 112:
 					position[0] = position[0] + (1) >>> 0;
-					/* l165: */ case 108:
-					_r$12 = _rules[0][62](); /* */ $s = 115; case 115: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+					/* l192: */ case 108:
+					_r$12 = _rules[0][65](); /* */ $s = 115; case 115: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
 					/* */ if (!_r$12) { $s = 113; continue; }
 					/* */ $s = 114; continue;
 					/* if (!_r$12) { */ case 113:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 114:
-					$r = add[0](58, position164); /* */ $s = 116; case 116: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](104, position[0]); /* */ $s = 117; case 117: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$13 = _rules[0][21](); /* */ $s = 120; case 120: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+					$r = add[0](61, position191); /* */ $s = 116; case 116: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](111, position[0]); /* */ $s = 117; case 117: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$13 = _rules[0][24](); /* */ $s = 120; case 120: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
 					/* */ if (!_r$13) { $s = 118; continue; }
 					/* */ $s = 119; continue;
 					/* if (!_r$13) { */ case 118:
-						/* goto l134 */ $s = 55; continue;
+						/* goto l161 */ $s = 55; continue;
 					/* } */ case 119:
-					$r = add[0](105, position[0]); /* */ $s = 121; case 121: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](112, position[0]); /* */ $s = 121; case 121: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				/* } */ case 48:
 			case 43:
-			/* l135: */ case 22:
-			/* goto l133 */ $s = 5; continue;
-			/* l134: */ case 55:
-			_tmp$36 = position134;
-			_tmp$37 = tokenIndex134;
+			/* l162: */ case 22:
+			/* goto l160 */ $s = 5; continue;
+			/* l161: */ case 55:
+			_tmp$36 = position161;
+			_tmp$37 = tokenIndex161;
 			position[0] = _tmp$36;
 			tokenIndex[0] = _tmp$37;
-			$r = add[0](20, position132); /* */ $s = 122; case 122: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](23, position159); /* */ $s = 122; case 122: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l131: */ case 4:
-			_tmp$38 = position131;
-			_tmp$39 = tokenIndex131;
+			/* l158: */ case 4:
+			_tmp$38 = position158;
+			_tmp$39 = tokenIndex158;
 			position[0] = _tmp$38;
 			tokenIndex[0] = _tmp$39;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _2, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position131, position132, position134, position135, position137, position138, position143, position144, position149, position150, position154, position155, position159, position160, position164, position165, tokenIndex131, tokenIndex134, tokenIndex135, tokenIndex138, tokenIndex144, tokenIndex150, tokenIndex155, tokenIndex160, tokenIndex165, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _4, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position158, position159, position161, position162, position164, position165, position170, position171, position176, position177, position181, position182, position186, position187, position191, position192, tokenIndex158, tokenIndex161, tokenIndex162, tokenIndex165, tokenIndex171, tokenIndex177, tokenIndex182, tokenIndex187, tokenIndex192, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _r$5, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position169, position170, position172, position173, tokenIndex169, tokenIndex172, tokenIndex173, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _r$3, _r$4, _r$5, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position196, position197, position199, position200, tokenIndex196, tokenIndex199, tokenIndex200, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position169 = _tmp$2;
-			tokenIndex169 = _tmp$3;
-			position170 = position[0];
-			_r$1 = _rules[0][22](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position196 = _tmp$2;
+			tokenIndex196 = _tmp$3;
+			position197 = position[0];
+			_r$1 = _rules[0][25](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l169 */ $s = 4; continue;
+				/* goto l196 */ $s = 4; continue;
 			/* } */ case 2:
-			/* l171: */ case 5:
+			/* l198: */ case 5:
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position172 = _tmp$4;
-			tokenIndex172 = _tmp$5;
+			position199 = _tmp$4;
+			tokenIndex199 = _tmp$5;
 			_tmp$6 = position[0];
 			_tmp$7 = tokenIndex[0];
-			position173 = _tmp$6;
-			tokenIndex173 = _tmp$7;
-			_r$2 = _rules[0][46](); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			position200 = _tmp$6;
+			tokenIndex200 = _tmp$7;
+			_r$2 = _rules[0][49](); /* */ $s = 8; case 8: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if (!_r$2) { */ case 6:
-				/* goto l174 */ $s = 9; continue;
+				/* goto l201 */ $s = 9; continue;
 			/* } */ case 7:
-			$r = add[0](114, position[0]); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$3 = _rules[0][22](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			$r = add[0](121, position[0]); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][25](); /* */ $s = 13; case 13: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!_r$3) { */ case 11:
-				/* goto l174 */ $s = 9; continue;
+				/* goto l201 */ $s = 9; continue;
 			/* } */ case 12:
-			$r = add[0](115, position[0]); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l173 */ $s = 15; continue;
-			/* l174: */ case 9:
-			_tmp$8 = position173;
-			_tmp$9 = tokenIndex173;
+			$r = add[0](122, position[0]); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l200 */ $s = 15; continue;
+			/* l201: */ case 9:
+			_tmp$8 = position200;
+			_tmp$9 = tokenIndex200;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
-			_r$4 = _rules[0][47](); /* */ $s = 18; case 18: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][50](); /* */ $s = 18; case 18: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 16; continue; }
 			/* */ $s = 17; continue;
 			/* if (!_r$4) { */ case 16:
-				/* goto l172 */ $s = 19; continue;
+				/* goto l199 */ $s = 19; continue;
 			/* } */ case 17:
-			$r = add[0](116, position[0]); /* */ $s = 20; case 20: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$5 = _rules[0][22](); /* */ $s = 23; case 23: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			$r = add[0](123, position[0]); /* */ $s = 20; case 20: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][25](); /* */ $s = 23; case 23: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 21; continue; }
 			/* */ $s = 22; continue;
 			/* if (!_r$5) { */ case 21:
-				/* goto l172 */ $s = 19; continue;
+				/* goto l199 */ $s = 19; continue;
 			/* } */ case 22:
-			$r = add[0](117, position[0]); /* */ $s = 24; case 24: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l173: */ case 15:
-			/* goto l171 */ $s = 5; continue;
-			/* l172: */ case 19:
-			_tmp$10 = position172;
-			_tmp$11 = tokenIndex172;
-			position[0] = _tmp$10;
-			tokenIndex[0] = _tmp$11;
-			$r = add[0](21, position170); /* */ $s = 25; case 25: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l169: */ case 4:
-			_tmp$12 = position169;
-			_tmp$13 = tokenIndex169;
-			position[0] = _tmp$12;
-			tokenIndex[0] = _tmp$13;
-			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position169, position170, position172, position173, tokenIndex169, tokenIndex172, tokenIndex173, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_3, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position179, position180, position182, position184, position187, position188, position192, position193, tokenIndex179, tokenIndex182, tokenIndex188, tokenIndex193, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position179 = _tmp$2;
-			tokenIndex179 = _tmp$3;
-			position180 = position[0];
-			_r$1 = _rules[0][23](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!_r$1) { */ case 1:
-				/* goto l179 */ $s = 4; continue;
-			/* } */ case 2:
-			/* l181: */ case 5:
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position182 = _tmp$4;
-			tokenIndex182 = _tmp$5;
-				_3 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_3 === (37)) { $s = 7; continue; }
-				/* */ if (_3 === (47)) { $s = 8; continue; }
-				/* */ $s = 9; continue;
-				/* if (_3 === (37)) { */ case 7:
-					position184 = position[0];
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 11; continue; }
-					/* */ $s = 12; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 11:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 12:
-					position[0] = position[0] + (1) >>> 0;
-					_r$2 = _rules[0][62](); /* */ $s = 16; case 16: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-					/* */ if (!_r$2) { $s = 14; continue; }
-					/* */ $s = 15; continue;
-					/* if (!_r$2) { */ case 14:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 15:
-					$r = add[0](50, position184); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](122, position[0]); /* */ $s = 18; case 18: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$3 = _rules[0][23](); /* */ $s = 21; case 21: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-					/* */ if (!_r$3) { $s = 19; continue; }
-					/* */ $s = 20; continue;
-					/* if (!_r$3) { */ case 19:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 20:
-					$r = add[0](123, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 10; continue;
-				/* } else if (_3 === (47)) { */ case 8:
-					position187 = position[0];
-					_tmp$6 = position[0];
-					_tmp$7 = tokenIndex[0];
-					position188 = _tmp$6;
-					tokenIndex188 = _tmp$7;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 23; continue; }
-					/* */ $s = 24; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 23:
-						/* goto l189 */ $s = 25; continue;
-					/* } */ case 24:
-					position[0] = position[0] + (1) >>> 0;
-					/* goto l188 */ $s = 26; continue;
-					/* l189: */ case 25:
-					_tmp$8 = position188;
-					_tmp$9 = tokenIndex188;
-					position[0] = _tmp$8;
-					tokenIndex[0] = _tmp$9;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65295))) { $s = 27; continue; }
-					/* */ $s = 28; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65295))) { */ case 27:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 28:
-					position[0] = position[0] + (1) >>> 0;
-					/* l188: */ case 26:
-					_r$4 = _rules[0][62](); /* */ $s = 31; case 31: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-					/* */ if (!_r$4) { $s = 29; continue; }
-					/* */ $s = 30; continue;
-					/* if (!_r$4) { */ case 29:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 30:
-					$r = add[0](49, position187); /* */ $s = 32; case 32: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](120, position[0]); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$5 = _rules[0][23](); /* */ $s = 36; case 36: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-					/* */ if (!_r$5) { $s = 34; continue; }
-					/* */ $s = 35; continue;
-					/* if (!_r$5) { */ case 34:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 35:
-					$r = add[0](121, position[0]); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 10; continue;
-				/* } else { */ case 9:
-					position192 = position[0];
-					_tmp$10 = position[0];
-					_tmp$11 = tokenIndex[0];
-					position193 = _tmp$10;
-					tokenIndex193 = _tmp$11;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 38; continue; }
-					/* */ $s = 39; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 38:
-						/* goto l194 */ $s = 40; continue;
-					/* } */ case 39:
-					position[0] = position[0] + (1) >>> 0;
-					/* goto l193 */ $s = 41; continue;
-					/* l194: */ case 40:
-					_tmp$12 = position193;
-					_tmp$13 = tokenIndex193;
-					position[0] = _tmp$12;
-					tokenIndex[0] = _tmp$13;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65290))) { $s = 42; continue; }
-					/* */ $s = 43; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65290))) { */ case 42:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 43:
-					position[0] = position[0] + (1) >>> 0;
-					/* l193: */ case 41:
-					_r$6 = _rules[0][62](); /* */ $s = 46; case 46: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-					/* */ if (!_r$6) { $s = 44; continue; }
-					/* */ $s = 45; continue;
-					/* if (!_r$6) { */ case 44:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 45:
-					$r = add[0](48, position192); /* */ $s = 47; case 47: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$r = add[0](118, position[0]); /* */ $s = 48; case 48: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$7 = _rules[0][23](); /* */ $s = 51; case 51: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-					/* */ if (!_r$7) { $s = 49; continue; }
-					/* */ $s = 50; continue;
-					/* if (!_r$7) { */ case 49:
-						/* goto l182 */ $s = 13; continue;
-					/* } */ case 50:
-					$r = add[0](119, position[0]); /* */ $s = 52; case 52: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-				/* } */ case 10:
-			case 6:
-			/* goto l181 */ $s = 5; continue;
-			/* l182: */ case 13:
-			_tmp$14 = position182;
-			_tmp$15 = tokenIndex182;
-			position[0] = _tmp$14;
-			tokenIndex[0] = _tmp$15;
-			$r = add[0](22, position180); /* */ $s = 53; case 53: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l179: */ case 4:
-			_tmp$16 = position179;
-			_tmp$17 = tokenIndex179;
-			position[0] = _tmp$16;
-			tokenIndex[0] = _tmp$17;
-			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _3, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position179, position180, position182, position184, position187, position188, position192, position193, tokenIndex179, tokenIndex182, tokenIndex188, tokenIndex193, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position197, position198, position200, position201, position202, tokenIndex197, tokenIndex200, tokenIndex202, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position197 = _tmp$2;
-			tokenIndex197 = _tmp$3;
-			position198 = position[0];
-			_r$1 = _rules[0][24](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!_r$1) { */ case 1:
-				/* goto l197 */ $s = 4; continue;
-			/* } */ case 2:
-			/* l199: */ case 5:
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position200 = _tmp$4;
-			tokenIndex200 = _tmp$5;
-			position201 = position[0];
-			_tmp$6 = position[0];
-			_tmp$7 = tokenIndex[0];
-			position202 = _tmp$6;
-			tokenIndex202 = _tmp$7;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 6; continue; }
-			/* */ $s = 7; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 6:
-				/* goto l203 */ $s = 8; continue;
-			/* } */ case 7:
-			position[0] = position[0] + (1) >>> 0;
-			_r$2 = _rules[0][62](); /* */ $s = 11; case 11: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-			/* */ if (!_r$2) { $s = 9; continue; }
-			/* */ $s = 10; continue;
-			/* if (!_r$2) { */ case 9:
-				/* goto l203 */ $s = 8; continue;
-			/* } */ case 10:
-			/* goto l202 */ $s = 12; continue;
-			/* l203: */ case 8:
-			_tmp$8 = position202;
-			_tmp$9 = tokenIndex202;
-			position[0] = _tmp$8;
-			tokenIndex[0] = _tmp$9;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 13; continue; }
-			/* */ $s = 14; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 13:
-				/* goto l200 */ $s = 15; continue;
-			/* } */ case 14:
-			position[0] = position[0] + (1) >>> 0;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 16; continue; }
-			/* */ $s = 17; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 16:
-				/* goto l200 */ $s = 15; continue;
-			/* } */ case 17:
-			position[0] = position[0] + (1) >>> 0;
-			_r$3 = _rules[0][62](); /* */ $s = 20; case 20: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-			/* */ if (!_r$3) { $s = 18; continue; }
-			/* */ $s = 19; continue;
-			/* if (!_r$3) { */ case 18:
-				/* goto l200 */ $s = 15; continue;
-			/* } */ case 19:
-			/* l202: */ case 12:
-			$r = add[0](51, position201); /* */ $s = 21; case 21: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](124, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$4 = _rules[0][24](); /* */ $s = 25; case 25: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			/* */ if (!_r$4) { $s = 23; continue; }
-			/* */ $s = 24; continue;
-			/* if (!_r$4) { */ case 23:
-				/* goto l200 */ $s = 15; continue;
-			/* } */ case 24:
-			$r = add[0](125, position[0]); /* */ $s = 26; case 26: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l199 */ $s = 5; continue;
+			$r = add[0](124, position[0]); /* */ $s = 24; case 24: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* l200: */ case 15:
-			_tmp$10 = position200;
-			_tmp$11 = tokenIndex200;
+			/* goto l198 */ $s = 5; continue;
+			/* l199: */ case 19:
+			_tmp$10 = position199;
+			_tmp$11 = tokenIndex199;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
-			$r = add[0](23, position198); /* */ $s = 27; case 27: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](24, position197); /* */ $s = 25; case 25: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l197: */ case 4:
-			_tmp$12 = position197;
-			_tmp$13 = tokenIndex197;
+			/* l196: */ case 4:
+			_tmp$12 = position196;
+			_tmp$13 = tokenIndex196;
 			position[0] = _tmp$12;
 			tokenIndex[0] = _tmp$13;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position197, position198, position200, position201, position202, tokenIndex197, tokenIndex200, tokenIndex202, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position196, position197, position199, position200, tokenIndex196, tokenIndex199, tokenIndex200, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_10, _11, _12, _13, _4, _5, _6, _7, _8, _9, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$5, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$6, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$7, _r$70, _r$71, _r$72, _r$73, _r$8, _r$9, _tmp$10, _tmp$100, _tmp$101, _tmp$102, _tmp$103, _tmp$104, _tmp$105, _tmp$106, _tmp$107, _tmp$108, _tmp$109, _tmp$11, _tmp$110, _tmp$111, _tmp$112, _tmp$113, _tmp$114, _tmp$115, _tmp$116, _tmp$117, _tmp$118, _tmp$119, _tmp$12, _tmp$120, _tmp$121, _tmp$122, _tmp$123, _tmp$124, _tmp$125, _tmp$126, _tmp$127, _tmp$128, _tmp$129, _tmp$13, _tmp$130, _tmp$131, _tmp$132, _tmp$133, _tmp$134, _tmp$135, _tmp$136, _tmp$137, _tmp$138, _tmp$139, _tmp$14, _tmp$140, _tmp$141, _tmp$142, _tmp$143, _tmp$144, _tmp$145, _tmp$146, _tmp$147, _tmp$148, _tmp$149, _tmp$15, _tmp$150, _tmp$151, _tmp$152, _tmp$153, _tmp$154, _tmp$155, _tmp$156, _tmp$157, _tmp$158, _tmp$159, _tmp$16, _tmp$160, _tmp$161, _tmp$162, _tmp$163, _tmp$164, _tmp$165, _tmp$166, _tmp$167, _tmp$168, _tmp$169, _tmp$17, _tmp$170, _tmp$171, _tmp$172, _tmp$173, _tmp$174, _tmp$175, _tmp$176, _tmp$177, _tmp$178, _tmp$179, _tmp$18, _tmp$180, _tmp$181, _tmp$182, _tmp$183, _tmp$184, _tmp$185, _tmp$186, _tmp$187, _tmp$188, _tmp$189, _tmp$19, _tmp$190, _tmp$191, _tmp$192, _tmp$193, _tmp$194, _tmp$195, _tmp$196, _tmp$197, _tmp$198, _tmp$199, _tmp$2, _tmp$20, _tmp$200, _tmp$201, _tmp$202, _tmp$203, _tmp$204, _tmp$205, _tmp$206, _tmp$207, _tmp$208, _tmp$209, _tmp$21, _tmp$210, _tmp$211, _tmp$212, _tmp$213, _tmp$214, _tmp$215, _tmp$216, _tmp$217, _tmp$218, _tmp$219, _tmp$22, _tmp$220, _tmp$221, _tmp$222, _tmp$223, _tmp$224, _tmp$225, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$70, _tmp$71, _tmp$72, _tmp$73, _tmp$74, _tmp$75, _tmp$76, _tmp$77, _tmp$78, _tmp$79, _tmp$8, _tmp$80, _tmp$81, _tmp$82, _tmp$83, _tmp$84, _tmp$85, _tmp$86, _tmp$87, _tmp$88, _tmp$89, _tmp$9, _tmp$90, _tmp$91, _tmp$92, _tmp$93, _tmp$94, _tmp$95, _tmp$96, _tmp$97, _tmp$98, _tmp$99, c, c$1, c$2, position206, position207, position208, position211, position212, position215, position216, position218, position221, position223, position225, position229, position232, position234, position236, position238, position239, position244, position245, position247, position248, position250, position252, position267, position269, position270, position275, position280, position285, position288, position290, position291, position302, position304, position305, position306, position308, position309, position311, position313, position315, position320, position322, position323, position324, position326, position327, position329, position331, position333, position338, position340, position341, position346, position347, position349, position350, position352, position354, position356, position361, position363, position364, position369, position370, position372, position373, position375, position377, position379, tokenIndex206, tokenIndex208, tokenIndex212, tokenIndex216, tokenIndex218, tokenIndex221, tokenIndex223, tokenIndex225, tokenIndex229, tokenIndex232, tokenIndex234, tokenIndex236, tokenIndex239, tokenIndex245, tokenIndex250, tokenIndex252, tokenIndex267, tokenIndex270, tokenIndex275, tokenIndex280, tokenIndex285, tokenIndex288, tokenIndex291, tokenIndex304, tokenIndex308, tokenIndex309, tokenIndex311, tokenIndex313, tokenIndex315, tokenIndex322, tokenIndex326, tokenIndex327, tokenIndex329, tokenIndex331, tokenIndex333, tokenIndex340, tokenIndex341, tokenIndex349, tokenIndex350, tokenIndex352, tokenIndex354, tokenIndex356, tokenIndex363, tokenIndex364, tokenIndex372, tokenIndex373, tokenIndex375, tokenIndex377, tokenIndex379, $s, $r, $c} = $restore(this, {});
+			var {_5, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position206, position207, position209, position211, position214, position215, position219, position220, tokenIndex206, tokenIndex209, tokenIndex215, tokenIndex220, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
 			position206 = _tmp$2;
 			tokenIndex206 = _tmp$3;
 			position207 = position[0];
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position208 = _tmp$4;
-			tokenIndex208 = _tmp$5;
-			_r$1 = _rules[0][47](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][26](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!_r$1) { */ case 1:
-				/* goto l209 */ $s = 4; continue;
+				/* goto l206 */ $s = 4; continue;
 			/* } */ case 2:
-			_r$2 = _rules[0][16](); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* l208: */ case 5:
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position209 = _tmp$4;
+			tokenIndex209 = _tmp$5;
+				_5 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_5 === (37)) { $s = 7; continue; }
+				/* */ if (_5 === (47)) { $s = 8; continue; }
+				/* */ $s = 9; continue;
+				/* if (_5 === (37)) { */ case 7:
+					position211 = position[0];
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 11; continue; }
+					/* */ $s = 12; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 11:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 12:
+					position[0] = position[0] + (1) >>> 0;
+					_r$2 = _rules[0][65](); /* */ $s = 16; case 16: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+					/* */ if (!_r$2) { $s = 14; continue; }
+					/* */ $s = 15; continue;
+					/* if (!_r$2) { */ case 14:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 15:
+					$r = add[0](53, position211); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](129, position[0]); /* */ $s = 18; case 18: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$3 = _rules[0][26](); /* */ $s = 21; case 21: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+					/* */ if (!_r$3) { $s = 19; continue; }
+					/* */ $s = 20; continue;
+					/* if (!_r$3) { */ case 19:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 20:
+					$r = add[0](130, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 10; continue;
+				/* } else if (_5 === (47)) { */ case 8:
+					position214 = position[0];
+					_tmp$6 = position[0];
+					_tmp$7 = tokenIndex[0];
+					position215 = _tmp$6;
+					tokenIndex215 = _tmp$7;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 23; continue; }
+					/* */ $s = 24; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 23:
+						/* goto l216 */ $s = 25; continue;
+					/* } */ case 24:
+					position[0] = position[0] + (1) >>> 0;
+					/* goto l215 */ $s = 26; continue;
+					/* l216: */ case 25:
+					_tmp$8 = position215;
+					_tmp$9 = tokenIndex215;
+					position[0] = _tmp$8;
+					tokenIndex[0] = _tmp$9;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65295))) { $s = 27; continue; }
+					/* */ $s = 28; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65295))) { */ case 27:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 28:
+					position[0] = position[0] + (1) >>> 0;
+					/* l215: */ case 26:
+					_r$4 = _rules[0][65](); /* */ $s = 31; case 31: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+					/* */ if (!_r$4) { $s = 29; continue; }
+					/* */ $s = 30; continue;
+					/* if (!_r$4) { */ case 29:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 30:
+					$r = add[0](52, position214); /* */ $s = 32; case 32: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](127, position[0]); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$5 = _rules[0][26](); /* */ $s = 36; case 36: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+					/* */ if (!_r$5) { $s = 34; continue; }
+					/* */ $s = 35; continue;
+					/* if (!_r$5) { */ case 34:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 35:
+					$r = add[0](128, position[0]); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 10; continue;
+				/* } else { */ case 9:
+					position219 = position[0];
+					_tmp$10 = position[0];
+					_tmp$11 = tokenIndex[0];
+					position220 = _tmp$10;
+					tokenIndex220 = _tmp$11;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 38; continue; }
+					/* */ $s = 39; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 38:
+						/* goto l221 */ $s = 40; continue;
+					/* } */ case 39:
+					position[0] = position[0] + (1) >>> 0;
+					/* goto l220 */ $s = 41; continue;
+					/* l221: */ case 40:
+					_tmp$12 = position220;
+					_tmp$13 = tokenIndex220;
+					position[0] = _tmp$12;
+					tokenIndex[0] = _tmp$13;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65290))) { $s = 42; continue; }
+					/* */ $s = 43; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65290))) { */ case 42:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 43:
+					position[0] = position[0] + (1) >>> 0;
+					/* l220: */ case 41:
+					_r$6 = _rules[0][65](); /* */ $s = 46; case 46: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+					/* */ if (!_r$6) { $s = 44; continue; }
+					/* */ $s = 45; continue;
+					/* if (!_r$6) { */ case 44:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 45:
+					$r = add[0](51, position219); /* */ $s = 47; case 47: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](125, position[0]); /* */ $s = 48; case 48: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$7 = _rules[0][26](); /* */ $s = 51; case 51: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+					/* */ if (!_r$7) { $s = 49; continue; }
+					/* */ $s = 50; continue;
+					/* if (!_r$7) { */ case 49:
+						/* goto l209 */ $s = 13; continue;
+					/* } */ case 50:
+					$r = add[0](126, position[0]); /* */ $s = 52; case 52: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				/* } */ case 10:
+			case 6:
+			/* goto l208 */ $s = 5; continue;
+			/* l209: */ case 13:
+			_tmp$14 = position209;
+			_tmp$15 = tokenIndex209;
+			position[0] = _tmp$14;
+			tokenIndex[0] = _tmp$15;
+			$r = add[0](25, position207); /* */ $s = 53; case 53: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l206: */ case 4:
+			_tmp$16 = position206;
+			_tmp$17 = tokenIndex206;
+			position[0] = _tmp$16;
+			tokenIndex[0] = _tmp$17;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _5, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position206, position207, position209, position211, position214, position215, position219, position220, tokenIndex206, tokenIndex209, tokenIndex215, tokenIndex220, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position224, position225, position227, position228, position229, tokenIndex224, tokenIndex227, tokenIndex229, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position224 = _tmp$2;
+			tokenIndex224 = _tmp$3;
+			position225 = position[0];
+			_r$1 = _rules[0][27](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!_r$1) { */ case 1:
+				/* goto l224 */ $s = 4; continue;
+			/* } */ case 2:
+			/* l226: */ case 5:
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position227 = _tmp$4;
+			tokenIndex227 = _tmp$5;
+			position228 = position[0];
+			_tmp$6 = position[0];
+			_tmp$7 = tokenIndex[0];
+			position229 = _tmp$6;
+			tokenIndex229 = _tmp$7;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 6; continue; }
+			/* */ $s = 7; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 6:
+				/* goto l230 */ $s = 8; continue;
+			/* } */ case 7:
+			position[0] = position[0] + (1) >>> 0;
+			_r$2 = _rules[0][65](); /* */ $s = 11; case 11: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* */ if (!_r$2) { $s = 9; continue; }
+			/* */ $s = 10; continue;
+			/* if (!_r$2) { */ case 9:
+				/* goto l230 */ $s = 8; continue;
+			/* } */ case 10:
+			/* goto l229 */ $s = 12; continue;
+			/* l230: */ case 8:
+			_tmp$8 = position229;
+			_tmp$9 = tokenIndex229;
+			position[0] = _tmp$8;
+			tokenIndex[0] = _tmp$9;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 13; continue; }
+			/* */ $s = 14; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 13:
+				/* goto l227 */ $s = 15; continue;
+			/* } */ case 14:
+			position[0] = position[0] + (1) >>> 0;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 16; continue; }
+			/* */ $s = 17; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 16:
+				/* goto l227 */ $s = 15; continue;
+			/* } */ case 17:
+			position[0] = position[0] + (1) >>> 0;
+			_r$3 = _rules[0][65](); /* */ $s = 20; case 20: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			/* */ if (!_r$3) { $s = 18; continue; }
+			/* */ $s = 19; continue;
+			/* if (!_r$3) { */ case 18:
+				/* goto l227 */ $s = 15; continue;
+			/* } */ case 19:
+			/* l229: */ case 12:
+			$r = add[0](54, position228); /* */ $s = 21; case 21: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](131, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][27](); /* */ $s = 25; case 25: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			/* */ if (!_r$4) { $s = 23; continue; }
+			/* */ $s = 24; continue;
+			/* if (!_r$4) { */ case 23:
+				/* goto l227 */ $s = 15; continue;
+			/* } */ case 24:
+			$r = add[0](132, position[0]); /* */ $s = 26; case 26: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l226 */ $s = 5; continue;
+			/* l227: */ case 15:
+			_tmp$10 = position227;
+			_tmp$11 = tokenIndex227;
+			position[0] = _tmp$10;
+			tokenIndex[0] = _tmp$11;
+			$r = add[0](26, position225); /* */ $s = 27; case 27: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l224: */ case 4:
+			_tmp$12 = position224;
+			_tmp$13 = tokenIndex224;
+			position[0] = _tmp$12;
+			tokenIndex[0] = _tmp$13;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position224, position225, position227, position228, position229, tokenIndex224, tokenIndex227, tokenIndex229, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_10, _11, _12, _13, _14, _15, _6, _7, _8, _9, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$5, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$6, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$7, _r$70, _r$71, _r$72, _r$73, _r$8, _r$9, _tmp$10, _tmp$100, _tmp$101, _tmp$102, _tmp$103, _tmp$104, _tmp$105, _tmp$106, _tmp$107, _tmp$108, _tmp$109, _tmp$11, _tmp$110, _tmp$111, _tmp$112, _tmp$113, _tmp$114, _tmp$115, _tmp$116, _tmp$117, _tmp$118, _tmp$119, _tmp$12, _tmp$120, _tmp$121, _tmp$122, _tmp$123, _tmp$124, _tmp$125, _tmp$126, _tmp$127, _tmp$128, _tmp$129, _tmp$13, _tmp$130, _tmp$131, _tmp$132, _tmp$133, _tmp$134, _tmp$135, _tmp$136, _tmp$137, _tmp$138, _tmp$139, _tmp$14, _tmp$140, _tmp$141, _tmp$142, _tmp$143, _tmp$144, _tmp$145, _tmp$146, _tmp$147, _tmp$148, _tmp$149, _tmp$15, _tmp$150, _tmp$151, _tmp$152, _tmp$153, _tmp$154, _tmp$155, _tmp$156, _tmp$157, _tmp$158, _tmp$159, _tmp$16, _tmp$160, _tmp$161, _tmp$162, _tmp$163, _tmp$164, _tmp$165, _tmp$166, _tmp$167, _tmp$168, _tmp$169, _tmp$17, _tmp$170, _tmp$171, _tmp$172, _tmp$173, _tmp$174, _tmp$175, _tmp$176, _tmp$177, _tmp$178, _tmp$179, _tmp$18, _tmp$180, _tmp$181, _tmp$182, _tmp$183, _tmp$184, _tmp$185, _tmp$186, _tmp$187, _tmp$188, _tmp$189, _tmp$19, _tmp$190, _tmp$191, _tmp$192, _tmp$193, _tmp$194, _tmp$195, _tmp$196, _tmp$197, _tmp$198, _tmp$199, _tmp$2, _tmp$20, _tmp$200, _tmp$201, _tmp$202, _tmp$203, _tmp$204, _tmp$205, _tmp$206, _tmp$207, _tmp$208, _tmp$209, _tmp$21, _tmp$210, _tmp$211, _tmp$212, _tmp$213, _tmp$214, _tmp$215, _tmp$216, _tmp$217, _tmp$218, _tmp$219, _tmp$22, _tmp$220, _tmp$221, _tmp$222, _tmp$223, _tmp$224, _tmp$225, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$70, _tmp$71, _tmp$72, _tmp$73, _tmp$74, _tmp$75, _tmp$76, _tmp$77, _tmp$78, _tmp$79, _tmp$8, _tmp$80, _tmp$81, _tmp$82, _tmp$83, _tmp$84, _tmp$85, _tmp$86, _tmp$87, _tmp$88, _tmp$89, _tmp$9, _tmp$90, _tmp$91, _tmp$92, _tmp$93, _tmp$94, _tmp$95, _tmp$96, _tmp$97, _tmp$98, _tmp$99, c, c$1, c$2, position233, position234, position235, position238, position239, position242, position243, position245, position248, position250, position252, position256, position259, position261, position263, position265, position266, position271, position272, position274, position275, position277, position279, position294, position296, position297, position302, position307, position312, position315, position317, position318, position329, position331, position332, position333, position335, position336, position338, position340, position342, position347, position349, position350, position351, position353, position354, position356, position358, position360, position365, position367, position368, position373, position374, position376, position377, position379, position381, position383, position388, position390, position391, position396, position397, position399, position400, position402, position404, position406, tokenIndex233, tokenIndex235, tokenIndex239, tokenIndex243, tokenIndex245, tokenIndex248, tokenIndex250, tokenIndex252, tokenIndex256, tokenIndex259, tokenIndex261, tokenIndex263, tokenIndex266, tokenIndex272, tokenIndex277, tokenIndex279, tokenIndex294, tokenIndex297, tokenIndex302, tokenIndex307, tokenIndex312, tokenIndex315, tokenIndex318, tokenIndex331, tokenIndex335, tokenIndex336, tokenIndex338, tokenIndex340, tokenIndex342, tokenIndex349, tokenIndex353, tokenIndex354, tokenIndex356, tokenIndex358, tokenIndex360, tokenIndex367, tokenIndex368, tokenIndex376, tokenIndex377, tokenIndex379, tokenIndex381, tokenIndex383, tokenIndex390, tokenIndex391, tokenIndex399, tokenIndex400, tokenIndex402, tokenIndex404, tokenIndex406, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position233 = _tmp$2;
+			tokenIndex233 = _tmp$3;
+			position234 = position[0];
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position235 = _tmp$4;
+			tokenIndex235 = _tmp$5;
+			_r$1 = _rules[0][50](); /* */ $s = 3; case 3: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!_r$1) { */ case 1:
+				/* goto l236 */ $s = 4; continue;
+			/* } */ case 2:
+			_r$2 = _rules[0][19](); /* */ $s = 7; case 7: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (!_r$2) { */ case 5:
-				/* goto l209 */ $s = 4; continue;
+				/* goto l236 */ $s = 4; continue;
 			/* } */ case 6:
-			$r = add[0](126, position[0]); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l208 */ $s = 9; continue;
-			/* l209: */ case 4:
-			_tmp$6 = position208;
-			_tmp$7 = tokenIndex208;
+			$r = add[0](133, position[0]); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l235 */ $s = 9; continue;
+			/* l236: */ case 4:
+			_tmp$6 = position235;
+			_tmp$7 = tokenIndex235;
 			position[0] = _tmp$6;
 			tokenIndex[0] = _tmp$7;
-			position211 = position[0];
+			position238 = position[0];
 			_tmp$8 = position[0];
 			_tmp$9 = tokenIndex[0];
-			position212 = _tmp$8;
-			tokenIndex212 = _tmp$9;
-			_r$3 = _rules[0][46](); /* */ $s = 12; case 12: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			position239 = _tmp$8;
+			tokenIndex239 = _tmp$9;
+			_r$3 = _rules[0][49](); /* */ $s = 12; case 12: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 10; continue; }
 			/* */ $s = 11; continue;
 			/* if (!_r$3) { */ case 10:
-				/* goto l213 */ $s = 13; continue;
+				/* goto l240 */ $s = 13; continue;
 			/* } */ case 11:
-			_r$4 = _rules[0][16](); /* */ $s = 16; case 16: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][19](); /* */ $s = 16; case 16: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 14; continue; }
 			/* */ $s = 15; continue;
 			/* if (!_r$4) { */ case 14:
-				/* goto l213 */ $s = 13; continue;
+				/* goto l240 */ $s = 13; continue;
 			/* } */ case 15:
-			$r = add[0](127, position[0]); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l212 */ $s = 18; continue;
-			/* l213: */ case 13:
-			_tmp$10 = position212;
-			_tmp$11 = tokenIndex212;
+			$r = add[0](134, position[0]); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l239 */ $s = 18; continue;
+			/* l240: */ case 13:
+			_tmp$10 = position239;
+			_tmp$11 = tokenIndex239;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
-			position215 = position[0];
+			position242 = position[0];
 			_tmp$12 = position[0];
 			_tmp$13 = tokenIndex[0];
-			position216 = _tmp$12;
-			tokenIndex216 = _tmp$13;
+			position243 = _tmp$12;
+			tokenIndex243 = _tmp$13;
 			_tmp$14 = position[0];
 			_tmp$15 = tokenIndex[0];
-			position218 = _tmp$14;
-			tokenIndex218 = _tmp$15;
-			_r$5 = _rules[0][35](); /* */ $s = 21; case 21: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			position245 = _tmp$14;
+			tokenIndex245 = _tmp$15;
+			_r$5 = _rules[0][38](); /* */ $s = 21; case 21: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 19; continue; }
 			/* */ $s = 20; continue;
 			/* if (!_r$5) { */ case 19:
-				/* goto l219 */ $s = 22; continue;
+				/* goto l246 */ $s = 22; continue;
 			/* } */ case 20:
-			/* goto l218 */ $s = 23; continue;
-			/* l219: */ case 22:
-			_tmp$16 = position218;
-			_tmp$17 = tokenIndex218;
+			/* goto l245 */ $s = 23; continue;
+			/* l246: */ case 22:
+			_tmp$16 = position245;
+			_tmp$17 = tokenIndex245;
 			position[0] = _tmp$16;
 			tokenIndex[0] = _tmp$17;
-			_r$6 = _rules[0][43](); /* */ $s = 26; case 26: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			_r$6 = _rules[0][46](); /* */ $s = 26; case 26: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 			/* */ if (!_r$6) { $s = 24; continue; }
 			/* */ $s = 25; continue;
 			/* if (!_r$6) { */ case 24:
-				/* goto l217 */ $s = 27; continue;
+				/* goto l244 */ $s = 27; continue;
 			/* } */ case 25:
-			/* l218: */ case 23:
-			$r = add[0](140, position[0]); /* */ $s = 28; case 28: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l245: */ case 23:
+			$r = add[0](147, position[0]); /* */ $s = 28; case 28: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_tmp$18 = position[0];
 			_tmp$19 = tokenIndex[0];
-			position221 = _tmp$18;
-			tokenIndex221 = _tmp$19;
+			position248 = _tmp$18;
+			tokenIndex248 = _tmp$19;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 29; continue; }
 			/* */ $s = 30; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 29:
-				/* goto l222 */ $s = 31; continue;
+				/* goto l249 */ $s = 31; continue;
 			/* } */ case 30:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l221 */ $s = 32; continue;
-			/* l222: */ case 31:
-			_tmp$20 = position221;
-			_tmp$21 = tokenIndex221;
+			/* goto l248 */ $s = 32; continue;
+			/* l249: */ case 31:
+			_tmp$20 = position248;
+			_tmp$21 = tokenIndex248;
 			position[0] = _tmp$20;
 			tokenIndex[0] = _tmp$21;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 68))) { $s = 33; continue; }
 			/* */ $s = 34; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 68))) { */ case 33:
-				/* goto l217 */ $s = 27; continue;
+				/* goto l244 */ $s = 27; continue;
 			/* } */ case 34:
 			position[0] = position[0] + (1) >>> 0;
-			/* l221: */ case 32:
+			/* l248: */ case 32:
 			_tmp$22 = position[0];
 			_tmp$23 = tokenIndex[0];
-			position223 = _tmp$22;
-			tokenIndex223 = _tmp$23;
-			_r$7 = _rules[0][35](); /* */ $s = 37; case 37: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			position250 = _tmp$22;
+			tokenIndex250 = _tmp$23;
+			_r$7 = _rules[0][38](); /* */ $s = 37; case 37: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 			/* */ if (!_r$7) { $s = 35; continue; }
 			/* */ $s = 36; continue;
 			/* if (!_r$7) { */ case 35:
-				/* goto l224 */ $s = 38; continue;
+				/* goto l251 */ $s = 38; continue;
 			/* } */ case 36:
-			/* goto l223 */ $s = 39; continue;
-			/* l224: */ case 38:
-			_tmp$24 = position223;
-			_tmp$25 = tokenIndex223;
+			/* goto l250 */ $s = 39; continue;
+			/* l251: */ case 38:
+			_tmp$24 = position250;
+			_tmp$25 = tokenIndex250;
 			position[0] = _tmp$24;
 			tokenIndex[0] = _tmp$25;
-			_r$8 = _rules[0][43](); /* */ $s = 42; case 42: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+			_r$8 = _rules[0][46](); /* */ $s = 42; case 42: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
 			/* */ if (!_r$8) { $s = 40; continue; }
 			/* */ $s = 41; continue;
 			/* if (!_r$8) { */ case 40:
-				/* goto l217 */ $s = 27; continue;
+				/* goto l244 */ $s = 27; continue;
 			/* } */ case 41:
-			/* l223: */ case 39:
+			/* l250: */ case 39:
 			_tmp$26 = position[0];
 			_tmp$27 = tokenIndex[0];
-			position225 = _tmp$26;
-			tokenIndex225 = _tmp$27;
-			_r$9 = _rules[0][26](); /* */ $s = 45; case 45: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+			position252 = _tmp$26;
+			tokenIndex252 = _tmp$27;
+			_r$9 = _rules[0][29](); /* */ $s = 45; case 45: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
 			/* */ if (!_r$9) { $s = 43; continue; }
 			/* */ $s = 44; continue;
 			/* if (!_r$9) { */ case 43:
-				/* goto l225 */ $s = 46; continue;
+				/* goto l252 */ $s = 46; continue;
 			/* } */ case 44:
-			/* goto l226 */ $s = 47; continue;
-			/* l225: */ case 46:
-			_tmp$28 = position225;
-			_tmp$29 = tokenIndex225;
+			/* goto l253 */ $s = 47; continue;
+			/* l252: */ case 46:
+			_tmp$28 = position252;
+			_tmp$29 = tokenIndex252;
 			position[0] = _tmp$28;
 			tokenIndex[0] = _tmp$29;
-			/* l226: */ case 47:
-			_r$10 = _rules[0][27](); /* */ $s = 50; case 50: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+			/* l253: */ case 47:
+			_r$10 = _rules[0][30](); /* */ $s = 50; case 50: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
 			/* */ if (!_r$10) { $s = 48; continue; }
 			/* */ $s = 49; continue;
 			/* if (!_r$10) { */ case 48:
-				/* goto l217 */ $s = 27; continue;
+				/* goto l244 */ $s = 27; continue;
 			/* } */ case 49:
-			$r = add[0](141, position[0]); /* */ $s = 51; case 51: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$11 = _rules[0][62](); /* */ $s = 54; case 54: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+			$r = add[0](148, position[0]); /* */ $s = 51; case 51: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$11 = _rules[0][65](); /* */ $s = 54; case 54: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
 			/* */ if (!_r$11) { $s = 52; continue; }
 			/* */ $s = 53; continue;
 			/* if (!_r$11) { */ case 52:
-				/* goto l217 */ $s = 27; continue;
+				/* goto l244 */ $s = 27; continue;
 			/* } */ case 53:
-			/* goto l216 */ $s = 55; continue;
-			/* l217: */ case 27:
-			_tmp$30 = position216;
-			_tmp$31 = tokenIndex216;
+			/* goto l243 */ $s = 55; continue;
+			/* l244: */ case 27:
+			_tmp$30 = position243;
+			_tmp$31 = tokenIndex243;
 			position[0] = _tmp$30;
 			tokenIndex[0] = _tmp$31;
 			_tmp$32 = position[0];
 			_tmp$33 = tokenIndex[0];
-			position229 = _tmp$32;
-			tokenIndex229 = _tmp$33;
+			position256 = _tmp$32;
+			tokenIndex256 = _tmp$33;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 56; continue; }
 			/* */ $s = 57; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 56:
-				/* goto l230 */ $s = 58; continue;
+				/* goto l257 */ $s = 58; continue;
 			/* } */ case 57:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l229 */ $s = 59; continue;
-			/* l230: */ case 58:
-			_tmp$34 = position229;
-			_tmp$35 = tokenIndex229;
+			/* goto l256 */ $s = 59; continue;
+			/* l257: */ case 58:
+			_tmp$34 = position256;
+			_tmp$35 = tokenIndex256;
 			position[0] = _tmp$34;
 			tokenIndex[0] = _tmp$35;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 68))) { $s = 60; continue; }
 			/* */ $s = 61; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 68))) { */ case 60:
-				/* goto l228 */ $s = 62; continue;
+				/* goto l255 */ $s = 62; continue;
 			/* } */ case 61:
 			position[0] = position[0] + (1) >>> 0;
-			/* l229: */ case 59:
-			$r = add[0](142, position[0]); /* */ $s = 63; case 63: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l256: */ case 59:
+			$r = add[0](149, position[0]); /* */ $s = 63; case 63: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_tmp$36 = position[0];
 			_tmp$37 = tokenIndex[0];
-			position232 = _tmp$36;
-			tokenIndex232 = _tmp$37;
-			_r$12 = _rules[0][35](); /* */ $s = 66; case 66: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+			position259 = _tmp$36;
+			tokenIndex259 = _tmp$37;
+			_r$12 = _rules[0][38](); /* */ $s = 66; case 66: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
 			/* */ if (!_r$12) { $s = 64; continue; }
 			/* */ $s = 65; continue;
 			/* if (!_r$12) { */ case 64:
-				/* goto l233 */ $s = 67; continue;
+				/* goto l260 */ $s = 67; continue;
 			/* } */ case 65:
-			/* goto l232 */ $s = 68; continue;
-			/* l233: */ case 67:
-			_tmp$38 = position232;
-			_tmp$39 = tokenIndex232;
+			/* goto l259 */ $s = 68; continue;
+			/* l260: */ case 67:
+			_tmp$38 = position259;
+			_tmp$39 = tokenIndex259;
 			position[0] = _tmp$38;
 			tokenIndex[0] = _tmp$39;
-			_r$13 = _rules[0][43](); /* */ $s = 71; case 71: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+			_r$13 = _rules[0][46](); /* */ $s = 71; case 71: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
 			/* */ if (!_r$13) { $s = 69; continue; }
 			/* */ $s = 70; continue;
 			/* if (!_r$13) { */ case 69:
-				/* goto l228 */ $s = 62; continue;
+				/* goto l255 */ $s = 62; continue;
 			/* } */ case 70:
-			/* l232: */ case 68:
+			/* l259: */ case 68:
 			_tmp$40 = position[0];
 			_tmp$41 = tokenIndex[0];
-			position234 = _tmp$40;
-			tokenIndex234 = _tmp$41;
+			position261 = _tmp$40;
+			tokenIndex261 = _tmp$41;
 			_tmp$42 = position[0];
 			_tmp$43 = tokenIndex[0];
-			position236 = _tmp$42;
-			tokenIndex236 = _tmp$43;
-			position238 = position[0];
+			position263 = _tmp$42;
+			tokenIndex263 = _tmp$43;
+			position265 = position[0];
 			_tmp$44 = position[0];
 			_tmp$45 = tokenIndex[0];
-			position239 = _tmp$44;
-			tokenIndex239 = _tmp$45;
+			position266 = _tmp$44;
+			tokenIndex266 = _tmp$45;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 20248))) { $s = 72; continue; }
 			/* */ $s = 73; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 20248))) { */ case 72:
-				/* goto l240 */ $s = 74; continue;
+				/* goto l267 */ $s = 74; continue;
 			/* } */ case 73:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 21183))) { $s = 75; continue; }
 			/* */ $s = 76; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 21183))) { */ case 75:
-				/* goto l240 */ $s = 74; continue;
+				/* goto l267 */ $s = 74; continue;
 			/* } */ case 76:
 			position[0] = position[0] + (1) >>> 0;
-			$r = add[0](138, position[0]); /* */ $s = 77; case 77: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l239 */ $s = 78; continue;
-			/* l240: */ case 74:
-			_tmp$46 = position239;
-			_tmp$47 = tokenIndex239;
+			$r = add[0](145, position[0]); /* */ $s = 77; case 77: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l266 */ $s = 78; continue;
+			/* l267: */ case 74:
+			_tmp$46 = position266;
+			_tmp$47 = tokenIndex266;
 			position[0] = _tmp$46;
 			tokenIndex[0] = _tmp$47;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 21155))) { $s = 79; continue; }
 			/* */ $s = 80; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 21155))) { */ case 79:
-				/* goto l237 */ $s = 81; continue;
+				/* goto l264 */ $s = 81; continue;
 			/* } */ case 80:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 21183))) { $s = 82; continue; }
 			/* */ $s = 83; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 21183))) { */ case 82:
-				/* goto l237 */ $s = 81; continue;
+				/* goto l264 */ $s = 81; continue;
 			/* } */ case 83:
 			position[0] = position[0] + (1) >>> 0;
-			$r = add[0](139, position[0]); /* */ $s = 84; case 84: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l239: */ case 78:
-			$r = add[0](28, position238); /* */ $s = 85; case 85: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l236 */ $s = 86; continue;
-			/* l237: */ case 81:
-			_tmp$48 = position236;
-			_tmp$49 = tokenIndex236;
+			$r = add[0](146, position[0]); /* */ $s = 84; case 84: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l266: */ case 78:
+			$r = add[0](31, position265); /* */ $s = 85; case 85: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l263 */ $s = 86; continue;
+			/* l264: */ case 81:
+			_tmp$48 = position263;
+			_tmp$49 = tokenIndex263;
 			position[0] = _tmp$48;
 			tokenIndex[0] = _tmp$49;
-			_r$14 = _rules[0][26](); /* */ $s = 89; case 89: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
+			_r$14 = _rules[0][29](); /* */ $s = 89; case 89: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
 			/* */ if (!_r$14) { $s = 87; continue; }
 			/* */ $s = 88; continue;
 			/* if (!_r$14) { */ case 87:
-				/* goto l234 */ $s = 90; continue;
+				/* goto l261 */ $s = 90; continue;
 			/* } */ case 88:
-			/* l236: */ case 86:
-			/* goto l235 */ $s = 91; continue;
-			/* l234: */ case 90:
-			_tmp$50 = position234;
-			_tmp$51 = tokenIndex234;
+			/* l263: */ case 86:
+			/* goto l262 */ $s = 91; continue;
+			/* l261: */ case 90:
+			_tmp$50 = position261;
+			_tmp$51 = tokenIndex261;
 			position[0] = _tmp$50;
 			tokenIndex[0] = _tmp$51;
-			/* l235: */ case 91:
-			_r$15 = _rules[0][27](); /* */ $s = 94; case 94: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
+			/* l262: */ case 91:
+			_r$15 = _rules[0][30](); /* */ $s = 94; case 94: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
 			/* */ if (!_r$15) { $s = 92; continue; }
 			/* */ $s = 93; continue;
 			/* if (!_r$15) { */ case 92:
-				/* goto l228 */ $s = 62; continue;
+				/* goto l255 */ $s = 62; continue;
 			/* } */ case 93:
-			$r = add[0](143, position[0]); /* */ $s = 95; case 95: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$16 = _rules[0][62](); /* */ $s = 98; case 98: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
+			$r = add[0](150, position[0]); /* */ $s = 95; case 95: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$16 = _rules[0][65](); /* */ $s = 98; case 98: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
 			/* */ if (!_r$16) { $s = 96; continue; }
 			/* */ $s = 97; continue;
 			/* if (!_r$16) { */ case 96:
-				/* goto l228 */ $s = 62; continue;
+				/* goto l255 */ $s = 62; continue;
 			/* } */ case 97:
-			/* goto l216 */ $s = 55; continue;
-			/* l228: */ case 62:
-			_tmp$52 = position216;
-			_tmp$53 = tokenIndex216;
+			/* goto l243 */ $s = 55; continue;
+			/* l255: */ case 62:
+			_tmp$52 = position243;
+			_tmp$53 = tokenIndex243;
 			position[0] = _tmp$52;
 			tokenIndex[0] = _tmp$53;
-			position244 = position[0];
+			position271 = position[0];
 			_tmp$54 = position[0];
 			_tmp$55 = tokenIndex[0];
-			position245 = _tmp$54;
-			tokenIndex245 = _tmp$55;
-			position247 = position[0];
-			position248 = position[0];
-			/* l249: */ case 99:
+			position272 = _tmp$54;
+			tokenIndex272 = _tmp$55;
+			position274 = position[0];
+			position275 = position[0];
+			/* l276: */ case 99:
 			_tmp$56 = position[0];
 			_tmp$57 = tokenIndex[0];
-			position250 = _tmp$56;
-			tokenIndex250 = _tmp$57;
+			position277 = _tmp$56;
+			tokenIndex277 = _tmp$57;
 			c = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
 			/* */ if (c < 48 || c > 57) { $s = 100; continue; }
 			/* */ $s = 101; continue;
 			/* if (c < 48 || c > 57) { */ case 100:
-				/* goto l250 */ $s = 102; continue;
+				/* goto l277 */ $s = 102; continue;
 			/* } */ case 101:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l249 */ $s = 99; continue;
-			/* l250: */ case 102:
-			_tmp$58 = position250;
-			_tmp$59 = tokenIndex250;
+			/* goto l276 */ $s = 99; continue;
+			/* l277: */ case 102:
+			_tmp$58 = position277;
+			_tmp$59 = tokenIndex277;
 			position[0] = _tmp$58;
 			tokenIndex[0] = _tmp$59;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 46))) { $s = 103; continue; }
 			/* */ $s = 104; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 46))) { */ case 103:
-				/* goto l246 */ $s = 105; continue;
+				/* goto l273 */ $s = 105; continue;
 			/* } */ case 104:
 			position[0] = position[0] + (1) >>> 0;
 			c$1 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
 			/* */ if (c$1 < 48 || c$1 > 57) { $s = 106; continue; }
 			/* */ $s = 107; continue;
 			/* if (c$1 < 48 || c$1 > 57) { */ case 106:
-				/* goto l246 */ $s = 105; continue;
+				/* goto l273 */ $s = 105; continue;
 			/* } */ case 107:
 			position[0] = position[0] + (1) >>> 0;
-			/* l251: */ case 108:
+			/* l278: */ case 108:
 			_tmp$60 = position[0];
 			_tmp$61 = tokenIndex[0];
-			position252 = _tmp$60;
-			tokenIndex252 = _tmp$61;
+			position279 = _tmp$60;
+			tokenIndex279 = _tmp$61;
 			c$2 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
 			/* */ if (c$2 < 48 || c$2 > 57) { $s = 109; continue; }
 			/* */ $s = 110; continue;
 			/* if (c$2 < 48 || c$2 > 57) { */ case 109:
-				/* goto l252 */ $s = 111; continue;
+				/* goto l279 */ $s = 111; continue;
 			/* } */ case 110:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l251 */ $s = 108; continue;
-			/* l252: */ case 111:
-			_tmp$62 = position252;
-			_tmp$63 = tokenIndex252;
+			/* goto l278 */ $s = 108; continue;
+			/* l279: */ case 111:
+			_tmp$62 = position279;
+			_tmp$63 = tokenIndex279;
 			position[0] = _tmp$62;
 			tokenIndex[0] = _tmp$63;
-			$r = add[0](79, position248); /* */ $s = 112; case 112: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$17 = _rules[0][62](); /* */ $s = 115; case 115: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
+			$r = add[0](86, position275); /* */ $s = 112; case 112: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$17 = _rules[0][65](); /* */ $s = 115; case 115: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
 			/* */ if (!_r$17) { $s = 113; continue; }
 			/* */ $s = 114; continue;
 			/* if (!_r$17) { */ case 113:
-				/* goto l246 */ $s = 105; continue;
+				/* goto l273 */ $s = 105; continue;
 			/* } */ case 114:
-			$r = add[0](164, position[0]); /* */ $s = 116; case 116: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](36, position247); /* */ $s = 117; case 117: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l245 */ $s = 118; continue;
-			/* l246: */ case 105:
-			_tmp$64 = position245;
-			_tmp$65 = tokenIndex245;
+			$r = add[0](171, position[0]); /* */ $s = 116; case 116: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](39, position274); /* */ $s = 117; case 117: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l272 */ $s = 118; continue;
+			/* l273: */ case 105:
+			_tmp$64 = position272;
+			_tmp$65 = tokenIndex272;
 			position[0] = _tmp$64;
 			tokenIndex[0] = _tmp$65;
-			_r$18 = _rules[0][35](); /* */ $s = 121; case 121: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
+			_r$18 = _rules[0][38](); /* */ $s = 121; case 121: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
 			/* */ if (!_r$18) { $s = 119; continue; }
 			/* */ $s = 120; continue;
 			/* if (!_r$18) { */ case 119:
-				/* goto l254 */ $s = 122; continue;
+				/* goto l281 */ $s = 122; continue;
 			/* } */ case 120:
-			/* goto l245 */ $s = 118; continue;
-			/* l254: */ case 122:
-			_tmp$66 = position245;
-			_tmp$67 = tokenIndex245;
+			/* goto l272 */ $s = 118; continue;
+			/* l281: */ case 122:
+			_tmp$66 = position272;
+			_tmp$67 = tokenIndex272;
 			position[0] = _tmp$66;
 			tokenIndex[0] = _tmp$67;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 123; continue; }
 			/* */ $s = 124; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 123:
-				/* goto l255 */ $s = 125; continue;
+				/* goto l282 */ $s = 125; continue;
 			/* } */ case 124:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 126; continue; }
 			/* */ $s = 127; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 126:
-				/* goto l255 */ $s = 125; continue;
+				/* goto l282 */ $s = 125; continue;
 			/* } */ case 127:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 128; continue; }
 			/* */ $s = 129; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 128:
-				/* goto l255 */ $s = 125; continue;
+				/* goto l282 */ $s = 125; continue;
 			/* } */ case 129:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 130; continue; }
 			/* */ $s = 131; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 130:
-				/* goto l255 */ $s = 125; continue;
+				/* goto l282 */ $s = 125; continue;
 			/* } */ case 131:
 			position[0] = position[0] + (1) >>> 0;
-			_r$19 = _rules[0][62](); /* */ $s = 134; case 134: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
+			_r$19 = _rules[0][65](); /* */ $s = 134; case 134: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
 			/* */ if (!_r$19) { $s = 132; continue; }
 			/* */ $s = 133; continue;
 			/* if (!_r$19) { */ case 132:
-				/* goto l255 */ $s = 125; continue;
+				/* goto l282 */ $s = 125; continue;
 			/* } */ case 133:
-			$r = add[0](153, position[0]); /* */ $s = 135; case 135: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l245 */ $s = 118; continue;
-			/* l255: */ case 125:
-			_tmp$68 = position245;
-			_tmp$69 = tokenIndex245;
+			$r = add[0](160, position[0]); /* */ $s = 135; case 135: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l272 */ $s = 118; continue;
+			/* l282: */ case 125:
+			_tmp$68 = position272;
+			_tmp$69 = tokenIndex272;
 			position[0] = _tmp$68;
 			tokenIndex[0] = _tmp$69;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 136; continue; }
 			/* */ $s = 137; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 136:
-				/* goto l257 */ $s = 138; continue;
+				/* goto l284 */ $s = 138; continue;
 			/* } */ case 137:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { $s = 139; continue; }
 			/* */ $s = 140; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { */ case 139:
-				/* goto l257 */ $s = 138; continue;
+				/* goto l284 */ $s = 138; continue;
 			/* } */ case 140:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 141; continue; }
 			/* */ $s = 142; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 141:
-				/* goto l257 */ $s = 138; continue;
+				/* goto l284 */ $s = 138; continue;
 			/* } */ case 142:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { $s = 143; continue; }
 			/* */ $s = 144; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { */ case 143:
-				/* goto l257 */ $s = 138; continue;
+				/* goto l284 */ $s = 138; continue;
 			/* } */ case 144:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 145; continue; }
 			/* */ $s = 146; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 145:
-				/* goto l257 */ $s = 138; continue;
+				/* goto l284 */ $s = 138; continue;
 			/* } */ case 146:
 			position[0] = position[0] + (1) >>> 0;
-			_r$20 = _rules[0][62](); /* */ $s = 149; case 149: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
+			_r$20 = _rules[0][65](); /* */ $s = 149; case 149: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
 			/* */ if (!_r$20) { $s = 147; continue; }
 			/* */ $s = 148; continue;
 			/* if (!_r$20) { */ case 147:
-				/* goto l257 */ $s = 138; continue;
+				/* goto l284 */ $s = 138; continue;
 			/* } */ case 148:
-			$r = add[0](154, position[0]); /* */ $s = 150; case 150: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l245 */ $s = 118; continue;
-			/* l257: */ case 138:
-			_tmp$70 = position245;
-			_tmp$71 = tokenIndex245;
+			$r = add[0](161, position[0]); /* */ $s = 150; case 150: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l272 */ $s = 118; continue;
+			/* l284: */ case 138:
+			_tmp$70 = position272;
+			_tmp$71 = tokenIndex272;
 			position[0] = _tmp$70;
 			tokenIndex[0] = _tmp$71;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 151; continue; }
 			/* */ $s = 152; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 151:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 152:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 154; continue; }
 			/* */ $s = 155; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 154:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 155:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 156; continue; }
 			/* */ $s = 157; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 156:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 157:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 158; continue; }
 			/* */ $s = 159; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 158:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 159:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 160; continue; }
 			/* */ $s = 161; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 160:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 161:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 162; continue; }
 			/* */ $s = 163; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 162:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 163:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 164; continue; }
 			/* */ $s = 165; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 164:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 165:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 166; continue; }
 			/* */ $s = 167; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 166:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 167:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 168; continue; }
 			/* */ $s = 169; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 168:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 169:
 			position[0] = position[0] + (1) >>> 0;
-			_r$21 = _rules[0][62](); /* */ $s = 172; case 172: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
+			_r$21 = _rules[0][65](); /* */ $s = 172; case 172: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
 			/* */ if (!_r$21) { $s = 170; continue; }
 			/* */ $s = 171; continue;
 			/* if (!_r$21) { */ case 170:
-				/* goto l259 */ $s = 153; continue;
+				/* goto l286 */ $s = 153; continue;
 			/* } */ case 171:
-			$r = add[0](155, position[0]); /* */ $s = 173; case 173: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l245 */ $s = 118; continue;
-			/* l259: */ case 153:
-			_tmp$72 = position245;
-			_tmp$73 = tokenIndex245;
+			$r = add[0](162, position[0]); /* */ $s = 173; case 173: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l272 */ $s = 118; continue;
+			/* l286: */ case 153:
+			_tmp$72 = position272;
+			_tmp$73 = tokenIndex272;
 			position[0] = _tmp$72;
 			tokenIndex[0] = _tmp$73;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 174; continue; }
 			/* */ $s = 175; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 174:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 175:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 177; continue; }
 			/* */ $s = 178; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 177:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 178:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 179; continue; }
 			/* */ $s = 180; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 179:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 180:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { $s = 181; continue; }
 			/* */ $s = 182; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { */ case 181:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 182:
 			position[0] = position[0] + (1) >>> 0;
-			_r$22 = _rules[0][62](); /* */ $s = 185; case 185: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
+			_r$22 = _rules[0][65](); /* */ $s = 185; case 185: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
 			/* */ if (!_r$22) { $s = 183; continue; }
 			/* */ $s = 184; continue;
 			/* if (!_r$22) { */ case 183:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 184:
-			$r = add[0](156, position[0]); /* */ $s = 186; case 186: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$23 = _rules[0][30](); /* */ $s = 189; case 189: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
+			$r = add[0](163, position[0]); /* */ $s = 186; case 186: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$23 = _rules[0][33](); /* */ $s = 189; case 189: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
 			/* */ if (!_r$23) { $s = 187; continue; }
 			/* */ $s = 188; continue;
 			/* if (!_r$23) { */ case 187:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 188:
-			_r$24 = _rules[0][32](); /* */ $s = 192; case 192: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+			_r$24 = _rules[0][35](); /* */ $s = 192; case 192: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 			/* */ if (!_r$24) { $s = 190; continue; }
 			/* */ $s = 191; continue;
 			/* if (!_r$24) { */ case 190:
-				/* goto l261 */ $s = 176; continue;
+				/* goto l288 */ $s = 176; continue;
 			/* } */ case 191:
-			/* goto l245 */ $s = 118; continue;
-			/* l261: */ case 176:
-			_tmp$74 = position245;
-			_tmp$75 = tokenIndex245;
+			/* goto l272 */ $s = 118; continue;
+			/* l288: */ case 176:
+			_tmp$74 = position272;
+			_tmp$75 = tokenIndex272;
 			position[0] = _tmp$74;
 			tokenIndex[0] = _tmp$75;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 193; continue; }
 			/* */ $s = 194; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 193:
-				/* goto l263 */ $s = 195; continue;
+				/* goto l290 */ $s = 195; continue;
 			/* } */ case 194:
 			position[0] = position[0] + (1) >>> 0;
-			_r$25 = _rules[0][42](); /* */ $s = 198; case 198: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+			_r$25 = _rules[0][45](); /* */ $s = 198; case 198: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 			/* */ if (!_r$25) { $s = 196; continue; }
 			/* */ $s = 197; continue;
 			/* if (!_r$25) { */ case 196:
-				/* goto l263 */ $s = 195; continue;
+				/* goto l290 */ $s = 195; continue;
 			/* } */ case 197:
-			$r = add[0](157, position[0]); /* */ $s = 199; case 199: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$26 = _rules[0][32](); /* */ $s = 202; case 202: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+			$r = add[0](164, position[0]); /* */ $s = 199; case 199: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$26 = _rules[0][35](); /* */ $s = 202; case 202: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 			/* */ if (!_r$26) { $s = 200; continue; }
 			/* */ $s = 201; continue;
 			/* if (!_r$26) { */ case 200:
-				/* goto l263 */ $s = 195; continue;
+				/* goto l290 */ $s = 195; continue;
 			/* } */ case 201:
-			/* goto l245 */ $s = 118; continue;
-			/* l263: */ case 195:
-			_tmp$76 = position245;
-			_tmp$77 = tokenIndex245;
+			/* goto l272 */ $s = 118; continue;
+			/* l290: */ case 195:
+			_tmp$76 = position272;
+			_tmp$77 = tokenIndex272;
 			position[0] = _tmp$76;
 			tokenIndex[0] = _tmp$77;
-			_r$27 = _rules[0][42](); /* */ $s = 205; case 205: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+			_r$27 = _rules[0][45](); /* */ $s = 205; case 205: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
 			/* */ if (!_r$27) { $s = 203; continue; }
 			/* */ $s = 204; continue;
 			/* if (!_r$27) { */ case 203:
-				/* goto l265 */ $s = 206; continue;
+				/* goto l292 */ $s = 206; continue;
 			/* } */ case 204:
-			$r = add[0](158, position[0]); /* */ $s = 207; case 207: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](165, position[0]); /* */ $s = 207; case 207: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_tmp$78 = position[0];
 			_tmp$79 = tokenIndex[0];
-			position267 = _tmp$78;
-			tokenIndex267 = _tmp$79;
-			position269 = position[0];
+			position294 = _tmp$78;
+			tokenIndex294 = _tmp$79;
+			position296 = position[0];
 			_tmp$80 = position[0];
 			_tmp$81 = tokenIndex[0];
-			position270 = _tmp$80;
-			tokenIndex270 = _tmp$81;
+			position297 = _tmp$80;
+			tokenIndex297 = _tmp$81;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 208; continue; }
 			/* */ $s = 209; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 208:
-				/* goto l271 */ $s = 210; continue;
+				/* goto l298 */ $s = 210; continue;
 			/* } */ case 209:
 			position[0] = position[0] + (1) >>> 0;
-			_r$28 = _rules[0][62](); /* */ $s = 213; case 213: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+			_r$28 = _rules[0][65](); /* */ $s = 213; case 213: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 			/* */ if (!_r$28) { $s = 211; continue; }
 			/* */ $s = 212; continue;
 			/* if (!_r$28) { */ case 211:
-				/* goto l271 */ $s = 210; continue;
+				/* goto l298 */ $s = 210; continue;
 			/* } */ case 212:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 214; continue; }
 			/* */ $s = 215; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 214:
-				/* goto l271 */ $s = 210; continue;
+				/* goto l298 */ $s = 210; continue;
 			/* } */ case 215:
 			position[0] = position[0] + (1) >>> 0;
-			_r$29 = _rules[0][62](); /* */ $s = 218; case 218: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+			_r$29 = _rules[0][65](); /* */ $s = 218; case 218: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			/* */ if (!_r$29) { $s = 216; continue; }
 			/* */ $s = 217; continue;
 			/* if (!_r$29) { */ case 216:
-				/* goto l271 */ $s = 210; continue;
+				/* goto l298 */ $s = 210; continue;
 			/* } */ case 217:
-			$r = add[0](149, position[0]); /* */ $s = 219; case 219: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l270 */ $s = 220; continue;
-			/* l271: */ case 210:
-			_tmp$82 = position270;
-			_tmp$83 = tokenIndex270;
+			$r = add[0](156, position[0]); /* */ $s = 219; case 219: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l297 */ $s = 220; continue;
+			/* l298: */ case 210:
+			_tmp$82 = position297;
+			_tmp$83 = tokenIndex297;
 			position[0] = _tmp$82;
 			tokenIndex[0] = _tmp$83;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 221; continue; }
 			/* */ $s = 222; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 221:
-				/* goto l267 */ $s = 223; continue;
+				/* goto l294 */ $s = 223; continue;
 			/* } */ case 222:
 			position[0] = position[0] + (1) >>> 0;
-			_r$30 = _rules[0][62](); /* */ $s = 226; case 226: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+			_r$30 = _rules[0][65](); /* */ $s = 226; case 226: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 			/* */ if (!_r$30) { $s = 224; continue; }
 			/* */ $s = 225; continue;
 			/* if (!_r$30) { */ case 224:
-				/* goto l267 */ $s = 223; continue;
+				/* goto l294 */ $s = 223; continue;
 			/* } */ case 225:
-			$r = add[0](150, position[0]); /* */ $s = 227; case 227: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$31 = _rules[0][16](); /* */ $s = 230; case 230: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+			$r = add[0](157, position[0]); /* */ $s = 227; case 227: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$31 = _rules[0][19](); /* */ $s = 230; case 230: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
 			/* */ if (!_r$31) { $s = 228; continue; }
 			/* */ $s = 229; continue;
 			/* if (!_r$31) { */ case 228:
-				/* goto l267 */ $s = 223; continue;
+				/* goto l294 */ $s = 223; continue;
 			/* } */ case 229:
-			/* l274: */ case 231:
+			/* l301: */ case 231:
 			_tmp$84 = position[0];
 			_tmp$85 = tokenIndex[0];
-			position275 = _tmp$84;
-			tokenIndex275 = _tmp$85;
+			position302 = _tmp$84;
+			tokenIndex302 = _tmp$85;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { $s = 232; continue; }
 			/* */ $s = 233; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { */ case 232:
-				/* goto l275 */ $s = 234; continue;
+				/* goto l302 */ $s = 234; continue;
 			/* } */ case 233:
 			position[0] = position[0] + (1) >>> 0;
-			_r$32 = _rules[0][62](); /* */ $s = 237; case 237: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
+			_r$32 = _rules[0][65](); /* */ $s = 237; case 237: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
 			/* */ if (!_r$32) { $s = 235; continue; }
 			/* */ $s = 236; continue;
 			/* if (!_r$32) { */ case 235:
-				/* goto l275 */ $s = 234; continue;
+				/* goto l302 */ $s = 234; continue;
 			/* } */ case 236:
-			_r$33 = _rules[0][16](); /* */ $s = 240; case 240: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+			_r$33 = _rules[0][19](); /* */ $s = 240; case 240: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
 			/* */ if (!_r$33) { $s = 238; continue; }
 			/* */ $s = 239; continue;
 			/* if (!_r$33) { */ case 238:
-				/* goto l275 */ $s = 234; continue;
+				/* goto l302 */ $s = 234; continue;
 			/* } */ case 239:
-			$r = add[0](151, position[0]); /* */ $s = 241; case 241: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l274 */ $s = 231; continue;
-			/* l275: */ case 234:
-			_tmp$86 = position275;
-			_tmp$87 = tokenIndex275;
+			$r = add[0](158, position[0]); /* */ $s = 241; case 241: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l301 */ $s = 231; continue;
+			/* l302: */ case 234:
+			_tmp$86 = position302;
+			_tmp$87 = tokenIndex302;
 			position[0] = _tmp$86;
 			tokenIndex[0] = _tmp$87;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 242; continue; }
 			/* */ $s = 243; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 242:
-				/* goto l267 */ $s = 223; continue;
+				/* goto l294 */ $s = 223; continue;
 			/* } */ case 243:
 			position[0] = position[0] + (1) >>> 0;
-			_r$34 = _rules[0][62](); /* */ $s = 246; case 246: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
+			_r$34 = _rules[0][65](); /* */ $s = 246; case 246: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
 			/* */ if (!_r$34) { $s = 244; continue; }
 			/* */ $s = 245; continue;
 			/* if (!_r$34) { */ case 244:
-				/* goto l267 */ $s = 223; continue;
+				/* goto l294 */ $s = 223; continue;
 			/* } */ case 245:
-			$r = add[0](152, position[0]); /* */ $s = 247; case 247: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l270: */ case 220:
-			$r = add[0](33, position269); /* */ $s = 248; case 248: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l268 */ $s = 249; continue;
-			/* l267: */ case 223:
-			_tmp$88 = position267;
-			_tmp$89 = tokenIndex267;
+			$r = add[0](159, position[0]); /* */ $s = 247; case 247: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l297: */ case 220:
+			$r = add[0](36, position296); /* */ $s = 248; case 248: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l295 */ $s = 249; continue;
+			/* l294: */ case 223:
+			_tmp$88 = position294;
+			_tmp$89 = tokenIndex294;
 			position[0] = _tmp$88;
 			tokenIndex[0] = _tmp$89;
-			/* l268: */ case 249:
-			_r$35 = _rules[0][30](); /* */ $s = 252; case 252: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+			/* l295: */ case 249:
+			_r$35 = _rules[0][33](); /* */ $s = 252; case 252: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
 			/* */ if (!_r$35) { $s = 250; continue; }
 			/* */ $s = 251; continue;
 			/* if (!_r$35) { */ case 250:
-				/* goto l265 */ $s = 206; continue;
+				/* goto l292 */ $s = 206; continue;
 			/* } */ case 251:
-			_r$36 = _rules[0][32](); /* */ $s = 255; case 255: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
+			_r$36 = _rules[0][35](); /* */ $s = 255; case 255: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
 			/* */ if (!_r$36) { $s = 253; continue; }
 			/* */ $s = 254; continue;
 			/* if (!_r$36) { */ case 253:
-				/* goto l265 */ $s = 206; continue;
+				/* goto l292 */ $s = 206; continue;
 			/* } */ case 254:
-			/* goto l245 */ $s = 118; continue;
-			/* l265: */ case 206:
-			_tmp$90 = position245;
-			_tmp$91 = tokenIndex245;
+			/* goto l272 */ $s = 118; continue;
+			/* l292: */ case 206:
+			_tmp$90 = position272;
+			_tmp$91 = tokenIndex272;
 			position[0] = _tmp$90;
 			tokenIndex[0] = _tmp$91;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 256; continue; }
 			/* */ $s = 257; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 256:
-				/* goto l278 */ $s = 258; continue;
+				/* goto l305 */ $s = 258; continue;
 			/* } */ case 257:
 			position[0] = position[0] + (1) >>> 0;
-			_r$37 = _rules[0][62](); /* */ $s = 261; case 261: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
+			_r$37 = _rules[0][65](); /* */ $s = 261; case 261: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
 			/* */ if (!_r$37) { $s = 259; continue; }
 			/* */ $s = 260; continue;
 			/* if (!_r$37) { */ case 259:
-				/* goto l278 */ $s = 258; continue;
+				/* goto l305 */ $s = 258; continue;
 			/* } */ case 260:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 262; continue; }
 			/* */ $s = 263; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 262:
-				/* goto l278 */ $s = 258; continue;
+				/* goto l305 */ $s = 258; continue;
 			/* } */ case 263:
 			position[0] = position[0] + (1) >>> 0;
-			_r$38 = _rules[0][62](); /* */ $s = 266; case 266: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
+			_r$38 = _rules[0][65](); /* */ $s = 266; case 266: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
 			/* */ if (!_r$38) { $s = 264; continue; }
 			/* */ $s = 265; continue;
 			/* if (!_r$38) { */ case 264:
-				/* goto l278 */ $s = 258; continue;
+				/* goto l305 */ $s = 258; continue;
 			/* } */ case 265:
-			$r = add[0](159, position[0]); /* */ $s = 267; case 267: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](166, position[0]); /* */ $s = 267; case 267: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_tmp$92 = position[0];
 			_tmp$93 = tokenIndex[0];
-			position280 = _tmp$92;
-			tokenIndex280 = _tmp$93;
-			_r$39 = _rules[0][31](); /* */ $s = 270; case 270: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
+			position307 = _tmp$92;
+			tokenIndex307 = _tmp$93;
+			_r$39 = _rules[0][34](); /* */ $s = 270; case 270: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
 			/* */ if (!_r$39) { $s = 268; continue; }
 			/* */ $s = 269; continue;
 			/* if (!_r$39) { */ case 268:
-				/* goto l280 */ $s = 271; continue;
+				/* goto l307 */ $s = 271; continue;
 			/* } */ case 269:
-			/* goto l281 */ $s = 272; continue;
-			/* l280: */ case 271:
-			_tmp$94 = position280;
-			_tmp$95 = tokenIndex280;
+			/* goto l308 */ $s = 272; continue;
+			/* l307: */ case 271:
+			_tmp$94 = position307;
+			_tmp$95 = tokenIndex307;
 			position[0] = _tmp$94;
 			tokenIndex[0] = _tmp$95;
-			/* l281: */ case 272:
-			/* goto l245 */ $s = 118; continue;
-			/* l278: */ case 258:
-			_tmp$96 = position245;
-			_tmp$97 = tokenIndex245;
+			/* l308: */ case 272:
+			/* goto l272 */ $s = 118; continue;
+			/* l305: */ case 258:
+			_tmp$96 = position272;
+			_tmp$97 = tokenIndex272;
 			position[0] = _tmp$96;
 			tokenIndex[0] = _tmp$97;
-				_4 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_4 === (91)) { $s = 274; continue; }
-				/* */ if (_4 === (40)) { $s = 275; continue; }
+				_6 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_6 === (91)) { $s = 274; continue; }
+				/* */ if (_6 === (40)) { $s = 275; continue; }
 				/* */ $s = 276; continue;
-				/* if (_4 === (91)) { */ case 274:
+				/* if (_6 === (91)) { */ case 274:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 278; continue; }
 					/* */ $s = 279; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 278:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 279:
 					position[0] = position[0] + (1) >>> 0;
-					_r$40 = _rules[0][62](); /* */ $s = 283; case 283: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
+					_r$40 = _rules[0][65](); /* */ $s = 283; case 283: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
 					/* */ if (!_r$40) { $s = 281; continue; }
 					/* */ $s = 282; continue;
 					/* if (!_r$40) { */ case 281:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 282:
-					$r = add[0](160, position[0]); /* */ $s = 284; case 284: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					_r$41 = _rules[0][16](); /* */ $s = 287; case 287: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
+					$r = add[0](167, position[0]); /* */ $s = 284; case 284: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					_r$41 = _rules[0][19](); /* */ $s = 287; case 287: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
 					/* */ if (!_r$41) { $s = 285; continue; }
 					/* */ $s = 286; continue;
 					/* if (!_r$41) { */ case 285:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 286:
-					/* l284: */ case 288:
+					/* l311: */ case 288:
 					_tmp$98 = position[0];
 					_tmp$99 = tokenIndex[0];
-					position285 = _tmp$98;
-					tokenIndex285 = _tmp$99;
+					position312 = _tmp$98;
+					tokenIndex312 = _tmp$99;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { $s = 289; continue; }
 					/* */ $s = 290; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 44))) { */ case 289:
-						/* goto l285 */ $s = 291; continue;
+						/* goto l312 */ $s = 291; continue;
 					/* } */ case 290:
 					position[0] = position[0] + (1) >>> 0;
-					_r$42 = _rules[0][62](); /* */ $s = 294; case 294: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
+					_r$42 = _rules[0][65](); /* */ $s = 294; case 294: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
 					/* */ if (!_r$42) { $s = 292; continue; }
 					/* */ $s = 293; continue;
 					/* if (!_r$42) { */ case 292:
-						/* goto l285 */ $s = 291; continue;
+						/* goto l312 */ $s = 291; continue;
 					/* } */ case 293:
-					_r$43 = _rules[0][16](); /* */ $s = 297; case 297: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
+					_r$43 = _rules[0][19](); /* */ $s = 297; case 297: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
 					/* */ if (!_r$43) { $s = 295; continue; }
 					/* */ $s = 296; continue;
 					/* if (!_r$43) { */ case 295:
-						/* goto l285 */ $s = 291; continue;
+						/* goto l312 */ $s = 291; continue;
 					/* } */ case 296:
-					$r = add[0](161, position[0]); /* */ $s = 298; case 298: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l284 */ $s = 288; continue;
-					/* l285: */ case 291:
-					_tmp$100 = position285;
-					_tmp$101 = tokenIndex285;
+					$r = add[0](168, position[0]); /* */ $s = 298; case 298: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l311 */ $s = 288; continue;
+					/* l312: */ case 291:
+					_tmp$100 = position312;
+					_tmp$101 = tokenIndex312;
 					position[0] = _tmp$100;
 					tokenIndex[0] = _tmp$101;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 299; continue; }
 					/* */ $s = 300; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 299:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 300:
 					position[0] = position[0] + (1) >>> 0;
-					_r$44 = _rules[0][62](); /* */ $s = 303; case 303: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
+					_r$44 = _rules[0][65](); /* */ $s = 303; case 303: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
 					/* */ if (!_r$44) { $s = 301; continue; }
 					/* */ $s = 302; continue;
 					/* if (!_r$44) { */ case 301:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 302:
-					$r = add[0](162, position[0]); /* */ $s = 304; case 304: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](169, position[0]); /* */ $s = 304; case 304: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					_tmp$102 = position[0];
 					_tmp$103 = tokenIndex[0];
-					position288 = _tmp$102;
-					tokenIndex288 = _tmp$103;
-					_r$45 = _rules[0][31](); /* */ $s = 307; case 307: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
+					position315 = _tmp$102;
+					tokenIndex315 = _tmp$103;
+					_r$45 = _rules[0][34](); /* */ $s = 307; case 307: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
 					/* */ if (!_r$45) { $s = 305; continue; }
 					/* */ $s = 306; continue;
 					/* if (!_r$45) { */ case 305:
-						/* goto l288 */ $s = 308; continue;
+						/* goto l315 */ $s = 308; continue;
 					/* } */ case 306:
-					/* goto l289 */ $s = 309; continue;
-					/* l288: */ case 308:
-					_tmp$104 = position288;
-					_tmp$105 = tokenIndex288;
+					/* goto l316 */ $s = 309; continue;
+					/* l315: */ case 308:
+					_tmp$104 = position315;
+					_tmp$105 = tokenIndex315;
 					position[0] = _tmp$104;
 					tokenIndex[0] = _tmp$105;
-					/* l289: */ case 309:
+					/* l316: */ case 309:
 					/* break; */ $s = 273; continue;
 					$s = 277; continue;
-				/* } else if (_4 === (40)) { */ case 275:
-					_r$46 = _rules[0][43](); /* */ $s = 312; case 312: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
+				/* } else if (_6 === (40)) { */ case 275:
+					_r$46 = _rules[0][46](); /* */ $s = 312; case 312: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
 					/* */ if (!_r$46) { $s = 310; continue; }
 					/* */ $s = 311; continue;
 					/* if (!_r$46) { */ case 310:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 311:
-					_r$47 = _rules[0][30](); /* */ $s = 315; case 315: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
+					_r$47 = _rules[0][33](); /* */ $s = 315; case 315: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
 					/* */ if (!_r$47) { $s = 313; continue; }
 					/* */ $s = 314; continue;
 					/* if (!_r$47) { */ case 313:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 314:
-					_r$48 = _rules[0][32](); /* */ $s = 318; case 318: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
+					_r$48 = _rules[0][35](); /* */ $s = 318; case 318: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
 					/* */ if (!_r$48) { $s = 316; continue; }
 					/* */ $s = 317; continue;
 					/* if (!_r$48) { */ case 316:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 317:
 					$s = 277; continue;
 				/* } else { */ case 276:
-					position290 = position[0];
+					position317 = position[0];
 					_tmp$106 = position[0];
 					_tmp$107 = tokenIndex[0];
-					position291 = _tmp$106;
-					tokenIndex291 = _tmp$107;
+					position318 = _tmp$106;
+					tokenIndex318 = _tmp$107;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 319; continue; }
 					/* */ $s = 320; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 319:
-						/* goto l292 */ $s = 321; continue;
+						/* goto l319 */ $s = 321; continue;
 					/* } */ case 320:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 322; continue; }
 					/* */ $s = 323; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 322:
-						/* goto l292 */ $s = 321; continue;
+						/* goto l319 */ $s = 321; continue;
 					/* } */ case 323:
 					position[0] = position[0] + (1) >>> 0;
-					$r = add[0](169, position[0]); /* */ $s = 324; case 324: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l291 */ $s = 325; continue;
-					/* l292: */ case 321:
-					_tmp$108 = position291;
-					_tmp$109 = tokenIndex291;
+					$r = add[0](176, position[0]); /* */ $s = 324; case 324: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l318 */ $s = 325; continue;
+					/* l319: */ case 321:
+					_tmp$108 = position318;
+					_tmp$109 = tokenIndex318;
 					position[0] = _tmp$108;
 					tokenIndex[0] = _tmp$109;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 326; continue; }
 					/* */ $s = 327; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 326:
-						/* goto l294 */ $s = 328; continue;
+						/* goto l321 */ $s = 328; continue;
 					/* } */ case 327:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 329; continue; }
 					/* */ $s = 330; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 329:
-						/* goto l294 */ $s = 328; continue;
+						/* goto l321 */ $s = 328; continue;
 					/* } */ case 330:
 					position[0] = position[0] + (1) >>> 0;
-					$r = add[0](170, position[0]); /* */ $s = 331; case 331: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l291 */ $s = 325; continue;
-					/* l294: */ case 328:
-					_tmp$110 = position291;
-					_tmp$111 = tokenIndex291;
+					$r = add[0](177, position[0]); /* */ $s = 331; case 331: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l318 */ $s = 325; continue;
+					/* l321: */ case 328:
+					_tmp$110 = position318;
+					_tmp$111 = tokenIndex318;
 					position[0] = _tmp$110;
 					tokenIndex[0] = _tmp$111;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 332; continue; }
 					/* */ $s = 333; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 332:
-						/* goto l296 */ $s = 334; continue;
+						/* goto l323 */ $s = 334; continue;
 					/* } */ case 333:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 335; continue; }
 					/* */ $s = 336; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 335:
-						/* goto l296 */ $s = 334; continue;
+						/* goto l323 */ $s = 334; continue;
 					/* } */ case 336:
 					position[0] = position[0] + (1) >>> 0;
-					$r = add[0](171, position[0]); /* */ $s = 337; case 337: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l291 */ $s = 325; continue;
-					/* l296: */ case 334:
-					_tmp$112 = position291;
-					_tmp$113 = tokenIndex291;
+					$r = add[0](178, position[0]); /* */ $s = 337; case 337: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l318 */ $s = 325; continue;
+					/* l323: */ case 334:
+					_tmp$112 = position318;
+					_tmp$113 = tokenIndex318;
 					position[0] = _tmp$112;
 					tokenIndex[0] = _tmp$113;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 338; continue; }
 					/* */ $s = 339; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 338:
-						/* goto l298 */ $s = 340; continue;
+						/* goto l325 */ $s = 340; continue;
 					/* } */ case 339:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 341; continue; }
 					/* */ $s = 342; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 341:
-						/* goto l298 */ $s = 340; continue;
+						/* goto l325 */ $s = 340; continue;
 					/* } */ case 342:
 					position[0] = position[0] + (1) >>> 0;
-					$r = add[0](172, position[0]); /* */ $s = 343; case 343: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* goto l291 */ $s = 325; continue;
-					/* l298: */ case 340:
-					_tmp$114 = position291;
-					_tmp$115 = tokenIndex291;
+					$r = add[0](179, position[0]); /* */ $s = 343; case 343: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* goto l318 */ $s = 325; continue;
+					/* l325: */ case 340:
+					_tmp$114 = position318;
+					_tmp$115 = tokenIndex318;
 					position[0] = _tmp$114;
 					tokenIndex[0] = _tmp$115;
-						_5 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-						/* */ if (_5 === (39)) { $s = 345; continue; }
-						/* */ if (_5 === (34)) { $s = 346; continue; }
-						/* */ if (_5 === (30)) { $s = 347; continue; }
+						_7 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+						/* */ if (_7 === (39)) { $s = 345; continue; }
+						/* */ if (_7 === (34)) { $s = 346; continue; }
+						/* */ if (_7 === (30)) { $s = 347; continue; }
 						/* */ $s = 348; continue;
-						/* if (_5 === (39)) { */ case 345:
+						/* if (_7 === (39)) { */ case 345:
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 350; continue; }
 							/* */ $s = 351; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 350:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 351:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](183, position[0]); /* */ $s = 352; case 352: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							position302 = position[0];
-							/* l303: */ case 353:
+							$r = add[0](190, position[0]); /* */ $s = 352; case 352: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							position329 = position[0];
+							/* l330: */ case 353:
 							_tmp$116 = position[0];
 							_tmp$117 = tokenIndex[0];
-							position304 = _tmp$116;
-							tokenIndex304 = _tmp$117;
-							position305 = position[0];
-							position306 = position[0];
+							position331 = _tmp$116;
+							tokenIndex331 = _tmp$117;
+							position332 = position[0];
+							position333 = position[0];
 							_tmp$118 = position[0];
 							_tmp$119 = tokenIndex[0];
-							position309 = _tmp$118;
-							tokenIndex309 = _tmp$119;
-							_r$49 = _rules[0][64](); /* */ $s = 356; case 356: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
+							position336 = _tmp$118;
+							tokenIndex336 = _tmp$119;
+							_r$49 = _rules[0][67](); /* */ $s = 356; case 356: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
 							/* */ if (!_r$49) { $s = 354; continue; }
 							/* */ $s = 355; continue;
 							/* if (!_r$49) { */ case 354:
-								/* goto l310 */ $s = 357; continue;
+								/* goto l337 */ $s = 357; continue;
 							/* } */ case 355:
-							/* goto l309 */ $s = 358; continue;
-							/* l310: */ case 357:
-							_tmp$120 = position309;
-							_tmp$121 = tokenIndex309;
+							/* goto l336 */ $s = 358; continue;
+							/* l337: */ case 357:
+							_tmp$120 = position336;
+							_tmp$121 = tokenIndex336;
 							position[0] = _tmp$120;
 							tokenIndex[0] = _tmp$121;
 							_tmp$122 = position[0];
 							_tmp$123 = tokenIndex[0];
-							position311 = _tmp$122;
-							tokenIndex311 = _tmp$123;
-								_6 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_6 === (13)) { $s = 360; continue; }
-								/* */ if (_6 === (10)) { $s = 361; continue; }
-								/* */ if (_6 === (92)) { $s = 362; continue; }
-								/* */ if (_6 === (39)) { $s = 363; continue; }
+							position338 = _tmp$122;
+							tokenIndex338 = _tmp$123;
+								_8 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_8 === (13)) { $s = 360; continue; }
+								/* */ if (_8 === (10)) { $s = 361; continue; }
+								/* */ if (_8 === (92)) { $s = 362; continue; }
+								/* */ if (_8 === (39)) { $s = 363; continue; }
 								/* */ $s = 364; continue;
-								/* if (_6 === (13)) { */ case 360:
+								/* if (_8 === (13)) { */ case 360:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 366; continue; }
 									/* */ $s = 367; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 366:
-										/* goto l311 */ $s = 368; continue;
+										/* goto l338 */ $s = 368; continue;
 									/* } */ case 367:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 365; continue;
-								/* } else if (_6 === (10)) { */ case 361:
+								/* } else if (_8 === (10)) { */ case 361:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 369; continue; }
 									/* */ $s = 370; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 369:
-										/* goto l311 */ $s = 368; continue;
+										/* goto l338 */ $s = 368; continue;
 									/* } */ case 370:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 365; continue;
-								/* } else if (_6 === (92)) { */ case 362:
+								/* } else if (_8 === (92)) { */ case 362:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 371; continue; }
 									/* */ $s = 372; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 371:
-										/* goto l311 */ $s = 368; continue;
+										/* goto l338 */ $s = 368; continue;
 									/* } */ case 372:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 365; continue;
-								/* } else if (_6 === (39)) { */ case 363:
+								/* } else if (_8 === (39)) { */ case 363:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 373; continue; }
 									/* */ $s = 374; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 373:
-										/* goto l311 */ $s = 368; continue;
+										/* goto l338 */ $s = 368; continue;
 									/* } */ case 374:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 365; continue;
@@ -34895,84 +35219,84 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 375; continue; }
 									/* */ $s = 376; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 375:
-										/* goto l311 */ $s = 368; continue;
+										/* goto l338 */ $s = 368; continue;
 									/* } */ case 376:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 365:
 							case 359:
-							/* goto l304 */ $s = 377; continue;
-							/* l311: */ case 368:
-							_tmp$124 = position311;
-							_tmp$125 = tokenIndex311;
+							/* goto l331 */ $s = 377; continue;
+							/* l338: */ case 368:
+							_tmp$124 = position338;
+							_tmp$125 = tokenIndex338;
 							position[0] = _tmp$124;
 							tokenIndex[0] = _tmp$125;
 							_r$50 = matchDot[0](); /* */ $s = 380; case 380: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
 							/* */ if (!_r$50) { $s = 378; continue; }
 							/* */ $s = 379; continue;
 							/* if (!_r$50) { */ case 378:
-								/* goto l304 */ $s = 377; continue;
+								/* goto l331 */ $s = 377; continue;
 							/* } */ case 379:
-							/* l309: */ case 358:
-							/* l307: */ case 381:
+							/* l336: */ case 358:
+							/* l334: */ case 381:
 							_tmp$126 = position[0];
 							_tmp$127 = tokenIndex[0];
-							position308 = _tmp$126;
-							tokenIndex308 = _tmp$127;
+							position335 = _tmp$126;
+							tokenIndex335 = _tmp$127;
 							_tmp$128 = position[0];
 							_tmp$129 = tokenIndex[0];
-							position313 = _tmp$128;
-							tokenIndex313 = _tmp$129;
-							_r$51 = _rules[0][64](); /* */ $s = 384; case 384: if($c) { $c = false; _r$51 = _r$51.$blk(); } if (_r$51 && _r$51.$blk !== undefined) { break s; }
+							position340 = _tmp$128;
+							tokenIndex340 = _tmp$129;
+							_r$51 = _rules[0][67](); /* */ $s = 384; case 384: if($c) { $c = false; _r$51 = _r$51.$blk(); } if (_r$51 && _r$51.$blk !== undefined) { break s; }
 							/* */ if (!_r$51) { $s = 382; continue; }
 							/* */ $s = 383; continue;
 							/* if (!_r$51) { */ case 382:
-								/* goto l314 */ $s = 385; continue;
+								/* goto l341 */ $s = 385; continue;
 							/* } */ case 383:
-							/* goto l313 */ $s = 386; continue;
-							/* l314: */ case 385:
-							_tmp$130 = position313;
-							_tmp$131 = tokenIndex313;
+							/* goto l340 */ $s = 386; continue;
+							/* l341: */ case 385:
+							_tmp$130 = position340;
+							_tmp$131 = tokenIndex340;
 							position[0] = _tmp$130;
 							tokenIndex[0] = _tmp$131;
 							_tmp$132 = position[0];
 							_tmp$133 = tokenIndex[0];
-							position315 = _tmp$132;
-							tokenIndex315 = _tmp$133;
-								_7 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_7 === (13)) { $s = 388; continue; }
-								/* */ if (_7 === (10)) { $s = 389; continue; }
-								/* */ if (_7 === (92)) { $s = 390; continue; }
-								/* */ if (_7 === (39)) { $s = 391; continue; }
+							position342 = _tmp$132;
+							tokenIndex342 = _tmp$133;
+								_9 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_9 === (13)) { $s = 388; continue; }
+								/* */ if (_9 === (10)) { $s = 389; continue; }
+								/* */ if (_9 === (92)) { $s = 390; continue; }
+								/* */ if (_9 === (39)) { $s = 391; continue; }
 								/* */ $s = 392; continue;
-								/* if (_7 === (13)) { */ case 388:
+								/* if (_9 === (13)) { */ case 388:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 394; continue; }
 									/* */ $s = 395; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 394:
-										/* goto l315 */ $s = 396; continue;
+										/* goto l342 */ $s = 396; continue;
 									/* } */ case 395:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 393; continue;
-								/* } else if (_7 === (10)) { */ case 389:
+								/* } else if (_9 === (10)) { */ case 389:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 397; continue; }
 									/* */ $s = 398; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 397:
-										/* goto l315 */ $s = 396; continue;
+										/* goto l342 */ $s = 396; continue;
 									/* } */ case 398:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 393; continue;
-								/* } else if (_7 === (92)) { */ case 390:
+								/* } else if (_9 === (92)) { */ case 390:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 399; continue; }
 									/* */ $s = 400; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 399:
-										/* goto l315 */ $s = 396; continue;
+										/* goto l342 */ $s = 396; continue;
 									/* } */ case 400:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 393; continue;
-								/* } else if (_7 === (39)) { */ case 391:
+								/* } else if (_9 === (39)) { */ case 391:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 401; continue; }
 									/* */ $s = 402; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 401:
-										/* goto l315 */ $s = 396; continue;
+										/* goto l342 */ $s = 396; continue;
 									/* } */ case 402:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 393; continue;
@@ -34980,119 +35304,119 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 403; continue; }
 									/* */ $s = 404; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 403:
-										/* goto l315 */ $s = 396; continue;
+										/* goto l342 */ $s = 396; continue;
 									/* } */ case 404:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 393:
 							case 387:
-							/* goto l308 */ $s = 405; continue;
-							/* l315: */ case 396:
-							_tmp$134 = position315;
-							_tmp$135 = tokenIndex315;
+							/* goto l335 */ $s = 405; continue;
+							/* l342: */ case 396:
+							_tmp$134 = position342;
+							_tmp$135 = tokenIndex342;
 							position[0] = _tmp$134;
 							tokenIndex[0] = _tmp$135;
 							_r$52 = matchDot[0](); /* */ $s = 408; case 408: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
 							/* */ if (!_r$52) { $s = 406; continue; }
 							/* */ $s = 407; continue;
 							/* if (!_r$52) { */ case 406:
-								/* goto l308 */ $s = 405; continue;
+								/* goto l335 */ $s = 405; continue;
 							/* } */ case 407:
-							/* l313: */ case 386:
-							/* goto l307 */ $s = 381; continue;
-							/* l308: */ case 405:
-							_tmp$136 = position308;
-							_tmp$137 = tokenIndex308;
+							/* l340: */ case 386:
+							/* goto l334 */ $s = 381; continue;
+							/* l335: */ case 405:
+							_tmp$136 = position335;
+							_tmp$137 = tokenIndex335;
 							position[0] = _tmp$136;
 							tokenIndex[0] = _tmp$137;
-							$r = add[0](79, position306); /* */ $s = 409; case 409: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](168, position[0]); /* */ $s = 410; case 410: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](40, position305); /* */ $s = 411; case 411: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							/* goto l303 */ $s = 353; continue;
-							/* l304: */ case 377:
-							_tmp$138 = position304;
-							_tmp$139 = tokenIndex304;
+							$r = add[0](86, position333); /* */ $s = 409; case 409: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](175, position[0]); /* */ $s = 410; case 410: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](43, position332); /* */ $s = 411; case 411: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							/* goto l330 */ $s = 353; continue;
+							/* l331: */ case 377:
+							_tmp$138 = position331;
+							_tmp$139 = tokenIndex331;
 							position[0] = _tmp$138;
 							tokenIndex[0] = _tmp$139;
-							$r = add[0](79, position302); /* */ $s = 412; case 412: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](86, position329); /* */ $s = 412; case 412: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 413; continue; }
 							/* */ $s = 414; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 413:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 414:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](184, position[0]); /* */ $s = 415; case 415: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](191, position[0]); /* */ $s = 415; case 415: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = 349; continue;
-						/* } else if (_5 === (34)) { */ case 346:
+						/* } else if (_7 === (34)) { */ case 346:
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 416; continue; }
 							/* */ $s = 417; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 416:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 417:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](181, position[0]); /* */ $s = 418; case 418: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							position320 = position[0];
-							/* l321: */ case 419:
+							$r = add[0](188, position[0]); /* */ $s = 418; case 418: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							position347 = position[0];
+							/* l348: */ case 419:
 							_tmp$140 = position[0];
 							_tmp$141 = tokenIndex[0];
-							position322 = _tmp$140;
-							tokenIndex322 = _tmp$141;
-							position323 = position[0];
-							position324 = position[0];
+							position349 = _tmp$140;
+							tokenIndex349 = _tmp$141;
+							position350 = position[0];
+							position351 = position[0];
 							_tmp$142 = position[0];
 							_tmp$143 = tokenIndex[0];
-							position327 = _tmp$142;
-							tokenIndex327 = _tmp$143;
-							_r$53 = _rules[0][64](); /* */ $s = 422; case 422: if($c) { $c = false; _r$53 = _r$53.$blk(); } if (_r$53 && _r$53.$blk !== undefined) { break s; }
+							position354 = _tmp$142;
+							tokenIndex354 = _tmp$143;
+							_r$53 = _rules[0][67](); /* */ $s = 422; case 422: if($c) { $c = false; _r$53 = _r$53.$blk(); } if (_r$53 && _r$53.$blk !== undefined) { break s; }
 							/* */ if (!_r$53) { $s = 420; continue; }
 							/* */ $s = 421; continue;
 							/* if (!_r$53) { */ case 420:
-								/* goto l328 */ $s = 423; continue;
+								/* goto l355 */ $s = 423; continue;
 							/* } */ case 421:
-							/* goto l327 */ $s = 424; continue;
-							/* l328: */ case 423:
-							_tmp$144 = position327;
-							_tmp$145 = tokenIndex327;
+							/* goto l354 */ $s = 424; continue;
+							/* l355: */ case 423:
+							_tmp$144 = position354;
+							_tmp$145 = tokenIndex354;
 							position[0] = _tmp$144;
 							tokenIndex[0] = _tmp$145;
 							_tmp$146 = position[0];
 							_tmp$147 = tokenIndex[0];
-							position329 = _tmp$146;
-							tokenIndex329 = _tmp$147;
-								_8 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_8 === (13)) { $s = 426; continue; }
-								/* */ if (_8 === (10)) { $s = 427; continue; }
-								/* */ if (_8 === (92)) { $s = 428; continue; }
-								/* */ if (_8 === (34)) { $s = 429; continue; }
+							position356 = _tmp$146;
+							tokenIndex356 = _tmp$147;
+								_10 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_10 === (13)) { $s = 426; continue; }
+								/* */ if (_10 === (10)) { $s = 427; continue; }
+								/* */ if (_10 === (92)) { $s = 428; continue; }
+								/* */ if (_10 === (34)) { $s = 429; continue; }
 								/* */ $s = 430; continue;
-								/* if (_8 === (13)) { */ case 426:
+								/* if (_10 === (13)) { */ case 426:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 432; continue; }
 									/* */ $s = 433; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 432:
-										/* goto l329 */ $s = 434; continue;
+										/* goto l356 */ $s = 434; continue;
 									/* } */ case 433:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 431; continue;
-								/* } else if (_8 === (10)) { */ case 427:
+								/* } else if (_10 === (10)) { */ case 427:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 435; continue; }
 									/* */ $s = 436; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 435:
-										/* goto l329 */ $s = 434; continue;
+										/* goto l356 */ $s = 434; continue;
 									/* } */ case 436:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 431; continue;
-								/* } else if (_8 === (92)) { */ case 428:
+								/* } else if (_10 === (92)) { */ case 428:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 437; continue; }
 									/* */ $s = 438; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 437:
-										/* goto l329 */ $s = 434; continue;
+										/* goto l356 */ $s = 434; continue;
 									/* } */ case 438:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 431; continue;
-								/* } else if (_8 === (34)) { */ case 429:
+								/* } else if (_10 === (34)) { */ case 429:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 439; continue; }
 									/* */ $s = 440; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 439:
-										/* goto l329 */ $s = 434; continue;
+										/* goto l356 */ $s = 434; continue;
 									/* } */ case 440:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 431; continue;
@@ -35100,84 +35424,84 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 441; continue; }
 									/* */ $s = 442; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 441:
-										/* goto l329 */ $s = 434; continue;
+										/* goto l356 */ $s = 434; continue;
 									/* } */ case 442:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 431:
 							case 425:
-							/* goto l322 */ $s = 443; continue;
-							/* l329: */ case 434:
-							_tmp$148 = position329;
-							_tmp$149 = tokenIndex329;
+							/* goto l349 */ $s = 443; continue;
+							/* l356: */ case 434:
+							_tmp$148 = position356;
+							_tmp$149 = tokenIndex356;
 							position[0] = _tmp$148;
 							tokenIndex[0] = _tmp$149;
 							_r$54 = matchDot[0](); /* */ $s = 446; case 446: if($c) { $c = false; _r$54 = _r$54.$blk(); } if (_r$54 && _r$54.$blk !== undefined) { break s; }
 							/* */ if (!_r$54) { $s = 444; continue; }
 							/* */ $s = 445; continue;
 							/* if (!_r$54) { */ case 444:
-								/* goto l322 */ $s = 443; continue;
+								/* goto l349 */ $s = 443; continue;
 							/* } */ case 445:
-							/* l327: */ case 424:
-							/* l325: */ case 447:
+							/* l354: */ case 424:
+							/* l352: */ case 447:
 							_tmp$150 = position[0];
 							_tmp$151 = tokenIndex[0];
-							position326 = _tmp$150;
-							tokenIndex326 = _tmp$151;
+							position353 = _tmp$150;
+							tokenIndex353 = _tmp$151;
 							_tmp$152 = position[0];
 							_tmp$153 = tokenIndex[0];
-							position331 = _tmp$152;
-							tokenIndex331 = _tmp$153;
-							_r$55 = _rules[0][64](); /* */ $s = 450; case 450: if($c) { $c = false; _r$55 = _r$55.$blk(); } if (_r$55 && _r$55.$blk !== undefined) { break s; }
+							position358 = _tmp$152;
+							tokenIndex358 = _tmp$153;
+							_r$55 = _rules[0][67](); /* */ $s = 450; case 450: if($c) { $c = false; _r$55 = _r$55.$blk(); } if (_r$55 && _r$55.$blk !== undefined) { break s; }
 							/* */ if (!_r$55) { $s = 448; continue; }
 							/* */ $s = 449; continue;
 							/* if (!_r$55) { */ case 448:
-								/* goto l332 */ $s = 451; continue;
+								/* goto l359 */ $s = 451; continue;
 							/* } */ case 449:
-							/* goto l331 */ $s = 452; continue;
-							/* l332: */ case 451:
-							_tmp$154 = position331;
-							_tmp$155 = tokenIndex331;
+							/* goto l358 */ $s = 452; continue;
+							/* l359: */ case 451:
+							_tmp$154 = position358;
+							_tmp$155 = tokenIndex358;
 							position[0] = _tmp$154;
 							tokenIndex[0] = _tmp$155;
 							_tmp$156 = position[0];
 							_tmp$157 = tokenIndex[0];
-							position333 = _tmp$156;
-							tokenIndex333 = _tmp$157;
-								_9 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_9 === (13)) { $s = 454; continue; }
-								/* */ if (_9 === (10)) { $s = 455; continue; }
-								/* */ if (_9 === (92)) { $s = 456; continue; }
-								/* */ if (_9 === (34)) { $s = 457; continue; }
+							position360 = _tmp$156;
+							tokenIndex360 = _tmp$157;
+								_11 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_11 === (13)) { $s = 454; continue; }
+								/* */ if (_11 === (10)) { $s = 455; continue; }
+								/* */ if (_11 === (92)) { $s = 456; continue; }
+								/* */ if (_11 === (34)) { $s = 457; continue; }
 								/* */ $s = 458; continue;
-								/* if (_9 === (13)) { */ case 454:
+								/* if (_11 === (13)) { */ case 454:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 460; continue; }
 									/* */ $s = 461; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 460:
-										/* goto l333 */ $s = 462; continue;
+										/* goto l360 */ $s = 462; continue;
 									/* } */ case 461:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 459; continue;
-								/* } else if (_9 === (10)) { */ case 455:
+								/* } else if (_11 === (10)) { */ case 455:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 463; continue; }
 									/* */ $s = 464; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 463:
-										/* goto l333 */ $s = 462; continue;
+										/* goto l360 */ $s = 462; continue;
 									/* } */ case 464:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 459; continue;
-								/* } else if (_9 === (92)) { */ case 456:
+								/* } else if (_11 === (92)) { */ case 456:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 465; continue; }
 									/* */ $s = 466; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 465:
-										/* goto l333 */ $s = 462; continue;
+										/* goto l360 */ $s = 462; continue;
 									/* } */ case 466:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 459; continue;
-								/* } else if (_9 === (34)) { */ case 457:
+								/* } else if (_11 === (34)) { */ case 457:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 467; continue; }
 									/* */ $s = 468; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 467:
-										/* goto l333 */ $s = 462; continue;
+										/* goto l360 */ $s = 462; continue;
 									/* } */ case 468:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 459; continue;
@@ -35185,179 +35509,179 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 469; continue; }
 									/* */ $s = 470; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 469:
-										/* goto l333 */ $s = 462; continue;
+										/* goto l360 */ $s = 462; continue;
 									/* } */ case 470:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 459:
 							case 453:
-							/* goto l326 */ $s = 471; continue;
-							/* l333: */ case 462:
-							_tmp$158 = position333;
-							_tmp$159 = tokenIndex333;
+							/* goto l353 */ $s = 471; continue;
+							/* l360: */ case 462:
+							_tmp$158 = position360;
+							_tmp$159 = tokenIndex360;
 							position[0] = _tmp$158;
 							tokenIndex[0] = _tmp$159;
 							_r$56 = matchDot[0](); /* */ $s = 474; case 474: if($c) { $c = false; _r$56 = _r$56.$blk(); } if (_r$56 && _r$56.$blk !== undefined) { break s; }
 							/* */ if (!_r$56) { $s = 472; continue; }
 							/* */ $s = 473; continue;
 							/* if (!_r$56) { */ case 472:
-								/* goto l326 */ $s = 471; continue;
+								/* goto l353 */ $s = 471; continue;
 							/* } */ case 473:
-							/* l331: */ case 452:
-							/* goto l325 */ $s = 447; continue;
-							/* l326: */ case 471:
-							_tmp$160 = position326;
-							_tmp$161 = tokenIndex326;
+							/* l358: */ case 452:
+							/* goto l352 */ $s = 447; continue;
+							/* l353: */ case 471:
+							_tmp$160 = position353;
+							_tmp$161 = tokenIndex353;
 							position[0] = _tmp$160;
 							tokenIndex[0] = _tmp$161;
-							$r = add[0](79, position324); /* */ $s = 475; case 475: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](167, position[0]); /* */ $s = 476; case 476: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](39, position323); /* */ $s = 477; case 477: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							/* goto l321 */ $s = 419; continue;
-							/* l322: */ case 443:
-							_tmp$162 = position322;
-							_tmp$163 = tokenIndex322;
+							$r = add[0](86, position351); /* */ $s = 475; case 475: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](174, position[0]); /* */ $s = 476; case 476: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](42, position350); /* */ $s = 477; case 477: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							/* goto l348 */ $s = 419; continue;
+							/* l349: */ case 443:
+							_tmp$162 = position349;
+							_tmp$163 = tokenIndex349;
 							position[0] = _tmp$162;
 							tokenIndex[0] = _tmp$163;
-							$r = add[0](79, position320); /* */ $s = 478; case 478: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](86, position347); /* */ $s = 478; case 478: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 479; continue; }
 							/* */ $s = 480; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 479:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 480:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](182, position[0]); /* */ $s = 481; case 481: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](189, position[0]); /* */ $s = 481; case 481: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = 349; continue;
-						/* } else if (_5 === (30)) { */ case 347:
+						/* } else if (_7 === (30)) { */ case 347:
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 482; continue; }
 							/* */ $s = 483; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 482:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 483:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](177, position[0]); /* */ $s = 484; case 484: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							position338 = position[0];
-							/* l339: */ case 485:
+							$r = add[0](184, position[0]); /* */ $s = 484; case 484: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							position365 = position[0];
+							/* l366: */ case 485:
 							_tmp$164 = position[0];
 							_tmp$165 = tokenIndex[0];
-							position340 = _tmp$164;
-							tokenIndex340 = _tmp$165;
+							position367 = _tmp$164;
+							tokenIndex367 = _tmp$165;
 							_tmp$166 = position[0];
 							_tmp$167 = tokenIndex[0];
-							position341 = _tmp$166;
-							tokenIndex341 = _tmp$167;
+							position368 = _tmp$166;
+							tokenIndex368 = _tmp$167;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 486; continue; }
 							/* */ $s = 487; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 486:
-								/* goto l342 */ $s = 488; continue;
+								/* goto l369 */ $s = 488; continue;
 							/* } */ case 487:
 							position[0] = position[0] + (1) >>> 0;
-							_r$57 = _rules[0][62](); /* */ $s = 491; case 491: if($c) { $c = false; _r$57 = _r$57.$blk(); } if (_r$57 && _r$57.$blk !== undefined) { break s; }
+							_r$57 = _rules[0][65](); /* */ $s = 491; case 491: if($c) { $c = false; _r$57 = _r$57.$blk(); } if (_r$57 && _r$57.$blk !== undefined) { break s; }
 							/* */ if (!_r$57) { $s = 489; continue; }
 							/* */ $s = 490; continue;
 							/* if (!_r$57) { */ case 489:
-								/* goto l342 */ $s = 488; continue;
+								/* goto l369 */ $s = 488; continue;
 							/* } */ case 490:
-							_r$58 = _rules[0][16](); /* */ $s = 494; case 494: if($c) { $c = false; _r$58 = _r$58.$blk(); } if (_r$58 && _r$58.$blk !== undefined) { break s; }
+							_r$58 = _rules[0][19](); /* */ $s = 494; case 494: if($c) { $c = false; _r$58 = _r$58.$blk(); } if (_r$58 && _r$58.$blk !== undefined) { break s; }
 							/* */ if (!_r$58) { $s = 492; continue; }
 							/* */ $s = 493; continue;
 							/* if (!_r$58) { */ case 492:
-								/* goto l342 */ $s = 488; continue;
+								/* goto l369 */ $s = 488; continue;
 							/* } */ case 493:
-							$r = add[0](178, position[0]); /* */ $s = 495; case 495: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](185, position[0]); /* */ $s = 495; case 495: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 496; continue; }
 							/* */ $s = 497; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 496:
-								/* goto l342 */ $s = 488; continue;
+								/* goto l369 */ $s = 488; continue;
 							/* } */ case 497:
 							position[0] = position[0] + (1) >>> 0;
-							/* goto l341 */ $s = 498; continue;
-							/* l342: */ case 488:
-							_tmp$168 = position341;
-							_tmp$169 = tokenIndex341;
+							/* goto l368 */ $s = 498; continue;
+							/* l369: */ case 488:
+							_tmp$168 = position368;
+							_tmp$169 = tokenIndex368;
 							position[0] = _tmp$168;
 							tokenIndex[0] = _tmp$169;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 499; continue; }
 							/* */ $s = 500; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 499:
-								/* goto l344 */ $s = 501; continue;
+								/* goto l371 */ $s = 501; continue;
 							/* } */ case 500:
 							position[0] = position[0] + (1) >>> 0;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 502; continue; }
 							/* */ $s = 503; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 502:
-								/* goto l344 */ $s = 501; continue;
+								/* goto l371 */ $s = 501; continue;
 							/* } */ case 503:
 							position[0] = position[0] + (1) >>> 0;
-							_r$59 = _rules[0][62](); /* */ $s = 506; case 506: if($c) { $c = false; _r$59 = _r$59.$blk(); } if (_r$59 && _r$59.$blk !== undefined) { break s; }
+							_r$59 = _rules[0][65](); /* */ $s = 506; case 506: if($c) { $c = false; _r$59 = _r$59.$blk(); } if (_r$59 && _r$59.$blk !== undefined) { break s; }
 							/* */ if (!_r$59) { $s = 504; continue; }
 							/* */ $s = 505; continue;
 							/* if (!_r$59) { */ case 504:
-								/* goto l344 */ $s = 501; continue;
+								/* goto l371 */ $s = 501; continue;
 							/* } */ case 505:
-							_r$60 = _rules[0][16](); /* */ $s = 509; case 509: if($c) { $c = false; _r$60 = _r$60.$blk(); } if (_r$60 && _r$60.$blk !== undefined) { break s; }
+							_r$60 = _rules[0][19](); /* */ $s = 509; case 509: if($c) { $c = false; _r$60 = _r$60.$blk(); } if (_r$60 && _r$60.$blk !== undefined) { break s; }
 							/* */ if (!_r$60) { $s = 507; continue; }
 							/* */ $s = 508; continue;
 							/* if (!_r$60) { */ case 507:
-								/* goto l344 */ $s = 501; continue;
+								/* goto l371 */ $s = 501; continue;
 							/* } */ case 508:
-							$r = add[0](179, position[0]); /* */ $s = 510; case 510: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](186, position[0]); /* */ $s = 510; case 510: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 511; continue; }
 							/* */ $s = 512; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 511:
-								/* goto l344 */ $s = 501; continue;
+								/* goto l371 */ $s = 501; continue;
 							/* } */ case 512:
 							position[0] = position[0] + (1) >>> 0;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 513; continue; }
 							/* */ $s = 514; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 513:
-								/* goto l344 */ $s = 501; continue;
+								/* goto l371 */ $s = 501; continue;
 							/* } */ case 514:
 							position[0] = position[0] + (1) >>> 0;
-							/* goto l341 */ $s = 498; continue;
-							/* l344: */ case 501:
-							_tmp$170 = position341;
-							_tmp$171 = tokenIndex341;
+							/* goto l368 */ $s = 498; continue;
+							/* l371: */ case 501:
+							_tmp$170 = position368;
+							_tmp$171 = tokenIndex368;
 							position[0] = _tmp$170;
 							tokenIndex[0] = _tmp$171;
-							position346 = position[0];
-							position347 = position[0];
+							position373 = position[0];
+							position374 = position[0];
 							_tmp$172 = position[0];
 							_tmp$173 = tokenIndex[0];
-							position350 = _tmp$172;
-							tokenIndex350 = _tmp$173;
-							_r$61 = _rules[0][64](); /* */ $s = 517; case 517: if($c) { $c = false; _r$61 = _r$61.$blk(); } if (_r$61 && _r$61.$blk !== undefined) { break s; }
+							position377 = _tmp$172;
+							tokenIndex377 = _tmp$173;
+							_r$61 = _rules[0][67](); /* */ $s = 517; case 517: if($c) { $c = false; _r$61 = _r$61.$blk(); } if (_r$61 && _r$61.$blk !== undefined) { break s; }
 							/* */ if (!_r$61) { $s = 515; continue; }
 							/* */ $s = 516; continue;
 							/* if (!_r$61) { */ case 515:
-								/* goto l351 */ $s = 518; continue;
+								/* goto l378 */ $s = 518; continue;
 							/* } */ case 516:
-							/* goto l350 */ $s = 519; continue;
-							/* l351: */ case 518:
-							_tmp$174 = position350;
-							_tmp$175 = tokenIndex350;
+							/* goto l377 */ $s = 519; continue;
+							/* l378: */ case 518:
+							_tmp$174 = position377;
+							_tmp$175 = tokenIndex377;
 							position[0] = _tmp$174;
 							tokenIndex[0] = _tmp$175;
 							_tmp$176 = position[0];
 							_tmp$177 = tokenIndex[0];
-							position352 = _tmp$176;
-							tokenIndex352 = _tmp$177;
-								_10 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_10 === (92)) { $s = 521; continue; }
-								/* */ if (_10 === (30)) { $s = 522; continue; }
+							position379 = _tmp$176;
+							tokenIndex379 = _tmp$177;
+								_12 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_12 === (92)) { $s = 521; continue; }
+								/* */ if (_12 === (30)) { $s = 522; continue; }
 								/* */ $s = 523; continue;
-								/* if (_10 === (92)) { */ case 521:
+								/* if (_12 === (92)) { */ case 521:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 525; continue; }
 									/* */ $s = 526; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 525:
-										/* goto l352 */ $s = 527; continue;
+										/* goto l379 */ $s = 527; continue;
 									/* } */ case 526:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 524; continue;
-								/* } else if (_10 === (30)) { */ case 522:
+								/* } else if (_12 === (30)) { */ case 522:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 528; continue; }
 									/* */ $s = 529; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 528:
-										/* goto l352 */ $s = 527; continue;
+										/* goto l379 */ $s = 527; continue;
 									/* } */ case 529:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 524; continue;
@@ -35365,66 +35689,66 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 530; continue; }
 									/* */ $s = 531; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 530:
-										/* goto l352 */ $s = 527; continue;
+										/* goto l379 */ $s = 527; continue;
 									/* } */ case 531:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 524:
 							case 520:
-							/* goto l340 */ $s = 532; continue;
-							/* l352: */ case 527:
-							_tmp$178 = position352;
-							_tmp$179 = tokenIndex352;
+							/* goto l367 */ $s = 532; continue;
+							/* l379: */ case 527:
+							_tmp$178 = position379;
+							_tmp$179 = tokenIndex379;
 							position[0] = _tmp$178;
 							tokenIndex[0] = _tmp$179;
 							_r$62 = matchDot[0](); /* */ $s = 535; case 535: if($c) { $c = false; _r$62 = _r$62.$blk(); } if (_r$62 && _r$62.$blk !== undefined) { break s; }
 							/* */ if (!_r$62) { $s = 533; continue; }
 							/* */ $s = 534; continue;
 							/* if (!_r$62) { */ case 533:
-								/* goto l340 */ $s = 532; continue;
+								/* goto l367 */ $s = 532; continue;
 							/* } */ case 534:
-							/* l350: */ case 519:
-							/* l348: */ case 536:
+							/* l377: */ case 519:
+							/* l375: */ case 536:
 							_tmp$180 = position[0];
 							_tmp$181 = tokenIndex[0];
-							position349 = _tmp$180;
-							tokenIndex349 = _tmp$181;
+							position376 = _tmp$180;
+							tokenIndex376 = _tmp$181;
 							_tmp$182 = position[0];
 							_tmp$183 = tokenIndex[0];
-							position354 = _tmp$182;
-							tokenIndex354 = _tmp$183;
-							_r$63 = _rules[0][64](); /* */ $s = 539; case 539: if($c) { $c = false; _r$63 = _r$63.$blk(); } if (_r$63 && _r$63.$blk !== undefined) { break s; }
+							position381 = _tmp$182;
+							tokenIndex381 = _tmp$183;
+							_r$63 = _rules[0][67](); /* */ $s = 539; case 539: if($c) { $c = false; _r$63 = _r$63.$blk(); } if (_r$63 && _r$63.$blk !== undefined) { break s; }
 							/* */ if (!_r$63) { $s = 537; continue; }
 							/* */ $s = 538; continue;
 							/* if (!_r$63) { */ case 537:
-								/* goto l355 */ $s = 540; continue;
+								/* goto l382 */ $s = 540; continue;
 							/* } */ case 538:
-							/* goto l354 */ $s = 541; continue;
-							/* l355: */ case 540:
-							_tmp$184 = position354;
-							_tmp$185 = tokenIndex354;
+							/* goto l381 */ $s = 541; continue;
+							/* l382: */ case 540:
+							_tmp$184 = position381;
+							_tmp$185 = tokenIndex381;
 							position[0] = _tmp$184;
 							tokenIndex[0] = _tmp$185;
 							_tmp$186 = position[0];
 							_tmp$187 = tokenIndex[0];
-							position356 = _tmp$186;
-							tokenIndex356 = _tmp$187;
-								_11 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_11 === (92)) { $s = 543; continue; }
-								/* */ if (_11 === (30)) { $s = 544; continue; }
+							position383 = _tmp$186;
+							tokenIndex383 = _tmp$187;
+								_13 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_13 === (92)) { $s = 543; continue; }
+								/* */ if (_13 === (30)) { $s = 544; continue; }
 								/* */ $s = 545; continue;
-								/* if (_11 === (92)) { */ case 543:
+								/* if (_13 === (92)) { */ case 543:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 547; continue; }
 									/* */ $s = 548; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 547:
-										/* goto l356 */ $s = 549; continue;
+										/* goto l383 */ $s = 549; continue;
 									/* } */ case 548:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 546; continue;
-								/* } else if (_11 === (30)) { */ case 544:
+								/* } else if (_13 === (30)) { */ case 544:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 550; continue; }
 									/* */ $s = 551; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 550:
-										/* goto l356 */ $s = 549; continue;
+										/* goto l383 */ $s = 549; continue;
 									/* } */ case 551:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 546; continue;
@@ -35432,180 +35756,180 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 552; continue; }
 									/* */ $s = 553; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 552:
-										/* goto l356 */ $s = 549; continue;
+										/* goto l383 */ $s = 549; continue;
 									/* } */ case 553:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 546:
 							case 542:
-							/* goto l349 */ $s = 554; continue;
-							/* l356: */ case 549:
-							_tmp$188 = position356;
-							_tmp$189 = tokenIndex356;
+							/* goto l376 */ $s = 554; continue;
+							/* l383: */ case 549:
+							_tmp$188 = position383;
+							_tmp$189 = tokenIndex383;
 							position[0] = _tmp$188;
 							tokenIndex[0] = _tmp$189;
 							_r$64 = matchDot[0](); /* */ $s = 557; case 557: if($c) { $c = false; _r$64 = _r$64.$blk(); } if (_r$64 && _r$64.$blk !== undefined) { break s; }
 							/* */ if (!_r$64) { $s = 555; continue; }
 							/* */ $s = 556; continue;
 							/* if (!_r$64) { */ case 555:
-								/* goto l349 */ $s = 554; continue;
+								/* goto l376 */ $s = 554; continue;
 							/* } */ case 556:
-							/* l354: */ case 541:
-							/* goto l348 */ $s = 536; continue;
-							/* l349: */ case 554:
-							_tmp$190 = position349;
-							_tmp$191 = tokenIndex349;
+							/* l381: */ case 541:
+							/* goto l375 */ $s = 536; continue;
+							/* l376: */ case 554:
+							_tmp$190 = position376;
+							_tmp$191 = tokenIndex376;
 							position[0] = _tmp$190;
 							tokenIndex[0] = _tmp$191;
-							$r = add[0](79, position347); /* */ $s = 558; case 558: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](166, position[0]); /* */ $s = 559; case 559: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](38, position346); /* */ $s = 560; case 560: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							/* l341: */ case 498:
-							/* goto l339 */ $s = 485; continue;
-							/* l340: */ case 532:
-							_tmp$192 = position340;
-							_tmp$193 = tokenIndex340;
+							$r = add[0](86, position374); /* */ $s = 558; case 558: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](173, position[0]); /* */ $s = 559; case 559: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](41, position373); /* */ $s = 560; case 560: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							/* l368: */ case 498:
+							/* goto l366 */ $s = 485; continue;
+							/* l367: */ case 532:
+							_tmp$192 = position367;
+							_tmp$193 = tokenIndex367;
 							position[0] = _tmp$192;
 							tokenIndex[0] = _tmp$193;
-							$r = add[0](79, position338); /* */ $s = 561; case 561: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](86, position365); /* */ $s = 561; case 561: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 562; continue; }
 							/* */ $s = 563; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 562:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 563:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](180, position[0]); /* */ $s = 564; case 564: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](187, position[0]); /* */ $s = 564; case 564: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = 349; continue;
 						/* } else { */ case 348:
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 565; continue; }
 							/* */ $s = 566; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 565:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 566:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](173, position[0]); /* */ $s = 567; case 567: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							position361 = position[0];
-							/* l362: */ case 568:
+							$r = add[0](180, position[0]); /* */ $s = 567; case 567: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							position388 = position[0];
+							/* l389: */ case 568:
 							_tmp$194 = position[0];
 							_tmp$195 = tokenIndex[0];
-							position363 = _tmp$194;
-							tokenIndex363 = _tmp$195;
+							position390 = _tmp$194;
+							tokenIndex390 = _tmp$195;
 							_tmp$196 = position[0];
 							_tmp$197 = tokenIndex[0];
-							position364 = _tmp$196;
-							tokenIndex364 = _tmp$197;
+							position391 = _tmp$196;
+							tokenIndex391 = _tmp$197;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 569; continue; }
 							/* */ $s = 570; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 569:
-								/* goto l365 */ $s = 571; continue;
+								/* goto l392 */ $s = 571; continue;
 							/* } */ case 570:
 							position[0] = position[0] + (1) >>> 0;
-							_r$65 = _rules[0][62](); /* */ $s = 574; case 574: if($c) { $c = false; _r$65 = _r$65.$blk(); } if (_r$65 && _r$65.$blk !== undefined) { break s; }
+							_r$65 = _rules[0][65](); /* */ $s = 574; case 574: if($c) { $c = false; _r$65 = _r$65.$blk(); } if (_r$65 && _r$65.$blk !== undefined) { break s; }
 							/* */ if (!_r$65) { $s = 572; continue; }
 							/* */ $s = 573; continue;
 							/* if (!_r$65) { */ case 572:
-								/* goto l365 */ $s = 571; continue;
+								/* goto l392 */ $s = 571; continue;
 							/* } */ case 573:
-							_r$66 = _rules[0][16](); /* */ $s = 577; case 577: if($c) { $c = false; _r$66 = _r$66.$blk(); } if (_r$66 && _r$66.$blk !== undefined) { break s; }
+							_r$66 = _rules[0][19](); /* */ $s = 577; case 577: if($c) { $c = false; _r$66 = _r$66.$blk(); } if (_r$66 && _r$66.$blk !== undefined) { break s; }
 							/* */ if (!_r$66) { $s = 575; continue; }
 							/* */ $s = 576; continue;
 							/* if (!_r$66) { */ case 575:
-								/* goto l365 */ $s = 571; continue;
+								/* goto l392 */ $s = 571; continue;
 							/* } */ case 576:
-							$r = add[0](174, position[0]); /* */ $s = 578; case 578: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](181, position[0]); /* */ $s = 578; case 578: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 579; continue; }
 							/* */ $s = 580; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 579:
-								/* goto l365 */ $s = 571; continue;
+								/* goto l392 */ $s = 571; continue;
 							/* } */ case 580:
 							position[0] = position[0] + (1) >>> 0;
-							/* goto l364 */ $s = 581; continue;
-							/* l365: */ case 571:
-							_tmp$198 = position364;
-							_tmp$199 = tokenIndex364;
+							/* goto l391 */ $s = 581; continue;
+							/* l392: */ case 571:
+							_tmp$198 = position391;
+							_tmp$199 = tokenIndex391;
 							position[0] = _tmp$198;
 							tokenIndex[0] = _tmp$199;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 582; continue; }
 							/* */ $s = 583; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 582:
-								/* goto l367 */ $s = 584; continue;
+								/* goto l394 */ $s = 584; continue;
 							/* } */ case 583:
 							position[0] = position[0] + (1) >>> 0;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 585; continue; }
 							/* */ $s = 586; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 585:
-								/* goto l367 */ $s = 584; continue;
+								/* goto l394 */ $s = 584; continue;
 							/* } */ case 586:
 							position[0] = position[0] + (1) >>> 0;
-							_r$67 = _rules[0][62](); /* */ $s = 589; case 589: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
+							_r$67 = _rules[0][65](); /* */ $s = 589; case 589: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
 							/* */ if (!_r$67) { $s = 587; continue; }
 							/* */ $s = 588; continue;
 							/* if (!_r$67) { */ case 587:
-								/* goto l367 */ $s = 584; continue;
+								/* goto l394 */ $s = 584; continue;
 							/* } */ case 588:
-							_r$68 = _rules[0][16](); /* */ $s = 592; case 592: if($c) { $c = false; _r$68 = _r$68.$blk(); } if (_r$68 && _r$68.$blk !== undefined) { break s; }
+							_r$68 = _rules[0][19](); /* */ $s = 592; case 592: if($c) { $c = false; _r$68 = _r$68.$blk(); } if (_r$68 && _r$68.$blk !== undefined) { break s; }
 							/* */ if (!_r$68) { $s = 590; continue; }
 							/* */ $s = 591; continue;
 							/* if (!_r$68) { */ case 590:
-								/* goto l367 */ $s = 584; continue;
+								/* goto l394 */ $s = 584; continue;
 							/* } */ case 591:
-							$r = add[0](175, position[0]); /* */ $s = 593; case 593: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](182, position[0]); /* */ $s = 593; case 593: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 594; continue; }
 							/* */ $s = 595; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 594:
-								/* goto l367 */ $s = 584; continue;
+								/* goto l394 */ $s = 584; continue;
 							/* } */ case 595:
 							position[0] = position[0] + (1) >>> 0;
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 596; continue; }
 							/* */ $s = 597; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 596:
-								/* goto l367 */ $s = 584; continue;
+								/* goto l394 */ $s = 584; continue;
 							/* } */ case 597:
 							position[0] = position[0] + (1) >>> 0;
-							/* goto l364 */ $s = 581; continue;
-							/* l367: */ case 584:
-							_tmp$200 = position364;
-							_tmp$201 = tokenIndex364;
+							/* goto l391 */ $s = 581; continue;
+							/* l394: */ case 584:
+							_tmp$200 = position391;
+							_tmp$201 = tokenIndex391;
 							position[0] = _tmp$200;
 							tokenIndex[0] = _tmp$201;
-							position369 = position[0];
-							position370 = position[0];
+							position396 = position[0];
+							position397 = position[0];
 							_tmp$202 = position[0];
 							_tmp$203 = tokenIndex[0];
-							position373 = _tmp$202;
-							tokenIndex373 = _tmp$203;
-							_r$69 = _rules[0][64](); /* */ $s = 600; case 600: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
+							position400 = _tmp$202;
+							tokenIndex400 = _tmp$203;
+							_r$69 = _rules[0][67](); /* */ $s = 600; case 600: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
 							/* */ if (!_r$69) { $s = 598; continue; }
 							/* */ $s = 599; continue;
 							/* if (!_r$69) { */ case 598:
-								/* goto l374 */ $s = 601; continue;
+								/* goto l401 */ $s = 601; continue;
 							/* } */ case 599:
-							/* goto l373 */ $s = 602; continue;
-							/* l374: */ case 601:
-							_tmp$204 = position373;
-							_tmp$205 = tokenIndex373;
+							/* goto l400 */ $s = 602; continue;
+							/* l401: */ case 601:
+							_tmp$204 = position400;
+							_tmp$205 = tokenIndex400;
 							position[0] = _tmp$204;
 							tokenIndex[0] = _tmp$205;
 							_tmp$206 = position[0];
 							_tmp$207 = tokenIndex[0];
-							position375 = _tmp$206;
-							tokenIndex375 = _tmp$207;
-								_12 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_12 === (92)) { $s = 604; continue; }
-								/* */ if (_12 === (96)) { $s = 605; continue; }
+							position402 = _tmp$206;
+							tokenIndex402 = _tmp$207;
+								_14 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_14 === (92)) { $s = 604; continue; }
+								/* */ if (_14 === (96)) { $s = 605; continue; }
 								/* */ $s = 606; continue;
-								/* if (_12 === (92)) { */ case 604:
+								/* if (_14 === (92)) { */ case 604:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 608; continue; }
 									/* */ $s = 609; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 608:
-										/* goto l375 */ $s = 610; continue;
+										/* goto l402 */ $s = 610; continue;
 									/* } */ case 609:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 607; continue;
-								/* } else if (_12 === (96)) { */ case 605:
+								/* } else if (_14 === (96)) { */ case 605:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 611; continue; }
 									/* */ $s = 612; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 611:
-										/* goto l375 */ $s = 610; continue;
+										/* goto l402 */ $s = 610; continue;
 									/* } */ case 612:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 607; continue;
@@ -35613,66 +35937,66 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 613; continue; }
 									/* */ $s = 614; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 613:
-										/* goto l375 */ $s = 610; continue;
+										/* goto l402 */ $s = 610; continue;
 									/* } */ case 614:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 607:
 							case 603:
-							/* goto l363 */ $s = 615; continue;
-							/* l375: */ case 610:
-							_tmp$208 = position375;
-							_tmp$209 = tokenIndex375;
+							/* goto l390 */ $s = 615; continue;
+							/* l402: */ case 610:
+							_tmp$208 = position402;
+							_tmp$209 = tokenIndex402;
 							position[0] = _tmp$208;
 							tokenIndex[0] = _tmp$209;
 							_r$70 = matchDot[0](); /* */ $s = 618; case 618: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
 							/* */ if (!_r$70) { $s = 616; continue; }
 							/* */ $s = 617; continue;
 							/* if (!_r$70) { */ case 616:
-								/* goto l363 */ $s = 615; continue;
+								/* goto l390 */ $s = 615; continue;
 							/* } */ case 617:
-							/* l373: */ case 602:
-							/* l371: */ case 619:
+							/* l400: */ case 602:
+							/* l398: */ case 619:
 							_tmp$210 = position[0];
 							_tmp$211 = tokenIndex[0];
-							position372 = _tmp$210;
-							tokenIndex372 = _tmp$211;
+							position399 = _tmp$210;
+							tokenIndex399 = _tmp$211;
 							_tmp$212 = position[0];
 							_tmp$213 = tokenIndex[0];
-							position377 = _tmp$212;
-							tokenIndex377 = _tmp$213;
-							_r$71 = _rules[0][64](); /* */ $s = 622; case 622: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
+							position404 = _tmp$212;
+							tokenIndex404 = _tmp$213;
+							_r$71 = _rules[0][67](); /* */ $s = 622; case 622: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
 							/* */ if (!_r$71) { $s = 620; continue; }
 							/* */ $s = 621; continue;
 							/* if (!_r$71) { */ case 620:
-								/* goto l378 */ $s = 623; continue;
+								/* goto l405 */ $s = 623; continue;
 							/* } */ case 621:
-							/* goto l377 */ $s = 624; continue;
-							/* l378: */ case 623:
-							_tmp$214 = position377;
-							_tmp$215 = tokenIndex377;
+							/* goto l404 */ $s = 624; continue;
+							/* l405: */ case 623:
+							_tmp$214 = position404;
+							_tmp$215 = tokenIndex404;
 							position[0] = _tmp$214;
 							tokenIndex[0] = _tmp$215;
 							_tmp$216 = position[0];
 							_tmp$217 = tokenIndex[0];
-							position379 = _tmp$216;
-							tokenIndex379 = _tmp$217;
-								_13 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-								/* */ if (_13 === (92)) { $s = 626; continue; }
-								/* */ if (_13 === (96)) { $s = 627; continue; }
+							position406 = _tmp$216;
+							tokenIndex406 = _tmp$217;
+								_15 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+								/* */ if (_15 === (92)) { $s = 626; continue; }
+								/* */ if (_15 === (96)) { $s = 627; continue; }
 								/* */ $s = 628; continue;
-								/* if (_13 === (92)) { */ case 626:
+								/* if (_15 === (92)) { */ case 626:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 630; continue; }
 									/* */ $s = 631; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 630:
-										/* goto l379 */ $s = 632; continue;
+										/* goto l406 */ $s = 632; continue;
 									/* } */ case 631:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 629; continue;
-								/* } else if (_13 === (96)) { */ case 627:
+								/* } else if (_15 === (96)) { */ case 627:
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 633; continue; }
 									/* */ $s = 634; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 633:
-										/* goto l379 */ $s = 632; continue;
+										/* goto l406 */ $s = 632; continue;
 									/* } */ case 634:
 									position[0] = position[0] + (1) >>> 0;
 									$s = 629; continue;
@@ -35680,1074 +36004,1074 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 									/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 635; continue; }
 									/* */ $s = 636; continue;
 									/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 635:
-										/* goto l379 */ $s = 632; continue;
+										/* goto l406 */ $s = 632; continue;
 									/* } */ case 636:
 									position[0] = position[0] + (1) >>> 0;
 								/* } */ case 629:
 							case 625:
-							/* goto l372 */ $s = 637; continue;
-							/* l379: */ case 632:
-							_tmp$218 = position379;
-							_tmp$219 = tokenIndex379;
+							/* goto l399 */ $s = 637; continue;
+							/* l406: */ case 632:
+							_tmp$218 = position406;
+							_tmp$219 = tokenIndex406;
 							position[0] = _tmp$218;
 							tokenIndex[0] = _tmp$219;
 							_r$72 = matchDot[0](); /* */ $s = 640; case 640: if($c) { $c = false; _r$72 = _r$72.$blk(); } if (_r$72 && _r$72.$blk !== undefined) { break s; }
 							/* */ if (!_r$72) { $s = 638; continue; }
 							/* */ $s = 639; continue;
 							/* if (!_r$72) { */ case 638:
-								/* goto l372 */ $s = 637; continue;
+								/* goto l399 */ $s = 637; continue;
 							/* } */ case 639:
-							/* l377: */ case 624:
-							/* goto l371 */ $s = 619; continue;
-							/* l372: */ case 637:
-							_tmp$220 = position372;
-							_tmp$221 = tokenIndex372;
+							/* l404: */ case 624:
+							/* goto l398 */ $s = 619; continue;
+							/* l399: */ case 637:
+							_tmp$220 = position399;
+							_tmp$221 = tokenIndex399;
 							position[0] = _tmp$220;
 							tokenIndex[0] = _tmp$221;
-							$r = add[0](79, position370); /* */ $s = 641; case 641: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](165, position[0]); /* */ $s = 642; case 642: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							$r = add[0](37, position369); /* */ $s = 643; case 643: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							/* l364: */ case 581:
-							/* goto l362 */ $s = 568; continue;
-							/* l363: */ case 615:
-							_tmp$222 = position363;
-							_tmp$223 = tokenIndex363;
+							$r = add[0](86, position397); /* */ $s = 641; case 641: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](172, position[0]); /* */ $s = 642; case 642: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](40, position396); /* */ $s = 643; case 643: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							/* l391: */ case 581:
+							/* goto l389 */ $s = 568; continue;
+							/* l390: */ case 615:
+							_tmp$222 = position390;
+							_tmp$223 = tokenIndex390;
 							position[0] = _tmp$222;
 							tokenIndex[0] = _tmp$223;
-							$r = add[0](79, position361); /* */ $s = 644; case 644: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](86, position388); /* */ $s = 644; case 644: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 645; continue; }
 							/* */ $s = 646; continue;
 							/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 645:
-								/* goto l206 */ $s = 280; continue;
+								/* goto l233 */ $s = 280; continue;
 							/* } */ case 646:
 							position[0] = position[0] + (1) >>> 0;
-							$r = add[0](176, position[0]); /* */ $s = 647; case 647: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$r = add[0](183, position[0]); /* */ $s = 647; case 647: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						/* } */ case 349:
 					case 344:
-					/* l291: */ case 325:
-					_r$73 = _rules[0][62](); /* */ $s = 650; case 650: if($c) { $c = false; _r$73 = _r$73.$blk(); } if (_r$73 && _r$73.$blk !== undefined) { break s; }
+					/* l318: */ case 325:
+					_r$73 = _rules[0][65](); /* */ $s = 650; case 650: if($c) { $c = false; _r$73 = _r$73.$blk(); } if (_r$73 && _r$73.$blk !== undefined) { break s; }
 					/* */ if (!_r$73) { $s = 648; continue; }
 					/* */ $s = 649; continue;
 					/* if (!_r$73) { */ case 648:
-						/* goto l206 */ $s = 280; continue;
+						/* goto l233 */ $s = 280; continue;
 					/* } */ case 649:
-					$r = add[0](41, position290); /* */ $s = 651; case 651: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = add[0](44, position317); /* */ $s = 651; case 651: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				/* } */ case 277:
 			case 273:
-			/* l245: */ case 118:
-			$r = add[0](34, position244); /* */ $s = 652; case 652: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l216: */ case 55:
-			$r = add[0](29, position215); /* */ $s = 653; case 653: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l212: */ case 18:
-			$r = add[0](25, position211); /* */ $s = 654; case 654: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l208: */ case 9:
-			$r = add[0](24, position207); /* */ $s = 655; case 655: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l272: */ case 118:
+			$r = add[0](37, position271); /* */ $s = 652; case 652: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l243: */ case 55:
+			$r = add[0](32, position242); /* */ $s = 653; case 653: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l239: */ case 18:
+			$r = add[0](28, position238); /* */ $s = 654; case 654: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l235: */ case 9:
+			$r = add[0](27, position234); /* */ $s = 655; case 655: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l206: */ case 280:
-			_tmp$224 = position206;
-			_tmp$225 = tokenIndex206;
+			/* l233: */ case 280:
+			_tmp$224 = position233;
+			_tmp$225 = tokenIndex233;
 			position[0] = _tmp$224;
 			tokenIndex[0] = _tmp$225;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _10, _11, _12, _13, _4, _5, _6, _7, _8, _9, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$5, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$6, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$7, _r$70, _r$71, _r$72, _r$73, _r$8, _r$9, _tmp$10, _tmp$100, _tmp$101, _tmp$102, _tmp$103, _tmp$104, _tmp$105, _tmp$106, _tmp$107, _tmp$108, _tmp$109, _tmp$11, _tmp$110, _tmp$111, _tmp$112, _tmp$113, _tmp$114, _tmp$115, _tmp$116, _tmp$117, _tmp$118, _tmp$119, _tmp$12, _tmp$120, _tmp$121, _tmp$122, _tmp$123, _tmp$124, _tmp$125, _tmp$126, _tmp$127, _tmp$128, _tmp$129, _tmp$13, _tmp$130, _tmp$131, _tmp$132, _tmp$133, _tmp$134, _tmp$135, _tmp$136, _tmp$137, _tmp$138, _tmp$139, _tmp$14, _tmp$140, _tmp$141, _tmp$142, _tmp$143, _tmp$144, _tmp$145, _tmp$146, _tmp$147, _tmp$148, _tmp$149, _tmp$15, _tmp$150, _tmp$151, _tmp$152, _tmp$153, _tmp$154, _tmp$155, _tmp$156, _tmp$157, _tmp$158, _tmp$159, _tmp$16, _tmp$160, _tmp$161, _tmp$162, _tmp$163, _tmp$164, _tmp$165, _tmp$166, _tmp$167, _tmp$168, _tmp$169, _tmp$17, _tmp$170, _tmp$171, _tmp$172, _tmp$173, _tmp$174, _tmp$175, _tmp$176, _tmp$177, _tmp$178, _tmp$179, _tmp$18, _tmp$180, _tmp$181, _tmp$182, _tmp$183, _tmp$184, _tmp$185, _tmp$186, _tmp$187, _tmp$188, _tmp$189, _tmp$19, _tmp$190, _tmp$191, _tmp$192, _tmp$193, _tmp$194, _tmp$195, _tmp$196, _tmp$197, _tmp$198, _tmp$199, _tmp$2, _tmp$20, _tmp$200, _tmp$201, _tmp$202, _tmp$203, _tmp$204, _tmp$205, _tmp$206, _tmp$207, _tmp$208, _tmp$209, _tmp$21, _tmp$210, _tmp$211, _tmp$212, _tmp$213, _tmp$214, _tmp$215, _tmp$216, _tmp$217, _tmp$218, _tmp$219, _tmp$22, _tmp$220, _tmp$221, _tmp$222, _tmp$223, _tmp$224, _tmp$225, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$70, _tmp$71, _tmp$72, _tmp$73, _tmp$74, _tmp$75, _tmp$76, _tmp$77, _tmp$78, _tmp$79, _tmp$8, _tmp$80, _tmp$81, _tmp$82, _tmp$83, _tmp$84, _tmp$85, _tmp$86, _tmp$87, _tmp$88, _tmp$89, _tmp$9, _tmp$90, _tmp$91, _tmp$92, _tmp$93, _tmp$94, _tmp$95, _tmp$96, _tmp$97, _tmp$98, _tmp$99, c, c$1, c$2, position206, position207, position208, position211, position212, position215, position216, position218, position221, position223, position225, position229, position232, position234, position236, position238, position239, position244, position245, position247, position248, position250, position252, position267, position269, position270, position275, position280, position285, position288, position290, position291, position302, position304, position305, position306, position308, position309, position311, position313, position315, position320, position322, position323, position324, position326, position327, position329, position331, position333, position338, position340, position341, position346, position347, position349, position350, position352, position354, position356, position361, position363, position364, position369, position370, position372, position373, position375, position377, position379, tokenIndex206, tokenIndex208, tokenIndex212, tokenIndex216, tokenIndex218, tokenIndex221, tokenIndex223, tokenIndex225, tokenIndex229, tokenIndex232, tokenIndex234, tokenIndex236, tokenIndex239, tokenIndex245, tokenIndex250, tokenIndex252, tokenIndex267, tokenIndex270, tokenIndex275, tokenIndex280, tokenIndex285, tokenIndex288, tokenIndex291, tokenIndex304, tokenIndex308, tokenIndex309, tokenIndex311, tokenIndex313, tokenIndex315, tokenIndex322, tokenIndex326, tokenIndex327, tokenIndex329, tokenIndex331, tokenIndex333, tokenIndex340, tokenIndex341, tokenIndex349, tokenIndex350, tokenIndex352, tokenIndex354, tokenIndex356, tokenIndex363, tokenIndex364, tokenIndex372, tokenIndex373, tokenIndex375, tokenIndex377, tokenIndex379, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _10, _11, _12, _13, _14, _15, _6, _7, _8, _9, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$5, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$6, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$7, _r$70, _r$71, _r$72, _r$73, _r$8, _r$9, _tmp$10, _tmp$100, _tmp$101, _tmp$102, _tmp$103, _tmp$104, _tmp$105, _tmp$106, _tmp$107, _tmp$108, _tmp$109, _tmp$11, _tmp$110, _tmp$111, _tmp$112, _tmp$113, _tmp$114, _tmp$115, _tmp$116, _tmp$117, _tmp$118, _tmp$119, _tmp$12, _tmp$120, _tmp$121, _tmp$122, _tmp$123, _tmp$124, _tmp$125, _tmp$126, _tmp$127, _tmp$128, _tmp$129, _tmp$13, _tmp$130, _tmp$131, _tmp$132, _tmp$133, _tmp$134, _tmp$135, _tmp$136, _tmp$137, _tmp$138, _tmp$139, _tmp$14, _tmp$140, _tmp$141, _tmp$142, _tmp$143, _tmp$144, _tmp$145, _tmp$146, _tmp$147, _tmp$148, _tmp$149, _tmp$15, _tmp$150, _tmp$151, _tmp$152, _tmp$153, _tmp$154, _tmp$155, _tmp$156, _tmp$157, _tmp$158, _tmp$159, _tmp$16, _tmp$160, _tmp$161, _tmp$162, _tmp$163, _tmp$164, _tmp$165, _tmp$166, _tmp$167, _tmp$168, _tmp$169, _tmp$17, _tmp$170, _tmp$171, _tmp$172, _tmp$173, _tmp$174, _tmp$175, _tmp$176, _tmp$177, _tmp$178, _tmp$179, _tmp$18, _tmp$180, _tmp$181, _tmp$182, _tmp$183, _tmp$184, _tmp$185, _tmp$186, _tmp$187, _tmp$188, _tmp$189, _tmp$19, _tmp$190, _tmp$191, _tmp$192, _tmp$193, _tmp$194, _tmp$195, _tmp$196, _tmp$197, _tmp$198, _tmp$199, _tmp$2, _tmp$20, _tmp$200, _tmp$201, _tmp$202, _tmp$203, _tmp$204, _tmp$205, _tmp$206, _tmp$207, _tmp$208, _tmp$209, _tmp$21, _tmp$210, _tmp$211, _tmp$212, _tmp$213, _tmp$214, _tmp$215, _tmp$216, _tmp$217, _tmp$218, _tmp$219, _tmp$22, _tmp$220, _tmp$221, _tmp$222, _tmp$223, _tmp$224, _tmp$225, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$70, _tmp$71, _tmp$72, _tmp$73, _tmp$74, _tmp$75, _tmp$76, _tmp$77, _tmp$78, _tmp$79, _tmp$8, _tmp$80, _tmp$81, _tmp$82, _tmp$83, _tmp$84, _tmp$85, _tmp$86, _tmp$87, _tmp$88, _tmp$89, _tmp$9, _tmp$90, _tmp$91, _tmp$92, _tmp$93, _tmp$94, _tmp$95, _tmp$96, _tmp$97, _tmp$98, _tmp$99, c, c$1, c$2, position233, position234, position235, position238, position239, position242, position243, position245, position248, position250, position252, position256, position259, position261, position263, position265, position266, position271, position272, position274, position275, position277, position279, position294, position296, position297, position302, position307, position312, position315, position317, position318, position329, position331, position332, position333, position335, position336, position338, position340, position342, position347, position349, position350, position351, position353, position354, position356, position358, position360, position365, position367, position368, position373, position374, position376, position377, position379, position381, position383, position388, position390, position391, position396, position397, position399, position400, position402, position404, position406, tokenIndex233, tokenIndex235, tokenIndex239, tokenIndex243, tokenIndex245, tokenIndex248, tokenIndex250, tokenIndex252, tokenIndex256, tokenIndex259, tokenIndex261, tokenIndex263, tokenIndex266, tokenIndex272, tokenIndex277, tokenIndex279, tokenIndex294, tokenIndex297, tokenIndex302, tokenIndex307, tokenIndex312, tokenIndex315, tokenIndex318, tokenIndex331, tokenIndex335, tokenIndex336, tokenIndex338, tokenIndex340, tokenIndex342, tokenIndex349, tokenIndex353, tokenIndex354, tokenIndex356, tokenIndex358, tokenIndex360, tokenIndex367, tokenIndex368, tokenIndex376, tokenIndex377, tokenIndex379, tokenIndex381, tokenIndex383, tokenIndex390, tokenIndex391, tokenIndex399, tokenIndex400, tokenIndex402, tokenIndex404, tokenIndex406, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$8, _tmp$9, position384, position385, position386, position388, position390, position392, position396, position398, position402, position404, position406, position410, position412, position416, position422, tokenIndex384, tokenIndex386, tokenIndex388, tokenIndex390, tokenIndex392, tokenIndex396, tokenIndex398, tokenIndex402, tokenIndex404, tokenIndex406, tokenIndex410, tokenIndex412, tokenIndex416, tokenIndex422, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$8, _tmp$9, position411, position412, position413, position415, position417, position419, position423, position425, position429, position431, position433, position437, position439, position443, position449, tokenIndex411, tokenIndex413, tokenIndex415, tokenIndex417, tokenIndex419, tokenIndex423, tokenIndex425, tokenIndex429, tokenIndex431, tokenIndex433, tokenIndex437, tokenIndex439, tokenIndex443, tokenIndex449, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position384 = _tmp$2;
-			tokenIndex384 = _tmp$3;
-			position385 = position[0];
+			position411 = _tmp$2;
+			tokenIndex411 = _tmp$3;
+			position412 = position[0];
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position386 = _tmp$4;
-			tokenIndex386 = _tmp$5;
+			position413 = _tmp$4;
+			tokenIndex413 = _tmp$5;
 			_tmp$6 = position[0];
 			_tmp$7 = tokenIndex[0];
-			position388 = _tmp$6;
-			tokenIndex388 = _tmp$7;
+			position415 = _tmp$6;
+			tokenIndex415 = _tmp$7;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 1:
-				/* goto l389 */ $s = 3; continue;
+				/* goto l416 */ $s = 3; continue;
 			/* } */ case 2:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 4; continue; }
 			/* */ $s = 5; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 4:
-				/* goto l389 */ $s = 3; continue;
+				/* goto l416 */ $s = 3; continue;
 			/* } */ case 5:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l388 */ $s = 6; continue;
-			/* l389: */ case 3:
-			_tmp$8 = position388;
-			_tmp$9 = tokenIndex388;
+			/* goto l415 */ $s = 6; continue;
+			/* l416: */ case 3:
+			_tmp$8 = position415;
+			_tmp$9 = tokenIndex415;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
 			_tmp$10 = position[0];
 			_tmp$11 = tokenIndex[0];
-			position390 = _tmp$10;
-			tokenIndex390 = _tmp$11;
+			position417 = _tmp$10;
+			tokenIndex417 = _tmp$11;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 113))) { $s = 7; continue; }
 			/* */ $s = 8; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 113))) { */ case 7:
-				/* goto l391 */ $s = 9; continue;
+				/* goto l418 */ $s = 9; continue;
 			/* } */ case 8:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l390 */ $s = 10; continue;
-			/* l391: */ case 9:
-			_tmp$12 = position390;
-			_tmp$13 = tokenIndex390;
+			/* goto l417 */ $s = 10; continue;
+			/* l418: */ case 9:
+			_tmp$12 = position417;
+			_tmp$13 = tokenIndex417;
 			position[0] = _tmp$12;
 			tokenIndex[0] = _tmp$13;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 81))) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 81))) { */ case 11:
-				/* goto l387 */ $s = 13; continue;
+				/* goto l414 */ $s = 13; continue;
 			/* } */ case 12:
 			position[0] = position[0] + (1) >>> 0;
-			/* l390: */ case 10:
-			/* l388: */ case 6:
+			/* l417: */ case 10:
+			/* l415: */ case 6:
 			_tmp$14 = position[0];
 			_tmp$15 = tokenIndex[0];
-			position392 = _tmp$14;
-			tokenIndex392 = _tmp$15;
-			_r$1 = _rules[0][35](); /* */ $s = 16; case 16: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position419 = _tmp$14;
+			tokenIndex419 = _tmp$15;
+			_r$1 = _rules[0][38](); /* */ $s = 16; case 16: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 14; continue; }
 			/* */ $s = 15; continue;
 			/* if (!_r$1) { */ case 14:
-				/* goto l393 */ $s = 17; continue;
+				/* goto l420 */ $s = 17; continue;
 			/* } */ case 15:
-			/* goto l392 */ $s = 18; continue;
-			/* l393: */ case 17:
-			_tmp$16 = position392;
-			_tmp$17 = tokenIndex392;
+			/* goto l419 */ $s = 18; continue;
+			/* l420: */ case 17:
+			_tmp$16 = position419;
+			_tmp$17 = tokenIndex419;
 			position[0] = _tmp$16;
 			tokenIndex[0] = _tmp$17;
-			_r$2 = _rules[0][43](); /* */ $s = 21; case 21: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][46](); /* */ $s = 21; case 21: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 19; continue; }
 			/* */ $s = 20; continue;
 			/* if (!_r$2) { */ case 19:
-				/* goto l387 */ $s = 13; continue;
+				/* goto l414 */ $s = 13; continue;
 			/* } */ case 20:
-			/* l392: */ case 18:
-			$r = add[0](128, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l387: */ case 13:
-			_tmp$18 = position386;
-			_tmp$19 = tokenIndex386;
+			/* l419: */ case 18:
+			$r = add[0](135, position[0]); /* */ $s = 22; case 22: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l414: */ case 13:
+			_tmp$18 = position413;
+			_tmp$19 = tokenIndex413;
 			position[0] = _tmp$18;
 			tokenIndex[0] = _tmp$19;
 			_tmp$20 = position[0];
 			_tmp$21 = tokenIndex[0];
-			position396 = _tmp$20;
-			tokenIndex396 = _tmp$21;
+			position423 = _tmp$20;
+			tokenIndex423 = _tmp$21;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 24; continue; }
 			/* */ $s = 25; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 24:
-				/* goto l397 */ $s = 26; continue;
+				/* goto l424 */ $s = 26; continue;
 			/* } */ case 25:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 27; continue; }
 			/* */ $s = 28; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 27:
-				/* goto l397 */ $s = 26; continue;
+				/* goto l424 */ $s = 26; continue;
 			/* } */ case 28:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l396 */ $s = 29; continue;
-			/* l397: */ case 26:
-			_tmp$22 = position396;
-			_tmp$23 = tokenIndex396;
+			/* goto l423 */ $s = 29; continue;
+			/* l424: */ case 26:
+			_tmp$22 = position423;
+			_tmp$23 = tokenIndex423;
 			position[0] = _tmp$22;
 			tokenIndex[0] = _tmp$23;
 			_tmp$24 = position[0];
 			_tmp$25 = tokenIndex[0];
-			position398 = _tmp$24;
-			tokenIndex398 = _tmp$25;
+			position425 = _tmp$24;
+			tokenIndex425 = _tmp$25;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 113))) { $s = 30; continue; }
 			/* */ $s = 31; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 113))) { */ case 30:
-				/* goto l399 */ $s = 32; continue;
+				/* goto l426 */ $s = 32; continue;
 			/* } */ case 31:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l398 */ $s = 33; continue;
-			/* l399: */ case 32:
-			_tmp$26 = position398;
-			_tmp$27 = tokenIndex398;
+			/* goto l425 */ $s = 33; continue;
+			/* l426: */ case 32:
+			_tmp$26 = position425;
+			_tmp$27 = tokenIndex425;
 			position[0] = _tmp$26;
 			tokenIndex[0] = _tmp$27;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 81))) { $s = 34; continue; }
 			/* */ $s = 35; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 81))) { */ case 34:
-				/* goto l395 */ $s = 36; continue;
+				/* goto l422 */ $s = 36; continue;
 			/* } */ case 35:
 			position[0] = position[0] + (1) >>> 0;
-			/* l398: */ case 33:
-			/* l396: */ case 29:
-			$r = add[0](129, position[0]); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l395: */ case 36:
-			_tmp$28 = position386;
-			_tmp$29 = tokenIndex386;
+			/* l425: */ case 33:
+			/* l423: */ case 29:
+			$r = add[0](136, position[0]); /* */ $s = 37; case 37: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l422: */ case 36:
+			_tmp$28 = position413;
+			_tmp$29 = tokenIndex413;
 			position[0] = _tmp$28;
 			tokenIndex[0] = _tmp$29;
 			_tmp$30 = position[0];
 			_tmp$31 = tokenIndex[0];
-			position402 = _tmp$30;
-			tokenIndex402 = _tmp$31;
+			position429 = _tmp$30;
+			tokenIndex429 = _tmp$31;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 38; continue; }
 			/* */ $s = 39; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 38:
-				/* goto l403 */ $s = 40; continue;
+				/* goto l430 */ $s = 40; continue;
 			/* } */ case 39:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 41; continue; }
 			/* */ $s = 42; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 41:
-				/* goto l403 */ $s = 40; continue;
+				/* goto l430 */ $s = 40; continue;
 			/* } */ case 42:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l402 */ $s = 43; continue;
-			/* l403: */ case 40:
-			_tmp$32 = position402;
-			_tmp$33 = tokenIndex402;
+			/* goto l429 */ $s = 43; continue;
+			/* l430: */ case 40:
+			_tmp$32 = position429;
+			_tmp$33 = tokenIndex429;
 			position[0] = _tmp$32;
 			tokenIndex[0] = _tmp$33;
 			_tmp$34 = position[0];
 			_tmp$35 = tokenIndex[0];
-			position404 = _tmp$34;
-			tokenIndex404 = _tmp$35;
+			position431 = _tmp$34;
+			tokenIndex431 = _tmp$35;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 44; continue; }
 			/* */ $s = 45; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 44:
-				/* goto l405 */ $s = 46; continue;
+				/* goto l432 */ $s = 46; continue;
 			/* } */ case 45:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l404 */ $s = 47; continue;
-			/* l405: */ case 46:
-			_tmp$36 = position404;
-			_tmp$37 = tokenIndex404;
+			/* goto l431 */ $s = 47; continue;
+			/* l432: */ case 46:
+			_tmp$36 = position431;
+			_tmp$37 = tokenIndex431;
 			position[0] = _tmp$36;
 			tokenIndex[0] = _tmp$37;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 75))) { $s = 48; continue; }
 			/* */ $s = 49; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 75))) { */ case 48:
-				/* goto l401 */ $s = 50; continue;
+				/* goto l428 */ $s = 50; continue;
 			/* } */ case 49:
 			position[0] = position[0] + (1) >>> 0;
-			/* l404: */ case 47:
-			/* l402: */ case 43:
+			/* l431: */ case 47:
+			/* l429: */ case 43:
 			_tmp$38 = position[0];
 			_tmp$39 = tokenIndex[0];
-			position406 = _tmp$38;
-			tokenIndex406 = _tmp$39;
-			_r$3 = _rules[0][35](); /* */ $s = 53; case 53: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			position433 = _tmp$38;
+			tokenIndex433 = _tmp$39;
+			_r$3 = _rules[0][38](); /* */ $s = 53; case 53: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 51; continue; }
 			/* */ $s = 52; continue;
 			/* if (!_r$3) { */ case 51:
-				/* goto l407 */ $s = 54; continue;
+				/* goto l434 */ $s = 54; continue;
 			/* } */ case 52:
-			/* goto l406 */ $s = 55; continue;
-			/* l407: */ case 54:
-			_tmp$40 = position406;
-			_tmp$41 = tokenIndex406;
+			/* goto l433 */ $s = 55; continue;
+			/* l434: */ case 54:
+			_tmp$40 = position433;
+			_tmp$41 = tokenIndex433;
 			position[0] = _tmp$40;
 			tokenIndex[0] = _tmp$41;
-			_r$4 = _rules[0][43](); /* */ $s = 58; case 58: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][46](); /* */ $s = 58; case 58: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 56; continue; }
 			/* */ $s = 57; continue;
 			/* if (!_r$4) { */ case 56:
-				/* goto l401 */ $s = 50; continue;
+				/* goto l428 */ $s = 50; continue;
 			/* } */ case 57:
-			/* l406: */ case 55:
-			$r = add[0](130, position[0]); /* */ $s = 59; case 59: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l401: */ case 50:
-			_tmp$42 = position386;
-			_tmp$43 = tokenIndex386;
+			/* l433: */ case 55:
+			$r = add[0](137, position[0]); /* */ $s = 59; case 59: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l428: */ case 50:
+			_tmp$42 = position413;
+			_tmp$43 = tokenIndex413;
 			position[0] = _tmp$42;
 			tokenIndex[0] = _tmp$43;
 			_tmp$44 = position[0];
 			_tmp$45 = tokenIndex[0];
-			position410 = _tmp$44;
-			tokenIndex410 = _tmp$45;
+			position437 = _tmp$44;
+			tokenIndex437 = _tmp$45;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 60; continue; }
 			/* */ $s = 61; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 60:
-				/* goto l411 */ $s = 62; continue;
+				/* goto l438 */ $s = 62; continue;
 			/* } */ case 61:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 63; continue; }
 			/* */ $s = 64; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 63:
-				/* goto l411 */ $s = 62; continue;
+				/* goto l438 */ $s = 62; continue;
 			/* } */ case 64:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l410 */ $s = 65; continue;
-			/* l411: */ case 62:
-			_tmp$46 = position410;
-			_tmp$47 = tokenIndex410;
+			/* goto l437 */ $s = 65; continue;
+			/* l438: */ case 62:
+			_tmp$46 = position437;
+			_tmp$47 = tokenIndex437;
 			position[0] = _tmp$46;
 			tokenIndex[0] = _tmp$47;
 			_tmp$48 = position[0];
 			_tmp$49 = tokenIndex[0];
-			position412 = _tmp$48;
-			tokenIndex412 = _tmp$49;
+			position439 = _tmp$48;
+			tokenIndex439 = _tmp$49;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 66; continue; }
 			/* */ $s = 67; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 66:
-				/* goto l413 */ $s = 68; continue;
+				/* goto l440 */ $s = 68; continue;
 			/* } */ case 67:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l412 */ $s = 69; continue;
-			/* l413: */ case 68:
-			_tmp$50 = position412;
-			_tmp$51 = tokenIndex412;
+			/* goto l439 */ $s = 69; continue;
+			/* l440: */ case 68:
+			_tmp$50 = position439;
+			_tmp$51 = tokenIndex439;
 			position[0] = _tmp$50;
 			tokenIndex[0] = _tmp$51;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 75))) { $s = 70; continue; }
 			/* */ $s = 71; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 75))) { */ case 70:
-				/* goto l409 */ $s = 72; continue;
+				/* goto l436 */ $s = 72; continue;
 			/* } */ case 71:
 			position[0] = position[0] + (1) >>> 0;
-			/* l412: */ case 69:
-			/* l410: */ case 65:
-			$r = add[0](131, position[0]); /* */ $s = 73; case 73: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l409: */ case 72:
-			_tmp$52 = position386;
-			_tmp$53 = tokenIndex386;
+			/* l439: */ case 69:
+			/* l437: */ case 65:
+			$r = add[0](138, position[0]); /* */ $s = 73; case 73: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l436: */ case 72:
+			_tmp$52 = position413;
+			_tmp$53 = tokenIndex413;
 			position[0] = _tmp$52;
 			tokenIndex[0] = _tmp$53;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 74; continue; }
 			/* */ $s = 75; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 74:
-				/* goto l415 */ $s = 76; continue;
+				/* goto l442 */ $s = 76; continue;
 			/* } */ case 75:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 77; continue; }
 			/* */ $s = 78; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 77:
-				/* goto l415 */ $s = 76; continue;
+				/* goto l442 */ $s = 76; continue;
 			/* } */ case 78:
 			position[0] = position[0] + (1) >>> 0;
 			_tmp$54 = position[0];
 			_tmp$55 = tokenIndex[0];
-			position416 = _tmp$54;
-			tokenIndex416 = _tmp$55;
-			_r$5 = _rules[0][35](); /* */ $s = 81; case 81: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			position443 = _tmp$54;
+			tokenIndex443 = _tmp$55;
+			_r$5 = _rules[0][38](); /* */ $s = 81; case 81: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 79; continue; }
 			/* */ $s = 80; continue;
 			/* if (!_r$5) { */ case 79:
-				/* goto l417 */ $s = 82; continue;
+				/* goto l444 */ $s = 82; continue;
 			/* } */ case 80:
-			/* goto l416 */ $s = 83; continue;
-			/* l417: */ case 82:
-			_tmp$56 = position416;
-			_tmp$57 = tokenIndex416;
+			/* goto l443 */ $s = 83; continue;
+			/* l444: */ case 82:
+			_tmp$56 = position443;
+			_tmp$57 = tokenIndex443;
 			position[0] = _tmp$56;
 			tokenIndex[0] = _tmp$57;
-			_r$6 = _rules[0][43](); /* */ $s = 86; case 86: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			_r$6 = _rules[0][46](); /* */ $s = 86; case 86: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 			/* */ if (!_r$6) { $s = 84; continue; }
 			/* */ $s = 85; continue;
 			/* if (!_r$6) { */ case 84:
-				/* goto l415 */ $s = 76; continue;
+				/* goto l442 */ $s = 76; continue;
 			/* } */ case 85:
-			/* l416: */ case 83:
-			$r = add[0](132, position[0]); /* */ $s = 87; case 87: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l415: */ case 76:
-			_tmp$58 = position386;
-			_tmp$59 = tokenIndex386;
+			/* l443: */ case 83:
+			$r = add[0](139, position[0]); /* */ $s = 87; case 87: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l442: */ case 76:
+			_tmp$58 = position413;
+			_tmp$59 = tokenIndex413;
 			position[0] = _tmp$58;
 			tokenIndex[0] = _tmp$59;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 88; continue; }
 			/* */ $s = 89; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 88:
-				/* goto l419 */ $s = 90; continue;
+				/* goto l446 */ $s = 90; continue;
 			/* } */ case 89:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 91; continue; }
 			/* */ $s = 92; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 91:
-				/* goto l419 */ $s = 90; continue;
+				/* goto l446 */ $s = 90; continue;
 			/* } */ case 92:
 			position[0] = position[0] + (1) >>> 0;
-			$r = add[0](133, position[0]); /* */ $s = 93; case 93: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l419: */ case 90:
-			_tmp$60 = position386;
-			_tmp$61 = tokenIndex386;
+			$r = add[0](140, position[0]); /* */ $s = 93; case 93: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l446: */ case 90:
+			_tmp$60 = position413;
+			_tmp$61 = tokenIndex413;
 			position[0] = _tmp$60;
 			tokenIndex[0] = _tmp$61;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 94; continue; }
 			/* */ $s = 95; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 94:
-				/* goto l421 */ $s = 96; continue;
+				/* goto l448 */ $s = 96; continue;
 			/* } */ case 95:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 97; continue; }
 			/* */ $s = 98; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 97:
-				/* goto l421 */ $s = 96; continue;
+				/* goto l448 */ $s = 96; continue;
 			/* } */ case 98:
 			position[0] = position[0] + (1) >>> 0;
 			_tmp$62 = position[0];
 			_tmp$63 = tokenIndex[0];
-			position422 = _tmp$62;
-			tokenIndex422 = _tmp$63;
-			_r$7 = _rules[0][35](); /* */ $s = 101; case 101: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+			position449 = _tmp$62;
+			tokenIndex449 = _tmp$63;
+			_r$7 = _rules[0][38](); /* */ $s = 101; case 101: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
 			/* */ if (!_r$7) { $s = 99; continue; }
 			/* */ $s = 100; continue;
 			/* if (!_r$7) { */ case 99:
-				/* goto l423 */ $s = 102; continue;
+				/* goto l450 */ $s = 102; continue;
 			/* } */ case 100:
-			/* goto l422 */ $s = 103; continue;
-			/* l423: */ case 102:
-			_tmp$64 = position422;
-			_tmp$65 = tokenIndex422;
+			/* goto l449 */ $s = 103; continue;
+			/* l450: */ case 102:
+			_tmp$64 = position449;
+			_tmp$65 = tokenIndex449;
 			position[0] = _tmp$64;
 			tokenIndex[0] = _tmp$65;
-			_r$8 = _rules[0][43](); /* */ $s = 106; case 106: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+			_r$8 = _rules[0][46](); /* */ $s = 106; case 106: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
 			/* */ if (!_r$8) { $s = 104; continue; }
 			/* */ $s = 105; continue;
 			/* if (!_r$8) { */ case 104:
-				/* goto l421 */ $s = 96; continue;
+				/* goto l448 */ $s = 96; continue;
 			/* } */ case 105:
-			/* l422: */ case 103:
-			$r = add[0](134, position[0]); /* */ $s = 107; case 107: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l386 */ $s = 23; continue;
-			/* l421: */ case 96:
-			_tmp$66 = position386;
-			_tmp$67 = tokenIndex386;
+			/* l449: */ case 103:
+			$r = add[0](141, position[0]); /* */ $s = 107; case 107: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l413 */ $s = 23; continue;
+			/* l448: */ case 96:
+			_tmp$66 = position413;
+			_tmp$67 = tokenIndex413;
 			position[0] = _tmp$66;
 			tokenIndex[0] = _tmp$67;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { $s = 108; continue; }
 			/* */ $s = 109; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 100))) { */ case 108:
-				/* goto l384 */ $s = 110; continue;
+				/* goto l411 */ $s = 110; continue;
 			/* } */ case 109:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 111; continue; }
 			/* */ $s = 112; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 111:
-				/* goto l384 */ $s = 110; continue;
+				/* goto l411 */ $s = 110; continue;
 			/* } */ case 112:
 			position[0] = position[0] + (1) >>> 0;
-			$r = add[0](135, position[0]); /* */ $s = 113; case 113: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l386: */ case 23:
-			$r = add[0](26, position385); /* */ $s = 114; case 114: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](142, position[0]); /* */ $s = 113; case 113: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l413: */ case 23:
+			$r = add[0](29, position412); /* */ $s = 114; case 114: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l384: */ case 110:
-			_tmp$68 = position384;
-			_tmp$69 = tokenIndex384;
+			/* l411: */ case 110:
+			_tmp$68 = position411;
+			_tmp$69 = tokenIndex411;
 			position[0] = _tmp$68;
 			tokenIndex[0] = _tmp$69;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$8, _tmp$9, position384, position385, position386, position388, position390, position392, position396, position398, position402, position404, position406, position410, position412, position416, position422, tokenIndex384, tokenIndex386, tokenIndex388, tokenIndex390, tokenIndex392, tokenIndex396, tokenIndex398, tokenIndex402, tokenIndex404, tokenIndex406, tokenIndex410, tokenIndex412, tokenIndex416, tokenIndex422, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$26, _tmp$27, _tmp$28, _tmp$29, _tmp$3, _tmp$30, _tmp$31, _tmp$32, _tmp$33, _tmp$34, _tmp$35, _tmp$36, _tmp$37, _tmp$38, _tmp$39, _tmp$4, _tmp$40, _tmp$41, _tmp$42, _tmp$43, _tmp$44, _tmp$45, _tmp$46, _tmp$47, _tmp$48, _tmp$49, _tmp$5, _tmp$50, _tmp$51, _tmp$52, _tmp$53, _tmp$54, _tmp$55, _tmp$56, _tmp$57, _tmp$58, _tmp$59, _tmp$6, _tmp$60, _tmp$61, _tmp$62, _tmp$63, _tmp$64, _tmp$65, _tmp$66, _tmp$67, _tmp$68, _tmp$69, _tmp$7, _tmp$8, _tmp$9, position411, position412, position413, position415, position417, position419, position423, position425, position429, position431, position433, position437, position439, position443, position449, tokenIndex411, tokenIndex413, tokenIndex415, tokenIndex417, tokenIndex419, tokenIndex423, tokenIndex425, tokenIndex429, tokenIndex431, tokenIndex433, tokenIndex437, tokenIndex439, tokenIndex443, tokenIndex449, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position427, position428, position430, position433, position435, tokenIndex428, tokenIndex430, tokenIndex433, tokenIndex435, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position454, position455, position457, position460, position462, tokenIndex455, tokenIndex457, tokenIndex460, tokenIndex462, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			position427 = position[0];
+			position454 = position[0];
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position428 = _tmp$2;
-			tokenIndex428 = _tmp$3;
+			position455 = _tmp$2;
+			tokenIndex455 = _tmp$3;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 109))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 109))) { */ case 1:
-				/* goto l428 */ $s = 3; continue;
+				/* goto l455 */ $s = 3; continue;
 			/* } */ case 2:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 4; continue; }
 			/* */ $s = 5; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 4:
-				/* goto l428 */ $s = 3; continue;
+				/* goto l455 */ $s = 3; continue;
 			/* } */ case 5:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 6; continue; }
 			/* */ $s = 7; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 6:
-				/* goto l428 */ $s = 3; continue;
+				/* goto l455 */ $s = 3; continue;
 			/* } */ case 7:
 			position[0] = position[0] + (1) >>> 0;
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position430 = _tmp$4;
-			tokenIndex430 = _tmp$5;
-			_r$1 = _rules[0][35](); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			position457 = _tmp$4;
+			tokenIndex457 = _tmp$5;
+			_r$1 = _rules[0][38](); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 8; continue; }
 			/* */ $s = 9; continue;
 			/* if (!_r$1) { */ case 8:
-				/* goto l431 */ $s = 11; continue;
+				/* goto l458 */ $s = 11; continue;
 			/* } */ case 9:
-			/* goto l430 */ $s = 12; continue;
-			/* l431: */ case 11:
-			_tmp$6 = position430;
-			_tmp$7 = tokenIndex430;
+			/* goto l457 */ $s = 12; continue;
+			/* l458: */ case 11:
+			_tmp$6 = position457;
+			_tmp$7 = tokenIndex457;
 			position[0] = _tmp$6;
 			tokenIndex[0] = _tmp$7;
-			_r$2 = _rules[0][43](); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][46](); /* */ $s = 15; case 15: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 13; continue; }
 			/* */ $s = 14; continue;
 			/* if (!_r$2) { */ case 13:
-				/* goto l428 */ $s = 3; continue;
+				/* goto l455 */ $s = 3; continue;
 			/* } */ case 14:
-			/* l430: */ case 12:
-			$r = add[0](136, position[0]); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l429 */ $s = 17; continue;
-			/* l428: */ case 3:
-			_tmp$8 = position428;
-			_tmp$9 = tokenIndex428;
+			/* l457: */ case 12:
+			$r = add[0](143, position[0]); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l456 */ $s = 17; continue;
+			/* l455: */ case 3:
+			_tmp$8 = position455;
+			_tmp$9 = tokenIndex455;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
-			/* l429: */ case 17:
+			/* l456: */ case 17:
 			_tmp$10 = position[0];
 			_tmp$11 = tokenIndex[0];
-			position433 = _tmp$10;
-			tokenIndex433 = _tmp$11;
+			position460 = _tmp$10;
+			tokenIndex460 = _tmp$11;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 109))) { $s = 18; continue; }
 			/* */ $s = 19; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 109))) { */ case 18:
-				/* goto l433 */ $s = 20; continue;
+				/* goto l460 */ $s = 20; continue;
 			/* } */ case 19:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { $s = 21; continue; }
 			/* */ $s = 22; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { */ case 21:
-				/* goto l433 */ $s = 20; continue;
+				/* goto l460 */ $s = 20; continue;
 			/* } */ case 22:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 120))) { $s = 23; continue; }
 			/* */ $s = 24; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 120))) { */ case 23:
-				/* goto l433 */ $s = 20; continue;
+				/* goto l460 */ $s = 20; continue;
 			/* } */ case 24:
 			position[0] = position[0] + (1) >>> 0;
 			_tmp$12 = position[0];
 			_tmp$13 = tokenIndex[0];
-			position435 = _tmp$12;
-			tokenIndex435 = _tmp$13;
-			_r$3 = _rules[0][35](); /* */ $s = 27; case 27: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			position462 = _tmp$12;
+			tokenIndex462 = _tmp$13;
+			_r$3 = _rules[0][38](); /* */ $s = 27; case 27: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 25; continue; }
 			/* */ $s = 26; continue;
 			/* if (!_r$3) { */ case 25:
-				/* goto l436 */ $s = 28; continue;
+				/* goto l463 */ $s = 28; continue;
 			/* } */ case 26:
-			/* goto l435 */ $s = 29; continue;
-			/* l436: */ case 28:
-			_tmp$14 = position435;
-			_tmp$15 = tokenIndex435;
+			/* goto l462 */ $s = 29; continue;
+			/* l463: */ case 28:
+			_tmp$14 = position462;
+			_tmp$15 = tokenIndex462;
 			position[0] = _tmp$14;
 			tokenIndex[0] = _tmp$15;
-			_r$4 = _rules[0][43](); /* */ $s = 32; case 32: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][46](); /* */ $s = 32; case 32: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 30; continue; }
 			/* */ $s = 31; continue;
 			/* if (!_r$4) { */ case 30:
-				/* goto l433 */ $s = 20; continue;
+				/* goto l460 */ $s = 20; continue;
 			/* } */ case 31:
-			/* l435: */ case 29:
-			$r = add[0](137, position[0]); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l434 */ $s = 34; continue;
-			/* l433: */ case 20:
-			_tmp$16 = position433;
-			_tmp$17 = tokenIndex433;
+			/* l462: */ case 29:
+			$r = add[0](144, position[0]); /* */ $s = 33; case 33: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l461 */ $s = 34; continue;
+			/* l460: */ case 20:
+			_tmp$16 = position460;
+			_tmp$17 = tokenIndex460;
 			position[0] = _tmp$16;
 			tokenIndex[0] = _tmp$17;
-			/* l434: */ case 34:
-			$r = add[0](27, position427); /* */ $s = 35; case 35: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l461: */ case 34:
+			$r = add[0](30, position454); /* */ $s = 35; case 35: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position427, position428, position430, position433, position435, tokenIndex428, tokenIndex430, tokenIndex433, tokenIndex435, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position454, position455, position457, position460, position462, tokenIndex455, tokenIndex457, tokenIndex460, tokenIndex462, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position441, position443, position444, tokenIndex443, tokenIndex444, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position468, position470, position471, tokenIndex470, tokenIndex471, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			position441 = position[0];
-			/* l442: */ case 1:
+			position468 = position[0];
+			/* l469: */ case 1:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position443 = _tmp$2;
-			tokenIndex443 = _tmp$3;
+			position470 = _tmp$2;
+			tokenIndex470 = _tmp$3;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 2; continue; }
 			/* */ $s = 3; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 2:
-				/* goto l443 */ $s = 4; continue;
+				/* goto l470 */ $s = 4; continue;
 			/* } */ case 3:
 			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][62](); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][65](); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (!_r$1) { */ case 5:
-				/* goto l443 */ $s = 4; continue;
+				/* goto l470 */ $s = 4; continue;
 			/* } */ case 6:
-			_r$2 = _rules[0][16](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][19](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 8; continue; }
 			/* */ $s = 9; continue;
 			/* if (!_r$2) { */ case 8:
-				/* goto l443 */ $s = 4; continue;
+				/* goto l470 */ $s = 4; continue;
 			/* } */ case 9:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 11:
-				/* goto l443 */ $s = 4; continue;
+				/* goto l470 */ $s = 4; continue;
 			/* } */ case 12:
 			position[0] = position[0] + (1) >>> 0;
-			_r$3 = _rules[0][62](); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][65](); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 13; continue; }
 			/* */ $s = 14; continue;
 			/* if (!_r$3) { */ case 13:
-				/* goto l443 */ $s = 4; continue;
+				/* goto l470 */ $s = 4; continue;
 			/* } */ case 14:
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position444 = _tmp$4;
-			tokenIndex444 = _tmp$5;
+			position471 = _tmp$4;
+			tokenIndex471 = _tmp$5;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 16; continue; }
 			/* */ $s = 17; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 16:
-				/* goto l444 */ $s = 18; continue;
+				/* goto l471 */ $s = 18; continue;
 			/* } */ case 17:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l443 */ $s = 4; continue;
-			/* l444: */ case 18:
-			_tmp$6 = position444;
-			_tmp$7 = tokenIndex444;
+			/* goto l470 */ $s = 4; continue;
+			/* l471: */ case 18:
+			_tmp$6 = position471;
+			_tmp$7 = tokenIndex471;
 			position[0] = _tmp$6;
 			tokenIndex[0] = _tmp$7;
-			$r = add[0](144, position[0]); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l442 */ $s = 1; continue;
-			/* l443: */ case 4:
-			_tmp$8 = position443;
-			_tmp$9 = tokenIndex443;
+			$r = add[0](151, position[0]); /* */ $s = 19; case 19: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l469 */ $s = 1; continue;
+			/* l470: */ case 4:
+			_tmp$8 = position470;
+			_tmp$9 = tokenIndex470;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
-			$r = add[0](30, position441); /* */ $s = 20; case 20: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](33, position468); /* */ $s = 20; case 20: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position441, position443, position444, tokenIndex443, tokenIndex444, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position468, position470, position471, tokenIndex470, tokenIndex471, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position446, position447, position448, position454, tokenIndex446, tokenIndex448, tokenIndex454, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position473, position474, position475, position481, tokenIndex473, tokenIndex475, tokenIndex481, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position446 = _tmp$2;
-			tokenIndex446 = _tmp$3;
-			position447 = position[0];
+			position473 = _tmp$2;
+			tokenIndex473 = _tmp$3;
+			position474 = position[0];
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position448 = _tmp$4;
-			tokenIndex448 = _tmp$5;
+			position475 = _tmp$4;
+			tokenIndex475 = _tmp$5;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 1:
-				/* goto l449 */ $s = 3; continue;
+				/* goto l476 */ $s = 3; continue;
 			/* } */ case 2:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 4; continue; }
 			/* */ $s = 5; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 4:
-				/* goto l449 */ $s = 3; continue;
+				/* goto l476 */ $s = 3; continue;
 			/* } */ case 5:
 			position[0] = position[0] + (1) >>> 0;
-			$r = add[0](145, position[0]); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l448 */ $s = 7; continue;
-			/* l449: */ case 3:
-			_tmp$6 = position448;
-			_tmp$7 = tokenIndex448;
+			$r = add[0](152, position[0]); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l475 */ $s = 7; continue;
+			/* l476: */ case 3:
+			_tmp$6 = position475;
+			_tmp$7 = tokenIndex475;
 			position[0] = _tmp$6;
 			tokenIndex[0] = _tmp$7;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 8; continue; }
 			/* */ $s = 9; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 8:
-				/* goto l451 */ $s = 10; continue;
+				/* goto l478 */ $s = 10; continue;
 			/* } */ case 9:
 			position[0] = position[0] + (1) >>> 0;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 11:
-				/* goto l451 */ $s = 10; continue;
+				/* goto l478 */ $s = 10; continue;
 			/* } */ case 12:
 			position[0] = position[0] + (1) >>> 0;
-			$r = add[0](146, position[0]); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l448 */ $s = 7; continue;
-			/* l451: */ case 10:
-			_tmp$8 = position448;
-			_tmp$9 = tokenIndex448;
+			$r = add[0](153, position[0]); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l475 */ $s = 7; continue;
+			/* l478: */ case 10:
+			_tmp$8 = position475;
+			_tmp$9 = tokenIndex475;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 14; continue; }
 			/* */ $s = 15; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 14:
-				/* goto l446 */ $s = 16; continue;
+				/* goto l473 */ $s = 16; continue;
 			/* } */ case 15:
 			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][62](); /* */ $s = 19; case 19: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][65](); /* */ $s = 19; case 19: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 17; continue; }
 			/* */ $s = 18; continue;
 			/* if (!_r$1) { */ case 17:
-				/* goto l446 */ $s = 16; continue;
+				/* goto l473 */ $s = 16; continue;
 			/* } */ case 18:
-			_r$2 = _rules[0][16](); /* */ $s = 22; case 22: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][19](); /* */ $s = 22; case 22: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 20; continue; }
 			/* */ $s = 21; continue;
 			/* if (!_r$2) { */ case 20:
-				/* goto l446 */ $s = 16; continue;
+				/* goto l473 */ $s = 16; continue;
 			/* } */ case 21:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 23; continue; }
 			/* */ $s = 24; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 23:
-				/* goto l446 */ $s = 16; continue;
+				/* goto l473 */ $s = 16; continue;
 			/* } */ case 24:
 			position[0] = position[0] + (1) >>> 0;
-			_r$3 = _rules[0][62](); /* */ $s = 27; case 27: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][65](); /* */ $s = 27; case 27: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 25; continue; }
 			/* */ $s = 26; continue;
 			/* if (!_r$3) { */ case 25:
-				/* goto l446 */ $s = 16; continue;
+				/* goto l473 */ $s = 16; continue;
 			/* } */ case 26:
-			$r = add[0](147, position[0]); /* */ $s = 28; case 28: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* l453: */ case 29:
+			$r = add[0](154, position[0]); /* */ $s = 28; case 28: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l480: */ case 29:
 			_tmp$10 = position[0];
 			_tmp$11 = tokenIndex[0];
-			position454 = _tmp$10;
-			tokenIndex454 = _tmp$11;
+			position481 = _tmp$10;
+			tokenIndex481 = _tmp$11;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 30; continue; }
 			/* */ $s = 31; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 30:
-				/* goto l454 */ $s = 32; continue;
+				/* goto l481 */ $s = 32; continue;
 			/* } */ case 31:
 			position[0] = position[0] + (1) >>> 0;
-			_r$4 = _rules[0][62](); /* */ $s = 35; case 35: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][65](); /* */ $s = 35; case 35: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 			/* */ if (!_r$4) { $s = 33; continue; }
 			/* */ $s = 34; continue;
 			/* if (!_r$4) { */ case 33:
-				/* goto l454 */ $s = 32; continue;
+				/* goto l481 */ $s = 32; continue;
 			/* } */ case 34:
-			_r$5 = _rules[0][16](); /* */ $s = 38; case 38: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+			_r$5 = _rules[0][19](); /* */ $s = 38; case 38: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 			/* */ if (!_r$5) { $s = 36; continue; }
 			/* */ $s = 37; continue;
 			/* if (!_r$5) { */ case 36:
-				/* goto l454 */ $s = 32; continue;
+				/* goto l481 */ $s = 32; continue;
 			/* } */ case 37:
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 39; continue; }
 			/* */ $s = 40; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 39:
-				/* goto l454 */ $s = 32; continue;
+				/* goto l481 */ $s = 32; continue;
 			/* } */ case 40:
 			position[0] = position[0] + (1) >>> 0;
-			_r$6 = _rules[0][62](); /* */ $s = 43; case 43: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+			_r$6 = _rules[0][65](); /* */ $s = 43; case 43: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 			/* */ if (!_r$6) { $s = 41; continue; }
 			/* */ $s = 42; continue;
 			/* if (!_r$6) { */ case 41:
-				/* goto l454 */ $s = 32; continue;
+				/* goto l481 */ $s = 32; continue;
 			/* } */ case 42:
-			$r = add[0](147, position[0]); /* */ $s = 44; case 44: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l453 */ $s = 29; continue;
-			/* l454: */ case 32:
-			_tmp$12 = position454;
-			_tmp$13 = tokenIndex454;
+			$r = add[0](154, position[0]); /* */ $s = 44; case 44: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l480 */ $s = 29; continue;
+			/* l481: */ case 32:
+			_tmp$12 = position481;
+			_tmp$13 = tokenIndex481;
 			position[0] = _tmp$12;
 			tokenIndex[0] = _tmp$13;
-			/* l448: */ case 7:
-			$r = add[0](31, position447); /* */ $s = 45; case 45: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l475: */ case 7:
+			$r = add[0](34, position474); /* */ $s = 45; case 45: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l446: */ case 16:
-			_tmp$14 = position446;
-			_tmp$15 = tokenIndex446;
+			/* l473: */ case 16:
+			_tmp$14 = position473;
+			_tmp$15 = tokenIndex473;
 			position[0] = _tmp$14;
 			tokenIndex[0] = _tmp$15;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position446, position447, position448, position454, tokenIndex446, tokenIndex448, tokenIndex454, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position473, position474, position475, position481, tokenIndex473, tokenIndex475, tokenIndex481, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position458, position460, tokenIndex460, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position485, position487, tokenIndex487, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			position458 = position[0];
-			/* l459: */ case 1:
+			position485 = position[0];
+			/* l486: */ case 1:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position460 = _tmp$2;
-			tokenIndex460 = _tmp$3;
+			position487 = _tmp$2;
+			tokenIndex487 = _tmp$3;
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 46))) { $s = 2; continue; }
 			/* */ $s = 3; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 46))) { */ case 2:
-				/* goto l460 */ $s = 4; continue;
+				/* goto l487 */ $s = 4; continue;
 			/* } */ case 3:
 			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][62](); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][65](); /* */ $s = 7; case 7: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (!_r$1) { */ case 5:
-				/* goto l460 */ $s = 4; continue;
+				/* goto l487 */ $s = 4; continue;
 			/* } */ case 6:
-			_r$2 = _rules[0][42](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][45](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 8; continue; }
 			/* */ $s = 9; continue;
 			/* if (!_r$2) { */ case 8:
-				/* goto l460 */ $s = 4; continue;
+				/* goto l487 */ $s = 4; continue;
 			/* } */ case 9:
-			$r = add[0](148, position[0]); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			/* goto l459 */ $s = 1; continue;
-			/* l460: */ case 4:
-			_tmp$4 = position460;
-			_tmp$5 = tokenIndex460;
+			$r = add[0](155, position[0]); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* goto l486 */ $s = 1; continue;
+			/* l487: */ case 4:
+			_tmp$4 = position487;
+			_tmp$5 = tokenIndex487;
 			position[0] = _tmp$4;
 			tokenIndex[0] = _tmp$5;
-			$r = add[0](32, position458); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](35, position485); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position458, position460, tokenIndex460, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position485, position487, tokenIndex487, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, position464, position465, position466, position468, tokenIndex464, tokenIndex468, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, position491, position492, position493, position495, tokenIndex491, tokenIndex495, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position464 = _tmp$2;
-			tokenIndex464 = _tmp$3;
-			position465 = position[0];
-			position466 = position[0];
+			position491 = _tmp$2;
+			tokenIndex491 = _tmp$3;
+			position492 = position[0];
+			position493 = position[0];
 			c = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
 			/* */ if (c < 48 || c > 57) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (c < 48 || c > 57) { */ case 1:
-				/* goto l464 */ $s = 3; continue;
+				/* goto l491 */ $s = 3; continue;
 			/* } */ case 2:
 			position[0] = position[0] + (1) >>> 0;
-			/* l467: */ case 4:
+			/* l494: */ case 4:
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position468 = _tmp$4;
-			tokenIndex468 = _tmp$5;
+			position495 = _tmp$4;
+			tokenIndex495 = _tmp$5;
 			c$1 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
 			/* */ if (c$1 < 48 || c$1 > 57) { $s = 5; continue; }
 			/* */ $s = 6; continue;
 			/* if (c$1 < 48 || c$1 > 57) { */ case 5:
-				/* goto l468 */ $s = 7; continue;
+				/* goto l495 */ $s = 7; continue;
 			/* } */ case 6:
 			position[0] = position[0] + (1) >>> 0;
-			/* goto l467 */ $s = 4; continue;
-			/* l468: */ case 7:
-			_tmp$6 = position468;
-			_tmp$7 = tokenIndex468;
+			/* goto l494 */ $s = 4; continue;
+			/* l495: */ case 7:
+			_tmp$6 = position495;
+			_tmp$7 = tokenIndex495;
 			position[0] = _tmp$6;
 			tokenIndex[0] = _tmp$7;
-			$r = add[0](79, position466); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$1 = _rules[0][62](); /* */ $s = 11; case 11: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			$r = add[0](86, position493); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][65](); /* */ $s = 11; case 11: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 9; continue; }
 			/* */ $s = 10; continue;
 			/* if (!_r$1) { */ case 9:
-				/* goto l464 */ $s = 3; continue;
+				/* goto l491 */ $s = 3; continue;
 			/* } */ case 10:
-			$r = add[0](163, position[0]); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](35, position465); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](170, position[0]); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](38, position492); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l464: */ case 3:
-			_tmp$8 = position464;
-			_tmp$9 = tokenIndex464;
+			/* l491: */ case 3:
+			_tmp$8 = position491;
+			_tmp$9 = tokenIndex491;
 			position[0] = _tmp$8;
 			tokenIndex[0] = _tmp$9;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, position464, position465, position466, position468, tokenIndex464, tokenIndex468, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, position491, position492, position493, position495, tokenIndex491, tokenIndex495, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_14, _15, _16, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, c$2, position476, position477, position478, position480, position481, position484, position485, tokenIndex476, tokenIndex478, tokenIndex481, tokenIndex484, tokenIndex485, $s, $r, $c} = $restore(this, {});
+			var {_16, _17, _18, _19, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, c$2, c$3, position503, position504, position505, position507, position510, position511, position514, position515, tokenIndex503, tokenIndex505, tokenIndex507, tokenIndex511, tokenIndex514, tokenIndex515, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position476 = _tmp$2;
-			tokenIndex476 = _tmp$3;
-			position477 = position[0];
+			position503 = _tmp$2;
+			tokenIndex503 = _tmp$3;
+			position504 = position[0];
 			_tmp$4 = position[0];
 			_tmp$5 = tokenIndex[0];
-			position478 = _tmp$4;
-			tokenIndex478 = _tmp$5;
-				_14 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_14 === (102)) { $s = 2; continue; }
-				/* */ if (_14 === (114)) { $s = 3; continue; }
-				/* */ if (_14 === (98)) { $s = 4; continue; }
-				/* */ if (_14 === (99)) { $s = 5; continue; }
-				/* */ if (_14 === (101)) { $s = 6; continue; }
-				/* */ if (_14 === (105)) { $s = 7; continue; }
+			position505 = _tmp$4;
+			tokenIndex505 = _tmp$5;
+				_16 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_16 === (102)) { $s = 2; continue; }
+				/* */ if (_16 === (114)) { $s = 3; continue; }
+				/* */ if (_16 === (98)) { $s = 4; continue; }
+				/* */ if (_16 === (99)) { $s = 5; continue; }
+				/* */ if (_16 === (101)) { $s = 6; continue; }
+				/* */ if (_16 === (105)) { $s = 7; continue; }
 				/* */ $s = 8; continue;
-				/* if (_14 === (102)) { */ case 2:
+				/* if (_16 === (102)) { */ case 2:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 10; continue; }
 					/* */ $s = 11; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 10:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 11:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 13; continue; }
 					/* */ $s = 14; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 13:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 14:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 15; continue; }
 					/* */ $s = 16; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 15:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 16:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { $s = 17; continue; }
 					/* */ $s = 18; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { */ case 17:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 18:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 9; continue;
-				/* } else if (_14 === (114)) { */ case 3:
+				/* } else if (_16 === (114)) { */ case 3:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 19; continue; }
 					/* */ $s = 20; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 19:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 20:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 21; continue; }
 					/* */ $s = 22; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 21:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 22:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 23; continue; }
 					/* */ $s = 24; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 23:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 24:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 25; continue; }
 					/* */ $s = 26; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 25:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 26:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 27; continue; }
 					/* */ $s = 28; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 27:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 28:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 29; continue; }
 					/* */ $s = 30; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 29:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 30:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 9; continue;
-				/* } else if (_14 === (98)) { */ case 4:
+				/* } else if (_16 === (98)) { */ case 4:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { $s = 31; continue; }
 					/* */ $s = 32; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { */ case 31:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 32:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 33; continue; }
 					/* */ $s = 34; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 33:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 34:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 35; continue; }
 					/* */ $s = 36; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 35:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 36:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { $s = 37; continue; }
 					/* */ $s = 38; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 97))) { */ case 37:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 38:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { $s = 39; continue; }
 					/* */ $s = 40; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 107))) { */ case 39:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 40:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 9; continue;
-				/* } else if (_14 === (99)) { */ case 5:
+				/* } else if (_16 === (99)) { */ case 5:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { $s = 41; continue; }
 					/* */ $s = 42; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 99))) { */ case 41:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 42:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 111))) { $s = 43; continue; }
 					/* */ $s = 44; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 111))) { */ case 43:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 44:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 45; continue; }
 					/* */ $s = 46; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 45:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 46:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 47; continue; }
 					/* */ $s = 48; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 47:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 48:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 49; continue; }
 					/* */ $s = 50; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 49:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 50:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 51; continue; }
 					/* */ $s = 52; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 51:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 52:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { $s = 53; continue; }
 					/* */ $s = 54; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 117))) { */ case 53:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 54:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 55; continue; }
 					/* */ $s = 56; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 55:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 56:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 9; continue;
-				/* } else if (_14 === (101)) { */ case 6:
+				/* } else if (_16 === (101)) { */ case 6:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 57; continue; }
 					/* */ $s = 58; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 57:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 58:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 59; continue; }
 					/* */ $s = 60; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 59:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 60:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { $s = 61; continue; }
 					/* */ $s = 62; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 115))) { */ case 61:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 62:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 63; continue; }
 					/* */ $s = 64; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 63:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 64:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 9; continue;
-				/* } else if (_14 === (105)) { */ case 7:
+				/* } else if (_16 === (105)) { */ case 7:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 65; continue; }
 					/* */ $s = 66; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 65:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 66:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 67; continue; }
 					/* */ $s = 68; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 67:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 68:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 9; continue;
@@ -36755,966 +37079,1081 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 119))) { $s = 69; continue; }
 					/* */ $s = 70; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 119))) { */ case 69:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 70:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { $s = 71; continue; }
 					/* */ $s = 72; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 104))) { */ case 71:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 72:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { $s = 73; continue; }
 					/* */ $s = 74; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 105))) { */ case 73:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 74:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { $s = 75; continue; }
 					/* */ $s = 76; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 108))) { */ case 75:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 76:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { $s = 77; continue; }
 					/* */ $s = 78; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 101))) { */ case 77:
-						/* goto l478 */ $s = 12; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 78:
 					position[0] = position[0] + (1) >>> 0;
 				/* } */ case 9:
 			case 1:
-			_r$1 = _rules[0][63](); /* */ $s = 81; case 81: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_tmp$6 = position[0];
+			_tmp$7 = tokenIndex[0];
+			position507 = _tmp$6;
+			tokenIndex507 = _tmp$7;
+			_r$1 = _rules[0][66](); /* */ $s = 81; case 81: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 79; continue; }
 			/* */ $s = 80; continue;
 			/* if (!_r$1) { */ case 79:
-				/* goto l478 */ $s = 12; continue;
+				/* goto l508 */ $s = 82; continue;
 			/* } */ case 80:
-			/* goto l476 */ $s = 82; continue;
-			/* l478: */ case 12:
-			_tmp$6 = position478;
-			_tmp$7 = tokenIndex478;
-			position[0] = _tmp$6;
-			tokenIndex[0] = _tmp$7;
-			position480 = position[0];
-			_tmp$8 = position[0];
-			_tmp$9 = tokenIndex[0];
-			position481 = _tmp$8;
-			tokenIndex481 = _tmp$9;
-				_15 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_15 === (30)) { $s = 84; continue; }
-				/* */ if (_15 === (13)) { $s = 85; continue; }
-				/* */ if (_15 === (10)) { $s = 86; continue; }
-				/* */ if (_15 === (9)) { $s = 87; continue; }
-				/* */ if (_15 === (32)) { $s = 88; continue; }
-				/* */ if (_15 === (126)) { $s = 89; continue; }
-				/* */ if (_15 === (125)) { $s = 90; continue; }
-				/* */ if (_15 === (124)) { $s = 91; continue; }
-				/* */ if (_15 === (123)) { $s = 92; continue; }
-				/* */ if (_15 === (96)) { $s = 93; continue; }
-				/* */ if (_15 === (94)) { $s = 94; continue; }
-				/* */ if (_15 === (93)) { $s = 95; continue; }
-				/* */ if (_15 === (92)) { $s = 96; continue; }
-				/* */ if (_15 === (91)) { $s = 97; continue; }
-				/* */ if (_15 === (64)) { $s = 98; continue; }
-				/* */ if (_15 === (63)) { $s = 99; continue; }
-				/* */ if (_15 === (62)) { $s = 100; continue; }
-				/* */ if (_15 === (61)) { $s = 101; continue; }
-				/* */ if (_15 === (60)) { $s = 102; continue; }
-				/* */ if (_15 === (59)) { $s = 103; continue; }
-				/* */ if (_15 === (58)) { $s = 104; continue; }
-				/* */ if (_15 === (47)) { $s = 105; continue; }
-				/* */ if (_15 === (43)) { $s = 106; continue; }
-				/* */ if (_15 === (42)) { $s = 107; continue; }
-				/* */ if (_15 === (41)) { $s = 108; continue; }
-				/* */ if (_15 === (40)) { $s = 109; continue; }
-				/* */ if (_15 === (39)) { $s = 110; continue; }
-				/* */ if (_15 === (38)) { $s = 111; continue; }
-				/* */ if (_15 === (37)) { $s = 112; continue; }
-				/* */ if (_15 === (35)) { $s = 113; continue; }
-				/* */ if (_15 === (34)) { $s = 114; continue; }
-				/* */ if (_15 === (33)) { $s = 115; continue; }
-				/* */ if ((_15 === (44)) || (_15 === (45)) || (_15 === (46))) { $s = 116; continue; }
+			/* goto l507 */ $s = 83; continue;
+			/* l508: */ case 82:
+			_tmp$8 = position507;
+			_tmp$9 = tokenIndex507;
+			position[0] = _tmp$8;
+			tokenIndex[0] = _tmp$9;
+				_17 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_17 === (30)) { $s = 85; continue; }
+				/* */ if (_17 === (13)) { $s = 86; continue; }
+				/* */ if (_17 === (10)) { $s = 87; continue; }
+				/* */ if (_17 === (9)) { $s = 88; continue; }
+				/* */ if (_17 === (32)) { $s = 89; continue; }
+				/* */ if (_17 === (126)) { $s = 90; continue; }
+				/* */ if (_17 === (125)) { $s = 91; continue; }
+				/* */ if (_17 === (124)) { $s = 92; continue; }
+				/* */ if (_17 === (123)) { $s = 93; continue; }
+				/* */ if (_17 === (96)) { $s = 94; continue; }
+				/* */ if (_17 === (94)) { $s = 95; continue; }
+				/* */ if (_17 === (93)) { $s = 96; continue; }
+				/* */ if (_17 === (92)) { $s = 97; continue; }
+				/* */ if (_17 === (91)) { $s = 98; continue; }
+				/* */ if (_17 === (64)) { $s = 99; continue; }
+				/* */ if (_17 === (63)) { $s = 100; continue; }
+				/* */ if (_17 === (62)) { $s = 101; continue; }
+				/* */ if (_17 === (61)) { $s = 102; continue; }
+				/* */ if (_17 === (60)) { $s = 103; continue; }
+				/* */ if (_17 === (59)) { $s = 104; continue; }
+				/* */ if (_17 === (58)) { $s = 105; continue; }
+				/* */ if (_17 === (47)) { $s = 106; continue; }
+				/* */ if (_17 === (43)) { $s = 107; continue; }
+				/* */ if (_17 === (42)) { $s = 108; continue; }
+				/* */ if (_17 === (41)) { $s = 109; continue; }
+				/* */ if (_17 === (40)) { $s = 110; continue; }
+				/* */ if (_17 === (39)) { $s = 111; continue; }
+				/* */ if (_17 === (38)) { $s = 112; continue; }
+				/* */ if (_17 === (37)) { $s = 113; continue; }
+				/* */ if (_17 === (35)) { $s = 114; continue; }
+				/* */ if (_17 === (34)) { $s = 115; continue; }
+				/* */ if (_17 === (33)) { $s = 116; continue; }
 				/* */ $s = 117; continue;
-				/* if (_15 === (30)) { */ case 84:
+				/* if (_17 === (30)) { */ case 85:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 119; continue; }
 					/* */ $s = 120; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 119:
-						/* goto l481 */ $s = 121; continue;
+						/* goto l505 */ $s = 12; continue;
 					/* } */ case 120:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (13)) { */ case 85:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 122; continue; }
-					/* */ $s = 123; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 122:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 123:
+				/* } else if (_17 === (13)) { */ case 86:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 121; continue; }
+					/* */ $s = 122; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 121:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 122:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (10)) { */ case 86:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 124; continue; }
-					/* */ $s = 125; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 124:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 125:
+				/* } else if (_17 === (10)) { */ case 87:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 123; continue; }
+					/* */ $s = 124; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 123:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 124:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (9)) { */ case 87:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 126; continue; }
-					/* */ $s = 127; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 126:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 127:
+				/* } else if (_17 === (9)) { */ case 88:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 125; continue; }
+					/* */ $s = 126; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 125:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 126:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (32)) { */ case 88:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 128; continue; }
-					/* */ $s = 129; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 128:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 129:
+				/* } else if (_17 === (32)) { */ case 89:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 127; continue; }
+					/* */ $s = 128; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 127:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 128:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (126)) { */ case 89:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { $s = 130; continue; }
-					/* */ $s = 131; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { */ case 130:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 131:
+				/* } else if (_17 === (126)) { */ case 90:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { $s = 129; continue; }
+					/* */ $s = 130; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { */ case 129:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 130:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (125)) { */ case 90:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 132; continue; }
-					/* */ $s = 133; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 132:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 133:
+				/* } else if (_17 === (125)) { */ case 91:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 131; continue; }
+					/* */ $s = 132; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 131:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 132:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (124)) { */ case 91:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 134; continue; }
-					/* */ $s = 135; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 134:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 135:
+				/* } else if (_17 === (124)) { */ case 92:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 133; continue; }
+					/* */ $s = 134; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 133:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 134:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (123)) { */ case 92:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 136; continue; }
-					/* */ $s = 137; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 136:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 137:
+				/* } else if (_17 === (123)) { */ case 93:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 135; continue; }
+					/* */ $s = 136; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 135:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 136:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (96)) { */ case 93:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 138; continue; }
-					/* */ $s = 139; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 138:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 139:
+				/* } else if (_17 === (96)) { */ case 94:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 137; continue; }
+					/* */ $s = 138; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 137:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 138:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (94)) { */ case 94:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 140; continue; }
-					/* */ $s = 141; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 140:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 141:
+				/* } else if (_17 === (94)) { */ case 95:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 139; continue; }
+					/* */ $s = 140; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 139:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 140:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (93)) { */ case 95:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 142; continue; }
-					/* */ $s = 143; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 142:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 143:
+				/* } else if (_17 === (93)) { */ case 96:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 141; continue; }
+					/* */ $s = 142; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 141:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 142:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (92)) { */ case 96:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 144; continue; }
-					/* */ $s = 145; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 144:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 145:
+				/* } else if (_17 === (92)) { */ case 97:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 143; continue; }
+					/* */ $s = 144; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 143:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 144:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (91)) { */ case 97:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 146; continue; }
-					/* */ $s = 147; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 146:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 147:
+				/* } else if (_17 === (91)) { */ case 98:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 145; continue; }
+					/* */ $s = 146; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 145:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 146:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (64)) { */ case 98:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { $s = 148; continue; }
-					/* */ $s = 149; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { */ case 148:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 149:
+				/* } else if (_17 === (64)) { */ case 99:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { $s = 147; continue; }
+					/* */ $s = 148; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { */ case 147:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 148:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (63)) { */ case 99:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 150; continue; }
-					/* */ $s = 151; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 150:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 151:
+				/* } else if (_17 === (63)) { */ case 100:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 149; continue; }
+					/* */ $s = 150; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 149:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 150:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (62)) { */ case 100:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 152; continue; }
-					/* */ $s = 153; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 152:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 153:
+				/* } else if (_17 === (62)) { */ case 101:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 151; continue; }
+					/* */ $s = 152; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 151:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 152:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (61)) { */ case 101:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 154; continue; }
-					/* */ $s = 155; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 154:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 155:
+				/* } else if (_17 === (61)) { */ case 102:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 153; continue; }
+					/* */ $s = 154; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 153:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 154:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (60)) { */ case 102:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 156; continue; }
-					/* */ $s = 157; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 156:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 157:
+				/* } else if (_17 === (60)) { */ case 103:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 155; continue; }
+					/* */ $s = 156; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 155:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 156:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (59)) { */ case 103:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 158; continue; }
-					/* */ $s = 159; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 158:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 159:
+				/* } else if (_17 === (59)) { */ case 104:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 157; continue; }
+					/* */ $s = 158; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 157:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 158:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (58)) { */ case 104:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { $s = 160; continue; }
-					/* */ $s = 161; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { */ case 160:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 161:
+				/* } else if (_17 === (58)) { */ case 105:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { $s = 159; continue; }
+					/* */ $s = 160; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { */ case 159:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 160:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (47)) { */ case 105:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 162; continue; }
-					/* */ $s = 163; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 162:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 163:
+				/* } else if (_17 === (47)) { */ case 106:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 161; continue; }
+					/* */ $s = 162; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 161:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 162:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (43)) { */ case 106:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 164; continue; }
-					/* */ $s = 165; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 164:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 165:
+				/* } else if (_17 === (43)) { */ case 107:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 163; continue; }
+					/* */ $s = 164; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 163:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 164:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (42)) { */ case 107:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 166; continue; }
-					/* */ $s = 167; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 166:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 167:
+				/* } else if (_17 === (42)) { */ case 108:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 165; continue; }
+					/* */ $s = 166; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 165:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 166:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (41)) { */ case 108:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 168; continue; }
-					/* */ $s = 169; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 168:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 169:
+				/* } else if (_17 === (41)) { */ case 109:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 167; continue; }
+					/* */ $s = 168; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 167:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 168:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (40)) { */ case 109:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 170; continue; }
-					/* */ $s = 171; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 170:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 171:
+				/* } else if (_17 === (40)) { */ case 110:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 169; continue; }
+					/* */ $s = 170; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 169:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 170:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (39)) { */ case 110:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 172; continue; }
-					/* */ $s = 173; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 172:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 173:
+				/* } else if (_17 === (39)) { */ case 111:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 171; continue; }
+					/* */ $s = 172; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 171:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 172:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (38)) { */ case 111:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 174; continue; }
-					/* */ $s = 175; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 174:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 175:
+				/* } else if (_17 === (38)) { */ case 112:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 173; continue; }
+					/* */ $s = 174; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 173:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 174:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (37)) { */ case 112:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 176; continue; }
-					/* */ $s = 177; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 176:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 177:
+				/* } else if (_17 === (37)) { */ case 113:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 175; continue; }
+					/* */ $s = 176; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 175:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 176:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (35)) { */ case 113:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { $s = 178; continue; }
-					/* */ $s = 179; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { */ case 178:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 179:
+				/* } else if (_17 === (35)) { */ case 114:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { $s = 177; continue; }
+					/* */ $s = 178; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { */ case 177:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 178:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (34)) { */ case 114:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 180; continue; }
-					/* */ $s = 181; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 180:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 181:
+				/* } else if (_17 === (34)) { */ case 115:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 179; continue; }
+					/* */ $s = 180; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 179:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 180:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
-				/* } else if (_15 === (33)) { */ case 115:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { $s = 182; continue; }
-					/* */ $s = 183; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { */ case 182:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 183:
-					position[0] = position[0] + (1) >>> 0;
-					$s = 118; continue;
-				/* } else if ((_15 === (44)) || (_15 === (45)) || (_15 === (46))) { */ case 116:
-					c = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-					/* */ if (c < 44 || c > 46) { $s = 184; continue; }
-					/* */ $s = 185; continue;
-					/* if (c < 44 || c > 46) { */ case 184:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 185:
+				/* } else if (_17 === (33)) { */ case 116:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { $s = 181; continue; }
+					/* */ $s = 182; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { */ case 181:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 182:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 118; continue;
 				/* } else { */ case 117:
-					c$1 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-					/* */ if (c$1 < 48 || c$1 > 57) { $s = 186; continue; }
-					/* */ $s = 187; continue;
-					/* if (c$1 < 48 || c$1 > 57) { */ case 186:
-						/* goto l481 */ $s = 121; continue;
-					/* } */ case 187:
+					c = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+					/* */ if (c < 44 || c > 46) { $s = 183; continue; }
+					/* */ $s = 184; continue;
+					/* if (c < 44 || c > 46) { */ case 183:
+						/* goto l505 */ $s = 12; continue;
+					/* } */ case 184:
 					position[0] = position[0] + (1) >>> 0;
 				/* } */ case 118:
-			case 83:
-			/* goto l476 */ $s = 82; continue;
-			/* l481: */ case 121:
-			_tmp$10 = position481;
-			_tmp$11 = tokenIndex481;
+			case 84:
+			/* l507: */ case 83:
+			/* goto l503 */ $s = 185; continue;
+			/* l505: */ case 12:
+			_tmp$10 = position505;
+			_tmp$11 = tokenIndex505;
 			position[0] = _tmp$10;
 			tokenIndex[0] = _tmp$11;
-			_r$2 = matchDot[0](); /* */ $s = 190; case 190: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
-			/* */ if (!_r$2) { $s = 188; continue; }
-			/* */ $s = 189; continue;
-			/* if (!_r$2) { */ case 188:
-				/* goto l476 */ $s = 82; continue;
-			/* } */ case 189:
-			/* l483: */ case 191:
+			position510 = position[0];
 			_tmp$12 = position[0];
 			_tmp$13 = tokenIndex[0];
-			position484 = _tmp$12;
-			tokenIndex484 = _tmp$13;
-			_tmp$14 = position[0];
-			_tmp$15 = tokenIndex[0];
-			position485 = _tmp$14;
-			tokenIndex485 = _tmp$15;
-				_16 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_16 === (30)) { $s = 193; continue; }
-				/* */ if (_16 === (13)) { $s = 194; continue; }
-				/* */ if (_16 === (10)) { $s = 195; continue; }
-				/* */ if (_16 === (9)) { $s = 196; continue; }
-				/* */ if (_16 === (32)) { $s = 197; continue; }
-				/* */ if (_16 === (126)) { $s = 198; continue; }
-				/* */ if (_16 === (125)) { $s = 199; continue; }
-				/* */ if (_16 === (124)) { $s = 200; continue; }
-				/* */ if (_16 === (123)) { $s = 201; continue; }
-				/* */ if (_16 === (96)) { $s = 202; continue; }
-				/* */ if (_16 === (94)) { $s = 203; continue; }
-				/* */ if (_16 === (93)) { $s = 204; continue; }
-				/* */ if (_16 === (92)) { $s = 205; continue; }
-				/* */ if (_16 === (91)) { $s = 206; continue; }
-				/* */ if (_16 === (64)) { $s = 207; continue; }
-				/* */ if (_16 === (63)) { $s = 208; continue; }
-				/* */ if (_16 === (62)) { $s = 209; continue; }
-				/* */ if (_16 === (61)) { $s = 210; continue; }
-				/* */ if (_16 === (60)) { $s = 211; continue; }
-				/* */ if (_16 === (59)) { $s = 212; continue; }
-				/* */ if (_16 === (47)) { $s = 213; continue; }
-				/* */ if (_16 === (43)) { $s = 214; continue; }
-				/* */ if (_16 === (42)) { $s = 215; continue; }
-				/* */ if (_16 === (41)) { $s = 216; continue; }
-				/* */ if (_16 === (40)) { $s = 217; continue; }
-				/* */ if (_16 === (39)) { $s = 218; continue; }
-				/* */ if (_16 === (38)) { $s = 219; continue; }
-				/* */ if (_16 === (37)) { $s = 220; continue; }
-				/* */ if (_16 === (36)) { $s = 221; continue; }
-				/* */ if (_16 === (35)) { $s = 222; continue; }
-				/* */ if (_16 === (34)) { $s = 223; continue; }
-				/* */ if (_16 === (33)) { $s = 224; continue; }
-				/* */ $s = 225; continue;
-				/* if (_16 === (30)) { */ case 193:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 227; continue; }
+			position511 = _tmp$12;
+			tokenIndex511 = _tmp$13;
+				_18 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_18 === (30)) { $s = 187; continue; }
+				/* */ if (_18 === (13)) { $s = 188; continue; }
+				/* */ if (_18 === (10)) { $s = 189; continue; }
+				/* */ if (_18 === (9)) { $s = 190; continue; }
+				/* */ if (_18 === (32)) { $s = 191; continue; }
+				/* */ if (_18 === (126)) { $s = 192; continue; }
+				/* */ if (_18 === (125)) { $s = 193; continue; }
+				/* */ if (_18 === (124)) { $s = 194; continue; }
+				/* */ if (_18 === (123)) { $s = 195; continue; }
+				/* */ if (_18 === (96)) { $s = 196; continue; }
+				/* */ if (_18 === (94)) { $s = 197; continue; }
+				/* */ if (_18 === (93)) { $s = 198; continue; }
+				/* */ if (_18 === (92)) { $s = 199; continue; }
+				/* */ if (_18 === (91)) { $s = 200; continue; }
+				/* */ if (_18 === (64)) { $s = 201; continue; }
+				/* */ if (_18 === (63)) { $s = 202; continue; }
+				/* */ if (_18 === (62)) { $s = 203; continue; }
+				/* */ if (_18 === (61)) { $s = 204; continue; }
+				/* */ if (_18 === (60)) { $s = 205; continue; }
+				/* */ if (_18 === (59)) { $s = 206; continue; }
+				/* */ if (_18 === (58)) { $s = 207; continue; }
+				/* */ if (_18 === (47)) { $s = 208; continue; }
+				/* */ if (_18 === (43)) { $s = 209; continue; }
+				/* */ if (_18 === (42)) { $s = 210; continue; }
+				/* */ if (_18 === (41)) { $s = 211; continue; }
+				/* */ if (_18 === (40)) { $s = 212; continue; }
+				/* */ if (_18 === (39)) { $s = 213; continue; }
+				/* */ if (_18 === (38)) { $s = 214; continue; }
+				/* */ if (_18 === (37)) { $s = 215; continue; }
+				/* */ if (_18 === (35)) { $s = 216; continue; }
+				/* */ if (_18 === (34)) { $s = 217; continue; }
+				/* */ if (_18 === (33)) { $s = 218; continue; }
+				/* */ if ((_18 === (44)) || (_18 === (45)) || (_18 === (46))) { $s = 219; continue; }
+				/* */ $s = 220; continue;
+				/* if (_18 === (30)) { */ case 187:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 222; continue; }
+					/* */ $s = 223; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 222:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 223:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 221; continue;
+				/* } else if (_18 === (13)) { */ case 188:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 225; continue; }
+					/* */ $s = 226; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 225:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 226:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 221; continue;
+				/* } else if (_18 === (10)) { */ case 189:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 227; continue; }
 					/* */ $s = 228; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 227:
-						/* goto l485 */ $s = 229; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 227:
+						/* goto l511 */ $s = 224; continue;
 					/* } */ case 228:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (13)) { */ case 194:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 230; continue; }
-					/* */ $s = 231; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 230:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 231:
+					$s = 221; continue;
+				/* } else if (_18 === (9)) { */ case 190:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 229; continue; }
+					/* */ $s = 230; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 229:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 230:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (10)) { */ case 195:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 232; continue; }
-					/* */ $s = 233; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 232:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 233:
+					$s = 221; continue;
+				/* } else if (_18 === (32)) { */ case 191:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 231; continue; }
+					/* */ $s = 232; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 231:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 232:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (9)) { */ case 196:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 234; continue; }
-					/* */ $s = 235; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 234:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 235:
+					$s = 221; continue;
+				/* } else if (_18 === (126)) { */ case 192:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { $s = 233; continue; }
+					/* */ $s = 234; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { */ case 233:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 234:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (32)) { */ case 197:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 236; continue; }
-					/* */ $s = 237; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 236:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 237:
+					$s = 221; continue;
+				/* } else if (_18 === (125)) { */ case 193:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 235; continue; }
+					/* */ $s = 236; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 235:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 236:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (126)) { */ case 198:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { $s = 238; continue; }
-					/* */ $s = 239; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { */ case 238:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 239:
+					$s = 221; continue;
+				/* } else if (_18 === (124)) { */ case 194:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 237; continue; }
+					/* */ $s = 238; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 237:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 238:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (125)) { */ case 199:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 240; continue; }
-					/* */ $s = 241; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 240:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 241:
+					$s = 221; continue;
+				/* } else if (_18 === (123)) { */ case 195:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 239; continue; }
+					/* */ $s = 240; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 239:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 240:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (124)) { */ case 200:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 242; continue; }
-					/* */ $s = 243; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 242:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 243:
+					$s = 221; continue;
+				/* } else if (_18 === (96)) { */ case 196:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 241; continue; }
+					/* */ $s = 242; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 241:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 242:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (123)) { */ case 201:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 244; continue; }
-					/* */ $s = 245; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 244:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 245:
+					$s = 221; continue;
+				/* } else if (_18 === (94)) { */ case 197:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 243; continue; }
+					/* */ $s = 244; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 243:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 244:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (96)) { */ case 202:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 246; continue; }
-					/* */ $s = 247; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 246:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 247:
+					$s = 221; continue;
+				/* } else if (_18 === (93)) { */ case 198:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 245; continue; }
+					/* */ $s = 246; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 245:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 246:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (94)) { */ case 203:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 248; continue; }
-					/* */ $s = 249; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 248:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 249:
+					$s = 221; continue;
+				/* } else if (_18 === (92)) { */ case 199:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 247; continue; }
+					/* */ $s = 248; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 247:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 248:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (93)) { */ case 204:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 250; continue; }
-					/* */ $s = 251; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 250:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 251:
+					$s = 221; continue;
+				/* } else if (_18 === (91)) { */ case 200:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 249; continue; }
+					/* */ $s = 250; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 249:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 250:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (92)) { */ case 205:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 252; continue; }
-					/* */ $s = 253; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 252:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 253:
+					$s = 221; continue;
+				/* } else if (_18 === (64)) { */ case 201:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { $s = 251; continue; }
+					/* */ $s = 252; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { */ case 251:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 252:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (91)) { */ case 206:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 254; continue; }
-					/* */ $s = 255; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 254:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 255:
+					$s = 221; continue;
+				/* } else if (_18 === (63)) { */ case 202:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 253; continue; }
+					/* */ $s = 254; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 253:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 254:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (64)) { */ case 207:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { $s = 256; continue; }
-					/* */ $s = 257; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { */ case 256:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 257:
+					$s = 221; continue;
+				/* } else if (_18 === (62)) { */ case 203:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 255; continue; }
+					/* */ $s = 256; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 255:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 256:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (63)) { */ case 208:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 258; continue; }
-					/* */ $s = 259; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 258:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 259:
+					$s = 221; continue;
+				/* } else if (_18 === (61)) { */ case 204:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 257; continue; }
+					/* */ $s = 258; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 257:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 258:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (62)) { */ case 209:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 260; continue; }
-					/* */ $s = 261; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 260:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 261:
+					$s = 221; continue;
+				/* } else if (_18 === (60)) { */ case 205:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 259; continue; }
+					/* */ $s = 260; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 259:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 260:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (61)) { */ case 210:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 262; continue; }
-					/* */ $s = 263; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 262:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 263:
+					$s = 221; continue;
+				/* } else if (_18 === (59)) { */ case 206:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 261; continue; }
+					/* */ $s = 262; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 261:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 262:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (60)) { */ case 211:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 264; continue; }
-					/* */ $s = 265; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 264:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 265:
+					$s = 221; continue;
+				/* } else if (_18 === (58)) { */ case 207:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { $s = 263; continue; }
+					/* */ $s = 264; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 58))) { */ case 263:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 264:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (59)) { */ case 212:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 266; continue; }
-					/* */ $s = 267; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 266:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 267:
+					$s = 221; continue;
+				/* } else if (_18 === (47)) { */ case 208:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 265; continue; }
+					/* */ $s = 266; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 265:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 266:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (47)) { */ case 213:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 268; continue; }
-					/* */ $s = 269; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 268:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 269:
+					$s = 221; continue;
+				/* } else if (_18 === (43)) { */ case 209:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 267; continue; }
+					/* */ $s = 268; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 267:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 268:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (43)) { */ case 214:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 270; continue; }
-					/* */ $s = 271; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 270:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 271:
+					$s = 221; continue;
+				/* } else if (_18 === (42)) { */ case 210:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 269; continue; }
+					/* */ $s = 270; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 269:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 270:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (42)) { */ case 215:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 272; continue; }
-					/* */ $s = 273; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 272:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 273:
+					$s = 221; continue;
+				/* } else if (_18 === (41)) { */ case 211:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 271; continue; }
+					/* */ $s = 272; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 271:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 272:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (41)) { */ case 216:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 274; continue; }
-					/* */ $s = 275; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 274:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 275:
+					$s = 221; continue;
+				/* } else if (_18 === (40)) { */ case 212:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 273; continue; }
+					/* */ $s = 274; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 273:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 274:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (40)) { */ case 217:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 276; continue; }
-					/* */ $s = 277; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 276:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 277:
+					$s = 221; continue;
+				/* } else if (_18 === (39)) { */ case 213:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 275; continue; }
+					/* */ $s = 276; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 275:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 276:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (39)) { */ case 218:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 278; continue; }
-					/* */ $s = 279; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 278:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 279:
+					$s = 221; continue;
+				/* } else if (_18 === (38)) { */ case 214:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 277; continue; }
+					/* */ $s = 278; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 277:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 278:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (38)) { */ case 219:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 280; continue; }
-					/* */ $s = 281; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 280:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 281:
+					$s = 221; continue;
+				/* } else if (_18 === (37)) { */ case 215:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 279; continue; }
+					/* */ $s = 280; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 279:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 280:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (37)) { */ case 220:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 282; continue; }
-					/* */ $s = 283; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 282:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 283:
+					$s = 221; continue;
+				/* } else if (_18 === (35)) { */ case 216:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { $s = 281; continue; }
+					/* */ $s = 282; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { */ case 281:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 282:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (36)) { */ case 221:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 36))) { $s = 284; continue; }
-					/* */ $s = 285; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 36))) { */ case 284:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 285:
+					$s = 221; continue;
+				/* } else if (_18 === (34)) { */ case 217:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 283; continue; }
+					/* */ $s = 284; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 283:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 284:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (35)) { */ case 222:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { $s = 286; continue; }
-					/* */ $s = 287; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { */ case 286:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 287:
+					$s = 221; continue;
+				/* } else if (_18 === (33)) { */ case 218:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { $s = 285; continue; }
+					/* */ $s = 286; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { */ case 285:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 286:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (34)) { */ case 223:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 288; continue; }
-					/* */ $s = 289; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 288:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 289:
+					$s = 221; continue;
+				/* } else if ((_18 === (44)) || (_18 === (45)) || (_18 === (46))) { */ case 219:
+					c$1 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+					/* */ if (c$1 < 44 || c$1 > 46) { $s = 287; continue; }
+					/* */ $s = 288; continue;
+					/* if (c$1 < 44 || c$1 > 46) { */ case 287:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 288:
 					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else if (_16 === (33)) { */ case 224:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { $s = 290; continue; }
-					/* */ $s = 291; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { */ case 290:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 291:
-					position[0] = position[0] + (1) >>> 0;
-					$s = 226; continue;
-				/* } else { */ case 225:
+					$s = 221; continue;
+				/* } else { */ case 220:
 					c$2 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-					/* */ if (c$2 < 44 || c$2 > 46) { $s = 292; continue; }
-					/* */ $s = 293; continue;
-					/* if (c$2 < 44 || c$2 > 46) { */ case 292:
-						/* goto l485 */ $s = 229; continue;
-					/* } */ case 293:
+					/* */ if (c$2 < 48 || c$2 > 57) { $s = 289; continue; }
+					/* */ $s = 290; continue;
+					/* if (c$2 < 48 || c$2 > 57) { */ case 289:
+						/* goto l511 */ $s = 224; continue;
+					/* } */ case 290:
 					position[0] = position[0] + (1) >>> 0;
-				/* } */ case 226:
-			case 192:
-			/* goto l484 */ $s = 294; continue;
-			/* l485: */ case 229:
-			_tmp$16 = position485;
-			_tmp$17 = tokenIndex485;
-			position[0] = _tmp$16;
-			tokenIndex[0] = _tmp$17;
-			_r$3 = matchDot[0](); /* */ $s = 297; case 297: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-			/* */ if (!_r$3) { $s = 295; continue; }
-			/* */ $s = 296; continue;
-			/* if (!_r$3) { */ case 295:
-				/* goto l484 */ $s = 294; continue;
-			/* } */ case 296:
-			/* goto l483 */ $s = 191; continue;
-			/* l484: */ case 294:
-			_tmp$18 = position484;
-			_tmp$19 = tokenIndex484;
-			position[0] = _tmp$18;
-			tokenIndex[0] = _tmp$19;
-			$r = add[0](79, position480); /* */ $s = 298; case 298: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$4 = _rules[0][62](); /* */ $s = 301; case 301: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-			/* */ if (!_r$4) { $s = 299; continue; }
-			/* */ $s = 300; continue;
-			/* if (!_r$4) { */ case 299:
-				/* goto l476 */ $s = 82; continue;
-			/* } */ case 300:
-			$r = add[0](42, position477); /* */ $s = 302; case 302: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l476: */ case 82:
-			_tmp$20 = position476;
-			_tmp$21 = tokenIndex476;
+				/* } */ case 221:
+			case 186:
+			/* goto l503 */ $s = 185; continue;
+			/* l511: */ case 224:
+			_tmp$14 = position511;
+			_tmp$15 = tokenIndex511;
+			position[0] = _tmp$14;
+			tokenIndex[0] = _tmp$15;
+			_r$2 = matchDot[0](); /* */ $s = 293; case 293: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			/* */ if (!_r$2) { $s = 291; continue; }
+			/* */ $s = 292; continue;
+			/* if (!_r$2) { */ case 291:
+				/* goto l503 */ $s = 185; continue;
+			/* } */ case 292:
+			/* l513: */ case 294:
+			_tmp$16 = position[0];
+			_tmp$17 = tokenIndex[0];
+			position514 = _tmp$16;
+			tokenIndex514 = _tmp$17;
+			_tmp$18 = position[0];
+			_tmp$19 = tokenIndex[0];
+			position515 = _tmp$18;
+			tokenIndex515 = _tmp$19;
+				_19 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_19 === (30)) { $s = 296; continue; }
+				/* */ if (_19 === (13)) { $s = 297; continue; }
+				/* */ if (_19 === (10)) { $s = 298; continue; }
+				/* */ if (_19 === (9)) { $s = 299; continue; }
+				/* */ if (_19 === (32)) { $s = 300; continue; }
+				/* */ if (_19 === (126)) { $s = 301; continue; }
+				/* */ if (_19 === (125)) { $s = 302; continue; }
+				/* */ if (_19 === (124)) { $s = 303; continue; }
+				/* */ if (_19 === (123)) { $s = 304; continue; }
+				/* */ if (_19 === (96)) { $s = 305; continue; }
+				/* */ if (_19 === (94)) { $s = 306; continue; }
+				/* */ if (_19 === (93)) { $s = 307; continue; }
+				/* */ if (_19 === (92)) { $s = 308; continue; }
+				/* */ if (_19 === (91)) { $s = 309; continue; }
+				/* */ if (_19 === (64)) { $s = 310; continue; }
+				/* */ if (_19 === (63)) { $s = 311; continue; }
+				/* */ if (_19 === (62)) { $s = 312; continue; }
+				/* */ if (_19 === (61)) { $s = 313; continue; }
+				/* */ if (_19 === (60)) { $s = 314; continue; }
+				/* */ if (_19 === (59)) { $s = 315; continue; }
+				/* */ if (_19 === (47)) { $s = 316; continue; }
+				/* */ if (_19 === (43)) { $s = 317; continue; }
+				/* */ if (_19 === (42)) { $s = 318; continue; }
+				/* */ if (_19 === (41)) { $s = 319; continue; }
+				/* */ if (_19 === (40)) { $s = 320; continue; }
+				/* */ if (_19 === (39)) { $s = 321; continue; }
+				/* */ if (_19 === (38)) { $s = 322; continue; }
+				/* */ if (_19 === (37)) { $s = 323; continue; }
+				/* */ if (_19 === (36)) { $s = 324; continue; }
+				/* */ if (_19 === (35)) { $s = 325; continue; }
+				/* */ if (_19 === (34)) { $s = 326; continue; }
+				/* */ if (_19 === (33)) { $s = 327; continue; }
+				/* */ $s = 328; continue;
+				/* if (_19 === (30)) { */ case 296:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { $s = 330; continue; }
+					/* */ $s = 331; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 30))) { */ case 330:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 331:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (13)) { */ case 297:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 333; continue; }
+					/* */ $s = 334; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 333:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 334:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (10)) { */ case 298:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 335; continue; }
+					/* */ $s = 336; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 335:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 336:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (9)) { */ case 299:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 337; continue; }
+					/* */ $s = 338; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 337:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 338:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (32)) { */ case 300:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 339; continue; }
+					/* */ $s = 340; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 339:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 340:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (126)) { */ case 301:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { $s = 341; continue; }
+					/* */ $s = 342; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 126))) { */ case 341:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 342:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (125)) { */ case 302:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { $s = 343; continue; }
+					/* */ $s = 344; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 125))) { */ case 343:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 344:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (124)) { */ case 303:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { $s = 345; continue; }
+					/* */ $s = 346; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 124))) { */ case 345:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 346:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (123)) { */ case 304:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { $s = 347; continue; }
+					/* */ $s = 348; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 123))) { */ case 347:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 348:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (96)) { */ case 305:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { $s = 349; continue; }
+					/* */ $s = 350; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 96))) { */ case 349:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 350:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (94)) { */ case 306:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { $s = 351; continue; }
+					/* */ $s = 352; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 94))) { */ case 351:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 352:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (93)) { */ case 307:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { $s = 353; continue; }
+					/* */ $s = 354; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 93))) { */ case 353:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 354:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (92)) { */ case 308:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 355; continue; }
+					/* */ $s = 356; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 355:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 356:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (91)) { */ case 309:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { $s = 357; continue; }
+					/* */ $s = 358; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 91))) { */ case 357:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 358:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (64)) { */ case 310:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { $s = 359; continue; }
+					/* */ $s = 360; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 64))) { */ case 359:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 360:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (63)) { */ case 311:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { $s = 361; continue; }
+					/* */ $s = 362; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 63))) { */ case 361:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 362:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (62)) { */ case 312:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { $s = 363; continue; }
+					/* */ $s = 364; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 62))) { */ case 363:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 364:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (61)) { */ case 313:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { $s = 365; continue; }
+					/* */ $s = 366; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 61))) { */ case 365:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 366:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (60)) { */ case 314:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { $s = 367; continue; }
+					/* */ $s = 368; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 60))) { */ case 367:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 368:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (59)) { */ case 315:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { $s = 369; continue; }
+					/* */ $s = 370; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 59))) { */ case 369:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 370:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (47)) { */ case 316:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 371; continue; }
+					/* */ $s = 372; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 371:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 372:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (43)) { */ case 317:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 373; continue; }
+					/* */ $s = 374; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 373:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 374:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (42)) { */ case 318:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { $s = 375; continue; }
+					/* */ $s = 376; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 42))) { */ case 375:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 376:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (41)) { */ case 319:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 377; continue; }
+					/* */ $s = 378; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 377:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 378:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (40)) { */ case 320:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 379; continue; }
+					/* */ $s = 380; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 379:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 380:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (39)) { */ case 321:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 381; continue; }
+					/* */ $s = 382; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 381:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 382:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (38)) { */ case 322:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { $s = 383; continue; }
+					/* */ $s = 384; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 38))) { */ case 383:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 384:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (37)) { */ case 323:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { $s = 385; continue; }
+					/* */ $s = 386; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 37))) { */ case 385:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 386:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (36)) { */ case 324:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 36))) { $s = 387; continue; }
+					/* */ $s = 388; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 36))) { */ case 387:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 388:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (35)) { */ case 325:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { $s = 389; continue; }
+					/* */ $s = 390; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 35))) { */ case 389:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 390:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (34)) { */ case 326:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 391; continue; }
+					/* */ $s = 392; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 391:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 392:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else if (_19 === (33)) { */ case 327:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { $s = 393; continue; }
+					/* */ $s = 394; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 33))) { */ case 393:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 394:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 329; continue;
+				/* } else { */ case 328:
+					c$3 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+					/* */ if (c$3 < 44 || c$3 > 46) { $s = 395; continue; }
+					/* */ $s = 396; continue;
+					/* if (c$3 < 44 || c$3 > 46) { */ case 395:
+						/* goto l515 */ $s = 332; continue;
+					/* } */ case 396:
+					position[0] = position[0] + (1) >>> 0;
+				/* } */ case 329:
+			case 295:
+			/* goto l514 */ $s = 397; continue;
+			/* l515: */ case 332:
+			_tmp$20 = position515;
+			_tmp$21 = tokenIndex515;
 			position[0] = _tmp$20;
 			tokenIndex[0] = _tmp$21;
+			_r$3 = matchDot[0](); /* */ $s = 400; case 400: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			/* */ if (!_r$3) { $s = 398; continue; }
+			/* */ $s = 399; continue;
+			/* if (!_r$3) { */ case 398:
+				/* goto l514 */ $s = 397; continue;
+			/* } */ case 399:
+			/* goto l513 */ $s = 294; continue;
+			/* l514: */ case 397:
+			_tmp$22 = position514;
+			_tmp$23 = tokenIndex514;
+			position[0] = _tmp$22;
+			tokenIndex[0] = _tmp$23;
+			$r = add[0](86, position510); /* */ $s = 401; case 401: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$4 = _rules[0][65](); /* */ $s = 404; case 404: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+			/* */ if (!_r$4) { $s = 402; continue; }
+			/* */ $s = 403; continue;
+			/* if (!_r$4) { */ case 402:
+				/* goto l503 */ $s = 185; continue;
+			/* } */ case 403:
+			$r = add[0](45, position504); /* */ $s = 405; case 405: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l503: */ case 185:
+			_tmp$24 = position503;
+			_tmp$25 = tokenIndex503;
+			position[0] = _tmp$24;
+			tokenIndex[0] = _tmp$25;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _14, _15, _16, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, c$2, position476, position477, position478, position480, position481, position484, position485, tokenIndex476, tokenIndex478, tokenIndex481, tokenIndex484, tokenIndex485, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _16, _17, _18, _19, _r$1, _r$2, _r$3, _r$4, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$22, _tmp$23, _tmp$24, _tmp$25, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, c, c$1, c$2, c$3, position503, position504, position505, position507, position510, position511, position514, position515, tokenIndex503, tokenIndex505, tokenIndex507, tokenIndex511, tokenIndex514, tokenIndex515, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position487, position488, position489, position490, tokenIndex487, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position517, position518, position519, position520, tokenIndex517, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position487 = _tmp$2;
-			tokenIndex487 = _tmp$3;
-			position488 = position[0];
-			position489 = position[0];
+			position517 = _tmp$2;
+			tokenIndex517 = _tmp$3;
+			position518 = position[0];
+			position519 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 40))) { */ case 1:
-				/* goto l487 */ $s = 3; continue;
+				/* goto l517 */ $s = 3; continue;
 			/* } */ case 2:
 			position[0] = position[0] + (1) >>> 0;
-			_r$1 = _rules[0][62](); /* */ $s = 6; case 6: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			_r$1 = _rules[0][65](); /* */ $s = 6; case 6: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 			/* */ if (!_r$1) { $s = 4; continue; }
 			/* */ $s = 5; continue;
 			/* if (!_r$1) { */ case 4:
-				/* goto l487 */ $s = 3; continue;
+				/* goto l517 */ $s = 3; continue;
 			/* } */ case 5:
-			$r = add[0](44, position489); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			_r$2 = _rules[0][16](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			$r = add[0](47, position519); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][19](); /* */ $s = 10; case 10: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 8; continue; }
 			/* */ $s = 9; continue;
 			/* if (!_r$2) { */ case 8:
-				/* goto l487 */ $s = 3; continue;
+				/* goto l517 */ $s = 3; continue;
 			/* } */ case 9:
-			position490 = position[0];
+			position520 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { $s = 11; continue; }
 			/* */ $s = 12; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 41))) { */ case 11:
-				/* goto l487 */ $s = 3; continue;
+				/* goto l517 */ $s = 3; continue;
 			/* } */ case 12:
 			position[0] = position[0] + (1) >>> 0;
-			_r$3 = _rules[0][62](); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+			_r$3 = _rules[0][65](); /* */ $s = 15; case 15: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 13; continue; }
 			/* */ $s = 14; continue;
 			/* if (!_r$3) { */ case 13:
-				/* goto l487 */ $s = 3; continue;
+				/* goto l517 */ $s = 3; continue;
 			/* } */ case 14:
-			$r = add[0](45, position490); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$r = add[0](43, position488); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](48, position520); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](46, position518); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l487: */ case 3:
-			_tmp$4 = position487;
-			_tmp$5 = tokenIndex487;
+			/* l517: */ case 3:
+			_tmp$4 = position517;
+			_tmp$5 = tokenIndex517;
 			position[0] = _tmp$4;
 			tokenIndex[0] = _tmp$5;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position487, position488, position489, position490, tokenIndex487, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _r$2, _r$3, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position517, position518, position519, position520, tokenIndex517, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position493, position494, position495, tokenIndex493, tokenIndex495, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position493 = _tmp$2;
-			tokenIndex493 = _tmp$3;
-			position494 = position[0];
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position495 = _tmp$4;
-			tokenIndex495 = _tmp$5;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 1:
-				/* goto l496 */ $s = 3; continue;
-			/* } */ case 2:
-			position[0] = position[0] + (1) >>> 0;
-			/* goto l495 */ $s = 4; continue;
-			/* l496: */ case 3:
-			_tmp$6 = position495;
-			_tmp$7 = tokenIndex495;
-			position[0] = _tmp$6;
-			tokenIndex[0] = _tmp$7;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65291))) { $s = 5; continue; }
-			/* */ $s = 6; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65291))) { */ case 5:
-				/* goto l493 */ $s = 7; continue;
-			/* } */ case 6:
-			position[0] = position[0] + (1) >>> 0;
-			/* l495: */ case 4:
-			_r$1 = _rules[0][62](); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 8; continue; }
-			/* */ $s = 9; continue;
-			/* if (!_r$1) { */ case 8:
-				/* goto l493 */ $s = 7; continue;
-			/* } */ case 9:
-			$r = add[0](46, position494); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l493: */ case 7:
-			_tmp$8 = position493;
-			_tmp$9 = tokenIndex493;
-			position[0] = _tmp$8;
-			tokenIndex[0] = _tmp$9;
-			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position493, position494, position495, tokenIndex493, tokenIndex495, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position497, position498, position499, tokenIndex497, tokenIndex499, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position497 = _tmp$2;
-			tokenIndex497 = _tmp$3;
-			position498 = position[0];
-			_tmp$4 = position[0];
-			_tmp$5 = tokenIndex[0];
-			position499 = _tmp$4;
-			tokenIndex499 = _tmp$5;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 45))) { $s = 1; continue; }
-			/* */ $s = 2; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 45))) { */ case 1:
-				/* goto l500 */ $s = 3; continue;
-			/* } */ case 2:
-			position[0] = position[0] + (1) >>> 0;
-			/* goto l499 */ $s = 4; continue;
-			/* l500: */ case 3:
-			_tmp$6 = position499;
-			_tmp$7 = tokenIndex499;
-			position[0] = _tmp$6;
-			tokenIndex[0] = _tmp$7;
-			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65293))) { $s = 5; continue; }
-			/* */ $s = 6; continue;
-			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65293))) { */ case 5:
-				/* goto l497 */ $s = 7; continue;
-			/* } */ case 6:
-			position[0] = position[0] + (1) >>> 0;
-			/* l499: */ case 4:
-			_r$1 = _rules[0][62](); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-			/* */ if (!_r$1) { $s = 8; continue; }
-			/* */ $s = 9; continue;
-			/* if (!_r$1) { */ case 8:
-				/* goto l497 */ $s = 7; continue;
-			/* } */ case 9:
-			$r = add[0](47, position498); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* l497: */ case 7:
-			_tmp$8 = position497;
-			_tmp$9 = tokenIndex497;
-			position[0] = _tmp$8;
-			tokenIndex[0] = _tmp$9;
-			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position497, position498, position499, tokenIndex497, tokenIndex499, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_17, _r$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position516, position518, position521, position522, tokenIndex518, tokenIndex521, tokenIndex522, $s, $r, $c} = $restore(this, {});
-			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			position516 = position[0];
-			/* l517: */ case 1:
-			_tmp$2 = position[0];
-			_tmp$3 = tokenIndex[0];
-			position518 = _tmp$2;
-			tokenIndex518 = _tmp$3;
-				_17 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_17 === (47)) { $s = 3; continue; }
-				/* */ if (_17 === (13)) { $s = 4; continue; }
-				/* */ if (_17 === (10)) { $s = 5; continue; }
-				/* */ if (_17 === (9)) { $s = 6; continue; }
-				/* */ $s = 7; continue;
-				/* if (_17 === (47)) { */ case 3:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 9; continue; }
-					/* */ $s = 10; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 9:
-						/* goto l518 */ $s = 11; continue;
-					/* } */ case 10:
-					position[0] = position[0] + (1) >>> 0;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 12; continue; }
-					/* */ $s = 13; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 12:
-						/* goto l518 */ $s = 11; continue;
-					/* } */ case 13:
-					position[0] = position[0] + (1) >>> 0;
-					/* l520: */ case 14:
-					_tmp$4 = position[0];
-					_tmp$5 = tokenIndex[0];
-					position521 = _tmp$4;
-					tokenIndex521 = _tmp$5;
-					_tmp$6 = position[0];
-					_tmp$7 = tokenIndex[0];
-					position522 = _tmp$6;
-					tokenIndex522 = _tmp$7;
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 15; continue; }
-					/* */ $s = 16; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 15:
-						/* goto l522 */ $s = 17; continue;
-					/* } */ case 16:
-					position[0] = position[0] + (1) >>> 0;
-					/* goto l521 */ $s = 18; continue;
-					/* l522: */ case 17:
-					_tmp$8 = position522;
-					_tmp$9 = tokenIndex522;
-					position[0] = _tmp$8;
-					tokenIndex[0] = _tmp$9;
-					_r$1 = matchDot[0](); /* */ $s = 21; case 21: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
-					/* */ if (!_r$1) { $s = 19; continue; }
-					/* */ $s = 20; continue;
-					/* if (!_r$1) { */ case 19:
-						/* goto l521 */ $s = 18; continue;
-					/* } */ case 20:
-					/* goto l520 */ $s = 14; continue;
-					/* l521: */ case 18:
-					_tmp$10 = position521;
-					_tmp$11 = tokenIndex521;
-					position[0] = _tmp$10;
-					tokenIndex[0] = _tmp$11;
-					$s = 8; continue;
-				/* } else if (_17 === (13)) { */ case 4:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 22; continue; }
-					/* */ $s = 23; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 22:
-						/* goto l518 */ $s = 11; continue;
-					/* } */ case 23:
-					position[0] = position[0] + (1) >>> 0;
-					$s = 8; continue;
-				/* } else if (_17 === (10)) { */ case 5:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 24; continue; }
-					/* */ $s = 25; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 24:
-						/* goto l518 */ $s = 11; continue;
-					/* } */ case 25:
-					position[0] = position[0] + (1) >>> 0;
-					$s = 8; continue;
-				/* } else if (_17 === (9)) { */ case 6:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 26; continue; }
-					/* */ $s = 27; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 26:
-						/* goto l518 */ $s = 11; continue;
-					/* } */ case 27:
-					position[0] = position[0] + (1) >>> 0;
-					$s = 8; continue;
-				/* } else { */ case 7:
-					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 28; continue; }
-					/* */ $s = 29; continue;
-					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 28:
-						/* goto l518 */ $s = 11; continue;
-					/* } */ case 29:
-					position[0] = position[0] + (1) >>> 0;
-				/* } */ case 8:
-			case 2:
-			/* goto l517 */ $s = 1; continue;
-			/* l518: */ case 11:
-			_tmp$12 = position518;
-			_tmp$13 = tokenIndex518;
-			position[0] = _tmp$12;
-			tokenIndex[0] = _tmp$13;
-			$r = add[0](62, position516); /* */ $s = 30; case 30: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-			$s = -1; return true;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _17, _r$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position516, position518, position521, position522, tokenIndex518, tokenIndex521, tokenIndex522, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_18, _r$1, _r$2, _r$3, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position523, position524, position525, position529, position530, position531, tokenIndex523, tokenIndex525, tokenIndex529, tokenIndex530, tokenIndex531, $s, $r, $c} = $restore(this, {});
+			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position523, position524, position525, tokenIndex523, tokenIndex525, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
@@ -37725,80 +38164,276 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			_tmp$5 = tokenIndex[0];
 			position525 = _tmp$4;
 			tokenIndex525 = _tmp$5;
-				_18 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_18 === (47)) { $s = 2; continue; }
-				/* */ if (_18 === (13)) { $s = 3; continue; }
-				/* */ if (_18 === (10)) { $s = 4; continue; }
-				/* */ if (_18 === (9)) { $s = 5; continue; }
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 43))) { */ case 1:
+				/* goto l526 */ $s = 3; continue;
+			/* } */ case 2:
+			position[0] = position[0] + (1) >>> 0;
+			/* goto l525 */ $s = 4; continue;
+			/* l526: */ case 3:
+			_tmp$6 = position525;
+			_tmp$7 = tokenIndex525;
+			position[0] = _tmp$6;
+			tokenIndex[0] = _tmp$7;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65291))) { $s = 5; continue; }
+			/* */ $s = 6; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65291))) { */ case 5:
+				/* goto l523 */ $s = 7; continue;
+			/* } */ case 6:
+			position[0] = position[0] + (1) >>> 0;
+			/* l525: */ case 4:
+			_r$1 = _rules[0][65](); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 8; continue; }
+			/* */ $s = 9; continue;
+			/* if (!_r$1) { */ case 8:
+				/* goto l523 */ $s = 7; continue;
+			/* } */ case 9:
+			$r = add[0](49, position524); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l523: */ case 7:
+			_tmp$8 = position523;
+			_tmp$9 = tokenIndex523;
+			position[0] = _tmp$8;
+			tokenIndex[0] = _tmp$9;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position523, position524, position525, tokenIndex523, tokenIndex525, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position527, position528, position529, tokenIndex527, tokenIndex529, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position527 = _tmp$2;
+			tokenIndex527 = _tmp$3;
+			position528 = position[0];
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position529 = _tmp$4;
+			tokenIndex529 = _tmp$5;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 45))) { $s = 1; continue; }
+			/* */ $s = 2; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 45))) { */ case 1:
+				/* goto l530 */ $s = 3; continue;
+			/* } */ case 2:
+			position[0] = position[0] + (1) >>> 0;
+			/* goto l529 */ $s = 4; continue;
+			/* l530: */ case 3:
+			_tmp$6 = position529;
+			_tmp$7 = tokenIndex529;
+			position[0] = _tmp$6;
+			tokenIndex[0] = _tmp$7;
+			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65293))) { $s = 5; continue; }
+			/* */ $s = 6; continue;
+			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 65293))) { */ case 5:
+				/* goto l527 */ $s = 7; continue;
+			/* } */ case 6:
+			position[0] = position[0] + (1) >>> 0;
+			/* l529: */ case 4:
+			_r$1 = _rules[0][65](); /* */ $s = 10; case 10: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+			/* */ if (!_r$1) { $s = 8; continue; }
+			/* */ $s = 9; continue;
+			/* if (!_r$1) { */ case 8:
+				/* goto l527 */ $s = 7; continue;
+			/* } */ case 9:
+			$r = add[0](50, position528); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* l527: */ case 7:
+			_tmp$8 = position527;
+			_tmp$9 = tokenIndex527;
+			position[0] = _tmp$8;
+			tokenIndex[0] = _tmp$9;
+			$s = -1; return false;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position527, position528, position529, tokenIndex527, tokenIndex529, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_20, _r$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position546, position548, position551, position552, tokenIndex548, tokenIndex551, tokenIndex552, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			position546 = position[0];
+			/* l547: */ case 1:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position548 = _tmp$2;
+			tokenIndex548 = _tmp$3;
+				_20 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_20 === (47)) { $s = 3; continue; }
+				/* */ if (_20 === (13)) { $s = 4; continue; }
+				/* */ if (_20 === (10)) { $s = 5; continue; }
+				/* */ if (_20 === (9)) { $s = 6; continue; }
+				/* */ $s = 7; continue;
+				/* if (_20 === (47)) { */ case 3:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 9; continue; }
+					/* */ $s = 10; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 9:
+						/* goto l548 */ $s = 11; continue;
+					/* } */ case 10:
+					position[0] = position[0] + (1) >>> 0;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 12; continue; }
+					/* */ $s = 13; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 12:
+						/* goto l548 */ $s = 11; continue;
+					/* } */ case 13:
+					position[0] = position[0] + (1) >>> 0;
+					/* l550: */ case 14:
+					_tmp$4 = position[0];
+					_tmp$5 = tokenIndex[0];
+					position551 = _tmp$4;
+					tokenIndex551 = _tmp$5;
+					_tmp$6 = position[0];
+					_tmp$7 = tokenIndex[0];
+					position552 = _tmp$6;
+					tokenIndex552 = _tmp$7;
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 15; continue; }
+					/* */ $s = 16; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 15:
+						/* goto l552 */ $s = 17; continue;
+					/* } */ case 16:
+					position[0] = position[0] + (1) >>> 0;
+					/* goto l551 */ $s = 18; continue;
+					/* l552: */ case 17:
+					_tmp$8 = position552;
+					_tmp$9 = tokenIndex552;
+					position[0] = _tmp$8;
+					tokenIndex[0] = _tmp$9;
+					_r$1 = matchDot[0](); /* */ $s = 21; case 21: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+					/* */ if (!_r$1) { $s = 19; continue; }
+					/* */ $s = 20; continue;
+					/* if (!_r$1) { */ case 19:
+						/* goto l551 */ $s = 18; continue;
+					/* } */ case 20:
+					/* goto l550 */ $s = 14; continue;
+					/* l551: */ case 18:
+					_tmp$10 = position551;
+					_tmp$11 = tokenIndex551;
+					position[0] = _tmp$10;
+					tokenIndex[0] = _tmp$11;
+					$s = 8; continue;
+				/* } else if (_20 === (13)) { */ case 4:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 22; continue; }
+					/* */ $s = 23; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 22:
+						/* goto l548 */ $s = 11; continue;
+					/* } */ case 23:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 8; continue;
+				/* } else if (_20 === (10)) { */ case 5:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 24; continue; }
+					/* */ $s = 25; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 24:
+						/* goto l548 */ $s = 11; continue;
+					/* } */ case 25:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 8; continue;
+				/* } else if (_20 === (9)) { */ case 6:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 26; continue; }
+					/* */ $s = 27; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 26:
+						/* goto l548 */ $s = 11; continue;
+					/* } */ case 27:
+					position[0] = position[0] + (1) >>> 0;
+					$s = 8; continue;
+				/* } else { */ case 7:
+					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 28; continue; }
+					/* */ $s = 29; continue;
+					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 28:
+						/* goto l548 */ $s = 11; continue;
+					/* } */ case 29:
+					position[0] = position[0] + (1) >>> 0;
+				/* } */ case 8:
+			case 2:
+			/* goto l547 */ $s = 1; continue;
+			/* l548: */ case 11:
+			_tmp$12 = position548;
+			_tmp$13 = tokenIndex548;
+			position[0] = _tmp$12;
+			tokenIndex[0] = _tmp$13;
+			$r = add[0](65, position546); /* */ $s = 30; case 30: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$s = -1; return true;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _20, _r$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position546, position548, position551, position552, tokenIndex548, tokenIndex551, tokenIndex552, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
+			var {_21, _r$1, _r$2, _r$3, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position553, position554, position555, position559, position560, position561, tokenIndex553, tokenIndex555, tokenIndex559, tokenIndex560, tokenIndex561, $s, $r, $c} = $restore(this, {});
+			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+			_tmp$2 = position[0];
+			_tmp$3 = tokenIndex[0];
+			position553 = _tmp$2;
+			tokenIndex553 = _tmp$3;
+			position554 = position[0];
+			_tmp$4 = position[0];
+			_tmp$5 = tokenIndex[0];
+			position555 = _tmp$4;
+			tokenIndex555 = _tmp$5;
+				_21 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_21 === (47)) { $s = 2; continue; }
+				/* */ if (_21 === (13)) { $s = 3; continue; }
+				/* */ if (_21 === (10)) { $s = 4; continue; }
+				/* */ if (_21 === (9)) { $s = 5; continue; }
 				/* */ $s = 6; continue;
-				/* if (_18 === (47)) { */ case 2:
+				/* if (_21 === (47)) { */ case 2:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 8; continue; }
 					/* */ $s = 9; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 8:
-						/* goto l526 */ $s = 10; continue;
+						/* goto l556 */ $s = 10; continue;
 					/* } */ case 9:
 					position[0] = position[0] + (1) >>> 0;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { $s = 11; continue; }
 					/* */ $s = 12; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 47))) { */ case 11:
-						/* goto l526 */ $s = 10; continue;
+						/* goto l556 */ $s = 10; continue;
 					/* } */ case 12:
 					position[0] = position[0] + (1) >>> 0;
-					/* l528: */ case 13:
+					/* l558: */ case 13:
 					_tmp$6 = position[0];
 					_tmp$7 = tokenIndex[0];
-					position529 = _tmp$6;
-					tokenIndex529 = _tmp$7;
+					position559 = _tmp$6;
+					tokenIndex559 = _tmp$7;
 					_tmp$8 = position[0];
 					_tmp$9 = tokenIndex[0];
-					position530 = _tmp$8;
-					tokenIndex530 = _tmp$9;
+					position560 = _tmp$8;
+					tokenIndex560 = _tmp$9;
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 14; continue; }
 					/* */ $s = 15; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 14:
-						/* goto l530 */ $s = 16; continue;
+						/* goto l560 */ $s = 16; continue;
 					/* } */ case 15:
 					position[0] = position[0] + (1) >>> 0;
-					/* goto l529 */ $s = 17; continue;
-					/* l530: */ case 16:
-					_tmp$10 = position530;
-					_tmp$11 = tokenIndex530;
+					/* goto l559 */ $s = 17; continue;
+					/* l560: */ case 16:
+					_tmp$10 = position560;
+					_tmp$11 = tokenIndex560;
 					position[0] = _tmp$10;
 					tokenIndex[0] = _tmp$11;
 					_r$1 = matchDot[0](); /* */ $s = 20; case 20: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 					/* */ if (!_r$1) { $s = 18; continue; }
 					/* */ $s = 19; continue;
 					/* if (!_r$1) { */ case 18:
-						/* goto l529 */ $s = 17; continue;
+						/* goto l559 */ $s = 17; continue;
 					/* } */ case 19:
-					/* goto l528 */ $s = 13; continue;
-					/* l529: */ case 17:
-					_tmp$12 = position529;
-					_tmp$13 = tokenIndex529;
+					/* goto l558 */ $s = 13; continue;
+					/* l559: */ case 17:
+					_tmp$12 = position559;
+					_tmp$13 = tokenIndex559;
 					position[0] = _tmp$12;
 					tokenIndex[0] = _tmp$13;
 					$s = 7; continue;
-				/* } else if (_18 === (13)) { */ case 3:
+				/* } else if (_21 === (13)) { */ case 3:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { $s = 21; continue; }
 					/* */ $s = 22; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 13))) { */ case 21:
-						/* goto l526 */ $s = 10; continue;
+						/* goto l556 */ $s = 10; continue;
 					/* } */ case 22:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 7; continue;
-				/* } else if (_18 === (10)) { */ case 4:
+				/* } else if (_21 === (10)) { */ case 4:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { $s = 23; continue; }
 					/* */ $s = 24; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 10))) { */ case 23:
-						/* goto l526 */ $s = 10; continue;
+						/* goto l556 */ $s = 10; continue;
 					/* } */ case 24:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 7; continue;
-				/* } else if (_18 === (9)) { */ case 5:
+				/* } else if (_21 === (9)) { */ case 5:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { $s = 25; continue; }
 					/* */ $s = 26; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 9))) { */ case 25:
-						/* goto l526 */ $s = 10; continue;
+						/* goto l556 */ $s = 10; continue;
 					/* } */ case 26:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 7; continue;
@@ -37806,125 +38441,125 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { $s = 27; continue; }
 					/* */ $s = 28; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 32))) { */ case 27:
-						/* goto l526 */ $s = 10; continue;
+						/* goto l556 */ $s = 10; continue;
 					/* } */ case 28:
 					position[0] = position[0] + (1) >>> 0;
 				/* } */ case 7:
 			case 1:
-			_r$2 = _rules[0][62](); /* */ $s = 31; case 31: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+			_r$2 = _rules[0][65](); /* */ $s = 31; case 31: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			/* */ if (!_r$2) { $s = 29; continue; }
 			/* */ $s = 30; continue;
 			/* if (!_r$2) { */ case 29:
-				/* goto l526 */ $s = 10; continue;
+				/* goto l556 */ $s = 10; continue;
 			/* } */ case 30:
-			/* goto l525 */ $s = 32; continue;
-			/* l526: */ case 10:
-			_tmp$14 = position525;
-			_tmp$15 = tokenIndex525;
+			/* goto l555 */ $s = 32; continue;
+			/* l556: */ case 10:
+			_tmp$14 = position555;
+			_tmp$15 = tokenIndex555;
 			position[0] = _tmp$14;
 			tokenIndex[0] = _tmp$15;
 			_tmp$16 = position[0];
 			_tmp$17 = tokenIndex[0];
-			position531 = _tmp$16;
-			tokenIndex531 = _tmp$17;
+			position561 = _tmp$16;
+			tokenIndex561 = _tmp$17;
 			_r$3 = matchDot[0](); /* */ $s = 35; case 35: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 			/* */ if (!_r$3) { $s = 33; continue; }
 			/* */ $s = 34; continue;
 			/* if (!_r$3) { */ case 33:
-				/* goto l531 */ $s = 36; continue;
+				/* goto l561 */ $s = 36; continue;
 			/* } */ case 34:
-			/* goto l523 */ $s = 37; continue;
-			/* l531: */ case 36:
-			_tmp$18 = position531;
-			_tmp$19 = tokenIndex531;
+			/* goto l553 */ $s = 37; continue;
+			/* l561: */ case 36:
+			_tmp$18 = position561;
+			_tmp$19 = tokenIndex561;
 			position[0] = _tmp$18;
 			tokenIndex[0] = _tmp$19;
-			/* l525: */ case 32:
-			$r = add[0](63, position524); /* */ $s = 38; case 38: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			/* l555: */ case 32:
+			$r = add[0](66, position554); /* */ $s = 38; case 38: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l523: */ case 37:
-			_tmp$20 = position523;
-			_tmp$21 = tokenIndex523;
+			/* l553: */ case 37:
+			_tmp$20 = position553;
+			_tmp$21 = tokenIndex553;
 			position[0] = _tmp$20;
 			tokenIndex[0] = _tmp$21;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _18, _r$1, _r$2, _r$3, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position523, position524, position525, position529, position530, position531, tokenIndex523, tokenIndex525, tokenIndex529, tokenIndex530, tokenIndex531, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _21, _r$1, _r$2, _r$3, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$16, _tmp$17, _tmp$18, _tmp$19, _tmp$2, _tmp$20, _tmp$21, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, position553, position554, position555, position559, position560, position561, tokenIndex553, tokenIndex555, tokenIndex559, tokenIndex560, tokenIndex561, $s};return $f;
 		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), (function(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree) { return function $b() {
-			var {_19, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position532, position533, tokenIndex532, $s, $r, $c} = $restore(this, {});
+			var {_22, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position562, position563, tokenIndex562, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			_tmp$2 = position[0];
 			_tmp$3 = tokenIndex[0];
-			position532 = _tmp$2;
-			tokenIndex532 = _tmp$3;
-			position533 = position[0];
+			position562 = _tmp$2;
+			tokenIndex562 = _tmp$3;
+			position563 = position[0];
 			/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 1; continue; }
 			/* */ $s = 2; continue;
 			/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 1:
-				/* goto l532 */ $s = 3; continue;
+				/* goto l562 */ $s = 3; continue;
 			/* } */ case 2:
 			position[0] = position[0] + (1) >>> 0;
-				_19 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
-				/* */ if (_19 === (92)) { $s = 5; continue; }
-				/* */ if (_19 === (39)) { $s = 6; continue; }
-				/* */ if (_19 === (34)) { $s = 7; continue; }
-				/* */ if (_19 === (114)) { $s = 8; continue; }
-				/* */ if (_19 === (102)) { $s = 9; continue; }
-				/* */ if (_19 === (110)) { $s = 10; continue; }
-				/* */ if (_19 === (116)) { $s = 11; continue; }
+				_22 = ((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]);
+				/* */ if (_22 === (92)) { $s = 5; continue; }
+				/* */ if (_22 === (39)) { $s = 6; continue; }
+				/* */ if (_22 === (34)) { $s = 7; continue; }
+				/* */ if (_22 === (114)) { $s = 8; continue; }
+				/* */ if (_22 === (102)) { $s = 9; continue; }
+				/* */ if (_22 === (110)) { $s = 10; continue; }
+				/* */ if (_22 === (116)) { $s = 11; continue; }
 				/* */ $s = 12; continue;
-				/* if (_19 === (92)) { */ case 5:
+				/* if (_22 === (92)) { */ case 5:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { $s = 14; continue; }
 					/* */ $s = 15; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 92))) { */ case 14:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 15:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
-				/* } else if (_19 === (39)) { */ case 6:
+				/* } else if (_22 === (39)) { */ case 6:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { $s = 16; continue; }
 					/* */ $s = 17; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 39))) { */ case 16:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 17:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
-				/* } else if (_19 === (34)) { */ case 7:
+				/* } else if (_22 === (34)) { */ case 7:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { $s = 18; continue; }
 					/* */ $s = 19; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 34))) { */ case 18:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 19:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
-				/* } else if (_19 === (114)) { */ case 8:
+				/* } else if (_22 === (114)) { */ case 8:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { $s = 20; continue; }
 					/* */ $s = 21; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 114))) { */ case 20:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 21:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
-				/* } else if (_19 === (102)) { */ case 9:
+				/* } else if (_22 === (102)) { */ case 9:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { $s = 22; continue; }
 					/* */ $s = 23; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 102))) { */ case 22:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 23:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
-				/* } else if (_19 === (110)) { */ case 10:
+				/* } else if (_22 === (110)) { */ case 10:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { $s = 24; continue; }
 					/* */ $s = 25; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 110))) { */ case 24:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 25:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
-				/* } else if (_19 === (116)) { */ case 11:
+				/* } else if (_22 === (116)) { */ case 11:
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { $s = 26; continue; }
 					/* */ $s = 27; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 116))) { */ case 26:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 27:
 					position[0] = position[0] + (1) >>> 0;
 					$s = 13; continue;
@@ -37932,21 +38567,21 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { $s = 28; continue; }
 					/* */ $s = 29; continue;
 					/* if (!((((position[0] < 0 || position[0] >= buffer[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : buffer[0].$array[buffer[0].$offset + position[0]]) === 98))) { */ case 28:
-						/* goto l532 */ $s = 3; continue;
+						/* goto l562 */ $s = 3; continue;
 					/* } */ case 29:
 					position[0] = position[0] + (1) >>> 0;
 				/* } */ case 13:
 			case 4:
-			$r = add[0](64, position533); /* */ $s = 30; case 30: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = add[0](67, position563); /* */ $s = 30; case 30: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = -1; return true;
-			/* l532: */ case 3:
-			_tmp$4 = position532;
-			_tmp$5 = tokenIndex532;
+			/* l562: */ case 3:
+			_tmp$4 = position562;
+			_tmp$5 = tokenIndex562;
 			position[0] = _tmp$4;
 			tokenIndex[0] = _tmp$5;
 			$s = -1; return false;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _19, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position532, position533, tokenIndex532, $s};return $f;
-		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError]));
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _22, _tmp$2, _tmp$3, _tmp$4, _tmp$5, position562, position563, tokenIndex562, $s};return $f;
+		}; })(_rules, add, buffer, matchDot, max, p, position, tokenIndex, tree), $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError]));
 		arrayType.copy(p[0].rules, _rules[0]);
 		$s = -1; return $ifaceNil;
 		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Init, $c: true, $r, _i, _r, _ref, _rules, _tmp, _tmp$1, add, buffer, err, matchDot, max, option, options, p, position, tokenIndex, tree, $s};return $f;
@@ -38088,6 +38723,58 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		e.ParserData.jmpStack = $append(e.ParserData.jmpStack, (x = (new $Int64(0, e.Context.codeIndex)), new $Int64(x.$high - 0, x.$low - 1)));
 	};
 	Parser.prototype.OffsetPush = function() { return this.$val.OffsetPush(); };
+	Parser.ptr.prototype.ContinuePush = function() {
+		var p, x;
+		p = this;
+		if (p.ParserData.continueStack === sliceType$3.nil) {
+			p.ParserData.continueStack = new sliceType$3([]);
+		}
+		p.AddOp(67);
+		p.ParserData.continueStack = $append(p.ParserData.continueStack, (x = (new $Int64(0, p.Context.codeIndex)), new $Int64(x.$high - 0, x.$low - 1)));
+	};
+	Parser.prototype.ContinuePush = function() { return this.$val.ContinuePush(); };
+	Parser.ptr.prototype.ContinueSet = function(offsetB) {
+		var _i, _ref, codeIndex, jmpIndex, lastB, offsetB, p, x, x$1, x$2, x$3;
+		p = this;
+		if (!(p.ParserData.continueStack === sliceType$3.nil)) {
+			_ref = p.ParserData.continueStack;
+			_i = 0;
+			while (true) {
+				if (!(_i < _ref.$length)) { break; }
+				codeIndex = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
+				lastB = (p.ParserData.jmpStack.$length - 1 >> 0) - offsetB >> 0;
+				jmpIndex = (x = p.ParserData.jmpStack, ((lastB < 0 || lastB >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + lastB]));
+				(x$3 = p.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + $flatten64(codeIndex)])).Value = (x$1 = (x$2 = (codeIndex), new $Int64(x$2.$high - jmpIndex.$high, x$2.$low - jmpIndex.$low)), new $Int64(-x$1.$high, -x$1.$low));
+				_i++;
+			}
+		}
+	};
+	Parser.prototype.ContinueSet = function(offsetB) { return this.$val.ContinueSet(offsetB); };
+	Parser.ptr.prototype.BreakSet = function() {
+		var _i, _ref, codeIndex, p, x, x$1, x$2;
+		p = this;
+		if (!(p.ParserData.breakStack === sliceType$3.nil)) {
+			_ref = p.ParserData.breakStack;
+			_i = 0;
+			while (true) {
+				if (!(_i < _ref.$length)) { break; }
+				codeIndex = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
+				(x$2 = p.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$2.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$2.$array[x$2.$offset + $flatten64(codeIndex)])).Value = (x = (x$1 = (new $Int64(0, p.Context.codeIndex)), new $Int64(x$1.$high - codeIndex.$high, x$1.$low - codeIndex.$low)), new $Int64(x.$high - 0, x.$low - 1));
+				_i++;
+			}
+		}
+	};
+	Parser.prototype.BreakSet = function() { return this.$val.BreakSet(); };
+	Parser.ptr.prototype.BreakPush = function() {
+		var p, x;
+		p = this;
+		if (p.ParserData.breakStack === sliceType$3.nil) {
+			p.ParserData.breakStack = new sliceType$3([]);
+		}
+		p.AddOp(67);
+		p.ParserData.breakStack = $append(p.ParserData.breakStack, (x = (new $Int64(0, p.Context.codeIndex)), new $Int64(x.$high - 0, x.$low - 1)));
+	};
+	Parser.prototype.BreakPush = function() { return this.$val.BreakPush(); };
 	Parser.ptr.prototype.OffsetPopAndSet = function() {
 		var codeIndex, e, last, x, x$1, x$2, x$3;
 		e = this;
@@ -38294,8 +38981,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* */ if (_1 === (30)) { $s = 66; continue; }
 			/* */ if (_1 === (66)) { $s = 67; continue; }
 			/* */ if (_1 === (65)) { $s = 68; continue; }
-			/* */ if (_1 === (64)) { $s = 69; continue; }
-			/* */ $s = 70; continue;
+			/* */ if (_1 === (70)) { $s = 69; continue; }
+			/* */ if (_1 === (64)) { $s = 70; continue; }
+			/* */ $s = 71; continue;
 			/* if (_1 === (0)) { */ case 2:
 				$s = -1; return "push.int " + strconv.FormatInt($assertType(code.Value, $Int64), 10);
 			/* } else if (_1 === (1)) { */ case 3:
@@ -38403,13 +39091,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* } else if (_1 === (11)) { */ case 52:
 				$s = -1; return "ld.raw " + $assertType(code.Value, $String);
 			/* } else if (_1 === (9)) { */ case 53:
-				_r = fmt.Sprintf("ld.fs %d", new sliceType$12([code.Value])); /* */ $s = 71; case 71: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+				_r = fmt.Sprintf("ld.fs %d", new sliceType$12([code.Value])); /* */ $s = 72; case 72: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 				$24r = _r;
-				$s = 72; case 72: return $24r;
+				$s = 73; case 73: return $24r;
 			/* } else if (_1 === (12)) { */ case 54:
-				_r$1 = fmt.Sprintf("store %s", new sliceType$12([code.Value])); /* */ $s = 73; case 73: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+				_r$1 = fmt.Sprintf("store %s", new sliceType$12([code.Value])); /* */ $s = 74; case 74: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 				$24r$1 = _r$1;
-				$s = 74; case 74: return $24r$1;
+				$s = 75; case 75: return $24r$1;
 			/* } else if (_1 === (59)) { */ case 55:
 				$s = -1; return "halt";
 			/* } else if (_1 === (60)) { */ case 56:
@@ -38417,17 +39105,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* } else if (_1 === (61)) { */ case 57:
 				$s = -1; return "mark.left";
 			/* } else if (_1 === (67)) { */ case 58:
-				_r$2 = fmt.Sprintf("jmp %d", new sliceType$12([code.Value])); /* */ $s = 75; case 75: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+				_r$2 = fmt.Sprintf("jmp %d", new sliceType$12([code.Value])); /* */ $s = 76; case 76: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 				$24r$2 = _r$2;
-				$s = 76; case 76: return $24r$2;
+				$s = 77; case 77: return $24r$2;
 			/* } else if (_1 === (68)) { */ case 59:
-				_r$3 = fmt.Sprintf("je %d", new sliceType$12([code.Value])); /* */ $s = 77; case 77: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+				_r$3 = fmt.Sprintf("je %d", new sliceType$12([code.Value])); /* */ $s = 78; case 78: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 				$24r$3 = _r$3;
-				$s = 78; case 78: return $24r$3;
+				$s = 79; case 79: return $24r$3;
 			/* } else if (_1 === (69)) { */ case 60:
-				_r$4 = fmt.Sprintf("jne %d", new sliceType$12([code.Value])); /* */ $s = 79; case 79: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+				_r$4 = fmt.Sprintf("jne %d", new sliceType$12([code.Value])); /* */ $s = 80; case 80: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 				$24r$4 = _r$4;
-				$s = 80; case 80: return $24r$4;
+				$s = 81; case 81: return $24r$4;
 			/* } else if (_1 === (25)) { */ case 61:
 				$s = -1; return "comp.lt";
 			/* } else if (_1 === (26)) { */ case 62:
@@ -38444,9 +39132,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				$s = -1; return "nop";
 			/* } else if (_1 === (65)) { */ case 68:
 				$s = -1; return "pop";
-			/* } else if (_1 === (64)) { */ case 69:
+			/* } else if (_1 === (70)) { */ case 69:
+				$s = -1; return "ret";
+			/* } else if (_1 === (64)) { */ case 70:
 				$s = -1; return "reset";
-			/* } */ case 70:
+			/* } */ case 71:
 		case 1:
 		$s = -1; return "";
 		/* */ } return; } var $f = {$blk: ByteCode.ptr.prototype.CodeString, $c: true, $r, $24r, $24r$1, $24r$2, $24r$3, $24r$4, _1, _r, _r$1, _r$2, _r$3, _r$4, _tuple, _tuple$1, code, computed, computed$1, $s};return $f;
@@ -38459,7 +39149,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$13.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 	ptrType$10.methods = [{prop: "print", name: "print", pkg: "github.com/sealdice/dicescript", typ: $funcType([io.Writer, $Bool, $String], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrint", name: "PrettyPrint", pkg: "", typ: $funcType([io.Writer, $String], [], false)}];
 	ptrType$14.methods = [{prop: "Trim", name: "Trim", pkg: "", typ: $funcType([$Uint32], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([], [], false)}, {prop: "AST", name: "AST", pkg: "", typ: $funcType([], [ptrType$10], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrintSyntaxTree", name: "PrettyPrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([pegRule, $Uint32, $Uint32, $Uint32], [], false)}, {prop: "Tokens", name: "Tokens", pkg: "", typ: $funcType([], [sliceType$8], false)}];
-	ptrType$8.methods = [{prop: "Evaluate", name: "Evaluate", pkg: "", typ: $funcType([], [], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([sliceType$10], [$error], true)}, {prop: "Reset", name: "Reset", pkg: "", typ: $funcType([], [], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer], [], false)}, {prop: "SprintSyntaxTree", name: "SprintSyntaxTree", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Execute", name: "Execute", pkg: "", typ: $funcType([], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([sliceType$9], [$error], true)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "LMark", name: "LMark", pkg: "", typ: $funcType([], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "PushUndefined", name: "PushUndefined", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopN", name: "OffsetPopN", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "OffsetJmpSetX", name: "OffsetJmpSetX", pkg: "", typ: $funcType([$Int, $Int, $Bool], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$4, $String], [], false)}, {prop: "AddSetAttr", name: "AddSetAttr", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$1, $Int], false)}];
+	ptrType$8.methods = [{prop: "Evaluate", name: "Evaluate", pkg: "", typ: $funcType([], [], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([sliceType$10], [$error], true)}, {prop: "Reset", name: "Reset", pkg: "", typ: $funcType([], [], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer], [], false)}, {prop: "SprintSyntaxTree", name: "SprintSyntaxTree", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Execute", name: "Execute", pkg: "", typ: $funcType([], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([sliceType$9], [$error], true)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "LMark", name: "LMark", pkg: "", typ: $funcType([], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "PushUndefined", name: "PushUndefined", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinuePush", name: "ContinuePush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinueSet", name: "ContinueSet", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "BreakSet", name: "BreakSet", pkg: "", typ: $funcType([], [], false)}, {prop: "BreakPush", name: "BreakPush", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopN", name: "OffsetPopN", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "OffsetJmpSetX", name: "OffsetJmpSetX", pkg: "", typ: $funcType([$Int, $Int, $Bool], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$4, $String], [], false)}, {prop: "AddSetAttr", name: "AddSetAttr", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$1, $Int], false)}];
 	ptrType$15.methods = [{prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
 	ptrType$16.methods = [{prop: "init", name: "init", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
 	ptrType$17.methods = [{prop: "CodeString", name: "CodeString", pkg: "", typ: $funcType([], [$String], false)}];
@@ -38477,7 +39167,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.init("github.com/sealdice/dicescript", [{prop: "ParserData", name: "ParserData", embedded: true, exported: true, typ: ParserData, tag: ""}, {prop: "Context", name: "Context", embedded: true, exported: true, typ: Context, tag: ""}, {prop: "Buffer", name: "Buffer", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "buffer", name: "buffer", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: arrayType, tag: ""}, {prop: "parse", name: "parse", embedded: false, exported: false, typ: funcType$6, tag: ""}, {prop: "reset", name: "reset", embedded: false, exported: false, typ: funcType$7, tag: ""}, {prop: "Pretty", name: "Pretty", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "tokens32", name: "tokens32", embedded: true, exported: false, typ: tokens32, tag: ""}]);
 	textPosition.init("github.com/sealdice/dicescript", [{prop: "line", name: "line", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "symbol", name: "symbol", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	parseError.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: token32, tag: ""}]);
-	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$4, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$5, tag: ""}]);
+	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$4, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$3, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$5, tag: ""}]);
 	ByteCode.init("", [{prop: "T", name: "T", embedded: false, exported: true, typ: CodeType, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: ""}]);
 	element.init("github.com/sealdice/dicescript", [{prop: "node", name: "node", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "down", name: "down", embedded: false, exported: false, typ: ptrType$11, tag: ""}]);
 	$init = function() {
@@ -38497,7 +39187,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$r = time.$init(); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		expungedValueMap = (new Uint8Array(4));
 		binOperator = new sliceType([$methodExpr(ptrType, "OpAdd"), $methodExpr(ptrType, "OpSub"), $methodExpr(ptrType, "OpMultiply"), $methodExpr(ptrType, "OpDivide"), $methodExpr(ptrType, "OpModulus"), $methodExpr(ptrType, "OpPower"), $methodExpr(ptrType, "OpCompLT"), $methodExpr(ptrType, "OpCompLE"), $methodExpr(ptrType, "OpCompEQ"), $methodExpr(ptrType, "OpCompNE"), $methodExpr(ptrType, "OpCompGE"), $methodExpr(ptrType, "OpCompGT")]);
-		rul3s = $toNativeArray($kindString, ["Unknown", "dicescript", "stmtRoot", "stmtLines", "stmtWithSemicolon", "stmtWithBlock", "stmtBreak", "stmtContinue", "stmtReturn", "stmtWhile", "block", "stmtElse", "stmtIf", "func_def_params", "stmtFunc", "stmtAssign", "exprRoot", "exprValueIfExists", "exprTernary", "exprBitwise", "exprCompare", "exprAdditive", "exprMultiplicative", "exprExp", "exprUnaryNeg", "exprUnaryPos", "_diceMod", "_diceMod2", "_dicePearMod", "exprDice", "get_item", "array_call", "get_attr", "func_invoke", "value", "number", "float", "strPart", "strPart1", "strPart2", "strPart3", "fstring", "identifier", "sub", "parenOpen", "parenClose", "add", "minus", "multiply", "divide", "modulus", "exponentiation", "bitwiseOr", "bitwiseAnd", "logicOr", "logicAnd", "lt", "gt", "le", "ge", "eq", "ne", "sp", "sp1", "escape", "Action0", "Action1", "Action2", "Action3", "Action4", "Action5", "Action6", "Action7", "Action8", "Action9", "Action10", "Action11", "Action12", "Action13", "PegText", "Action14", "Action15", "Action16", "Action17", "Action18", "Action19", "Action20", "Action21", "Action22", "Action23", "Action24", "Action25", "Action26", "Action27", "Action28", "Action29", "Action30", "Action31", "Action32", "Action33", "Action34", "Action35", "Action36", "Action37", "Action38", "Action39", "Action40", "Action41", "Action42", "Action43", "Action44", "Action45", "Action46", "Action47", "Action48", "Action49", "Action50", "Action51", "Action52", "Action53", "Action54", "Action55", "Action56", "Action57", "Action58", "Action59", "Action60", "Action61", "Action62", "Action63", "Action64", "Action65", "Action66", "Action67", "Action68", "Action69", "Action70", "Action71", "Action72", "Action73", "Action74", "Action75", "Action76", "Action77", "Action78", "Action79", "Action80", "Action81", "Action82", "Action83", "Action84", "Action85", "Action86", "Action87", "Action88", "Action89", "Action90", "Action91", "Action92", "Action93", "Action94", "Action95", "Action96", "Action97", "Action98", "Action99", "Action100", "Action101", "Action102", "Action103", "Action104", "Action105", "Action106", "Action107", "Action108", "Action109", "Action110", "Action111", "Action112", "Action113", "Action114", "Action115", "Action116", "Action117", "Action118"]);
+		rul3s = $toNativeArray($kindString, ["Unknown", "dicescript", "stmtRoot", "stmtRootInLoop", "stmtLines", "stmtLinesInLoop", "stmtWithSemicolon", "stmtWithBlock", "stmtBreak", "stmtContinue", "stmtReturn", "blockInLoop", "stmtWhile", "block", "stmtElse", "stmtIf", "func_def_params", "stmtFunc", "stmtAssign", "exprRoot", "exprValueIfExists", "exprTernary", "exprBitwise", "exprCompare", "exprAdditive", "exprMultiplicative", "exprExp", "exprUnaryNeg", "exprUnaryPos", "_diceMod", "_diceMod2", "_dicePearMod", "exprDice", "get_item", "array_call", "get_attr", "func_invoke", "value", "number", "float", "strPart", "strPart1", "strPart2", "strPart3", "fstring", "identifier", "sub", "parenOpen", "parenClose", "add", "minus", "multiply", "divide", "modulus", "exponentiation", "bitwiseOr", "bitwiseAnd", "logicOr", "logicAnd", "lt", "gt", "le", "ge", "eq", "ne", "sp", "sp1", "escape", "Action0", "Action1", "Action2", "Action3", "Action4", "Action5", "Action6", "Action7", "Action8", "Action9", "Action10", "Action11", "Action12", "Action13", "Action14", "Action15", "Action16", "Action17", "PegText", "Action18", "Action19", "Action20", "Action21", "Action22", "Action23", "Action24", "Action25", "Action26", "Action27", "Action28", "Action29", "Action30", "Action31", "Action32", "Action33", "Action34", "Action35", "Action36", "Action37", "Action38", "Action39", "Action40", "Action41", "Action42", "Action43", "Action44", "Action45", "Action46", "Action47", "Action48", "Action49", "Action50", "Action51", "Action52", "Action53", "Action54", "Action55", "Action56", "Action57", "Action58", "Action59", "Action60", "Action61", "Action62", "Action63", "Action64", "Action65", "Action66", "Action67", "Action68", "Action69", "Action70", "Action71", "Action72", "Action73", "Action74", "Action75", "Action76", "Action77", "Action78", "Action79", "Action80", "Action81", "Action82", "Action83", "Action84", "Action85", "Action86", "Action87", "Action88", "Action89", "Action90", "Action91", "Action92", "Action93", "Action94", "Action95", "Action96", "Action97", "Action98", "Action99", "Action100", "Action101", "Action102", "Action103", "Action104", "Action105", "Action106", "Action107", "Action108", "Action109", "Action110", "Action111", "Action112", "Action113", "Action114", "Action115", "Action116", "Action117", "Action118", "Action119", "Action120", "Action121", "Action122"]);
 		/* */ } return; } if ($f === undefined) { $f = { $blk: $init }; } $f.$s = $s; $f.$r = $r; return $f;
 	};
 	$pkg.$init = $init;
