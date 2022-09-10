@@ -29668,7 +29668,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.ReadFunctionData = function() { return this.$val.ReadFunctionData(); };
 	VMValue.ptr.prototype.OpAdd = function(ctx, v2) {
-		var _1, _2, _3, _4, _5, _i, _ref, _tuple, _tuple$1, arr, arr2, arrFinal, ctx, i, index, v, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$2;
+		var _1, _2, _3, _4, _5, _i, _ref, _tuple, _tuple$1, arr, arr2, arrFinal, ctx, i, index, length, v, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
@@ -29702,6 +29702,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				arr = _tuple[0];
 				_tuple$1 = v2.ReadArray();
 				arr2 = _tuple$1[0];
+				length = arr.List.$length + arr2.List.$length >> 0;
+				if (length > 512) {
+					ctx.Error = errors.New("\xE4\xB8\x8D\xE8\x83\xBD\xE4\xB8\x80\xE6\xAC\xA1\xE6\x80\xA7\xE5\x88\x9B\xE5\xBB\xBA\xE8\xBF\x87\xE9\x95\xBF\xE7\x9A\x84\xE6\x95\xB0\xE7\xBB\x84");
+					return ptrType.nil;
+				}
 				arrFinal = $makeSlice(sliceType$2, (arr.List.$length + arr2.List.$length >> 0));
 				$copySlice(arrFinal, arr.List);
 				_ref = arr2.List;
@@ -29757,6 +29762,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_2 === (1)) {
 				val$1 = ($flatten64($assertType(v.Value, $Int64))) * $assertType(v2.Value, $Float64);
 				return VMValueNewFloat64(val$1);
+			} else if (_2 === (6)) {
+				return v2.ArrayRepeatTimesEx(ctx, v);
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
@@ -29767,6 +29774,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				val$3 = $assertType(v.Value, $Float64) * $assertType(v2.Value, $Float64);
 				return VMValueNewFloat64(val$3);
 			}
+		} else if (_1 === (6)) {
+			return v.ArrayRepeatTimesEx(ctx, v2);
 		}
 		return ptrType.nil;
 	};
@@ -30414,6 +30423,32 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		return v.SetSlice(ctx, valA, valB, new $Int64(0, 1), val);
 	};
 	VMValue.prototype.SetSliceEx = function(ctx, a, b, val) { return this.$val.SetSliceEx(ctx, a, b, val); };
+	VMValue.ptr.prototype.ArrayRepeatTimesEx = function(ctx, times) {
+		var _1, _r, _tuple, _tuple$1, ad, arr, ctx, i, length, times, times$1, v, x, x$1, x$2;
+		v = this;
+		_1 = times.TypeId;
+		if (_1 === (0)) {
+			_tuple = times.ReadInt64();
+			times$1 = _tuple[0];
+			_tuple$1 = v.ReadArray();
+			ad = _tuple$1[0];
+			length = $mul64((new $Int64(0, ad.List.$length)), times$1);
+			if ((length.$high > 0 || (length.$high === 0 && length.$low > 512))) {
+				ctx.Error = errors.New("\xE4\xB8\x8D\xE8\x83\xBD\xE4\xB8\x80\xE6\xAC\xA1\xE6\x80\xA7\xE5\x88\x9B\xE5\xBB\xBA\xE8\xBF\x87\xE9\x95\xBF\xE7\x9A\x84\xE6\x95\xB0\xE7\xBB\x84");
+				return ptrType.nil;
+			}
+			arr = $makeSlice(sliceType$2, $flatten64(length));
+			i = new $Int64(0, 0);
+			while (true) {
+				if (!((i.$high < length.$high || (i.$high === length.$high && i.$low < length.$low)))) { break; }
+				(($flatten64(i) < 0 || $flatten64(i) >= arr.$length) ? ($throwRuntimeError("index out of range"), undefined) : arr.$array[arr.$offset + $flatten64(i)] = (x = ad.List, x$1 = (_r = (((i.$low + ((i.$high >> 31) * 4294967296)) >> 0)) % ad.List.$length, _r === _r ? _r : $throwRuntimeError("integer divide by zero")), ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])).Clone());
+				i = (x$2 = new $Int64(0, 1), new $Int64(i.$high + x$2.$high, i.$low + x$2.$low));
+			}
+			return VMValueNewArray(arr);
+		}
+		return ptrType.nil;
+	};
+	VMValue.prototype.ArrayRepeatTimesEx = function(ctx, times) { return this.$val.ArrayRepeatTimesEx(ctx, times); };
 	VMValue.ptr.prototype.GetTypeName = function() {
 		var _1, v;
 		v = this;
@@ -39836,7 +39871,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$8.methods = [{prop: "Get", name: "Get", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Put", name: "Put", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "LoadOrStore", name: "LoadOrStore", pkg: "", typ: $funcType([$String, ptrType], [ptrType, $Bool], false)}, {prop: "GetAndDelete", name: "GetAndDelete", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Delete", name: "Delete", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$3], [], false)}, {prop: "missLocked", name: "missLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "dirtyLocked", name: "dirtyLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
 	ptrType$3.methods = [{prop: "load", name: "load", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryStore", name: "tryStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [$Bool], false)}, {prop: "unexpungeLocked", name: "unexpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "storeLocked", name: "storeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [], false)}, {prop: "tryLoadOrStore", name: "tryLoadOrStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType], [ptrType, $Bool, $Bool], false)}, {prop: "delete$", name: "delete", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryExpungeLocked", name: "tryExpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}];
 	ptrType$1.methods = [{prop: "Init", name: "Init", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "loadInnerVar", name: "loadInnerVar", pkg: "github.com/sealdice/dicescript", typ: $funcType([$String], [funcType$4], false)}, {prop: "Run", name: "Run", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "GetAsmText", name: "GetAsmText", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType.methods = [{prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt64", name: "ReadInt64", pkg: "", typ: $funcType([], [$Int64, $Bool], false)}, {prop: "ReadFloat64", name: "ReadFloat64", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [ptrType$5, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$6, $Bool], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$7, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "SetAttr", name: "SetAttr", pkg: "", typ: $funcType([$String, ptrType], [ptrType], false)}, {prop: "GetAttr", name: "GetAttr", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "CallFunc", name: "CallFunc", pkg: "", typ: $funcType([ptrType$1, $String, sliceType$2], [ptrType], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayGetItem", name: "ArrayGetItem", pkg: "", typ: $funcType([ptrType$1, $Int64], [ptrType], false)}, {prop: "ArraySetItem", name: "ArraySetItem", pkg: "", typ: $funcType([ptrType$1, $Int64, ptrType], [$Bool], false)}, {prop: "GetSlice", name: "GetSlice", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int64, $Int64], [ptrType], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([ptrType$1], [$Int64], false)}, {prop: "GetSliceEx", name: "GetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [ptrType], false)}, {prop: "SetSlice", name: "SetSlice", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int64, $Int64, ptrType], [$Bool], false)}, {prop: "SetSliceEx", name: "SetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType, ptrType], [$Bool], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}];
+	ptrType.methods = [{prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt64", name: "ReadInt64", pkg: "", typ: $funcType([], [$Int64, $Bool], false)}, {prop: "ReadFloat64", name: "ReadFloat64", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [ptrType$5, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$6, $Bool], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$7, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "SetAttr", name: "SetAttr", pkg: "", typ: $funcType([$String, ptrType], [ptrType], false)}, {prop: "GetAttr", name: "GetAttr", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "CallFunc", name: "CallFunc", pkg: "", typ: $funcType([ptrType$1, $String, sliceType$2], [ptrType], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "ArrayGetItem", name: "ArrayGetItem", pkg: "", typ: $funcType([ptrType$1, $Int64], [ptrType], false)}, {prop: "ArraySetItem", name: "ArraySetItem", pkg: "", typ: $funcType([ptrType$1, $Int64, ptrType], [$Bool], false)}, {prop: "GetSlice", name: "GetSlice", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int64, $Int64], [ptrType], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([ptrType$1], [$Int64], false)}, {prop: "GetSliceEx", name: "GetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [ptrType], false)}, {prop: "SetSlice", name: "SetSlice", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int64, $Int64, ptrType], [$Bool], false)}, {prop: "SetSliceEx", name: "SetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType, ptrType], [$Bool], false)}, {prop: "ArrayRepeatTimesEx", name: "ArrayRepeatTimesEx", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}];
 	ptrType$14.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 	ptrType$11.methods = [{prop: "print", name: "print", pkg: "github.com/sealdice/dicescript", typ: $funcType([io.Writer, $Bool, $String], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrint", name: "PrettyPrint", pkg: "", typ: $funcType([io.Writer, $String], [], false)}];
 	ptrType$15.methods = [{prop: "Trim", name: "Trim", pkg: "", typ: $funcType([$Uint32], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([], [], false)}, {prop: "AST", name: "AST", pkg: "", typ: $funcType([], [ptrType$11], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrintSyntaxTree", name: "PrettyPrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([pegRule, $Uint32, $Uint32, $Uint32], [], false)}, {prop: "Tokens", name: "Tokens", pkg: "", typ: $funcType([], [sliceType$8], false)}];
