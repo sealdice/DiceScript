@@ -28,8 +28,8 @@ func newVM(name string) *js.Object {
 func main() {
 	js.Global.Set("dice", map[string]interface{}{
 		"newVM":        newVM,
-		"vmNewInt64":   js.MakeWrapper(dicescript.VMValueNewInt64),
-		"vmNewFloat64": js.MakeWrapper(dicescript.VMValueNewFloat64),
+		"vmNewInt64":   js.MakeWrapper(dicescript.VMValueNewInt),
+		"vmNewFloat64": js.MakeWrapper(dicescript.VMValueNewFloat),
 		"vmNewStr":     js.MakeWrapper(dicescript.VMValueNewStr),
 		"help":         js.MakeWrapper("此项目的js绑定: https://github.com/sealdice/dicescript"),
 	})
