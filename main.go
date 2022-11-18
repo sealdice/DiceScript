@@ -8,15 +8,18 @@ import (
 	"github.com/sealdice/dicescript"
 )
 
-var attrs = map[string]*dicescript.VMValue{}
+var scope = map[string]*dicescript.VMValue{}
 
 func newVM(name string) *js.Object {
+	player := dicescript.VMValueNewDict(nil)
+	scope["player"] = player.V()
+
 	vm := dicescript.NewVM()
-	vm.ValueStoreNameFunc = func(name string, v *dicescript.VMValue) {
-		attrs[name] = v
+	vm.ValueStoreFunc = func(name string, v *dicescript.VMValue) {
+		scope[name] = v
 	}
-	vm.ValueLoadNameFunc = func(name string) *dicescript.VMValue {
-		if val, ok := attrs[name]; ok {
+	vm.ValueLoadFunc = func(name string) *dicescript.VMValue {
+		if val, ok := scope[name]; ok {
 			return val
 		}
 		return nil
@@ -26,11 +29,21 @@ func newVM(name string) *js.Object {
 }
 
 func main() {
+	newDict := func() *dicescript.VMDictValue {
+		return dicescript.VMValueNewDict(nil)
+	}
+
+	newValueMap := func() *dicescript.ValueMap {
+		return &dicescript.ValueMap{}
+	}
+
 	js.Global.Set("dice", map[string]interface{}{
 		"newVM":        newVM,
+		"newValueMap":  newValueMap,
 		"vmNewInt64":   js.MakeWrapper(dicescript.VMValueNewInt),
 		"vmNewFloat64": js.MakeWrapper(dicescript.VMValueNewFloat),
 		"vmNewStr":     js.MakeWrapper(dicescript.VMValueNewStr),
+		"vmNewDict":    js.MakeWrapper(newDict),
 		"help":         js.MakeWrapper("此项目的js绑定: https://github.com/sealdice/dicescript"),
 	})
 
