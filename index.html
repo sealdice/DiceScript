@@ -43,6 +43,11 @@
                 if (this.message === '') return;
                 let ctx = dice.newVM();
                 ctx.Flags.PrintBytecode = true; // 好像没什么用
+                ctx.Flags.EnableDiceWoD = true;
+                ctx.Flags.EnableDiceCoC = true;
+                ctx.Flags.EnableDiceFate = true;
+                ctx.Flags.EnableDiceDoubleCross = true;
+
                 this.items.push(`>>> ${this.message}`)
                 try {
                     ctx.Run(this.message)
