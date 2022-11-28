@@ -50,6 +50,7 @@
                         this.items.push(`错误: ${ctx.Error.Error()}`)
                     } else {
                         this.items.push(ctx.Ret.ToString())
+                        this.items.push(ctx.Detail)
                         if (ctx.RestInput) {
                             this.items.push(`剩余文本: ${ctx.RestInput}`)
                         }
