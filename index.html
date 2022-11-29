@@ -23,13 +23,21 @@
     </div>
 
     <div style="margin-top: 2rem;">
-        <div>提示: 还在开发中，支持语法详情看<a target="_blank" href="https://github.com/sealdice/dicescript">主页</a></div>
+        <div>提示: 还在开发中，支持语法详情看<a target="_blank" href="https://github.com/sealdice/dicescript/blob/main/GUIDE.md">语法指南</a></div>
         <div style="margin-left: 2rem">控制台里有上一条指令的字节码。建议多ctrl+f5以免遇到旧版</div>
+        <div style="margin-left: 2rem">有一个人物卡变量叫player，通过"_测试30"这种形式可以读取出数字30，可用于ra判定</div>
     </div>
 </div>
 
 <script>
     const { createApp } = Vue
+    let ctx = dice.newVM();
+    ctx.Flags.PrintBytecode = true; // 好像没什么用
+    ctx.Flags.EnableDiceWoD = true;
+    ctx.Flags.EnableDiceCoC = true;
+    ctx.Flags.EnableDiceFate = true;
+    ctx.Flags.EnableDiceDoubleCross = true;
+
     createApp({
         data() {
             return {
@@ -41,12 +49,6 @@
             doSend () {
                 this.message = this.message.trim()
                 if (this.message === '') return;
-                let ctx = dice.newVM();
-                ctx.Flags.PrintBytecode = true; // 好像没什么用
-                ctx.Flags.EnableDiceWoD = true;
-                ctx.Flags.EnableDiceCoC = true;
-                ctx.Flags.EnableDiceFate = true;
-                ctx.Flags.EnableDiceDoubleCross = true;
 
                 this.items.push(`>>> ${this.message}`)
                 try {
@@ -54,8 +56,8 @@
                     if (ctx.Error) {
                         this.items.push(`错误: ${ctx.Error.Error()}`)
                     } else {
-                        this.items.push(ctx.Ret.ToString())
-                        this.items.push(ctx.Detail)
+                        this.items.push("过程:" + ctx.Detail)
+                        this.items.push("结果:" + ctx.Ret.ToString())
                         if (ctx.RestInput) {
                             this.items.push(`剩余文本: ${ctx.RestInput}`)
                         }
