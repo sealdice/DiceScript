@@ -45732,7 +45732,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$ptrType(spanByEnd).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	Parser.ptr.prototype.Evaluate = function() {
-		var {_1, _a, _arg$20, _arg$21, _arg$22, _arg$23, _arg$24, _arg$25, _arg$26, _arg$27, _arg$28, _b, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$40, x$41, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
+		var {_1, _a, _arg$20, _arg$21, _arg$22, _arg$23, _arg$24, _arg$25, _arg$26, _arg$27, _arg$28, _b, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$40, x$41, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = [ctx];
 		dcState = [dcState];
@@ -45920,6 +45920,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			i$1 = [i$1];
 			_r$20 = numOpCountAdd(new $Int64(0, 1)); /* */ $s = 5; case 5: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
 			_r$20;
+			if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && (e[0].Context.top === stack.$length)) {
+				ctx[0].Error = errors.New("\xE6\x89\xA7\xE8\xA1\x8C\xE6\xA0\x88\xE5\x88\xB0\xE8\xBE\xBE\xE6\xBA\xA2\xE5\x87\xBA\xE7\xBA\xBF");
+			}
 			if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 				$s = -1; return;
 			}
@@ -45956,59 +45959,60 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				/* */ if (_1 === (7)) { $s = 23; continue; }
 				/* */ if (_1 === (9)) { $s = 24; continue; }
 				/* */ if (_1 === (5)) { $s = 25; continue; }
-				/* */ if (_1 === (20)) { $s = 26; continue; }
-				/* */ if (_1 === (22)) { $s = 27; continue; }
-				/* */ if (_1 === (23)) { $s = 28; continue; }
-				/* */ if (_1 === (24)) { $s = 29; continue; }
-				/* */ if (_1 === (25)) { $s = 30; continue; }
-				/* */ if (_1 === (26)) { $s = 31; continue; }
-				/* */ if (_1 === (27)) { $s = 32; continue; }
-				/* */ if (_1 === (77)) { $s = 33; continue; }
-				/* */ if (_1 === (68)) { $s = 34; continue; }
-				/* */ if (_1 === (13)) { $s = 35; continue; }
-				/* */ if ((_1 === (14)) || (_1 === (16)) || (_1 === (15))) { $s = 36; continue; }
-				/* */ if (_1 === (17)) { $s = 37; continue; }
-				/* */ if (_1 === (12)) { $s = 38; continue; }
-				/* */ if ((_1 === (74)) || (_1 === (76))) { $s = 39; continue; }
-				/* */ if (_1 === (75)) { $s = 40; continue; }
-				/* */ if (_1 === (73)) { $s = 41; continue; }
-				/* */ if (_1 === (70)) { $s = 42; continue; }
-				/* */ if (_1 === (71)) { $s = 43; continue; }
-				/* */ if ((_1 === (28)) || (_1 === (29)) || (_1 === (30)) || (_1 === (31)) || (_1 === (32)) || (_1 === (33)) || (_1 === (34)) || (_1 === (35)) || (_1 === (36)) || (_1 === (37)) || (_1 === (38)) || (_1 === (39)) || (_1 === (40)) || (_1 === (41))) { $s = 44; continue; }
-				/* */ if ((_1 === (45)) || (_1 === (44))) { $s = 45; continue; }
-				/* */ if (_1 === (46)) { $s = 46; continue; }
-				/* */ if (_1 === (47)) { $s = 47; continue; }
-				/* */ if (_1 === (48)) { $s = 48; continue; }
-				/* */ if (_1 === (49)) { $s = 49; continue; }
-				/* */ if (_1 === (50)) { $s = 50; continue; }
-				/* */ if (_1 === (52)) { $s = 51; continue; }
-				/* */ if (_1 === (53)) { $s = 52; continue; }
-				/* */ if (_1 === (51)) { $s = 53; continue; }
-				/* */ if (_1 === (69)) { $s = 54; continue; }
-				/* */ if (_1 === (54)) { $s = 55; continue; }
-				/* */ if (_1 === (57)) { $s = 56; continue; }
-				/* */ if ((_1 === (56)) || (_1 === (55))) { $s = 57; continue; }
-				/* */ if (_1 === (59)) { $s = 58; continue; }
-				/* */ if (_1 === (61)) { $s = 59; continue; }
-				/* */ if (_1 === (62)) { $s = 60; continue; }
-				/* */ if (_1 === (63)) { $s = 61; continue; }
-				/* */ if (_1 === (60)) { $s = 62; continue; }
-				/* */ if (_1 === (58)) { $s = 63; continue; }
-				/* */ if (_1 === (65)) { $s = 64; continue; }
-				/* */ if (_1 === (66)) { $s = 65; continue; }
-				/* */ if (_1 === (67)) { $s = 66; continue; }
-				/* */ if (_1 === (64)) { $s = 67; continue; }
-				/* */ $s = 68; continue;
+				/* */ if (_1 === (42)) { $s = 26; continue; }
+				/* */ if (_1 === (20)) { $s = 27; continue; }
+				/* */ if (_1 === (22)) { $s = 28; continue; }
+				/* */ if (_1 === (23)) { $s = 29; continue; }
+				/* */ if (_1 === (24)) { $s = 30; continue; }
+				/* */ if (_1 === (25)) { $s = 31; continue; }
+				/* */ if (_1 === (26)) { $s = 32; continue; }
+				/* */ if (_1 === (27)) { $s = 33; continue; }
+				/* */ if (_1 === (77)) { $s = 34; continue; }
+				/* */ if (_1 === (68)) { $s = 35; continue; }
+				/* */ if (_1 === (13)) { $s = 36; continue; }
+				/* */ if ((_1 === (14)) || (_1 === (16)) || (_1 === (15))) { $s = 37; continue; }
+				/* */ if (_1 === (17)) { $s = 38; continue; }
+				/* */ if (_1 === (12)) { $s = 39; continue; }
+				/* */ if ((_1 === (74)) || (_1 === (76))) { $s = 40; continue; }
+				/* */ if (_1 === (75)) { $s = 41; continue; }
+				/* */ if (_1 === (73)) { $s = 42; continue; }
+				/* */ if (_1 === (70)) { $s = 43; continue; }
+				/* */ if (_1 === (71)) { $s = 44; continue; }
+				/* */ if ((_1 === (28)) || (_1 === (29)) || (_1 === (30)) || (_1 === (31)) || (_1 === (32)) || (_1 === (33)) || (_1 === (34)) || (_1 === (35)) || (_1 === (36)) || (_1 === (37)) || (_1 === (38)) || (_1 === (39)) || (_1 === (40)) || (_1 === (41))) { $s = 45; continue; }
+				/* */ if ((_1 === (45)) || (_1 === (44))) { $s = 46; continue; }
+				/* */ if (_1 === (46)) { $s = 47; continue; }
+				/* */ if (_1 === (47)) { $s = 48; continue; }
+				/* */ if (_1 === (48)) { $s = 49; continue; }
+				/* */ if (_1 === (49)) { $s = 50; continue; }
+				/* */ if (_1 === (50)) { $s = 51; continue; }
+				/* */ if (_1 === (52)) { $s = 52; continue; }
+				/* */ if (_1 === (53)) { $s = 53; continue; }
+				/* */ if (_1 === (51)) { $s = 54; continue; }
+				/* */ if (_1 === (69)) { $s = 55; continue; }
+				/* */ if (_1 === (54)) { $s = 56; continue; }
+				/* */ if (_1 === (57)) { $s = 57; continue; }
+				/* */ if ((_1 === (56)) || (_1 === (55))) { $s = 58; continue; }
+				/* */ if (_1 === (59)) { $s = 59; continue; }
+				/* */ if (_1 === (61)) { $s = 60; continue; }
+				/* */ if (_1 === (62)) { $s = 61; continue; }
+				/* */ if (_1 === (63)) { $s = 62; continue; }
+				/* */ if (_1 === (60)) { $s = 63; continue; }
+				/* */ if (_1 === (58)) { $s = 64; continue; }
+				/* */ if (_1 === (65)) { $s = 65; continue; }
+				/* */ if (_1 === (66)) { $s = 66; continue; }
+				/* */ if (_1 === (67)) { $s = 67; continue; }
+				/* */ if (_1 === (64)) { $s = 68; continue; }
+				/* */ $s = 69; continue;
 				/* if (_1 === (0)) { */ case 17:
 					(x$2 = e[0].Context.top, ((x$2 < 0 || x$2 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$2])).TypeId = 0;
 					(x$3 = e[0].Context.top, ((x$3 < 0 || x$3 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$3])).Value = code.Value;
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 68; continue;
+					$s = 69; continue;
 				/* } else if (_1 === (1)) { */ case 18:
 					(x$4 = e[0].Context.top, ((x$4 < 0 || x$4 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$4])).TypeId = 1;
 					(x$5 = e[0].Context.top, ((x$5 < 0 || x$5 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$5])).Value = code.Value;
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 68; continue;
+					$s = 69; continue;
 				/* } else if (_1 === (2)) { */ case 19:
 					s = $assertType(code.Value, $String);
 					_tuple = strconv.Unquote("\"" + strings.ReplaceAll(s, "\"", "\\\"") + "\"");
@@ -46020,18 +46024,18 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					(x$6 = e[0].Context.top, ((x$6 < 0 || x$6 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$6])).TypeId = 2;
 					(x$7 = e[0].Context.top, ((x$7 < 0 || x$7 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$7])).Value = new $String(unquote);
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 68; continue;
+					$s = 69; continue;
 				/* } else if (_1 === (3)) { */ case 20:
 					num = $assertType(code.Value, $Int64);
-					_r$27 = stackPopN(num); /* */ $s = 69; case 69: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
-					_r$28 = VMValueNewArray(_r$27); /* */ $s = 70; case 70: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
-					$r = stackPush(_r$28); /* */ $s = 71; case 71: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
+					_r$27 = stackPopN(num); /* */ $s = 70; case 70: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+					_r$28 = VMValueNewArray(_r$27); /* */ $s = 71; case 71: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+					$r = stackPush(_r$28); /* */ $s = 72; case 72: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
 				/* } else if (_1 === (4)) { */ case 21:
 					num$1 = $assertType(code.Value, $Int64);
-					_r$29 = stackPopN($mul64(num$1, new $Int64(0, 2))); /* */ $s = 72; case 72: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+					_r$29 = stackPopN($mul64(num$1, new $Int64(0, 2))); /* */ $s = 73; case 73: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 					items = _r$29;
-					_r$30 = VMValueNewDictWithArray(items); /* */ $s = 73; case 73: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+					_r$30 = VMValueNewDictWithArray(items); /* */ $s = 74; case 74: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 					_tuple$1 = _r$30;
 					dict = _tuple$1[0];
 					err$1 = _tuple$1[1];
@@ -46039,20 +46043,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						e[0].Context.Error = err$1;
 						$s = -1; return;
 					}
-					$r = stackPush(dict.V()); /* */ $s = 74; case 74: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
+					$r = stackPush(dict.V()); /* */ $s = 75; case 75: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
 				/* } else if ((_1 === (6)) || (_1 === (11))) { */ case 22:
 					val = $assertType(code.Value, ptrType);
-					$r = stackPush(val); /* */ $s = 75; case 75: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
+					$r = stackPush(val); /* */ $s = 76; case 76: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
 				/* } else if (_1 === (7)) { */ case 23:
-					$r = stackPush(VMValueNewUndefined()); /* */ $s = 76; case 76: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
+					$r = stackPush(VMValueNewUndefined()); /* */ $s = 77; case 77: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
 				/* } else if (_1 === (9)) { */ case 24:
-					$r = stackPush(vmValueNewLocal()); /* */ $s = 77; case 77: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
+					$r = stackPush(vmValueNewLocal()); /* */ $s = 78; case 78: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
 				/* } else if (_1 === (5)) { */ case 25:
-					_r$31 = stackPop2(); /* */ $s = 78; case 78: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+					_r$31 = stackPop2(); /* */ $s = 79; case 79: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
 					_tuple$2 = _r$31;
 					a = _tuple$2[0];
 					b = _tuple$2[1];
@@ -46088,86 +46092,100 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						}
 						i$2 = (x$9 = step, new $Int64(i$2.$high + x$9.$high, i$2.$low + x$9.$low));
 					}
-					$r = stackPush(VMValueNewArray(arr)); /* */ $s = 79; case 79: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (20)) { */ case 26:
+					$r = stackPush(VMValueNewArray(arr)); /* */ $s = 80; case 80: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (42)) { */ case 26:
+					_r$32 = stackPop2(); /* */ $s = 81; case 81: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
+					_tuple$5 = _r$32;
+					a$1 = _tuple$5[0];
+					b$1 = _tuple$5[1];
+					/* */ if (a$1.AsBool() === false) { $s = 82; continue; }
+					/* */ $s = 83; continue;
+					/* if (a$1.AsBool() === false) { */ case 82:
+						$r = stackPush(a$1); /* */ $s = 85; case 85: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 84; continue;
+					/* } else { */ case 83:
+						$r = stackPush(b$1); /* */ $s = 86; case 86: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 84:
+					$s = 69; continue;
+				/* } else if (_1 === (20)) { */ case 27:
 					paramsNum = $assertType(code.Value, $Int64);
-					_r$32 = stackPopN(paramsNum); /* */ $s = 80; case 80: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
-					arr$1 = _r$32;
-					_r$33 = stackPop[0](); /* */ $s = 81; case 81: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
-					funcObj = _r$33;
-					/* */ if (funcObj.TypeId === 8) { $s = 82; continue; }
-					/* */ if (funcObj.TypeId === 9) { $s = 83; continue; }
-					/* */ $s = 84; continue;
-					/* if (funcObj.TypeId === 8) { */ case 82:
-						_r$34 = funcObj.FuncInvoke(ctx[0], arr$1); /* */ $s = 86; case 86: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
-						ret = _r$34;
+					_r$33 = stackPopN(paramsNum); /* */ $s = 87; case 87: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+					arr$1 = _r$33;
+					_r$34 = stackPop[0](); /* */ $s = 88; case 88: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
+					funcObj = _r$34;
+					/* */ if (funcObj.TypeId === 8) { $s = 89; continue; }
+					/* */ if (funcObj.TypeId === 9) { $s = 90; continue; }
+					/* */ $s = 91; continue;
+					/* if (funcObj.TypeId === 8) { */ case 89:
+						_r$35 = funcObj.FuncInvoke(ctx[0], arr$1); /* */ $s = 93; case 93: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+						ret = _r$35;
 						if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 							$s = -1; return;
 						}
-						$r = stackPush(ret); /* */ $s = 87; case 87: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 85; continue;
-					/* } else if (funcObj.TypeId === 9) { */ case 83:
-						_r$35 = funcObj.FuncInvokeNative(ctx[0], arr$1); /* */ $s = 88; case 88: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
-						ret$1 = _r$35;
+						$r = stackPush(ret); /* */ $s = 94; case 94: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 92; continue;
+					/* } else if (funcObj.TypeId === 9) { */ case 90:
+						_r$36 = funcObj.FuncInvokeNative(ctx[0], arr$1); /* */ $s = 95; case 95: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
+						ret$1 = _r$36;
 						if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 							$s = -1; return;
 						}
-						$r = stackPush(ret$1); /* */ $s = 89; case 89: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 85; continue;
-					/* } else { */ case 84:
+						$r = stackPush(ret$1); /* */ $s = 96; case 96: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 92; continue;
+					/* } else { */ case 91:
 						ctx[0].Error = errors.New("\xE6\x97\xA0\xE6\xB3\x95\xE8\xB0\x83\xE7\x94\xA8");
-					/* } */ case 85:
-					$s = 68; continue;
-				/* } else if (_1 === (22)) { */ case 27:
-					_r$36 = stackPop[0](); /* */ $s = 90; case 90: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
-					itemIndex = _r$36;
-					_r$37 = stackPop[0](); /* */ $s = 91; case 91: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
-					obj = _r$37;
-					_r$38 = obj.ItemGet(ctx[0], itemIndex); /* */ $s = 92; case 92: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
-					ret$2 = _r$38;
+					/* } */ case 92:
+					$s = 69; continue;
+				/* } else if (_1 === (22)) { */ case 28:
+					_r$37 = stackPop[0](); /* */ $s = 97; case 97: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
+					itemIndex = _r$37;
+					_r$38 = stackPop[0](); /* */ $s = 98; case 98: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
+					obj = _r$38;
+					_r$39 = obj.ItemGet(ctx[0], itemIndex); /* */ $s = 99; case 99: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
+					ret$2 = _r$39;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
 					if (ret$2 === ptrType.nil) {
 						ret$2 = VMValueNewUndefined();
 					}
-					$r = stackPush(ret$2); /* */ $s = 93; case 93: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (23)) { */ case 28:
-					_r$39 = stackPop[0](); /* */ $s = 94; case 94: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
-					val$1 = _r$39;
-					_r$40 = stackPop[0](); /* */ $s = 95; case 95: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
-					itemIndex$1 = _r$40;
-					_r$41 = stackPop[0](); /* */ $s = 96; case 96: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
-					obj$1 = _r$41;
-					_r$42 = obj$1.ItemSet(ctx[0], itemIndex$1, val$1); /* */ $s = 97; case 97: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
-					_r$42;
+					$r = stackPush(ret$2); /* */ $s = 100; case 100: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (23)) { */ case 29:
+					_r$40 = stackPop[0](); /* */ $s = 101; case 101: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
+					val$1 = _r$40;
+					_r$41 = stackPop[0](); /* */ $s = 102; case 102: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
+					itemIndex$1 = _r$41;
+					_r$42 = stackPop[0](); /* */ $s = 103; case 103: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
+					obj$1 = _r$42;
+					_r$43 = obj$1.ItemSet(ctx[0], itemIndex$1, val$1); /* */ $s = 104; case 104: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
+					_r$43;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$s = 68; continue;
-				/* } else if (_1 === (24)) { */ case 29:
-					_r$43 = stackPop2(); /* */ $s = 98; case 98: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
-					_tuple$5 = _r$43;
-					attrVal = _tuple$5[0];
-					obj$2 = _tuple$5[1];
+					$s = 69; continue;
+				/* } else if (_1 === (24)) { */ case 30:
+					_r$44 = stackPop2(); /* */ $s = 105; case 105: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
+					_tuple$6 = _r$44;
+					attrVal = _tuple$6[0];
+					obj$2 = _tuple$6[1];
 					attrName = $assertType(code.Value, $String);
-					_r$44 = obj$2.AttrSet(attrName, attrVal); /* */ $s = 99; case 99: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
-					ret$3 = _r$44;
+					_r$45 = obj$2.AttrSet(attrName, attrVal); /* */ $s = 106; case 106: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
+					ret$3 = _r$45;
 					if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE8\xAE\xBE\xE7\xBD\xAE\xE5\xB1\x9E\xE6\x80\xA7");
 					}
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$s = 68; continue;
-				/* } else if (_1 === (25)) { */ case 30:
-					_r$45 = stackPop[0](); /* */ $s = 100; case 100: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
-					obj$3 = _r$45;
+					$s = 69; continue;
+				/* } else if (_1 === (25)) { */ case 31:
+					_r$46 = stackPop[0](); /* */ $s = 107; case 107: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
+					obj$3 = _r$46;
 					attrName$1 = $assertType(code.Value, $String);
-					_r$46 = obj$3.AttrGet(ctx[0], attrName$1); /* */ $s = 101; case 101: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
-					ret$4 = _r$46;
+					_r$47 = obj$3.AttrGet(ctx[0], attrName$1); /* */ $s = 108; case 108: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
+					ret$4 = _r$47;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
@@ -46175,59 +46193,59 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE5\x8F\x96\xE5\xB1\x9E\xE6\x80\xA7");
 						$s = -1; return;
 					}
-					$r = stackPush(ret$4); /* */ $s = 102; case 102: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (26)) { */ case 31:
-					_r$47 = stackPop[0](); /* */ $s = 103; case 103: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
-					step$1 = _r$47;
+					$r = stackPush(ret$4); /* */ $s = 109; case 109: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (26)) { */ case 32:
+					_r$48 = stackPop[0](); /* */ $s = 110; case 110: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
+					step$1 = _r$48;
 					if (!((step$1.TypeId === 3))) {
 						ctx[0].Error = errors.New("\xE5\xB0\x9A\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE5\x88\x86\xE7\x89\x87\xE6\xAD\xA5\xE9\x95\xBF");
 						$s = -1; return;
 					}
-					_r$48 = stackPop2(); /* */ $s = 104; case 104: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
-					_tuple$6 = _r$48;
-					a$1 = _tuple$6[0];
-					b$1 = _tuple$6[1];
-					_r$49 = stackPop[0](); /* */ $s = 105; case 105: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
-					obj$4 = _r$49;
-					ret$5 = obj$4.GetSliceEx(ctx[0], a$1, b$1);
+					_r$49 = stackPop2(); /* */ $s = 111; case 111: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
+					_tuple$7 = _r$49;
+					a$2 = _tuple$7[0];
+					b$2 = _tuple$7[1];
+					_r$50 = stackPop[0](); /* */ $s = 112; case 112: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
+					obj$4 = _r$50;
+					ret$5 = obj$4.GetSliceEx(ctx[0], a$2, b$2);
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$5); /* */ $s = 106; case 106: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (27)) { */ case 32:
-					_r$50 = stackPop[0](); /* */ $s = 107; case 107: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
-					val$2 = _r$50;
-					_r$51 = stackPop[0](); /* */ $s = 108; case 108: if($c) { $c = false; _r$51 = _r$51.$blk(); } if (_r$51 && _r$51.$blk !== undefined) { break s; }
-					step$2 = _r$51;
+					$r = stackPush(ret$5); /* */ $s = 113; case 113: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (27)) { */ case 33:
+					_r$51 = stackPop[0](); /* */ $s = 114; case 114: if($c) { $c = false; _r$51 = _r$51.$blk(); } if (_r$51 && _r$51.$blk !== undefined) { break s; }
+					val$2 = _r$51;
+					_r$52 = stackPop[0](); /* */ $s = 115; case 115: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
+					step$2 = _r$52;
 					if (!((step$2.TypeId === 3))) {
 						ctx[0].Error = errors.New("\xE5\xB0\x9A\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE5\x88\x86\xE7\x89\x87\xE6\xAD\xA5\xE9\x95\xBF");
 						$s = -1; return;
 					}
-					_r$52 = stackPop2(); /* */ $s = 109; case 109: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
-					_tuple$7 = _r$52;
-					a$2 = _tuple$7[0];
-					b$2 = _tuple$7[1];
-					_r$53 = stackPop[0](); /* */ $s = 110; case 110: if($c) { $c = false; _r$53 = _r$53.$blk(); } if (_r$53 && _r$53.$blk !== undefined) { break s; }
-					obj$5 = _r$53;
-					obj$5.SetSliceEx(ctx[0], a$2, b$2, val$2);
+					_r$53 = stackPop2(); /* */ $s = 116; case 116: if($c) { $c = false; _r$53 = _r$53.$blk(); } if (_r$53 && _r$53.$blk !== undefined) { break s; }
+					_tuple$8 = _r$53;
+					a$3 = _tuple$8[0];
+					b$3 = _tuple$8[1];
+					_r$54 = stackPop[0](); /* */ $s = 117; case 117: if($c) { $c = false; _r$54 = _r$54.$blk(); } if (_r$54 && _r$54.$blk !== undefined) { break s; }
+					obj$5 = _r$54;
+					obj$5.SetSliceEx(ctx[0], a$3, b$3, val$2);
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$s = 68; continue;
-				/* } else if (_1 === (77)) { */ case 33:
-					$r = solveDetail(); /* */ $s = 111; case 111: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (77)) { */ case 34:
+					$r = solveDetail(); /* */ $s = 118; case 118: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
-				/* } else if (_1 === (68)) { */ case 34:
-					$r = solveDetail(); /* */ $s = 112; case 112: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				/* } else if (_1 === (68)) { */ case 35:
+					$r = solveDetail(); /* */ $s = 119; case 119: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return;
-				/* } else if (_1 === (13)) { */ case 35:
+				/* } else if (_1 === (13)) { */ case 36:
 					num$2 = (((x$10 = $assertType(code.Value, $Int64), x$10.$low + ((x$10.$high >> 31) * 4294967296)) >> 0));
 					outStr = "";
 					index$1 = 0;
-					/* while (true) { */ case 113:
-						/* if (!(index$1 < num$2)) { break; } */ if(!(index$1 < num$2)) { $s = 114; continue; }
+					/* while (true) { */ case 120:
+						/* if (!(index$1 < num$2)) { break; } */ if(!(index$1 < num$2)) { $s = 121; continue; }
 						val$3 = new VMValue.ptr(0, $ifaceNil);
 						if (((e[0].Context.top - num$2 >> 0) + index$1 >> 0) < 0) {
 							e[0].Context.Error = errors.New("E3:\xE6\x97\xA0\xE6\x95\x88\xE7\x9A\x84\xE8\xA1\xA8\xE8\xBE\xBE\xE5\xBC\x8F");
@@ -46235,20 +46253,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						} else {
 							VMValue.copy(val$3, (x$11 = (e[0].Context.top - num$2 >> 0) + index$1 >> 0, ((x$11 < 0 || x$11 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$11])));
 						}
-						_r$54 = val$3.ToString(); /* */ $s = 115; case 115: if($c) { $c = false; _r$54 = _r$54.$blk(); } if (_r$54 && _r$54.$blk !== undefined) { break s; }
-						outStr = outStr + (_r$54);
+						_r$55 = val$3.ToString(); /* */ $s = 122; case 122: if($c) { $c = false; _r$55 = _r$55.$blk(); } if (_r$55 && _r$55.$blk !== undefined) { break s; }
+						outStr = outStr + (_r$55);
 						index$1 = index$1 + (1) >> 0;
-					$s = 113; continue;
-					case 114:
+					$s = 120; continue;
+					case 121:
 					e[0].Context.top = e[0].Context.top - (num$2) >> 0;
 					(x$12 = e[0].Context.top, ((x$12 < 0 || x$12 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$12])).TypeId = 2;
 					(x$13 = e[0].Context.top, ((x$13 < 0 || x$13 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$13])).Value = new $String(outStr);
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
-					$s = 68; continue;
-				/* } else if ((_1 === (14)) || (_1 === (16)) || (_1 === (15))) { */ case 36:
+					$s = 69; continue;
+				/* } else if ((_1 === (14)) || (_1 === (16)) || (_1 === (15))) { */ case 37:
 					name = $assertType(code.Value, $String);
-					_r$55 = ctx[0].LoadName(name, 16 === code.T); /* */ $s = 116; case 116: if($c) { $c = false; _r$55 = _r$55.$blk(); } if (_r$55 && _r$55.$blk !== undefined) { break s; }
-					val$4 = _r$55;
+					_r$56 = ctx[0].LoadName(name, 16 === code.T); /* */ $s = 123; case 123: if($c) { $c = false; _r$56 = _r$56.$blk(); } if (_r$56 && _r$56.$blk !== undefined) { break s; }
+					val$4 = _r$56;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
@@ -46256,284 +46274,284 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						(x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).ret = val$4;
 						(x$15 = details[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$15])).text = "";
 					}
-					$r = stackPush(val$4); /* */ $s = 117; case 117: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (17)) { */ case 37:
-					_r$56 = stackPop[0](); /* */ $s = 118; case 118: if($c) { $c = false; _r$56 = _r$56.$blk(); } if (_r$56 && _r$56.$blk !== undefined) { break s; }
-					v = _r$56;
+					$r = stackPush(val$4); /* */ $s = 124; case 124: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (17)) { */ case 38:
+					_r$57 = stackPop[0](); /* */ $s = 125; case 125: if($c) { $c = false; _r$57 = _r$57.$blk(); } if (_r$57 && _r$57.$blk !== undefined) { break s; }
+					v = _r$57;
 					name$1 = $assertType(code.Value, $String);
-					$r = ctx[0].StoreName(name$1, v); /* */ $s = 119; case 119: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = ctx[0].StoreName(name$1, v); /* */ $s = 126; case 126: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$s = 68; continue;
-				/* } else if (_1 === (12)) { */ case 38:
+					$s = 69; continue;
+				/* } else if (_1 === (12)) { */ case 39:
 					if (lastPop[0] === ptrType.nil) {
 						ctx[0].Error = errors.New("\xE9\x9D\x9E\xE6\xB3\x95\xE8\xB0\x83\xE7\x94\xA8\xE6\x8C\x87\xE4\xBB\xA4 push.last");
 						$s = -1; return;
 					}
-					$r = stackPush(lastPop[0]); /* */ $s = 120; case 120: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if ((_1 === (74)) || (_1 === (76))) { */ case 39:
-					_r$57 = stackPop[0](); /* */ $s = 121; case 121: if($c) { $c = false; _r$57 = _r$57.$blk(); } if (_r$57 && _r$57.$blk !== undefined) { break s; }
-					v$1 = _r$57;
-					/* */ if (v$1.AsBool()) { $s = 122; continue; }
-					/* */ $s = 123; continue;
-					/* if (v$1.AsBool()) { */ case 122:
+					$r = stackPush(lastPop[0]); /* */ $s = 127; case 127: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if ((_1 === (74)) || (_1 === (76))) { */ case 40:
+					_r$58 = stackPop[0](); /* */ $s = 128; case 128: if($c) { $c = false; _r$58 = _r$58.$blk(); } if (_r$58 && _r$58.$blk !== undefined) { break s; }
+					v$1 = _r$58;
+					/* */ if (v$1.AsBool()) { $s = 129; continue; }
+					/* */ $s = 130; continue;
+					/* if (v$1.AsBool()) { */ case 129:
 						opIndex = opIndex + ((((x$16 = $assertType(code.Value, $Int64), x$16.$low + ((x$16.$high >> 31) * 4294967296)) >> 0))) >> 0;
-						/* */ if (code.T === 76) { $s = 124; continue; }
-						/* */ $s = 125; continue;
-						/* if (code.T === 76) { */ case 124:
-							$r = stackPush(v$1); /* */ $s = 126; case 126: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						/* } */ case 125:
-					/* } */ case 123:
-					$s = 68; continue;
-				/* } else if (_1 === (75)) { */ case 40:
-					_r$58 = stackPop[0](); /* */ $s = 127; case 127: if($c) { $c = false; _r$58 = _r$58.$blk(); } if (_r$58 && _r$58.$blk !== undefined) { break s; }
-					t = _r$58;
+						/* */ if (code.T === 76) { $s = 131; continue; }
+						/* */ $s = 132; continue;
+						/* if (code.T === 76) { */ case 131:
+							$r = stackPush(v$1); /* */ $s = 133; case 133: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						/* } */ case 132:
+					/* } */ case 130:
+					$s = 69; continue;
+				/* } else if (_1 === (75)) { */ case 41:
+					_r$59 = stackPop[0](); /* */ $s = 134; case 134: if($c) { $c = false; _r$59 = _r$59.$blk(); } if (_r$59 && _r$59.$blk !== undefined) { break s; }
+					t = _r$59;
 					if (!t.AsBool()) {
 						opIndex = opIndex + ((((x$17 = $assertType(code.Value, $Int64), x$17.$low + ((x$17.$high >> 31) * 4294967296)) >> 0))) >> 0;
 					}
-					$s = 68; continue;
-				/* } else if (_1 === (73)) { */ case 41:
+					$s = 69; continue;
+				/* } else if (_1 === (73)) { */ case 42:
 					opIndex = opIndex + ((((x$18 = $assertType(code.Value, $Int64), x$18.$low + ((x$18.$high >> 31) * 4294967296)) >> 0))) >> 0;
-					$s = 68; continue;
-				/* } else if (_1 === (70)) { */ case 42:
-					_r$59 = stackPop[0](); /* */ $s = 128; case 128: if($c) { $c = false; _r$59 = _r$59.$blk(); } if (_r$59 && _r$59.$blk !== undefined) { break s; }
-					_r$59;
-					$s = 68; continue;
-				/* } else if (_1 === (71)) { */ case 43:
-					_r$60 = stackPopN($assertType(code.Value, $Int64)); /* */ $s = 129; case 129: if($c) { $c = false; _r$60 = _r$60.$blk(); } if (_r$60 && _r$60.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (70)) { */ case 43:
+					_r$60 = stackPop[0](); /* */ $s = 135; case 135: if($c) { $c = false; _r$60 = _r$60.$blk(); } if (_r$60 && _r$60.$blk !== undefined) { break s; }
 					_r$60;
-					$s = 68; continue;
-				/* } else if ((_1 === (28)) || (_1 === (29)) || (_1 === (30)) || (_1 === (31)) || (_1 === (32)) || (_1 === (33)) || (_1 === (34)) || (_1 === (35)) || (_1 === (36)) || (_1 === (37)) || (_1 === (38)) || (_1 === (39)) || (_1 === (40)) || (_1 === (41))) { */ case 44:
-					_r$61 = stackPop2(); /* */ $s = 130; case 130: if($c) { $c = false; _r$61 = _r$61.$blk(); } if (_r$61 && _r$61.$blk !== undefined) { break s; }
-					_tuple$8 = _r$61;
-					v1 = _tuple$8[0];
-					v2 = _tuple$8[1];
+					$s = 69; continue;
+				/* } else if (_1 === (71)) { */ case 44:
+					_r$61 = stackPopN($assertType(code.Value, $Int64)); /* */ $s = 136; case 136: if($c) { $c = false; _r$61 = _r$61.$blk(); } if (_r$61 && _r$61.$blk !== undefined) { break s; }
+					_r$61;
+					$s = 69; continue;
+				/* } else if ((_1 === (28)) || (_1 === (29)) || (_1 === (30)) || (_1 === (31)) || (_1 === (32)) || (_1 === (33)) || (_1 === (34)) || (_1 === (35)) || (_1 === (36)) || (_1 === (37)) || (_1 === (38)) || (_1 === (39)) || (_1 === (40)) || (_1 === (41))) { */ case 45:
+					_r$62 = stackPop2(); /* */ $s = 137; case 137: if($c) { $c = false; _r$62 = _r$62.$blk(); } if (_r$62 && _r$62.$blk !== undefined) { break s; }
+					_tuple$9 = _r$62;
+					v1 = _tuple$9[0];
+					v2 = _tuple$9[1];
 					opFunc = (x$19 = code.T - 28 << 24 >>> 24, ((x$19 < 0 || x$19 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$19]));
-					_r$62 = opFunc(v1, ctx[0], v2); /* */ $s = 131; case 131: if($c) { $c = false; _r$62 = _r$62.$blk(); } if (_r$62 && _r$62.$blk !== undefined) { break s; }
-					ret$6 = _r$62;
-					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { $s = 132; continue; }
-					/* */ $s = 133; continue;
-					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { */ case 132:
-						_r$63 = code.CodeString(); /* */ $s = 134; case 134: if($c) { $c = false; _r$63 = _r$63.$blk(); } if (_r$63 && _r$63.$blk !== undefined) { break s; }
-						_arg$24 = new $String(_r$63);
+					_r$63 = opFunc(v1, ctx[0], v2); /* */ $s = 138; case 138: if($c) { $c = false; _r$63 = _r$63.$blk(); } if (_r$63 && _r$63.$blk !== undefined) { break s; }
+					ret$6 = _r$63;
+					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { $s = 139; continue; }
+					/* */ $s = 140; continue;
+					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { */ case 139:
+						_r$64 = code.CodeString(); /* */ $s = 141; case 141: if($c) { $c = false; _r$64 = _r$64.$blk(); } if (_r$64 && _r$64.$blk !== undefined) { break s; }
+						_arg$24 = new $String(_r$64);
 						_arg$25 = new $String(v1.GetTypeName());
 						_arg$26 = new $String(v2.GetTypeName());
-						_r$64 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$7([_arg$24, _arg$25, _arg$26])); /* */ $s = 135; case 135: if($c) { $c = false; _r$64 = _r$64.$blk(); } if (_r$64 && _r$64.$blk !== undefined) { break s; }
-						opErr = _r$64;
+						_r$65 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$7([_arg$24, _arg$25, _arg$26])); /* */ $s = 142; case 142: if($c) { $c = false; _r$65 = _r$65.$blk(); } if (_r$65 && _r$65.$blk !== undefined) { break s; }
+						opErr = _r$65;
 						ctx[0].Error = errors.New(opErr);
-					/* } */ case 133:
+					/* } */ case 140:
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$6); /* */ $s = 136; case 136: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if ((_1 === (45)) || (_1 === (44))) { */ case 45:
-					_r$65 = stackPop[0](); /* */ $s = 137; case 137: if($c) { $c = false; _r$65 = _r$65.$blk(); } if (_r$65 && _r$65.$blk !== undefined) { break s; }
-					v$2 = _r$65;
+					$r = stackPush(ret$6); /* */ $s = 143; case 143: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if ((_1 === (45)) || (_1 === (44))) { */ case 46:
+					_r$66 = stackPop[0](); /* */ $s = 144; case 144: if($c) { $c = false; _r$66 = _r$66.$blk(); } if (_r$66 && _r$66.$blk !== undefined) { break s; }
+					v$2 = _r$66;
 					ret$7 = ptrType.nil;
 					if (code.T === 45) {
 						ret$7 = v$2.OpPositive();
 					} else {
 						ret$7 = v$2.OpNegation();
 					}
-					/* */ if (ret$7 === ptrType.nil) { $s = 138; continue; }
-					/* */ $s = 139; continue;
-					/* if (ret$7 === ptrType.nil) { */ case 138:
-						_r$66 = code.CodeString(); /* */ $s = 140; case 140: if($c) { $c = false; _r$66 = _r$66.$blk(); } if (_r$66 && _r$66.$blk !== undefined) { break s; }
-						_arg$27 = new $String(_r$66);
+					/* */ if (ret$7 === ptrType.nil) { $s = 145; continue; }
+					/* */ $s = 146; continue;
+					/* if (ret$7 === ptrType.nil) { */ case 145:
+						_r$67 = code.CodeString(); /* */ $s = 147; case 147: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
+						_arg$27 = new $String(_r$67);
 						_arg$28 = new $String(v$2.GetTypeName());
-						_r$67 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$7([_arg$27, _arg$28])); /* */ $s = 141; case 141: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
-						opErr$1 = _r$67;
+						_r$68 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$7([_arg$27, _arg$28])); /* */ $s = 148; case 148: if($c) { $c = false; _r$68 = _r$68.$blk(); } if (_r$68 && _r$68.$blk !== undefined) { break s; }
+						opErr$1 = _r$68;
 						ctx[0].Error = errors.New(opErr$1);
-					/* } */ case 139:
+					/* } */ case 146:
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					$r = stackPush(ret$7); /* */ $s = 142; case 142: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (46)) { */ case 46:
-					$r = diceInit(); /* */ $s = 143; case 143: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (47)) { */ case 47:
-					_r$68 = stackPop[0](); /* */ $s = 144; case 144: if($c) { $c = false; _r$68 = _r$68.$blk(); } if (_r$68 && _r$68.$blk !== undefined) { break s; }
-					v$3 = _r$68;
-					_tuple$9 = v$3.ReadInt();
-					(x$20 = diceStates[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$20])).times = _tuple$9[0];
-					$s = 68; continue;
-				/* } else if (_1 === (48)) { */ case 48:
-					_r$69 = stackPop[0](); /* */ $s = 145; case 145: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
-					v$4 = _r$69;
+					$r = stackPush(ret$7); /* */ $s = 149; case 149: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (46)) { */ case 47:
+					$r = diceInit(); /* */ $s = 150; case 150: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (47)) { */ case 48:
+					_r$69 = stackPop[0](); /* */ $s = 151; case 151: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
+					v$3 = _r$69;
+					_tuple$10 = v$3.ReadInt();
+					(x$20 = diceStates[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$20])).times = _tuple$10[0];
+					$s = 69; continue;
+				/* } else if (_1 === (48)) { */ case 49:
+					_r$70 = stackPop[0](); /* */ $s = 152; case 152: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
+					v$4 = _r$70;
 					(x$21 = diceStates[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$21])).isKeepLH = new $Int64(0, 1);
-					_tuple$10 = v$4.ReadInt();
-					(x$22 = diceStates[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$22])).lowNum = _tuple$10[0];
-					$s = 68; continue;
-				/* } else if (_1 === (49)) { */ case 49:
-					_r$70 = stackPop[0](); /* */ $s = 146; case 146: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
-					v$5 = _r$70;
+					_tuple$11 = v$4.ReadInt();
+					(x$22 = diceStates[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$22])).lowNum = _tuple$11[0];
+					$s = 69; continue;
+				/* } else if (_1 === (49)) { */ case 50:
+					_r$71 = stackPop[0](); /* */ $s = 153; case 153: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
+					v$5 = _r$71;
 					(x$23 = diceStates[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$23])).isKeepLH = new $Int64(0, 2);
-					_tuple$11 = v$5.ReadInt();
-					(x$24 = diceStates[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$24])).highNum = _tuple$11[0];
-					$s = 68; continue;
-				/* } else if (_1 === (50)) { */ case 50:
-					_r$71 = stackPop[0](); /* */ $s = 147; case 147: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
-					v$6 = _r$71;
+					_tuple$12 = v$5.ReadInt();
+					(x$24 = diceStates[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$24])).highNum = _tuple$12[0];
+					$s = 69; continue;
+				/* } else if (_1 === (50)) { */ case 51:
+					_r$72 = stackPop[0](); /* */ $s = 154; case 154: if($c) { $c = false; _r$72 = _r$72.$blk(); } if (_r$72 && _r$72.$blk !== undefined) { break s; }
+					v$6 = _r$72;
 					(x$25 = diceStates[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$25])).isKeepLH = new $Int64(0, 3);
-					_tuple$12 = v$6.ReadInt();
-					(x$26 = diceStates[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$26])).lowNum = _tuple$12[0];
-					$s = 68; continue;
-				/* } else if (_1 === (52)) { */ case 51:
-					_r$72 = stackPop[0](); /* */ $s = 148; case 148: if($c) { $c = false; _r$72 = _r$72.$blk(); } if (_r$72 && _r$72.$blk !== undefined) { break s; }
-					v$7 = _r$72;
-					_tuple$13 = v$7.ReadInt();
-					i[0] = _tuple$13[0];
+					_tuple$13 = v$6.ReadInt();
+					(x$26 = diceStates[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$26])).lowNum = _tuple$13[0];
+					$s = 69; continue;
+				/* } else if (_1 === (52)) { */ case 52:
+					_r$73 = stackPop[0](); /* */ $s = 155; case 155: if($c) { $c = false; _r$73 = _r$73.$blk(); } if (_r$73 && _r$73.$blk !== undefined) { break s; }
+					v$7 = _r$73;
+					_tuple$14 = v$7.ReadInt();
+					i[0] = _tuple$14[0];
 					(x$27 = diceStates[0].$length - 1 >> 0, ((x$27 < 0 || x$27 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$27])).min = (i.$ptr || (i.$ptr = new ptrType$14(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i)));
-					$s = 68; continue;
-				/* } else if (_1 === (53)) { */ case 52:
-					_r$73 = stackPop[0](); /* */ $s = 149; case 149: if($c) { $c = false; _r$73 = _r$73.$blk(); } if (_r$73 && _r$73.$blk !== undefined) { break s; }
-					v$8 = _r$73;
-					_tuple$14 = v$8.ReadInt();
-					i$1[0] = _tuple$14[0];
+					$s = 69; continue;
+				/* } else if (_1 === (53)) { */ case 53:
+					_r$74 = stackPop[0](); /* */ $s = 156; case 156: if($c) { $c = false; _r$74 = _r$74.$blk(); } if (_r$74 && _r$74.$blk !== undefined) { break s; }
+					v$8 = _r$74;
+					_tuple$15 = v$8.ReadInt();
+					i$1[0] = _tuple$15[0];
 					(x$28 = diceStates[0].$length - 1 >> 0, ((x$28 < 0 || x$28 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$28])).max = (i$1.$ptr || (i$1.$ptr = new ptrType$14(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i$1)));
-					$s = 68; continue;
-				/* } else if (_1 === (51)) { */ case 53:
-					_r$74 = stackPop[0](); /* */ $s = 150; case 150: if($c) { $c = false; _r$74 = _r$74.$blk(); } if (_r$74 && _r$74.$blk !== undefined) { break s; }
-					v$9 = _r$74;
+					$s = 69; continue;
+				/* } else if (_1 === (51)) { */ case 54:
+					_r$75 = stackPop[0](); /* */ $s = 157; case 157: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
+					v$9 = _r$75;
 					(x$29 = diceStates[0].$length - 1 >> 0, ((x$29 < 0 || x$29 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$29])).isKeepLH = new $Int64(0, 4);
-					_tuple$15 = v$9.ReadInt();
-					(x$30 = diceStates[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$30])).highNum = _tuple$15[0];
-					$s = 68; continue;
-				/* } else if (_1 === (69)) { */ case 54:
+					_tuple$16 = v$9.ReadInt();
+					(x$30 = diceStates[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$30])).highNum = _tuple$16[0];
+					$s = 69; continue;
+				/* } else if (_1 === (69)) { */ case 55:
 					span = $clone($assertType(code.Value, BufferSpan), BufferSpan);
 					details[0] = $append(details[0], span);
-					$s = 68; continue;
-				/* } else if (_1 === (54)) { */ case 55:
+					$s = 69; continue;
+				/* } else if (_1 === (54)) { */ case 56:
 					diceState = $clone((x$31 = diceStates[0].$length - 1 >> 0, ((x$31 < 0 || x$31 >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + x$31])), structType$18);
-					_r$75 = stackPop[0](); /* */ $s = 151; case 151: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
-					val$5 = _r$75;
-					_tuple$16 = val$5.ReadInt();
-					bInt = _tuple$16[0];
-					_r$76 = numOpCountAdd(diceState.times); /* */ $s = 152; case 152: if($c) { $c = false; _r$76 = _r$76.$blk(); } if (_r$76 && _r$76.$blk !== undefined) { break s; }
-					_r$76;
+					_r$76 = stackPop[0](); /* */ $s = 158; case 158: if($c) { $c = false; _r$76 = _r$76.$blk(); } if (_r$76 && _r$76.$blk !== undefined) { break s; }
+					val$5 = _r$76;
+					_tuple$17 = val$5.ReadInt();
+					bInt = _tuple$17[0];
+					_r$77 = numOpCountAdd(diceState.times); /* */ $s = 159; case 159: if($c) { $c = false; _r$77 = _r$77.$blk(); } if (_r$77 && _r$77.$blk !== undefined) { break s; }
+					_r$77;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
 					}
-					_r$77 = RollCommon(diceState.times, bInt, diceState.min, diceState.max, diceState.isKeepLH, diceState.lowNum, diceState.highNum); /* */ $s = 153; case 153: if($c) { $c = false; _r$77 = _r$77.$blk(); } if (_r$77 && _r$77.$blk !== undefined) { break s; }
-					_tuple$17 = _r$77;
-					num$3 = _tuple$17[0];
-					detail = _tuple$17[1];
+					_r$78 = RollCommon(diceState.times, bInt, diceState.min, diceState.max, diceState.isKeepLH, diceState.lowNum, diceState.highNum); /* */ $s = 160; case 160: if($c) { $c = false; _r$78 = _r$78.$blk(); } if (_r$78 && _r$78.$blk !== undefined) { break s; }
+					_tuple$18 = _r$78;
+					num$3 = _tuple$18[0];
+					detail = _tuple$18[1];
 					ret$8 = VMValueNewInt(num$3);
 					(x$32 = details[0].$length - 1 >> 0, ((x$32 < 0 || x$32 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$32])).ret = ret$8;
 					(x$33 = details[0].$length - 1 >> 0, ((x$33 < 0 || x$33 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$33])).text = detail;
-					$r = stackPush(ret$8); /* */ $s = 154; case 154: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (57)) { */ case 56:
-					_r$78 = RollFate(); /* */ $s = 155; case 155: if($c) { $c = false; _r$78 = _r$78.$blk(); } if (_r$78 && _r$78.$blk !== undefined) { break s; }
-					_tuple$18 = _r$78;
-					sum = _tuple$18[0];
-					detail$1 = _tuple$18[1];
+					$r = stackPush(ret$8); /* */ $s = 161; case 161: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (57)) { */ case 57:
+					_r$79 = RollFate(); /* */ $s = 162; case 162: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
+					_tuple$19 = _r$79;
+					sum = _tuple$19[0];
+					detail$1 = _tuple$19[1];
 					ret$9 = VMValueNewInt(sum);
 					(x$34 = details[0].$length - 1 >> 0, ((x$34 < 0 || x$34 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$34])).ret = ret$9;
 					(x$35 = details[0].$length - 1 >> 0, ((x$35 < 0 || x$35 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$35])).text = detail$1;
-					$r = stackPush(ret$9); /* */ $s = 156; case 156: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if ((_1 === (56)) || (_1 === (55))) { */ case 57:
-					_r$79 = stackPop[0](); /* */ $s = 157; case 157: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
-					t$1 = _r$79;
+					$r = stackPush(ret$9); /* */ $s = 163; case 163: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if ((_1 === (56)) || (_1 === (55))) { */ case 58:
+					_r$80 = stackPop[0](); /* */ $s = 164; case 164: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
+					t$1 = _r$80;
 					diceNum = t$1.MustReadInt();
-					_r$80 = numOpCountAdd(diceNum); /* */ $s = 160; case 160: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
-					/* */ if (_r$80) { $s = 158; continue; }
-					/* */ $s = 159; continue;
-					/* if (_r$80) { */ case 158:
+					_r$81 = numOpCountAdd(diceNum); /* */ $s = 167; case 167: if($c) { $c = false; _r$81 = _r$81.$blk(); } if (_r$81 && _r$81.$blk !== undefined) { break s; }
+					/* */ if (_r$81) { $s = 165; continue; }
+					/* */ $s = 166; continue;
+					/* if (_r$81) { */ case 165:
 						$s = -1; return;
-					/* } */ case 159:
-					_r$81 = RollCoC(code.T === 56, diceNum); /* */ $s = 161; case 161: if($c) { $c = false; _r$81 = _r$81.$blk(); } if (_r$81 && _r$81.$blk !== undefined) { break s; }
-					_tuple$19 = _r$81;
-					r = _tuple$19[0];
-					detailText = _tuple$19[1];
+					/* } */ case 166:
+					_r$82 = RollCoC(code.T === 56, diceNum); /* */ $s = 168; case 168: if($c) { $c = false; _r$82 = _r$82.$blk(); } if (_r$82 && _r$82.$blk !== undefined) { break s; }
+					_tuple$20 = _r$82;
+					r = _tuple$20[0];
+					detailText = _tuple$20[1];
 					ret$10 = VMValueNewInt(r);
 					(x$36 = details[0].$length - 1 >> 0, ((x$36 < 0 || x$36 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$36])).ret = ret$10;
 					(x$37 = details[0].$length - 1 >> 0, ((x$37 < 0 || x$37 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$37])).text = detailText;
-					$r = stackPush(ret$10); /* */ $s = 162; case 162: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (59)) { */ case 58:
-					$r = wodInit(); /* */ $s = 163; case 163: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (61)) { */ case 59:
-					_r$82 = stackPop[0](); /* */ $s = 164; case 164: if($c) { $c = false; _r$82 = _r$82.$blk(); } if (_r$82 && _r$82.$blk !== undefined) { break s; }
-					v$10 = _r$82;
+					$r = stackPush(ret$10); /* */ $s = 169; case 169: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (59)) { */ case 59:
+					$r = wodInit(); /* */ $s = 170; case 170: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (61)) { */ case 60:
+					_r$83 = stackPop[0](); /* */ $s = 171; case 171: if($c) { $c = false; _r$83 = _r$83.$blk(); } if (_r$83 && _r$83.$blk !== undefined) { break s; }
+					v$10 = _r$83;
 					if (!((v$10.TypeId === 0))) {
 					}
 					wodState[0].points = v$10.MustReadInt();
-					$s = 68; continue;
-				/* } else if (_1 === (62)) { */ case 60:
-					_r$83 = stackPop[0](); /* */ $s = 165; case 165: if($c) { $c = false; _r$83 = _r$83.$blk(); } if (_r$83 && _r$83.$blk !== undefined) { break s; }
-					v$11 = _r$83;
+					$s = 69; continue;
+				/* } else if (_1 === (62)) { */ case 61:
+					_r$84 = stackPop[0](); /* */ $s = 172; case 172: if($c) { $c = false; _r$84 = _r$84.$blk(); } if (_r$84 && _r$84.$blk !== undefined) { break s; }
+					v$11 = _r$84;
 					wodState[0].threshold = v$11.MustReadInt();
 					wodState[0].isGE = true;
-					$s = 68; continue;
-				/* } else if (_1 === (63)) { */ case 61:
-					_r$84 = stackPop[0](); /* */ $s = 166; case 166: if($c) { $c = false; _r$84 = _r$84.$blk(); } if (_r$84 && _r$84.$blk !== undefined) { break s; }
-					v$12 = _r$84;
+					$s = 69; continue;
+				/* } else if (_1 === (63)) { */ case 62:
+					_r$85 = stackPop[0](); /* */ $s = 173; case 173: if($c) { $c = false; _r$85 = _r$85.$blk(); } if (_r$85 && _r$85.$blk !== undefined) { break s; }
+					v$12 = _r$85;
 					wodState[0].threshold = v$12.MustReadInt();
 					wodState[0].isGE = false;
-					$s = 68; continue;
-				/* } else if (_1 === (60)) { */ case 62:
-					_r$85 = stackPop[0](); /* */ $s = 167; case 167: if($c) { $c = false; _r$85 = _r$85.$blk(); } if (_r$85 && _r$85.$blk !== undefined) { break s; }
-					v$13 = _r$85;
+					$s = 69; continue;
+				/* } else if (_1 === (60)) { */ case 63:
+					_r$86 = stackPop[0](); /* */ $s = 174; case 174: if($c) { $c = false; _r$86 = _r$86.$blk(); } if (_r$86 && _r$86.$blk !== undefined) { break s; }
+					v$13 = _r$86;
 					wodState[0].pool = v$13.MustReadInt();
-					$s = 68; continue;
-				/* } else if (_1 === (58)) { */ case 63:
-					_r$86 = stackPop[0](); /* */ $s = 168; case 168: if($c) { $c = false; _r$86 = _r$86.$blk(); } if (_r$86 && _r$86.$blk !== undefined) { break s; }
-					v$14 = _r$86;
+					$s = 69; continue;
+				/* } else if (_1 === (58)) { */ case 64:
+					_r$87 = stackPop[0](); /* */ $s = 175; case 175: if($c) { $c = false; _r$87 = _r$87.$blk(); } if (_r$87 && _r$87.$blk !== undefined) { break s; }
+					v$14 = _r$87;
 					if (!wodCheck(ctx[0], v$14.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold)) {
 						$s = -1; return;
 					}
-					_r$87 = RollWoD(v$14.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold, wodState[0].isGE); /* */ $s = 169; case 169: if($c) { $c = false; _r$87 = _r$87.$blk(); } if (_r$87 && _r$87.$blk !== undefined) { break s; }
-					_tuple$20 = _r$87;
-					num$4 = _tuple$20[0];
-					detailText$1 = _tuple$20[3];
+					_r$88 = RollWoD(v$14.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold, wodState[0].isGE); /* */ $s = 176; case 176: if($c) { $c = false; _r$88 = _r$88.$blk(); } if (_r$88 && _r$88.$blk !== undefined) { break s; }
+					_tuple$21 = _r$88;
+					num$4 = _tuple$21[0];
+					detailText$1 = _tuple$21[3];
 					ret$11 = VMValueNewInt(num$4);
 					(x$38 = details[0].$length - 1 >> 0, ((x$38 < 0 || x$38 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$38])).ret = ret$11;
 					(x$39 = details[0].$length - 1 >> 0, ((x$39 < 0 || x$39 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$39])).text = detailText$1;
-					$r = stackPush(ret$11); /* */ $s = 170; case 170: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (65)) { */ case 64:
-					$r = dcInit(); /* */ $s = 171; case 171: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					$s = 68; continue;
-				/* } else if (_1 === (66)) { */ case 65:
-					_r$88 = stackPop[0](); /* */ $s = 172; case 172: if($c) { $c = false; _r$88 = _r$88.$blk(); } if (_r$88 && _r$88.$blk !== undefined) { break s; }
-					v$15 = _r$88;
+					$r = stackPush(ret$11); /* */ $s = 177; case 177: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (65)) { */ case 65:
+					$r = dcInit(); /* */ $s = 178; case 178: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$s = 69; continue;
+				/* } else if (_1 === (66)) { */ case 66:
+					_r$89 = stackPop[0](); /* */ $s = 179; case 179: if($c) { $c = false; _r$89 = _r$89.$blk(); } if (_r$89 && _r$89.$blk !== undefined) { break s; }
+					v$15 = _r$89;
 					dcState[0].pool = v$15.MustReadInt();
-					$s = 68; continue;
-				/* } else if (_1 === (67)) { */ case 66:
-					_r$89 = stackPop[0](); /* */ $s = 173; case 173: if($c) { $c = false; _r$89 = _r$89.$blk(); } if (_r$89 && _r$89.$blk !== undefined) { break s; }
-					v$16 = _r$89;
+					$s = 69; continue;
+				/* } else if (_1 === (67)) { */ case 67:
+					_r$90 = stackPop[0](); /* */ $s = 180; case 180: if($c) { $c = false; _r$90 = _r$90.$blk(); } if (_r$90 && _r$90.$blk !== undefined) { break s; }
+					v$16 = _r$90;
 					dcState[0].points = v$16.MustReadInt();
-					$s = 68; continue;
-				/* } else if (_1 === (64)) { */ case 67:
-					_r$90 = stackPop[0](); /* */ $s = 174; case 174: if($c) { $c = false; _r$90 = _r$90.$blk(); } if (_r$90 && _r$90.$blk !== undefined) { break s; }
-					v$17 = _r$90;
+					$s = 69; continue;
+				/* } else if (_1 === (64)) { */ case 68:
+					_r$91 = stackPop[0](); /* */ $s = 181; case 181: if($c) { $c = false; _r$91 = _r$91.$blk(); } if (_r$91 && _r$91.$blk !== undefined) { break s; }
+					v$17 = _r$91;
 					if (!doubleCrossCheck(ctx[0], v$17.MustReadInt(), dcState[0].pool, dcState[0].points)) {
 						$s = -1; return;
 					}
-					_r$91 = RollDoubleCross(v$17.MustReadInt(), dcState[0].pool, dcState[0].points); /* */ $s = 175; case 175: if($c) { $c = false; _r$91 = _r$91.$blk(); } if (_r$91 && _r$91.$blk !== undefined) { break s; }
-					_tuple$21 = _r$91;
-					success = _tuple$21[0];
-					detailText$2 = _tuple$21[3];
+					_r$92 = RollDoubleCross(v$17.MustReadInt(), dcState[0].pool, dcState[0].points); /* */ $s = 182; case 182: if($c) { $c = false; _r$92 = _r$92.$blk(); } if (_r$92 && _r$92.$blk !== undefined) { break s; }
+					_tuple$22 = _r$92;
+					success = _tuple$22[0];
+					detailText$2 = _tuple$22[3];
 					ret$12 = VMValueNewInt(success);
 					(x$40 = details[0].$length - 1 >> 0, ((x$40 < 0 || x$40 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$40])).ret = ret$12;
 					(x$41 = details[0].$length - 1 >> 0, ((x$41 < 0 || x$41 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$41])).text = detailText$2;
-					$r = stackPush(ret$12); /* */ $s = 176; case 176: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-				/* } */ case 68:
+					$r = stackPush(ret$12); /* */ $s = 183; case 183: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+				/* } */ case 69:
 			case 16:
 			opIndex = opIndex + (1) >> 0;
 		$s = 3; continue;
 		case 4:
 		$s = -1; return;
-		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _a, _arg$20, _arg$21, _arg$22, _arg$23, _arg$24, _arg$25, _arg$26, _arg$27, _arg$28, _b, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$40, x$41, x$5, x$6, x$7, x$8, x$9, $s};return $f;
+		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _a, _arg$20, _arg$21, _arg$22, _arg$23, _arg$24, _arg$25, _arg$26, _arg$27, _arg$28, _b, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$39, x$4, x$40, x$41, x$5, x$6, x$7, x$8, x$9, $s};return $f;
 	};
 	Parser.prototype.Evaluate = function() { return this.$val.Evaluate(); };
 	Context.ptr.prototype.GetAsmText = function() {

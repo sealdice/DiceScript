@@ -64,7 +64,7 @@
                         console.log(`剩余文本: ${ctx.RestInput || '无'}`)
                     }
                 } catch (e) {
-                    this.items.push(`错误: 未知错误`)
+                    this.items.push(`内部错误: ` + e.message)
                 }
                 console.log(ctx.GetAsmText())
                 this.message = '';
