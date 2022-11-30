@@ -42592,7 +42592,7 @@ $packages["regexp"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/sealdice/dicescript"] = (function() {
-	var $pkg = {}, $init, bytes, json, errors, fmt, io, math, rand, os, reflect, regexp, sort, strconv, strings, sync, atomic, time, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, RollExtraFlags, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, recursionInfo, spanByBegin, spanByEnd, pegRule, token32, node32, tokens32, Parser, textPosition, parseError, ParserData, BufferSpan, CodeType, ByteCode, element, ptrType, ptrType$1, funcType, sliceType, sliceType$1, sliceType$2, ptrType$2, ptrType$3, ptrType$4, sliceType$3, structType, structType$1, structType$2, sliceType$4, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, structType$11, structType$12, mapType, structType$13, structType$14, structType$15, sliceType$5, structType$16, sliceType$6, sliceType$7, ptrType$5, ptrType$6, ptrType$7, ptrType$8, ptrType$9, ptrType$10, ptrType$11, sliceType$8, structType$17, sliceType$9, ptrType$12, sliceType$10, ptrType$13, sliceType$11, sliceType$12, funcType$1, arrayType, sliceType$13, funcType$2, sliceType$14, sliceType$15, sliceType$16, ptrType$14, structType$18, sliceType$17, structType$19, structType$20, structType$21, sliceType$18, ptrType$15, ptrType$16, ptrType$17, funcType$3, mapType$1, ptrType$18, funcType$4, funcType$5, funcType$6, mapType$2, ptrType$19, mapType$3, ptrType$20, ptrType$21, funcType$7, funcType$8, ptrType$22, ptrType$23, ptrType$24, expungedValueMap, binOperator, rul3s, nnf, builtinValues, builtinProto, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _arg, _r$7, _arg$1, _arg$2, _r$8, _arg$3, _arg$4, _r$9, _arg$5, _arg$6, _r$10, _arg$7, _arg$8, _r$11, _arg$9, _arg$10, _r$12, _arg$11, _arg$12, _r$13, _arg$13, _arg$14, _r$14, _arg$15, _arg$16, _r$15, _arg$17, _arg$18, _r$16, _arg$19, _r$17, newEntryValueMap, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, VMValueNewInt, VMValueNewFloat, VMValueNewStr, VMValueNewUndefined, vmValueNewLocal, VMValueNewArrayRaw, VMValueNewArray, VMValueNewDict, VMValueNewDictWithArray, VMValueMustNewDictWithArray, VMValueNewComputedRaw, VMValueNewComputed, VMValueNewFunctionRaw, VMValueNewNativeFunction, NewVM, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, translatePositions, funcCeil, funcRound, funcFloor, funcAbs, funcInt, funcFloat, funcStr, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, getBindMethod;
+	var $pkg = {}, $init, bytes, json, errors, fmt, io, math, rand, os, reflect, regexp, sort, strconv, strings, sync, atomic, time, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, RollExtraFlags, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, recursionInfo, spanByBegin, spanByEnd, pegRule, token32, node32, tokens32, Parser, textPosition, parseError, ParserData, BufferSpan, CodeType, ByteCode, element, ptrType, ptrType$1, funcType, sliceType, sliceType$1, sliceType$2, ptrType$2, ptrType$3, ptrType$4, sliceType$3, structType, structType$1, structType$2, sliceType$4, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, structType$11, structType$12, mapType, structType$13, structType$14, structType$15, sliceType$5, structType$16, sliceType$6, sliceType$7, ptrType$5, ptrType$6, ptrType$7, ptrType$8, ptrType$9, ptrType$10, ptrType$11, sliceType$8, sliceType$9, structType$17, sliceType$10, ptrType$12, sliceType$11, ptrType$13, sliceType$12, funcType$1, arrayType, sliceType$13, funcType$2, sliceType$14, sliceType$15, sliceType$16, ptrType$14, structType$18, sliceType$17, structType$19, structType$20, structType$21, sliceType$18, ptrType$15, ptrType$16, ptrType$17, funcType$3, mapType$1, ptrType$18, funcType$4, funcType$5, funcType$6, mapType$2, ptrType$19, mapType$3, ptrType$20, ptrType$21, funcType$7, funcType$8, ptrType$22, ptrType$23, ptrType$24, expungedValueMap, binOperator, rul3s, nnf, builtinValues, builtinProto, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _arg, _r$7, _arg$1, _arg$2, _r$8, _arg$3, _arg$4, _r$9, _arg$5, _arg$6, _r$10, _arg$7, _arg$8, _r$11, _arg$9, _arg$10, _r$12, _arg$11, _arg$12, _r$13, _arg$13, _arg$14, _r$14, _arg$15, _arg$16, _r$15, _arg$17, _arg$18, _r$16, _arg$19, _r$17, newEntryValueMap, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, VMValueNewInt, VMValueNewFloat, VMValueNewStr, VMValueNewUndefined, vmValueNewLocal, VMValueNewArrayRaw, VMValueNewArray, VMValueNewDict, VMValueNewDictWithArray, VMValueMustNewDictWithArray, VMValueNewComputedRaw, VMValueNewComputed, VMValueNewFunctionRaw, VMValueNewNativeFunction, NewVM, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, translatePositions, funcCeil, funcRound, funcFloor, funcAbs, funcInt, funcFloat, funcStr, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, getBindMethod;
 	bytes = $packages["bytes"];
 	json = $packages["encoding/json"];
 	errors = $packages["errors"];
@@ -42692,7 +42692,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			this.globalNames = ptrType$10.nil;
 			this.code = sliceType$5.nil;
 			this.codeIndex = 0;
-			this.stack = sliceType$10.nil;
+			this.stack = sliceType$11.nil;
 			this.top = 0;
 			this.NumOpCount = new $Int64(0, 0);
 			this.Flags = new RollExtraFlags.ptr(false, false, false, false, false, false, false, false, false, false, new $Int64(0, 0), "");
@@ -42701,7 +42701,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			this.RestInput = "";
 			this.Matched = "";
 			this.Detail = "";
-			this.CustomDiceInfo = sliceType$11.nil;
+			this.CustomDiceInfo = sliceType$12.nil;
 			this.ValueStoreFunc = $throwNilPointerError;
 			this.ValueLoadFunc = $throwNilPointerError;
 			return;
@@ -42859,10 +42859,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser = $pkg.Parser = $newType(0, $kindStruct, "dicescript.Parser", true, "github.com/sealdice/dicescript", true, function(ParserData_, Context_, Buffer_, buffer_, rules_, parse_, reset_, Pretty_, tokens32_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.ParserData = new ParserData.ptr(sliceType$8.nil, sliceType$1.nil, sliceType$8.nil, sliceType$8.nil, sliceType$8.nil, sliceType$9.nil);
-			this.Context = new Context.ptr(ptrType$12.nil, 0, ptrType$10.nil, ptrType$1.nil, ptrType$10.nil, sliceType$5.nil, 0, sliceType$10.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, false, false, false, false, false, false, new $Int64(0, 0), ""), $ifaceNil, ptrType.nil, "", "", "", sliceType$11.nil, $throwNilPointerError, $throwNilPointerError);
+			this.ParserData = new ParserData.ptr(sliceType$9.nil, sliceType$1.nil, sliceType$9.nil, sliceType$9.nil, sliceType$9.nil, sliceType$10.nil);
+			this.Context = new Context.ptr(ptrType$12.nil, 0, ptrType$10.nil, ptrType$1.nil, ptrType$10.nil, sliceType$5.nil, 0, sliceType$11.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, false, false, false, false, false, false, new $Int64(0, 0), ""), $ifaceNil, ptrType.nil, "", "", "", sliceType$12.nil, $throwNilPointerError, $throwNilPointerError);
 			this.Buffer = "";
-			this.buffer = sliceType$12.nil;
+			this.buffer = sliceType$8.nil;
 			this.rules = arrayType.zero();
 			this.parse = $throwNilPointerError;
 			this.reset = $throwNilPointerError;
@@ -42903,12 +42903,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ParserData = $pkg.ParserData = $newType(0, $kindStruct, "dicescript.ParserData", true, "github.com/sealdice/dicescript", true, function(counterStack_, varnameStack_, jmpStack_, breakStack_, continueStack_, codeStack_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.counterStack = sliceType$8.nil;
+			this.counterStack = sliceType$9.nil;
 			this.varnameStack = sliceType$1.nil;
-			this.jmpStack = sliceType$8.nil;
-			this.breakStack = sliceType$8.nil;
-			this.continueStack = sliceType$8.nil;
-			this.codeStack = sliceType$9.nil;
+			this.jmpStack = sliceType$9.nil;
+			this.breakStack = sliceType$9.nil;
+			this.continueStack = sliceType$9.nil;
+			this.codeStack = sliceType$10.nil;
 			return;
 		}
 		this.counterStack = counterStack_;
@@ -42992,14 +42992,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$9 = $ptrType(NativeFunctionData);
 	ptrType$10 = $ptrType(ValueMap);
 	ptrType$11 = $ptrType(VMDictValue);
-	sliceType$8 = $sliceType($Int64);
+	sliceType$8 = $sliceType($Int32);
+	sliceType$9 = $sliceType($Int64);
 	structType$17 = $structType("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}]);
-	sliceType$9 = $sliceType(structType$17);
+	sliceType$10 = $sliceType(structType$17);
 	ptrType$12 = $ptrType(Parser);
-	sliceType$10 = $sliceType(VMValue);
+	sliceType$11 = $sliceType(VMValue);
 	ptrType$13 = $ptrType(customDiceItem);
-	sliceType$11 = $sliceType(ptrType$13);
-	sliceType$12 = $sliceType($Int32);
+	sliceType$12 = $sliceType(ptrType$13);
 	funcType$1 = $funcType([], [$Bool], false);
 	arrayType = $arrayType(funcType$1, 257);
 	sliceType$13 = $sliceType(token32);
@@ -45057,7 +45057,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (_1 === (2)) {
 			_tuple = v.ReadString();
 			str = _tuple[0];
-			newArr = $substring(str, $flatten64(_a), $flatten64(_b));
+			newArr = ($runesToString($subslice((new sliceType$8($stringToRunes(str))), $flatten64(_a), $flatten64(_b))));
 			return VMValueNewStr(newArr);
 		} else if (_1 === (6)) {
 			_tuple$1 = v.ReadArray();
@@ -45637,7 +45637,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	$pkg.VMValueNewNativeFunction = VMValueNewNativeFunction;
 	NewVM = function() {
 		var p;
-		p = new Parser.ptr(new ParserData.ptr(sliceType$8.nil, sliceType$1.nil, sliceType$8.nil, sliceType$8.nil, sliceType$8.nil, sliceType$9.nil), new Context.ptr(ptrType$12.nil, 0, ptrType$10.nil, ptrType$1.nil, ptrType$10.nil, sliceType$5.nil, 0, sliceType$10.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, false, false, false, false, false, false, new $Int64(0, 0), ""), $ifaceNil, ptrType.nil, "", "", "", sliceType$11.nil, $throwNilPointerError, $throwNilPointerError), "", sliceType$12.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$13.nil));
+		p = new Parser.ptr(new ParserData.ptr(sliceType$9.nil, sliceType$1.nil, sliceType$9.nil, sliceType$9.nil, sliceType$9.nil, sliceType$10.nil), new Context.ptr(ptrType$12.nil, 0, ptrType$10.nil, ptrType$1.nil, ptrType$10.nil, sliceType$5.nil, 0, sliceType$11.nil, 0, new $Int64(0, 0), new RollExtraFlags.ptr(false, false, false, false, false, false, false, false, false, false, new $Int64(0, 0), ""), $ifaceNil, ptrType.nil, "", "", "", sliceType$12.nil, $throwNilPointerError, $throwNilPointerError), "", sliceType$8.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$13.nil));
 		p.ParserData.init();
 		p.Context.Init();
 		p.Context.parser = p;
@@ -45674,7 +45674,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ if (tks.$length > 0) { $s = 4; continue; }
 		/* */ $s = 5; continue;
 		/* if (tks.$length > 0) { */ case 4:
-			runeBuffer = (new sliceType$12($stringToRunes(value)));
+			runeBuffer = (new sliceType$8($stringToRunes(value)));
 			lastToken = $clone((x$2 = tks.$length - 1 >> 0, ((x$2 < 0 || x$2 >= tks.$length) ? ($throwRuntimeError("index out of range"), undefined) : tks.$array[tks.$offset + x$2])), token32);
 			_r$20 = strings.TrimSpace(($runesToString($subslice(runeBuffer, lastToken.end)))); /* */ $s = 7; case 7: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
 			ctx.RestInput = _r$20;
@@ -45745,7 +45745,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		wodState = [wodState];
 		e[0] = this;
 		e[0].Context.top = 0;
-		e[0].Context.stack = $makeSlice(sliceType$10, 1000);
+		e[0].Context.stack = $makeSlice(sliceType$11, 1000);
 		stack = e[0].Context.stack;
 		ctx[0] = e[0].Context;
 		details[0] = sliceType$16.nil;
@@ -45805,7 +45805,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				}
 				_i++;
 			}
-			runeBuffer = (new sliceType$12($stringToRunes(e[0].Buffer)));
+			runeBuffer = (new sliceType$8($stringToRunes(e[0].Buffer)));
 			detailResult = runeBuffer;
 			i$1 = m.$length - 1 >> 0;
 			/* while (true) { */ case 2:
@@ -45829,7 +45829,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					case 8:
 				/* } */ case 6:
 				exprText = ($runesToString($subslice(runeBuffer, $flatten64(item.begin), $flatten64(item.end))));
-				r = sliceType$12.nil;
+				r = sliceType$8.nil;
 				r = $appendSlice(r, $subslice(detailResult, 0, $flatten64(item.begin)));
 				_r$19 = last.ret.ToString(); /* */ $s = 10; case 10: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
 				detail = "[" + exprText + "=" + _r$19;
@@ -45839,7 +45839,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				detail = detail + (subDetailsText + "]");
 				_arg$20 = r;
 				_r$20 = last.ret.ToString(); /* */ $s = 11; case 11: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
-				_arg$21 = (new sliceType$12($stringToRunes(_r$20 + detail)));
+				_arg$21 = (new sliceType$8($stringToRunes(_r$20 + detail)));
 				r = $appendSlice(_arg$20, _arg$21);
 				r = $appendSlice(r, $subslice(detailResult, $flatten64(item.end)));
 				detailResult = r;
@@ -46794,7 +46794,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var {_r$18, _r$19, _r$20, diceMax, diceMin, dicePoints, die, highNum, i, i$1, i$2, i$3, isKeepLH, lowNum, num, nums, pickNum, text, times, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, $s, $r, $c} = $restore(this, {times, dicePoints, diceMin, diceMax, isKeepLH, lowNum, highNum});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		nums = [nums];
-		nums[0] = sliceType$8.nil;
+		nums[0] = sliceType$9.nil;
 		i = new $Int64(0, 0);
 		/* while (true) { */ case 1:
 			/* if (!((i.$high < times.$high || (i.$high === times.$high && i.$low < times.$low)))) { break; } */ if(!((i.$high < times.$high || (i.$high === times.$high && i.$low < times.$low)))) { $s = 2; continue; }
@@ -47003,7 +47003,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				$s = 3; continue;
 				case 4:
 				rule = (x = node$1.token32.pegRule, ((x < 0 || x >= rul3s.length) ? ($throwRuntimeError("index out of range"), undefined) : rul3s[x]));
-				quote = strconv.Quote(($runesToString(($subslice((new sliceType$12($stringToRunes(buffer[0]))), node$1.token32.begin, node$1.token32.end)))));
+				quote = strconv.Quote(($runesToString(($subslice((new sliceType$8($stringToRunes(buffer[0]))), node$1.token32.begin, node$1.token32.end)))));
 				/* */ if (!pretty[0]) { $s = 6; continue; }
 				/* */ $s = 7; continue;
 				/* if (!pretty[0]) { */ case 6:
@@ -47736,7 +47736,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		_tmp$1 = 0;
 		position[0] = _tmp;
 		tokenIndex[0] = _tmp$1;
-		buffer[0] = sliceType$12.nil;
+		buffer[0] = sliceType$8.nil;
 		_ref = options;
 		_i = 0;
 		/* while (true) { */ case 1:
@@ -47757,7 +47757,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			_tmp$3 = 0;
 			position[0] = _tmp$2;
 			tokenIndex[0] = _tmp$3;
-			p[0].buffer = (new sliceType$12($stringToRunes(p[0].Buffer)));
+			p[0].buffer = (new sliceType$8($stringToRunes(p[0].Buffer)));
 			if ((p[0].buffer.$length === 0) || !(((x = p[0].buffer, x$1 = p[0].buffer.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])) === 1114112))) {
 				p[0].buffer = $append(p[0].buffer, 1114112);
 			}
@@ -57440,10 +57440,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ParserData.ptr.prototype.init = function() {
 		var pd;
 		pd = this;
-		pd.counterStack = new sliceType$8([]);
+		pd.counterStack = new sliceType$9([]);
 		pd.varnameStack = new sliceType$1([]);
-		pd.jmpStack = new sliceType$8([]);
-		pd.codeStack = new sliceType$9([]);
+		pd.jmpStack = new sliceType$9([]);
+		pd.codeStack = new sliceType$10([]);
 	};
 	ParserData.prototype.init = function() { return this.$val.init(); };
 	Parser.ptr.prototype.checkStackOverflow = function() {
@@ -57600,8 +57600,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.ContinuePush = function() {
 		var p, x;
 		p = this;
-		if (p.ParserData.continueStack === sliceType$8.nil) {
-			p.ParserData.continueStack = new sliceType$8([]);
+		if (p.ParserData.continueStack === sliceType$9.nil) {
+			p.ParserData.continueStack = new sliceType$9([]);
 		}
 		p.AddOp(73);
 		p.ParserData.continueStack = $append(p.ParserData.continueStack, (x = (new $Int64(0, p.Context.codeIndex)), new $Int64(x.$high - 0, x.$low - 1)));
@@ -57610,7 +57610,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.ContinueSet = function(offsetB) {
 		var _i, _ref, codeIndex, jmpIndex, lastB, offsetB, p, x, x$1, x$2, x$3;
 		p = this;
-		if (!(p.ParserData.continueStack === sliceType$8.nil)) {
+		if (!(p.ParserData.continueStack === sliceType$9.nil)) {
 			_ref = p.ParserData.continueStack;
 			_i = 0;
 			while (true) {
@@ -57627,7 +57627,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.BreakSet = function() {
 		var _i, _ref, codeIndex, p, x, x$1, x$2;
 		p = this;
-		if (!(p.ParserData.breakStack === sliceType$8.nil)) {
+		if (!(p.ParserData.breakStack === sliceType$9.nil)) {
 			_ref = p.ParserData.breakStack;
 			_i = 0;
 			while (true) {
@@ -57642,8 +57642,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.BreakPush = function() {
 		var p, x;
 		p = this;
-		if (p.ParserData.breakStack === sliceType$8.nil) {
-			p.ParserData.breakStack = new sliceType$8([]);
+		if (p.ParserData.breakStack === sliceType$9.nil) {
+			p.ParserData.breakStack = new sliceType$9([]);
 		}
 		p.AddOp(73);
 		p.ParserData.breakStack = $append(p.ParserData.breakStack, (x = (new $Int64(0, p.Context.codeIndex)), new $Int64(x.$high - 0, x.$low - 1)));
@@ -58359,7 +58359,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	entryValueMap.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: $UnsafePointer, tag: ""}]);
 	RollExtraFlags.init("github.com/sealdice/dicescript", [{prop: "PrintBytecode", name: "PrintBytecode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceWoD", name: "EnableDiceWoD", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceCoC", name: "EnableDiceCoC", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceFate", name: "EnableDiceFate", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceDoubleCross", name: "EnableDiceDoubleCross", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "disableStmts", name: "disableStmts", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "DiceMinMode", name: "DiceMinMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMaxMode", name: "DiceMaxMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableLoadVarname", name: "DisableLoadVarname", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "IgnoreDiv0", name: "IgnoreDiv0", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DefaultDiceSideNum", name: "DefaultDiceSideNum", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "DefaultDiceSideExpr", name: "DefaultDiceSideExpr", embedded: false, exported: true, typ: $String, tag: ""}]);
 	customDiceItem.init("github.com/sealdice/dicescript", [{prop: "re", name: "re", embedded: false, exported: false, typ: ptrType$18, tag: ""}, {prop: "callback", name: "callback", embedded: false, exported: false, typ: funcType$4, tag: ""}]);
-	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$12, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "upCtx", name: "upCtx", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$10, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "Flags", name: "Flags", embedded: false, exported: true, typ: RollExtraFlags, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Detail", name: "Detail", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$11, tag: ""}, {prop: "ValueStoreFunc", name: "ValueStoreFunc", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "ValueLoadFunc", name: "ValueLoadFunc", embedded: false, exported: true, typ: funcType$6, tag: ""}]);
+	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$12, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "upCtx", name: "upCtx", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$10, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$11, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "Flags", name: "Flags", embedded: false, exported: true, typ: RollExtraFlags, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Detail", name: "Detail", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$12, tag: ""}, {prop: "ValueStoreFunc", name: "ValueStoreFunc", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "ValueLoadFunc", name: "ValueLoadFunc", embedded: false, exported: true, typ: funcType$6, tag: ""}]);
 	VMValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"value\""}]);
 	VMDictValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"value\""}]);
 	ArrayData.init("", [{prop: "List", name: "List", embedded: false, exported: true, typ: sliceType$2, tag: ""}]);
@@ -58374,10 +58374,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	token32.init("github.com/sealdice/dicescript", [{prop: "pegRule", name: "pegRule", embedded: true, exported: false, typ: pegRule, tag: ""}, {prop: "begin", name: "begin", embedded: false, exported: false, typ: $Uint32, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: $Uint32, tag: ""}]);
 	node32.init("github.com/sealdice/dicescript", [{prop: "token32", name: "token32", embedded: true, exported: false, typ: token32, tag: ""}, {prop: "up", name: "up", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "next", name: "next", embedded: false, exported: false, typ: ptrType$15, tag: ""}]);
 	tokens32.init("github.com/sealdice/dicescript", [{prop: "tree", name: "tree", embedded: false, exported: false, typ: sliceType$13, tag: ""}]);
-	Parser.init("github.com/sealdice/dicescript", [{prop: "ParserData", name: "ParserData", embedded: true, exported: true, typ: ParserData, tag: ""}, {prop: "Context", name: "Context", embedded: true, exported: true, typ: Context, tag: ""}, {prop: "Buffer", name: "Buffer", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "buffer", name: "buffer", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: arrayType, tag: ""}, {prop: "parse", name: "parse", embedded: false, exported: false, typ: funcType$7, tag: ""}, {prop: "reset", name: "reset", embedded: false, exported: false, typ: funcType$8, tag: ""}, {prop: "Pretty", name: "Pretty", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "tokens32", name: "tokens32", embedded: true, exported: false, typ: tokens32, tag: ""}]);
+	Parser.init("github.com/sealdice/dicescript", [{prop: "ParserData", name: "ParserData", embedded: true, exported: true, typ: ParserData, tag: ""}, {prop: "Context", name: "Context", embedded: true, exported: true, typ: Context, tag: ""}, {prop: "Buffer", name: "Buffer", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "buffer", name: "buffer", embedded: false, exported: false, typ: sliceType$8, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: arrayType, tag: ""}, {prop: "parse", name: "parse", embedded: false, exported: false, typ: funcType$7, tag: ""}, {prop: "reset", name: "reset", embedded: false, exported: false, typ: funcType$8, tag: ""}, {prop: "Pretty", name: "Pretty", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "tokens32", name: "tokens32", embedded: true, exported: false, typ: tokens32, tag: ""}]);
 	textPosition.init("github.com/sealdice/dicescript", [{prop: "line", name: "line", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "symbol", name: "symbol", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	parseError.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: ptrType$12, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: token32, tag: ""}]);
-	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$8, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$8, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$8, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$8, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}]);
+	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$10, tag: ""}]);
 	BufferSpan.init("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "ret", name: "ret", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "text", name: "text", embedded: false, exported: false, typ: $String, tag: ""}]);
 	ByteCode.init("", [{prop: "T", name: "T", embedded: false, exported: true, typ: CodeType, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: ""}]);
 	element.init("github.com/sealdice/dicescript", [{prop: "node", name: "node", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "down", name: "down", embedded: false, exported: false, typ: ptrType$16, tag: ""}]);
