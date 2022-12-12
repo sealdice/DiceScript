@@ -58023,7 +58023,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _tuple, arr, ctx, params, this$1, val, x, x$1;
 		_tuple = this$1.ReadArray();
 		arr = _tuple[0];
-		if (arr.List.$length > 1) {
+		if (arr.List.$length >= 1) {
 			val = (x = arr.List, x$1 = arr.List.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1]));
 			arr.List = $subslice(arr.List, 0, (arr.List.$length - 1 >> 0));
 			return val;
@@ -58034,7 +58034,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _tuple, arr, ctx, params, this$1, val, x;
 		_tuple = this$1.ReadArray();
 		arr = _tuple[0];
-		if (arr.List.$length > 1) {
+		if (arr.List.$length >= 1) {
 			val = (x = arr.List, (0 >= x.$length ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + 0]));
 			arr.List = $subslice(arr.List, 1);
 			return val;
@@ -58168,7 +58168,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		_r$15 = nnf(new NativeFunctionData.ptr("Array.shift", new sliceType$1([]), sliceType$2.nil, ptrType.nil, funcArrayShift)); /* */ $s = 32; case 32: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
 		_arg$17 = _r$15;
 		_arg$18 = VMValueNewStr("push");
-		_r$16 = nnf(new NativeFunctionData.ptr("Array.shift", new sliceType$1(["value"]), sliceType$2.nil, ptrType.nil, funcArrayPush)); /* */ $s = 33; case 33: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
+		_r$16 = nnf(new NativeFunctionData.ptr("Array.push", new sliceType$1(["value"]), sliceType$2.nil, ptrType.nil, funcArrayPush)); /* */ $s = 33; case 33: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
 		_arg$19 = _r$16;
 		_r$17 = VMValueMustNewDictWithArray(new sliceType$2([_arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _arg$10, _arg$11, _arg$12, _arg$13, _arg$14, _arg$15, _arg$16, _arg$17, _arg$18, _arg$19])); /* */ $s = 34; case 34: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
 		builtinProto = $makeMap(VMValueType.keyFor, [{ k: 6, v: _r$17 }]);
