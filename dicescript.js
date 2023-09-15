@@ -1,7 +1,7 @@
 "use strict";
 (function() {
 
-var $goVersion = "go1.18.8";
+var $goVersion = "go1.18.10";
 Error.stackTraceLimit = Infinity;
 
 var $NaN = NaN;
@@ -25967,6 +25967,21 @@ $packages["internal/poll"] = (function() {
 	$pkg.$init = $init;
 	return $pkg;
 })();
+$packages["internal/safefilepath"] = (function() {
+	var $pkg = {}, $init, errors, runtime, errInvalidPath;
+	errors = $packages["errors"];
+	runtime = $packages["runtime"];
+	$init = function() {
+		$pkg.$init = function() {};
+		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		$r = errors.$init(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = runtime.$init(); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		errInvalidPath = errors.New("invalid path");
+		/* */ } return; } if ($f === undefined) { $f = { $blk: $init }; } $f.$s = $s; $f.$r = $r; return $f;
+	};
+	$pkg.$init = $init;
+	return $pkg;
+})();
 $packages["internal/syscall/execenv"] = (function() {
 	var $pkg = {}, $init, syscall;
 	syscall = $packages["syscall"];
@@ -26201,12 +26216,13 @@ $packages["io/fs"] = (function() {
 	return $pkg;
 })();
 $packages["os"] = (function() {
-	var $pkg = {}, $init, errors, js, itoa, oserror, poll, execenv, unix, testlog, unsafeheader, io, fs, runtime, sort, sync, atomic, syscall, time, fileStat, File, rawConn, file, unixDirent, LinkError, onlyWriter, timeout, SyscallError, dirInfo, readdirMode, sliceType, sliceType$1, sliceType$2, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$5, ptrType$6, sliceType$4, ptrType$7, ptrType$8, ptrType$9, funcType, ptrType$17, ptrType$18, sliceType$7, sliceType$8, funcType$2, funcType$3, ptrType$19, ptrType$20, errPatternHasSeparator, errWriteAtInAppendMode, lstat, dirBufPool, testingForceReadDirLstat, _r, _r$1, _r$2, lstatNolog, fillFileStatFromSys, timespecToTime, Lstat, newRawConn, init, basename, runtime_args, init$1, NewFile, newFile, epipecheck, newUnixDirent, sigpipe, syscallMode, ignoringEINTR, genericReadFrom, errNoDeadline, errDeadlineExceeded, IsNotExist, underlyingErrorIs, underlyingError, direntIno, direntReclen, direntNamlen, direntType, readInt, readIntBE, readIntLE;
+	var $pkg = {}, $init, errors, js, itoa, oserror, poll, safefilepath, execenv, unix, testlog, unsafeheader, io, fs, runtime, sort, sync, atomic, syscall, time, fileStat, File, rawConn, file, unixDirent, LinkError, onlyWriter, timeout, SyscallError, dirInfo, readdirMode, sliceType, sliceType$1, sliceType$2, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$5, ptrType$6, sliceType$4, ptrType$7, ptrType$8, ptrType$9, funcType, ptrType$17, ptrType$18, sliceType$7, sliceType$8, funcType$2, funcType$3, ptrType$19, ptrType$20, errPatternHasSeparator, errWriteAtInAppendMode, lstat, dirBufPool, testingForceReadDirLstat, _r, _r$1, _r$2, lstatNolog, fillFileStatFromSys, timespecToTime, Lstat, newRawConn, init, basename, runtime_args, init$1, NewFile, newFile, epipecheck, newUnixDirent, sigpipe, syscallMode, ignoringEINTR, genericReadFrom, errNoDeadline, errDeadlineExceeded, IsNotExist, underlyingErrorIs, underlyingError, direntIno, direntReclen, direntNamlen, direntType, readInt, readIntBE, readIntLE;
 	errors = $packages["errors"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	itoa = $packages["internal/itoa"];
 	oserror = $packages["internal/oserror"];
 	poll = $packages["internal/poll"];
+	safefilepath = $packages["internal/safefilepath"];
 	execenv = $packages["internal/syscall/execenv"];
 	unix = $packages["internal/syscall/unix"];
 	testlog = $packages["internal/testlog"];
@@ -27775,18 +27791,19 @@ $packages["os"] = (function() {
 		$r = itoa.$init(); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = oserror.$init(); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = poll.$init(); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = execenv.$init(); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = unix.$init(); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = testlog.$init(); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = unsafeheader.$init(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = io.$init(); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = fs.$init(); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = runtime.$init(); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = sort.$init(); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = sync.$init(); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = atomic.$init(); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = syscall.$init(); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = time.$init(); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = safefilepath.$init(); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = execenv.$init(); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = unix.$init(); /* */ $s = 8; case 8: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = testlog.$init(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = unsafeheader.$init(); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = io.$init(); /* */ $s = 11; case 11: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = fs.$init(); /* */ $s = 12; case 12: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = runtime.$init(); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = sort.$init(); /* */ $s = 14; case 14: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = sync.$init(); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = atomic.$init(); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = syscall.$init(); /* */ $s = 17; case 17: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = time.$init(); /* */ $s = 18; case 18: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$pkg.Args = sliceType.nil;
 		testingForceReadDirLstat = false;
 		errPatternHasSeparator = errors.New("pattern contains path separator");
@@ -27803,11 +27820,11 @@ $packages["os"] = (function() {
 			buf = $makeSlice(sliceType$2, 8192);
 			return (buf$24ptr || (buf$24ptr = new ptrType(function() { return buf; }, function($v) { buf = $convertSliceType($v, sliceType$2); })));
 		}));
-		_r = NewFile(0, "/dev/stdin"); /* */ $s = 18; case 18: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_r = NewFile(0, "/dev/stdin"); /* */ $s = 19; case 19: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		$pkg.Stdin = _r;
-		_r$1 = NewFile(1, "/dev/stdout"); /* */ $s = 19; case 19: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		_r$1 = NewFile(1, "/dev/stdout"); /* */ $s = 20; case 20: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		$pkg.Stdout = _r$1;
-		_r$2 = NewFile(2, "/dev/stderr"); /* */ $s = 20; case 20: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
+		_r$2 = NewFile(2, "/dev/stderr"); /* */ $s = 21; case 21: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 		$pkg.Stderr = _r$2;
 		init();
 		init$1();
