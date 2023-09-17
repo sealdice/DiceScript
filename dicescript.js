@@ -44581,13 +44581,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		}
 			_1 = v.TypeId;
 			/* */ if (_1 === (2)) { $s = 2; continue; }
-			/* */ if ((_1 === (0)) || (_1 === (1)) || (_1 === (3)) || (_1 === (4)) || (_1 === (6)) || (_1 === (5)) || (_1 === (7)) || (_1 === (8)) || (_1 === (9))) { $s = 3; continue; }
+			/* */ if ((_1 === (0)) || (_1 === (1)) || (_1 === (3)) || (_1 === (4)) || (_1 === (6)) || (_1 === (5)) || (_1 === (7)) || (_1 === (8)) || (_1 === (9)) || (_1 === (10))) { $s = 3; continue; }
 			/* */ $s = 4; continue;
 			/* if (_1 === (2)) { */ case 2:
 				_r$23 = v.toStringRaw(ri); /* */ $s = 6; case 6: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
 				$24r = "'" + _r$23 + "'";
 				$s = 7; case 7: return $24r;
-			/* } else if ((_1 === (0)) || (_1 === (1)) || (_1 === (3)) || (_1 === (4)) || (_1 === (6)) || (_1 === (5)) || (_1 === (7)) || (_1 === (8)) || (_1 === (9))) { */ case 3:
+			/* } else if ((_1 === (0)) || (_1 === (1)) || (_1 === (3)) || (_1 === (4)) || (_1 === (6)) || (_1 === (5)) || (_1 === (7)) || (_1 === (8)) || (_1 === (9)) || (_1 === (10))) { */ case 3:
 				_r$24 = v.toStringRaw(ri); /* */ $s = 8; case 8: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 				$24r$1 = _r$24;
 				$s = 9; case 9: return $24r$1;
@@ -44919,17 +44919,35 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpDivide = function(ctx, v2) { return this.$val.OpDivide(ctx, v2); };
 	VMValue.ptr.prototype.OpModulus = function(ctx, v2) {
-		var _1, _2, ctx, v, v2, val;
+		var {_1, _2, ctx, setDivideZero, v, v2, val, x, $s, $r, $c} = $restore(this, {ctx, v2});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		ctx = [ctx];
 		v = this;
-		_1 = v.TypeId;
-		if (_1 === (0)) {
-			_2 = v2.TypeId;
-			if (_2 === (0)) {
-				val = $div64($assertType(v.Value, $Int64), $assertType(v2.Value, $Int64), true);
-				return VMValueNewInt(val);
-			}
-		}
-		return ptrType.nil;
+		setDivideZero = (function(ctx) { return function() {
+			ctx[0].Error = errors.New("\xE8\xA2\xAB\xE9\x99\xA4\xE6\x95\xB0\xE8\xA2\xAB0");
+		}; })(ctx);
+			_1 = v.TypeId;
+			/* */ if (_1 === (0)) { $s = 2; continue; }
+			/* */ $s = 3; continue;
+			/* if (_1 === (0)) { */ case 2:
+					_2 = v2.TypeId;
+					/* */ if (_2 === (0)) { $s = 5; continue; }
+					/* */ $s = 6; continue;
+					/* if (_2 === (0)) { */ case 5:
+						/* */ if ((x = $assertType(v2.Value, $Int64), (x.$high === 0 && x.$low === 0))) { $s = 7; continue; }
+						/* */ $s = 8; continue;
+						/* if ((x = $assertType(v2.Value, $Int64), (x.$high === 0 && x.$low === 0))) { */ case 7:
+							$r = setDivideZero(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							$s = -1; return ptrType.nil;
+						/* } */ case 8:
+						val = $div64($assertType(v.Value, $Int64), $assertType(v2.Value, $Int64), true);
+						$s = -1; return VMValueNewInt(val);
+					/* } */ case 6:
+				case 4:
+			/* } */ case 3:
+		case 1:
+		$s = -1; return ptrType.nil;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.OpModulus, $c: true, $r, _1, _2, ctx, setDivideZero, v, v2, val, x, $s};return $f;
 	};
 	VMValue.prototype.OpModulus = function(ctx, v2) { return this.$val.OpModulus(ctx, v2); };
 	VMValue.ptr.prototype.OpPower = function(ctx, v2) {
@@ -47894,7 +47912,6 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				p.OffsetPush();
 			} else if (_1 === (151)) {
 				p.AddOp(12);
-				p.WriteCode(73, new $Int64(0, 1));
 				p.OffsetPopAndSet();
 				p.OffsetPopAndSet();
 			} else if (_1 === (152)) {
