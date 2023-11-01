@@ -1,0 +1,23 @@
+{
+  "name": "dicescript",
+  "version": "0.1.0",
+  "description": "Simple script language for TRPG dice engine.",
+  "main": "dicescript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sealdice/dicescript.git"
+  },
+  "keywords": [
+    "dice",
+    "trpg"
+  ],
+  "author": "fy",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/sealdice/dicescript/issues"
+  },
+  "homepage": "https://github.com/sealdice/dicescript#readme"
+}

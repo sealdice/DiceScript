@@ -32,11 +32,11 @@
 <script>
     const { createApp } = Vue
     let ctx = dice.newVM();
-    ctx.Flags.PrintBytecode = true; // 好像没什么用
-    ctx.Flags.EnableDiceWoD = true;
-    ctx.Flags.EnableDiceCoC = true;
-    ctx.Flags.EnableDiceFate = true;
-    ctx.Flags.EnableDiceDoubleCross = true;
+    ctx.Config.PrintBytecode = true; // 好像没什么用
+    ctx.Config.EnableDiceWoD = true;
+    ctx.Config.EnableDiceCoC = true;
+    ctx.Config.EnableDiceFate = true;
+    ctx.Config.EnableDiceDoubleCross = true;
 
     createApp({
         data() {
@@ -58,6 +58,8 @@
                     } else {
                         this.items.push("过程:" + ctx.Detail)
                         this.items.push("结果:" + ctx.Ret.ToString())
+                        this.items.push(`栈顶: ${ctx.StackTop()} 层数:${ctx.Depth()} 算力: ${ctx.NumOpCount}`)
+
                         if (ctx.RestInput) {
                             this.items.push(`剩余文本: ${ctx.RestInput}`)
                         }
