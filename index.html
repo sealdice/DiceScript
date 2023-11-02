@@ -1,78 +1,91 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <title>DiceScript 测试页</title>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-</head>
-<body>
-<script src="./dicescript.js?v=2"></script>
-<script src="https://unpkg.zhimg.com/vue@3.2.38/dist/vue.global.prod.js"></script>
-<script src="https://unpkg.zhimg.com/eruda@2.4.1"></script>
-<script>eruda.init();</script>
 
-<div id="app">
+<head>
+  <meta charset="UTF-8">
+  <title>DiceScript 测试页</title>
+  <meta charset="utf-8" name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+</head>
+
+<body>
+  <!--<script src="./dicescript.js"></script>-->
+  <script src="https://unpkg.zhimg.com/vue@3.2.38/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.zhimg.com/eruda@2.4.1"></script>
+  <script>eruda.init();</script>
+
+  <div id="app">
     <div>
-        <div v-for="i in items">{{i}}</div>
+      <div v-for="i in items">{{i}}</div>
     </div>
     <div>
-        <div>
-            <textarea rows="5" id="prompt" v-model="message"></textarea>
-        </div>
-        <button @click="doSend">发送</button>
+      <div>
+        <textarea rows="5" id="prompt" v-model="message"></textarea>
+      </div>
+      <button @click="doSend">发送</button>
     </div>
 
     <div style="margin-top: 2rem;">
-        <div>提示: 还在开发中，支持语法详情看<a target="_blank" href="https://github.com/sealdice/dicescript/blob/main/GUIDE.md">语法指南</a></div>
-        <div style="margin-left: 2rem">控制台里有上一条指令的字节码。建议多ctrl+f5以免遇到旧版</div>
-        <div style="margin-left: 2rem">有一个人物卡变量叫player，通过"_测试30"这种形式可以读取出数字30，可用于ra判定</div>
+      <div>提示: 还在开发中，支持语法详情看<a target="_blank" href="https://github.com/sealdice/dicescript/blob/main/GUIDE.md">语法指南</a>
+      </div>
+      <div style="margin-left: 2rem">控制台里有上一条指令的字节码。建议多ctrl+f5以免遇到旧版</div>
+      <div style="margin-left: 2rem">有一个人物卡变量叫player，通过"_测试30"这种形式可以读取出数字30，可用于ra判定</div>
     </div>
-</div>
+  </div>
 
-<script>
+  <script type="module">
+    import ds from "./dist/main.mjs";
     const { createApp } = Vue
-    let ctx = dice.newVM();
-    ctx.Config.PrintBytecode = true; // 好像没什么用
-    ctx.Config.EnableDiceWoD = true;
-    ctx.Config.EnableDiceCoC = true;
-    ctx.Config.EnableDiceFate = true;
-    ctx.Config.EnableDiceDoubleCross = true;
+
+    let ctx = ds.newVMForPlaygournd();
+    console.log('module', ds);
+    console.log('vm', ctx);
+    
+    const c = ds.newConfig();
+    c.OpCountLimit = 30000
+    c.PrintBytecode = true;
+    c.EnableDiceWoD = true;
+    c.EnableDiceCoC = true;
+    c.EnableDiceFate = true;
+    c.EnableDiceDoubleCross = true;
+    ctx.SetConfig(c);
 
     createApp({
-        data() {
-            return {
-                items: ['DiceScript Shell'],
-                message: 'd20'
-            }
-        },
-        methods: {
-            doSend () {
-                this.message = this.message.trim()
-                if (this.message === '') return;
-
-                this.items.push(`>>> ${this.message}`)
-                try {
-                    ctx.Run(this.message)
-                    if (ctx.Error) {
-                        this.items.push(`错误: ${ctx.Error.Error()}`)
-                    } else {
-                        this.items.push("过程:" + ctx.Detail)
-                        this.items.push("结果:" + ctx.Ret.ToString())
-                        this.items.push(`栈顶: ${ctx.StackTop()} 层数:${ctx.Depth()} 算力: ${ctx.NumOpCount}`)
-
-                        if (ctx.RestInput) {
-                            this.items.push(`剩余文本: ${ctx.RestInput}`)
-                        }
-                        console.log(`剩余文本: ${ctx.RestInput || '无'}`)
-                    }
-                } catch (e) {
-                    this.items.push(`内部错误: ` + e.message)
-                }
-                console.log(ctx.GetAsmText())
-                this.message = '';
-            }
+      data() {
+        return {
+          items: ['DiceScript Shell'],
+          message: 'd20'
         }
+      },
+      methods: {
+        doSend() {
+          this.message = this.message.trim()
+          if (this.message === '') return;
+
+          this.items.push(`>>> ${this.message}`)
+          try {
+            ctx.Run(this.message)
+            if (ctx.Error) {
+              this.items.push(`错误: ${ctx.Error.Error()}`)
+            } else {
+              this.items.push("过程:" + ctx.Detail)
+              this.items.push("结果:" + ctx.Ret.ToString())
+              this.items.push(`栈顶: ${ctx.StackTop()} 层数:${ctx.Depth()} 算力: ${ctx.NumOpCount}`)
+
+              if (ctx.RestInput) {
+                this.items.push(`剩余文本: ${ctx.RestInput}`)
+              }
+              console.log(`剩余文本: ${ctx.RestInput || '无'}`)
+            }
+          } catch (e) {
+            this.items.push(`内部错误: ` + e.message)
+          }
+          console.log(ctx.GetAsmText())
+          this.message = '';
+        }
+      }
     }).mount('#app')
-</script>
+  </script>
 </body>
+
 </html>

@@ -5,31 +5,32 @@ package main
 
 import (
 	"github.com/gopherjs/gopherjs/js"
-	dice "github.com/sealdice/dicescript"
 	"regexp"
 	"strconv"
+
+	ds "github.com/sealdice/dicescript"
 )
 
-var scope = map[string]*dice.VMValue{}
+var scope = map[string]*ds.VMValue{}
 
 func newVM(name string) *js.Object {
-	player := dice.VMValueNewDict(nil)
-	player.Store("力量", dice.VMValueNewInt(50))
-	player.Store("敏捷", dice.VMValueNewInt(60))
-	player.Store("智力", dice.VMValueNewInt(70))
+	player := ds.VMValueNewDict(nil)
+	player.Store("力量", ds.VMValueNewInt(50))
+	player.Store("敏捷", ds.VMValueNewInt(60))
+	player.Store("智力", ds.VMValueNewInt(70))
 	scope["player"] = player.V()
 
-	vm := dice.NewVM()
-	//vm.GlobalValueStoreFunc = func(name string, v *dice.VMValue) {
+	vm := ds.NewVM()
+	//vm.GlobalValueStoreFunc = func(name string, v *ds.VMValue) {
 	//	scope[name] = v
 	//}
 
 	re := regexp.MustCompile(`^_(\D+)(\d+)$`)
-	vm.GlobalValueLoadFunc = func(name string) *dice.VMValue {
+	vm.GlobalValueLoadFunc = func(name string) *ds.VMValue {
 		m := re.FindStringSubmatch(name)
 		if len(m) > 1 {
 			val, _ := strconv.ParseInt(m[2], 10, 64)
-			return dice.VMValueNewInt(val)
+			return ds.VMValueNewInt(val)
 		}
 
 		if v, exists := player.Load(name); exists {
@@ -46,25 +47,33 @@ func newVM(name string) *js.Object {
 }
 
 func main() {
-	newDict := func() *dice.VMDictValue {
-		return dice.VMValueNewDict(nil)
-	}
-
-	newValueMap := func() *dice.ValueMap {
-		return &dice.ValueMap{}
-	}
-
-	js.Global.Set("dice", map[string]interface{}{
-		"newVM":        newVM,
-		"newValueMap":  newValueMap,
-		"vmNewInt64":   js.MakeWrapper(dice.VMValueNewInt),
-		"vmNewFloat64": js.MakeWrapper(dice.VMValueNewFloat),
-		"vmNewStr":     js.MakeWrapper(dice.VMValueNewStr),
+	diceModule := map[string]interface{}{
+		"newVMForPlaygournd": newVM,
+		"newVM": func() *js.Object {
+			vm := ds.NewVM()
+			return js.MakeFullWrapper(vm)
+		},
+		"newConfig": func() *js.Object {
+			return js.MakeFullWrapper(&ds.RollConfig{})
+		},
+		"newValueMap": func() *js.Object {
+			return js.MakeFullWrapper(&ds.ValueMap{})
+		},
+		"vmNewInt": func(i int64) *js.Object {
+			return js.MakeFullWrapper(ds.VMValueNewInt(i))
+		},
+		"vmNewFloat": func(i float64) *js.Object {
+			return js.MakeFullWrapper(ds.VMValueNewFloat(i))
+		},
+		"vmNewStr": func(s string) *js.Object {
+			return js.MakeFullWrapper(ds.VMValueNewStr(s))
+		},
 		//"vmNewArray":    js.MakeWrapper(newArray),
-		"vmNewDict": js.MakeWrapper(newDict),
-		"help":      js.MakeWrapper("此项目的js绑定: https://github.com/sealdice/dice"),
-	})
+		"vmNewDict": func() *js.Object {
+			return js.MakeFullWrapper(ds.VMValueNewDict(nil))
+		},
+		"help": "此项目的js绑定: https://github.com/sealdice/dice",
+	}
 
-	//js.Module.Set("newVM", dice.NewVM)
-	//js.Module.Set("Context", dice.Context{})
+	js.Module.Get("exports").Set("ds", diceModule)
 }

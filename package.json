@@ -1,10 +1,11 @@
 {
   "name": "dicescript",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Simple script language for TRPG dice engine.",
-  "main": "dicescript.js",
+  "module": "./dist/main.mjs",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack ."
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/sealdice/dicescript/issues"
   },
-  "homepage": "https://github.com/sealdice/dicescript#readme"
+  "homepage": "https://github.com/sealdice/dicescript#readme",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
 }

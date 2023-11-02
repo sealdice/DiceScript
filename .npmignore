@@ -1,0 +1,7 @@
+node_modules
+dicescript.cjs
+dicescript.cjs.map
+index.html
+main.go
+index.js
+webpack.config.js
