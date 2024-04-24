@@ -30,7 +30,7 @@ func newVM(name string) *js.Object {
 		m := re.FindStringSubmatch(name)
 		if len(m) > 1 {
 			val, _ := strconv.ParseInt(m[2], 10, 64)
-			return ds.VMValueNewInt(val)
+			return ds.VMValueNewInt(ds.IntType(val))
 		}
 
 		if v, exists := player.Load(name); exists {
@@ -59,7 +59,7 @@ func main() {
 		"newValueMap": func() *js.Object {
 			return js.MakeFullWrapper(&ds.ValueMap{})
 		},
-		"vmNewInt": func(i int64) *js.Object {
+		"vmNewInt": func(i ds.IntType) *js.Object {
 			return js.MakeFullWrapper(ds.VMValueNewInt(i))
 		},
 		"vmNewFloat": func(i float64) *js.Object {

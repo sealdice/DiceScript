@@ -42585,7 +42585,7 @@ $packages["regexp"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/sealdice/dicescript"] = (function() {
-	var $pkg = {}, $init, bytes, json, errors, fmt, io, math, rand, os, reflect, regexp, sort, strconv, strings, sync, atomic, time, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, RollConfig, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, NativeObjectData, recursionInfo, spanByBegin, spanByEnd, pegRule, token32, node32, tokens32, Parser, textPosition, parseError, ParserData, BufferSpan, StInfo, CodeType, ByteCode, element, ptrType, ptrType$1, funcType, sliceType, sliceType$1, sliceType$2, ptrType$2, ptrType$3, ptrType$4, sliceType$3, structType, structType$1, structType$2, sliceType$4, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, structType$11, structType$12, mapType, structType$13, structType$14, structType$15, sliceType$5, structType$16, sliceType$6, sliceType$7, ptrType$5, ptrType$6, ptrType$7, ptrType$8, ptrType$9, ptrType$10, ptrType$11, ptrType$12, sliceType$8, sliceType$9, structType$17, sliceType$10, structType$18, sliceType$11, ptrType$13, sliceType$12, sliceType$13, ptrType$14, sliceType$14, funcType$1, arrayType, sliceType$15, funcType$2, sliceType$16, sliceType$17, sliceType$18, ptrType$15, structType$19, sliceType$19, structType$20, structType$21, structType$22, sliceType$20, ptrType$16, ptrType$17, ptrType$18, funcType$3, mapType$1, funcType$4, funcType$5, ptrType$19, funcType$6, ptrType$20, funcType$7, funcType$8, funcType$9, mapType$2, ptrType$21, funcType$10, funcType$11, funcType$12, funcType$13, funcType$14, funcType$15, mapType$3, ptrType$22, ptrType$23, funcType$16, funcType$17, ptrType$24, ptrType$25, ptrType$26, expungedValueMap, builtinProto, binOperator, rul3s, nnf, builtinValues, _arg, _r, _arg$1, _arg$2, _r$1, _arg$3, _arg$4, _r$2, _arg$5, _arg$6, _r$3, _arg$7, _arg$8, _r$4, _arg$9, _arg$10, _r$5, _arg$11, _arg$12, _r$6, _arg$13, _arg$14, _r$7, _arg$15, _arg$16, _r$8, _arg$17, _arg$18, _r$9, _arg$19, _r$10, _arg$20, _r$11, _arg$21, _arg$22, _r$12, _arg$23, _arg$24, _r$13, _arg$25, _arg$26, _r$14, _arg$27, _r$15, _r$16, _r$17, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, newEntryValueMap, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, funcDictKeys, funcDictValues, funcDictItems, funcDictLen, getBindMethod, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, VMValueNewInt, VMValueNewFloat, VMValueNewStr, VMValueNewUndefined, vmValueNewLocal, VMValueNewArrayRaw, VMValueNewArray, VMValueNewDict, VMValueNewDictWithArray, VMValueMustNewDictWithArray, VMValueNewComputedRaw, VMValueNewComputed, VMValueNewFunctionRaw, VMValueNewNativeFunction, VMValueNewNativeObject, NewVM, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, translatePositions, funcCeil, funcRound, funcFloor, funcAbs, funcInt, funcFloat, funcStr, funcDir;
+	var $pkg = {}, $init, bytes, json, errors, fmt, io, math, rand, os, reflect, regexp, sort, strconv, strings, sync, atomic, time, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, IntType, RollConfig, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, NativeObjectData, recursionInfo, spanByBegin, spanByEnd, pegRule, token32, node32, tokens32, Parser, textPosition, parseError, ParserData, BufferSpan, StInfo, CodeType, ByteCode, element, ptrType, ptrType$1, funcType, sliceType, sliceType$1, sliceType$2, ptrType$2, ptrType$3, ptrType$4, sliceType$3, structType, structType$1, structType$2, sliceType$4, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, structType$11, structType$12, mapType, structType$13, structType$14, structType$15, sliceType$5, structType$16, sliceType$6, sliceType$7, ptrType$5, ptrType$6, ptrType$7, ptrType$8, ptrType$9, ptrType$10, ptrType$11, ptrType$12, sliceType$8, sliceType$9, structType$17, sliceType$10, structType$18, sliceType$11, ptrType$13, sliceType$12, sliceType$13, ptrType$14, sliceType$14, funcType$1, arrayType, sliceType$15, funcType$2, sliceType$16, sliceType$17, sliceType$18, ptrType$15, structType$19, sliceType$19, structType$20, structType$21, structType$22, sliceType$20, ptrType$16, ptrType$17, ptrType$18, funcType$3, mapType$1, funcType$4, funcType$5, ptrType$19, funcType$6, ptrType$20, funcType$7, funcType$8, funcType$9, mapType$2, ptrType$21, funcType$10, funcType$11, funcType$12, funcType$13, funcType$14, funcType$15, mapType$3, ptrType$22, ptrType$23, funcType$16, funcType$17, ptrType$24, ptrType$25, ptrType$26, expungedValueMap, builtinProto, binOperator, rul3s, nnf, builtinValues, _arg, _r, _arg$1, _arg$2, _r$1, _arg$3, _arg$4, _r$2, _arg$5, _arg$6, _r$3, _arg$7, _arg$8, _r$4, _arg$9, _arg$10, _r$5, _arg$11, _arg$12, _r$6, _arg$13, _arg$14, _r$7, _arg$15, _arg$16, _r$8, _arg$17, _arg$18, _r$9, _arg$19, _r$10, _arg$20, _r$11, _arg$21, _arg$22, _r$12, _arg$23, _arg$24, _r$13, _arg$25, _arg$26, _r$14, _arg$27, _r$15, _r$16, _r$17, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, newEntryValueMap, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, funcDictKeys, funcDictValues, funcDictItems, funcDictLen, getBindMethod, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, VMValueNewInt, VMValueNewFloat, VMValueNewStr, VMValueNewUndefined, vmValueNewLocal, VMValueNewArrayRaw, VMValueNewArray, VMValueNewDict, VMValueNewDictWithArray, VMValueMustNewDictWithArray, VMValueNewComputedRaw, VMValueNewComputed, VMValueNewFunctionRaw, VMValueNewNativeFunction, VMValueNewNativeObject, NewVM, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, translatePositions, funcCeil, funcRound, funcFloor, funcAbs, funcInt, funcFloat, funcStr, funcDir;
 	bytes = $packages["bytes"];
 	json = $packages["encoding/json"];
 	errors = $packages["errors"];
@@ -42635,6 +42635,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.p = p_;
 	});
 	VMValueType = $pkg.VMValueType = $newType(4, $kindInt, "dicescript.VMValueType", true, "github.com/sealdice/dicescript", true, null);
+	IntType = $pkg.IntType = $newType(4, $kindInt, "dicescript.IntType", true, "github.com/sealdice/dicescript", true, null);
 	RollConfig = $pkg.RollConfig = $newType(0, $kindStruct, "dicescript.RollConfig", true, "github.com/sealdice/dicescript", true, function(EnableDiceWoD_, EnableDiceCoC_, EnableDiceFate_, EnableDiceDoubleCross_, DisableBitwiseOp_, DisableStmts_, DisableNDice_, CallbackLoadVar_, CallbackSt_, OpCountLimit_, DefaultDiceSideExpr_, defaultDiceSideExprCacheFunc_, PrintBytecode_, IgnoreDiv0_, DiceMinMode_, DiceMaxMode_) {
 		this.$val = this;
 		if (arguments.length === 0) {
@@ -42647,7 +42648,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			this.DisableNDice = false;
 			this.CallbackLoadVar = $throwNilPointerError;
 			this.CallbackSt = $throwNilPointerError;
-			this.OpCountLimit = new $Int64(0, 0);
+			this.OpCountLimit = 0;
 			this.DefaultDiceSideExpr = "";
 			this.defaultDiceSideExprCacheFunc = ptrType.nil;
 			this.PrintBytecode = false;
@@ -42694,8 +42695,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			this.codeIndex = 0;
 			this.stack = sliceType$12.nil;
 			this.top = 0;
-			this.NumOpCount = new $Int64(0, 0);
-			this.Config = new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, new $Int64(0, 0), "", ptrType.nil, false, false, false, false);
+			this.NumOpCount = 0;
+			this.Config = new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, 0, "", ptrType.nil, false, false, false, false);
 			this.Error = $ifaceNil;
 			this.Ret = ptrType.nil;
 			this.RestInput = "";
@@ -42886,8 +42887,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser = $pkg.Parser = $newType(0, $kindStruct, "dicescript.Parser", true, "github.com/sealdice/dicescript", true, function(ParserData_, Context_, Buffer_, buffer_, rules_, parse_, reset_, Pretty_, tokens32_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.ParserData = new ParserData.ptr(sliceType$9.nil, sliceType$1.nil, sliceType$9.nil, sliceType$9.nil, sliceType$9.nil, sliceType$10.nil, new $Int64(0, 0), sliceType$11.nil);
-			this.Context = new Context.ptr(ptrType$13.nil, 0, ptrType$11.nil, ptrType$1.nil, sliceType$5.nil, 0, sliceType$12.nil, 0, new $Int64(0, 0), new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, new $Int64(0, 0), "", ptrType.nil, false, false, false, false), $ifaceNil, ptrType.nil, "", "", "", false, sliceType$13.nil, sliceType$14.nil, $throwNilPointerError, ptrType$11.nil, $throwNilPointerError, $throwNilPointerError);
+			this.ParserData = new ParserData.ptr(sliceType$9.nil, sliceType$1.nil, sliceType$9.nil, sliceType$9.nil, sliceType$9.nil, sliceType$10.nil, 0, sliceType$11.nil);
+			this.Context = new Context.ptr(ptrType$13.nil, 0, ptrType$11.nil, ptrType$1.nil, sliceType$5.nil, 0, sliceType$12.nil, 0, 0, new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, 0, "", ptrType.nil, false, false, false, false), $ifaceNil, ptrType.nil, "", "", "", false, sliceType$13.nil, sliceType$14.nil, $throwNilPointerError, ptrType$11.nil, $throwNilPointerError, $throwNilPointerError);
 			this.Buffer = "";
 			this.buffer = sliceType$8.nil;
 			this.rules = arrayType.zero();
@@ -42936,7 +42937,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			this.breakStack = sliceType$9.nil;
 			this.continueStack = sliceType$9.nil;
 			this.loopInfo = sliceType$10.nil;
-			this.loopLayer = new $Int64(0, 0);
+			this.loopLayer = 0;
 			this.codeStack = sliceType$11.nil;
 			return;
 		}
@@ -42952,8 +42953,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	BufferSpan = $pkg.BufferSpan = $newType(0, $kindStruct, "dicescript.BufferSpan", true, "github.com/sealdice/dicescript", true, function(begin_, end_, ret_, text_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.begin = new $Int64(0, 0);
-			this.end = new $Int64(0, 0);
+			this.begin = 0;
+			this.end = 0;
 			this.ret = ptrType.nil;
 			this.text = "";
 			return;
@@ -43012,7 +43013,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	structType$4 = $structType("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: structType$3, tag: "json:\"value\""}]);
 	structType$5 = $structType("", [{prop: "Name", name: "Name", embedded: false, exported: true, typ: $String, tag: "json:\"name\""}]);
 	structType$6 = $structType("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: structType$5, tag: "json:\"value\""}]);
-	structType$7 = $structType("", [{prop: "Value", name: "Value", embedded: false, exported: true, typ: $Int64, tag: "json:\"value\""}]);
+	structType$7 = $structType("", [{prop: "Value", name: "Value", embedded: false, exported: true, typ: IntType, tag: "json:\"value\""}]);
 	structType$8 = $structType("", [{prop: "Value", name: "Value", embedded: false, exported: true, typ: $Float64, tag: "json:\"value\""}]);
 	structType$9 = $structType("", [{prop: "Value", name: "Value", embedded: false, exported: true, typ: $String, tag: "json:\"value\""}]);
 	structType$10 = $structType("", [{prop: "Value", name: "Value", embedded: false, exported: true, typ: structType$1, tag: "json:\"value\""}]);
@@ -43035,7 +43036,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$11 = $ptrType(ValueMap);
 	ptrType$12 = $ptrType(VMDictValue);
 	sliceType$8 = $sliceType($Int32);
-	sliceType$9 = $sliceType($Int64);
+	sliceType$9 = $sliceType(IntType);
 	structType$17 = $structType("github.com/sealdice/dicescript", [{prop: "continueIndex", name: "continueIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "breakIndex", name: "breakIndex", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	sliceType$10 = $sliceType(structType$17);
 	structType$18 = $structType("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}]);
@@ -43052,12 +43053,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	sliceType$16 = $sliceType(funcType$2);
 	sliceType$17 = $sliceType($Int);
 	sliceType$18 = $sliceType(BufferSpan);
-	ptrType$15 = $ptrType($Int64);
-	structType$19 = $structType("github.com/sealdice/dicescript", [{prop: "times", name: "times", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "isKeepLH", name: "isKeepLH", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "lowNum", name: "lowNum", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "highNum", name: "highNum", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "min", name: "min", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: ptrType$15, tag: ""}]);
+	ptrType$15 = $ptrType(IntType);
+	structType$19 = $structType("github.com/sealdice/dicescript", [{prop: "times", name: "times", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "isKeepLH", name: "isKeepLH", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "lowNum", name: "lowNum", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "highNum", name: "highNum", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "min", name: "min", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: ptrType$15, tag: ""}]);
 	sliceType$19 = $sliceType(structType$19);
-	structType$20 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "threshold", name: "threshold", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "isGE", name: "isGE", embedded: false, exported: false, typ: $Bool, tag: ""}]);
-	structType$21 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: $Int64, tag: ""}]);
-	structType$22 = $structType("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "spans", name: "spans", embedded: false, exported: false, typ: sliceType$18, tag: ""}]);
+	structType$20 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "threshold", name: "threshold", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "isGE", name: "isGE", embedded: false, exported: false, typ: $Bool, tag: ""}]);
+	structType$21 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: IntType, tag: ""}]);
+	structType$22 = $structType("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "spans", name: "spans", embedded: false, exported: false, typ: sliceType$18, tag: ""}]);
 	sliceType$20 = $sliceType(structType$22);
 	ptrType$16 = $ptrType(node32);
 	ptrType$17 = $ptrType(element);
@@ -43743,7 +43744,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* */ if (_1 === (10)) { $s = 13; continue; }
 			/* */ $s = 14; continue;
 			/* if (_1 === (0)) { */ case 3:
-				v1[0] = new structType$7.ptr(new $Int64(0, 0));
+				v1[0] = new structType$7.ptr(0);
 				_r$25 = json.Unmarshal(input, v1[0]); /* */ $s = 15; case 15: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 				err$1 = _r$25;
 				if ($interfaceIsEqual(err$1, $ifaceNil)) {
@@ -43861,7 +43862,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		isAllInt = _tuple[0];
 		ret = _tuple[1];
 		if (isAllInt) {
-			$s = -1; return VMValueNewInt((new $Int64(0, ret)));
+			$s = -1; return VMValueNewInt(((ret >> 0)));
 		} else {
 			$s = -1; return VMValueNewFloat(ret);
 		}
@@ -43876,7 +43877,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		isAllInt = _tuple[0];
 		ret = _tuple[1];
 		if (isAllInt) {
-			$s = -1; return VMValueNewInt((new $Int64(0, ret)));
+			$s = -1; return VMValueNewInt(((ret >> 0)));
 		} else {
 			$s = -1; return VMValueNewFloat(ret);
 		}
@@ -43896,7 +43897,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			i = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
 			_1 = i.TypeId;
 			if (_1 === (0)) {
-				sumNum = sumNum + (($flatten64(i.MustReadInt())));
+				sumNum = sumNum + ((i.MustReadInt()));
 			} else if (_1 === (1)) {
 				isAllInt = false;
 				sumNum = sumNum + (i.MustReadFloat());
@@ -43904,7 +43905,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			_i++;
 		}
 		if (isAllInt) {
-			return VMValueNewInt((new $Int64(0, sumNum)));
+			return VMValueNewInt(((sumNum >> 0)));
 		} else {
 			return VMValueNewFloat(sumNum);
 		}
@@ -43913,7 +43914,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _tuple, arr, ctx, params, this$1;
 		_tuple = this$1.ReadArray();
 		arr = _tuple[0];
-		return VMValueNewInt((new $Int64(0, arr.List.$length)));
+		return VMValueNewInt(((arr.List.$length >> 0)));
 	};
 	funcArrayShuttle = function(ctx, this$1, params) {
 		var {_r$24, _tmp, _tmp$1, _tuple, arr, ctx, i, j, lst, params, this$1, $s, $r, $c} = $restore(this, {ctx, this$1, params});
@@ -43960,7 +43961,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		val = _tuple$2[0];
 		ok = _tuple$2[1];
 		if (ok) {
-			arr.List = $subslice(arr.List, 0, $flatten64(val));
+			arr.List = $subslice(arr.List, 0, val);
 			$s = -1; return newArr;
 		} else {
 			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE4\xB8\x8D\xE7\xAC\xA6");
@@ -44045,10 +44046,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		size = [size];
 		d = this$1.MustReadDictData();
-		size[0] = new $Int64(0, 0);
+		size[0] = 0;
 		$r = d.Dict.Range((function(size) { return function(key, value) {
-			var key, value, x;
-			size[0] = (x = new $Int64(0, 1), new $Int64(size[0].$high + x.$high, size[0].$low + x.$low));
+			var key, value;
+			size[0] = size[0] + (1) >> 0;
 			return true;
 		}; })(size)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$s = -1; return VMValueNewInt(size[0]);
@@ -44155,11 +44156,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (v.TypeId === 6) {
 			_tuple = v.ReadArray();
 			arr = _tuple[0];
-			index = getRealIndex(ctx, index, (new $Int64(0, arr.List.$length)));
+			index = getRealIndex(ctx, index, ((arr.List.$length >> 0)));
 			if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
 				return ptrType.nil;
 			}
-			return (x = arr.List, (($flatten64(index) < 0 || $flatten64(index) >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + $flatten64(index)]));
+			return (x = arr.List, ((index < 0 || index >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + index]));
 		}
 		ctx.Error = errors.New("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE5\x8F\x96\xE4\xB8\x8B\xE6\xA0\x87");
 		return ptrType.nil;
@@ -44171,11 +44172,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (v.TypeId === 6) {
 			_tuple = v.ReadArray();
 			arr = _tuple[0];
-			index = getRealIndex(ctx, index, (new $Int64(0, arr.List.$length)));
+			index = getRealIndex(ctx, index, ((arr.List.$length >> 0)));
 			if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
 				return false;
 			}
-			(x = arr.List, (($flatten64(index) < 0 || $flatten64(index) >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + $flatten64(index)] = val.Clone()));
+			(x = arr.List, ((index < 0 || index >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + index] = val.Clone()));
 			return true;
 		}
 		ctx.Error = errors.New("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE8\xB5\x8B\xE5\x80\xBC\xE4\xB8\x8B\xE6\xA0\x87");
@@ -44183,7 +44184,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.ArrayItemSet = function(ctx, index, val) { return this.$val.ArrayItemSet(ctx, index, val); };
 	VMValue.ptr.prototype.ArrayFuncKeepBase = function(ctx, pickNum, orderType) {
-		var {_1, _i, _ref, _tmp, _tmp$1, _tuple, arr, ctx, i, i$1, isAllInt, num, nums, orderType, pickNum, ret, v, x, x$1, x$2, $s, $r, $c} = $restore(this, {ctx, pickNum, orderType});
+		var {_1, _i, _ref, _tmp, _tmp$1, _tuple, arr, ctx, i, i$1, isAllInt, num, nums, orderType, pickNum, ret, v, $s, $r, $c} = $restore(this, {ctx, pickNum, orderType});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		nums = [nums];
 		isAllInt = false;
@@ -44200,7 +44201,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			i = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
 			_1 = i.TypeId;
 			if (_1 === (0)) {
-				nums[0] = $append(nums[0], ($flatten64(i.MustReadInt())));
+				nums[0] = $append(nums[0], (i.MustReadInt()));
 			} else if (_1 === (1)) {
 				isAllInt = false;
 				nums[0] = $append(nums[0], i.MustReadFloat());
@@ -44223,22 +44224,22 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			}; })(nums)); /* */ $s = 5; case 5: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		/* } */ case 3:
 		num = 0;
-		i$1 = new $Int64(0, 0);
+		i$1 = 0;
 		while (true) {
-			if (!((i$1.$high < pickNum.$high || (i$1.$high === pickNum.$high && i$1.$low < pickNum.$low)))) { break; }
-			if ((x = (new $Int64(0, nums[0].$length)), (i$1.$high > x.$high || (i$1.$high === x.$high && i$1.$low >= x.$low)))) {
-				i$1 = (x$1 = new $Int64(0, 1), new $Int64(i$1.$high + x$1.$high, i$1.$low + x$1.$low));
+			if (!(i$1 < pickNum)) { break; }
+			if (i$1 >= ((nums[0].$length >> 0))) {
+				i$1 = i$1 + (1) >> 0;
 				continue;
 			}
-			num = num + ((($flatten64(i$1) < 0 || $flatten64(i$1) >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + $flatten64(i$1)]));
-			i$1 = (x$2 = new $Int64(0, 1), new $Int64(i$1.$high + x$2.$high, i$1.$low + x$2.$low));
+			num = num + (((i$1 < 0 || i$1 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$1]));
+			i$1 = i$1 + (1) >> 0;
 		}
 		_tmp = isAllInt;
 		_tmp$1 = num;
 		isAllInt = _tmp;
 		ret = _tmp$1;
 		$s = -1; return [isAllInt, ret];
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ArrayFuncKeepBase, $c: true, $r, _1, _i, _ref, _tmp, _tmp$1, _tuple, arr, ctx, i, i$1, isAllInt, num, nums, orderType, pickNum, ret, v, x, x$1, x$2, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ArrayFuncKeepBase, $c: true, $r, _1, _i, _ref, _tmp, _tmp$1, _tuple, arr, ctx, i, i$1, isAllInt, num, nums, orderType, pickNum, ret, v, $s};return $f;
 	};
 	VMValue.prototype.ArrayFuncKeepBase = function(ctx, pickNum, orderType) { return this.$val.ArrayFuncKeepBase(ctx, pickNum, orderType); };
 	VMValue.ptr.prototype.ArrayFuncKeepHigh = function(ctx, pickNum) {
@@ -44481,7 +44482,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
-			return !($interfaceIsEqual(v.Value, new $Int64(0, 0)));
+			return !($interfaceIsEqual(v.Value, new IntType(0)));
 		} else if (_1 === (2)) {
 			return !($interfaceIsEqual(v.Value, new $String("")));
 		} else if ((_1 === (4)) || (_1 === (3))) {
@@ -44525,7 +44526,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* */ if (_1 === (10)) { $s = 12; continue; }
 			/* */ $s = 13; continue;
 			/* if (_1 === (0)) { */ case 2:
-				$s = -1; return strconv.FormatInt($assertType(v.Value, $Int64), 10);
+				$s = -1; return strconv.FormatInt((new $Int64(0, $assertType(v.Value, IntType))), 10);
 			/* } else if (_1 === (1)) { */ case 3:
 				$s = -1; return strconv.FormatFloat($assertType(v.Value, $Float64), 102, -1, 64);
 			/* } else if (_1 === (2)) { */ case 4:
@@ -44648,9 +44649,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var v;
 		v = this;
 		if (v.TypeId === 0) {
-			return [$assertType(v.Value, $Int64), true];
+			return [$assertType(v.Value, IntType), true];
 		}
-		return [new $Int64(0, 0), false];
+		return [0, false];
 	};
 	VMValue.prototype.ReadInt = function() { return this.$val.ReadInt(); };
 	VMValue.ptr.prototype.ReadFloat = function() {
@@ -44771,22 +44772,22 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.ReadNativeObjectData = function() { return this.$val.ReadNativeObjectData(); };
 	VMValue.ptr.prototype.OpAdd = function(ctx, v2) {
-		var _1, _2, _3, _4, _5, _i, _ref, _tuple, _tuple$1, arr, arr2, arrFinal, ctx, i, index, length, v, v2, val, val$1, val$2, val$3, val$4, x, x$1, x$2;
+		var _1, _2, _3, _4, _5, _i, _ref, _tuple, _tuple$1, arr, arr2, arrFinal, ctx, i, index, length, v, v2, val, val$1, val$2, val$3, val$4, x;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				val = (x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), new $Int64(x.$high + x$1.$high, x.$low + x$1.$low));
+				val = $assertType(v.Value, IntType) + $assertType(v2.Value, IntType) >> 0;
 				return VMValueNewInt(val);
 			} else if (_2 === (1)) {
-				val$1 = ($flatten64($assertType(v.Value, $Int64))) + $assertType(v2.Value, $Float64);
+				val$1 = ($assertType(v.Value, IntType)) + $assertType(v2.Value, $Float64);
 				return VMValueNewFloat(val$1);
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				val$2 = $assertType(v.Value, $Float64) + ($flatten64($assertType(v2.Value, $Int64)));
+				val$2 = $assertType(v.Value, $Float64) + ($assertType(v2.Value, IntType));
 				return VMValueNewFloat(val$2);
 			} else if (_3 === (1)) {
 				val$3 = $assertType(v.Value, $Float64) + $assertType(v2.Value, $Float64);
@@ -44818,7 +44819,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					if (!(_i < _ref.$length)) { break; }
 					index = _i;
 					i = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-					(x$2 = arr.List.$length + index >> 0, ((x$2 < 0 || x$2 >= arrFinal.$length) ? ($throwRuntimeError("index out of range"), undefined) : arrFinal.$array[arrFinal.$offset + x$2] = i));
+					(x = arr.List.$length + index >> 0, ((x < 0 || x >= arrFinal.$length) ? ($throwRuntimeError("index out of range"), undefined) : arrFinal.$array[arrFinal.$offset + x] = i));
 					_i++;
 				}
 				return VMValueNewArray(arrFinal);
@@ -44828,22 +44829,22 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpAdd = function(ctx, v2) { return this.$val.OpAdd(ctx, v2); };
 	VMValue.ptr.prototype.OpSub = function(ctx, v2) {
-		var _1, _2, _3, ctx, v, v2, val, val$1, val$2, val$3, x, x$1;
+		var _1, _2, _3, ctx, v, v2, val, val$1, val$2, val$3;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				val = (x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), new $Int64(x.$high - x$1.$high, x.$low - x$1.$low));
+				val = $assertType(v.Value, IntType) - $assertType(v2.Value, IntType) >> 0;
 				return VMValueNewInt(val);
 			} else if (_2 === (1)) {
-				val$1 = ($flatten64($assertType(v.Value, $Int64))) - $assertType(v2.Value, $Float64);
+				val$1 = ($assertType(v.Value, IntType)) - $assertType(v2.Value, $Float64);
 				return VMValueNewFloat(val$1);
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				val$2 = $assertType(v.Value, $Float64) - ($flatten64($assertType(v2.Value, $Int64)));
+				val$2 = $assertType(v.Value, $Float64) - ($assertType(v2.Value, IntType));
 				return VMValueNewFloat(val$2);
 			} else if (_3 === (1)) {
 				val$3 = $assertType(v.Value, $Float64) - $assertType(v2.Value, $Float64);
@@ -44860,10 +44861,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				val = $mul64($assertType(v.Value, $Int64), $assertType(v2.Value, $Int64));
+				val = $imul($assertType(v.Value, IntType), $assertType(v2.Value, IntType));
 				return VMValueNewInt(val);
 			} else if (_2 === (1)) {
-				val$1 = ($flatten64($assertType(v.Value, $Int64))) * $assertType(v2.Value, $Float64);
+				val$1 = ($assertType(v.Value, IntType)) * $assertType(v2.Value, $Float64);
 				return VMValueNewFloat(val$1);
 			} else if (_2 === (6)) {
 				return v2.ArrayRepeatTimesEx(ctx, v);
@@ -44871,7 +44872,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				val$2 = $assertType(v.Value, $Float64) * ($flatten64($assertType(v2.Value, $Int64)));
+				val$2 = $assertType(v.Value, $Float64) * ($assertType(v2.Value, IntType));
 				return VMValueNewFloat(val$2);
 			} else if (_3 === (1)) {
 				val$3 = $assertType(v.Value, $Float64) * $assertType(v2.Value, $Float64);
@@ -44884,7 +44885,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpMultiply = function(ctx, v2) { return this.$val.OpMultiply(ctx, v2); };
 	VMValue.ptr.prototype.OpDivide = function(ctx, v2) {
-		var {$24r, $24r$1, $24r$2, $24r$3, _1, _2, _3, _r$24, _r$25, _r$26, _r$27, ctx, setDivideZero, v, v2, val, val$1, val$2, val$3, x, x$1, $s, $r, $c} = $restore(this, {ctx, v2});
+		var {$24r, $24r$1, $24r$2, $24r$3, _1, _2, _3, _q, _r$24, _r$25, _r$26, _r$27, ctx, setDivideZero, v, v2, val, val$1, val$2, val$3, $s, $r, $c} = $restore(this, {ctx, v2});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = [ctx];
 		v = [v];
@@ -44906,14 +44907,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (_2 === (1)) { $s = 7; continue; }
 					/* */ $s = 8; continue;
 					/* if (_2 === (0)) { */ case 6:
-						/* */ if ((x = $assertType(v2.Value, $Int64), (x.$high === 0 && x.$low === 0))) { $s = 9; continue; }
+						/* */ if ($assertType(v2.Value, IntType) === 0) { $s = 9; continue; }
 						/* */ $s = 10; continue;
-						/* if ((x = $assertType(v2.Value, $Int64), (x.$high === 0 && x.$low === 0))) { */ case 9:
+						/* if ($assertType(v2.Value, IntType) === 0) { */ case 9:
 							_r$24 = setDivideZero(); /* */ $s = 11; case 11: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 							$24r = _r$24;
 							$s = 12; case 12: return $24r;
 						/* } */ case 10:
-						val = $div64($assertType(v[0].Value, $Int64), $assertType(v2.Value, $Int64), false);
+						val = (_q = $assertType(v[0].Value, IntType) / $assertType(v2.Value, IntType), (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : $throwRuntimeError("integer divide by zero"));
 						$s = -1; return VMValueNewInt(val);
 					/* } else if (_2 === (1)) { */ case 7:
 						/* */ if ($assertType(v2.Value, $Float64) === 0) { $s = 13; continue; }
@@ -44923,7 +44924,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 							$24r$1 = _r$25;
 							$s = 16; case 16: return $24r$1;
 						/* } */ case 14:
-						val$1 = ($flatten64($assertType(v[0].Value, $Int64))) / $assertType(v2.Value, $Float64);
+						val$1 = ($assertType(v[0].Value, IntType)) / $assertType(v2.Value, $Float64);
 						$s = -1; return VMValueNewFloat(val$1);
 					/* } */ case 8:
 				case 5:
@@ -44934,14 +44935,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (_3 === (1)) { $s = 19; continue; }
 					/* */ $s = 20; continue;
 					/* if (_3 === (0)) { */ case 18:
-						/* */ if ((x$1 = $assertType(v2.Value, $Int64), (x$1.$high === 0 && x$1.$low === 0))) { $s = 21; continue; }
+						/* */ if ($assertType(v2.Value, IntType) === 0) { $s = 21; continue; }
 						/* */ $s = 22; continue;
-						/* if ((x$1 = $assertType(v2.Value, $Int64), (x$1.$high === 0 && x$1.$low === 0))) { */ case 21:
+						/* if ($assertType(v2.Value, IntType) === 0) { */ case 21:
 							_r$26 = setDivideZero(); /* */ $s = 23; case 23: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 							$24r$2 = _r$26;
 							$s = 24; case 24: return $24r$2;
 						/* } */ case 22:
-						val$2 = $assertType(v[0].Value, $Float64) / ($flatten64($assertType(v2.Value, $Int64)));
+						val$2 = $assertType(v[0].Value, $Float64) / ($assertType(v2.Value, IntType));
 						$s = -1; return VMValueNewFloat(val$2);
 					/* } else if (_3 === (1)) { */ case 19:
 						/* */ if ($assertType(v2.Value, $Float64) === 0) { $s = 25; continue; }
@@ -44958,11 +44959,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* } */ case 4:
 		case 1:
 		$s = -1; return ptrType.nil;
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.OpDivide, $c: true, $r, $24r, $24r$1, $24r$2, $24r$3, _1, _2, _3, _r$24, _r$25, _r$26, _r$27, ctx, setDivideZero, v, v2, val, val$1, val$2, val$3, x, x$1, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.OpDivide, $c: true, $r, $24r, $24r$1, $24r$2, $24r$3, _1, _2, _3, _q, _r$24, _r$25, _r$26, _r$27, ctx, setDivideZero, v, v2, val, val$1, val$2, val$3, $s};return $f;
 	};
 	VMValue.prototype.OpDivide = function(ctx, v2) { return this.$val.OpDivide(ctx, v2); };
 	VMValue.ptr.prototype.OpModulus = function(ctx, v2) {
-		var {_1, _2, ctx, setDivideZero, v, v2, val, x, $s, $r, $c} = $restore(this, {ctx, v2});
+		var {_1, _2, _r$24, ctx, setDivideZero, v, v2, val, $s, $r, $c} = $restore(this, {ctx, v2});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = [ctx];
 		v = this;
@@ -44977,20 +44978,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (_2 === (0)) { $s = 5; continue; }
 					/* */ $s = 6; continue;
 					/* if (_2 === (0)) { */ case 5:
-						/* */ if ((x = $assertType(v2.Value, $Int64), (x.$high === 0 && x.$low === 0))) { $s = 7; continue; }
+						/* */ if ($assertType(v2.Value, IntType) === 0) { $s = 7; continue; }
 						/* */ $s = 8; continue;
-						/* if ((x = $assertType(v2.Value, $Int64), (x.$high === 0 && x.$low === 0))) { */ case 7:
+						/* if ($assertType(v2.Value, IntType) === 0) { */ case 7:
 							$r = setDivideZero(); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							$s = -1; return ptrType.nil;
 						/* } */ case 8:
-						val = $div64($assertType(v.Value, $Int64), $assertType(v2.Value, $Int64), true);
+						val = (_r$24 = $assertType(v.Value, IntType) % $assertType(v2.Value, IntType), _r$24 === _r$24 ? _r$24 : $throwRuntimeError("integer divide by zero"));
 						$s = -1; return VMValueNewInt(val);
 					/* } */ case 6:
 				case 4:
 			/* } */ case 3:
 		case 1:
 		$s = -1; return ptrType.nil;
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.OpModulus, $c: true, $r, _1, _2, ctx, setDivideZero, v, v2, val, x, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.OpModulus, $c: true, $r, _1, _2, _r$24, ctx, setDivideZero, v, v2, val, $s};return $f;
 	};
 	VMValue.prototype.OpModulus = function(ctx, v2) { return this.$val.OpModulus(ctx, v2); };
 	VMValue.ptr.prototype.OpPower = function(ctx, v2) {
@@ -45000,16 +45001,16 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				val = (new $Int64(0, math.Pow(($flatten64($assertType(v.Value, $Int64))), ($flatten64($assertType(v2.Value, $Int64))))));
+				val = ((math.Pow(($assertType(v.Value, IntType)), ($assertType(v2.Value, IntType))) >> 0));
 				return VMValueNewInt(val);
 			} else if (_2 === (1)) {
-				val$1 = math.Pow(($flatten64($assertType(v.Value, $Int64))), $assertType(v2.Value, $Float64));
+				val$1 = math.Pow(($assertType(v.Value, IntType)), $assertType(v2.Value, $Float64));
 				return VMValueNewFloat(val$1);
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				val$2 = math.Pow($assertType(v.Value, $Float64), ($flatten64($assertType(v2.Value, $Int64))));
+				val$2 = math.Pow($assertType(v.Value, $Float64), ($assertType(v2.Value, IntType)));
 				return VMValueNewFloat(val$2);
 			} else if (_3 === (1)) {
 				val$3 = math.Pow($assertType(v.Value, $Float64), $assertType(v2.Value, $Float64));
@@ -45031,27 +45032,27 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	VMValue.prototype.OpNullCoalescing = function(ctx, v2) { return this.$val.OpNullCoalescing(ctx, v2); };
 	boolToVMValue = function(v) {
 		var v, val;
-		val = new $Int64(0, 0);
+		val = 0;
 		if (v) {
-			val = new $Int64(0, 1);
+			val = 1;
 		}
 		return VMValueNewInt(val);
 	};
 	VMValue.ptr.prototype.OpCompLT = function(ctx, v2) {
-		var _1, _2, _3, ctx, v, v2, x, x$1;
+		var _1, _2, _3, ctx, v, v2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				return boolToVMValue((x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), (x.$high < x$1.$high || (x.$high === x$1.$high && x.$low < x$1.$low))));
+				return boolToVMValue($assertType(v.Value, IntType) < $assertType(v2.Value, IntType));
 			} else if (_2 === (1)) {
-				return boolToVMValue(($flatten64($assertType(v.Value, $Int64))) < $assertType(v2.Value, $Float64));
+				return boolToVMValue(($assertType(v.Value, IntType)) < $assertType(v2.Value, $Float64));
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				return boolToVMValue($assertType(v.Value, $Float64) < ($flatten64($assertType(v2.Value, $Int64))));
+				return boolToVMValue($assertType(v.Value, $Float64) < ($assertType(v2.Value, IntType)));
 			} else if (_3 === (1)) {
 				return boolToVMValue($assertType(v.Value, $Float64) < $assertType(v2.Value, $Float64));
 			}
@@ -45060,20 +45061,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpCompLT = function(ctx, v2) { return this.$val.OpCompLT(ctx, v2); };
 	VMValue.ptr.prototype.OpCompLE = function(ctx, v2) {
-		var _1, _2, _3, ctx, v, v2, x, x$1;
+		var _1, _2, _3, ctx, v, v2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				return boolToVMValue((x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), (x.$high < x$1.$high || (x.$high === x$1.$high && x.$low <= x$1.$low))));
+				return boolToVMValue($assertType(v.Value, IntType) <= $assertType(v2.Value, IntType));
 			} else if (_2 === (1)) {
-				return boolToVMValue(($flatten64($assertType(v.Value, $Int64))) <= $assertType(v2.Value, $Float64));
+				return boolToVMValue(($assertType(v.Value, IntType)) <= $assertType(v2.Value, $Float64));
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				return boolToVMValue($assertType(v.Value, $Float64) <= ($flatten64($assertType(v2.Value, $Int64))));
+				return boolToVMValue($assertType(v.Value, $Float64) <= ($assertType(v2.Value, IntType)));
 			} else if (_3 === (1)) {
 				return boolToVMValue($assertType(v.Value, $Float64) <= $assertType(v2.Value, $Float64));
 			}
@@ -45103,20 +45104,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpCompNE = function(ctx, v2) { return this.$val.OpCompNE(ctx, v2); };
 	VMValue.ptr.prototype.OpCompGE = function(ctx, v2) {
-		var _1, _2, _3, ctx, v, v2, x, x$1;
+		var _1, _2, _3, ctx, v, v2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				return boolToVMValue((x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), (x.$high > x$1.$high || (x.$high === x$1.$high && x.$low >= x$1.$low))));
+				return boolToVMValue($assertType(v.Value, IntType) >= $assertType(v2.Value, IntType));
 			} else if (_2 === (1)) {
-				return boolToVMValue(($flatten64($assertType(v.Value, $Int64))) >= $assertType(v2.Value, $Float64));
+				return boolToVMValue(($assertType(v.Value, IntType)) >= $assertType(v2.Value, $Float64));
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				return boolToVMValue($assertType(v.Value, $Float64) >= ($flatten64($assertType(v2.Value, $Int64))));
+				return boolToVMValue($assertType(v.Value, $Float64) >= ($assertType(v2.Value, IntType)));
 			} else if (_3 === (1)) {
 				return boolToVMValue($assertType(v.Value, $Float64) >= $assertType(v2.Value, $Float64));
 			}
@@ -45125,20 +45126,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpCompGE = function(ctx, v2) { return this.$val.OpCompGE(ctx, v2); };
 	VMValue.ptr.prototype.OpCompGT = function(ctx, v2) {
-		var _1, _2, _3, ctx, v, v2, x, x$1;
+		var _1, _2, _3, ctx, v, v2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				return boolToVMValue((x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), (x.$high > x$1.$high || (x.$high === x$1.$high && x.$low > x$1.$low))));
+				return boolToVMValue($assertType(v.Value, IntType) > $assertType(v2.Value, IntType));
 			} else if (_2 === (1)) {
-				return boolToVMValue(($flatten64($assertType(v.Value, $Int64))) > $assertType(v2.Value, $Float64));
+				return boolToVMValue(($assertType(v.Value, IntType)) > $assertType(v2.Value, $Float64));
 			}
 		} else if (_1 === (1)) {
 			_3 = v2.TypeId;
 			if (_3 === (0)) {
-				return boolToVMValue($assertType(v.Value, $Float64) > ($flatten64($assertType(v2.Value, $Int64))));
+				return boolToVMValue($assertType(v.Value, $Float64) > ($assertType(v2.Value, IntType)));
 			} else if (_3 === (1)) {
 				return boolToVMValue($assertType(v.Value, $Float64) > $assertType(v2.Value, $Float64));
 			}
@@ -45147,26 +45148,26 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpCompGT = function(ctx, v2) { return this.$val.OpCompGT(ctx, v2); };
 	VMValue.ptr.prototype.OpBitwiseAnd = function(ctx, v2) {
-		var _1, _2, ctx, v, v2, x, x$1;
+		var _1, _2, ctx, v, v2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				return VMValueNewInt((x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), new $Int64(x.$high & x$1.$high, (x.$low & x$1.$low) >>> 0)));
+				return VMValueNewInt($assertType(v.Value, IntType) & $assertType(v2.Value, IntType));
 			}
 		}
 		return ptrType.nil;
 	};
 	VMValue.prototype.OpBitwiseAnd = function(ctx, v2) { return this.$val.OpBitwiseAnd(ctx, v2); };
 	VMValue.ptr.prototype.OpBitwiseOr = function(ctx, v2) {
-		var _1, _2, ctx, v, v2, x, x$1;
+		var _1, _2, ctx, v, v2;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			_2 = v2.TypeId;
 			if (_2 === (0)) {
-				return VMValueNewInt((x = $assertType(v.Value, $Int64), x$1 = $assertType(v2.Value, $Int64), new $Int64(x.$high | x$1.$high, (x.$low | x$1.$low) >>> 0)));
+				return VMValueNewInt($assertType(v.Value, IntType) | $assertType(v2.Value, IntType));
 			}
 		}
 		return ptrType.nil;
@@ -45177,7 +45178,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
-			return VMValueNewInt($assertType(v.Value, $Int64));
+			return VMValueNewInt($assertType(v.Value, IntType));
 		} else if (_1 === (1)) {
 			return VMValueNewFloat($assertType(v.Value, $Float64));
 		}
@@ -45185,11 +45186,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.OpPositive = function() { return this.$val.OpPositive(); };
 	VMValue.ptr.prototype.OpNegation = function() {
-		var _1, v, x;
+		var _1, v;
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
-			return VMValueNewInt((x = $assertType(v.Value, $Int64), new $Int64(-x.$high, -x.$low)));
+			return VMValueNewInt(-$assertType(v.Value, IntType));
 		} else if (_1 === (1)) {
 			return VMValueNewFloat(-$assertType(v.Value, $Float64));
 		}
@@ -45387,8 +45388,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					str = _tuple$2[0];
 					rstr = (new sliceType$8($stringToRunes(str)));
 					rIndex = index.MustReadInt();
-					_index = getClampRealIndex(ctx, rIndex, (new $Int64(0, rstr.$length)));
-					newArr = ($runesToString($subslice(rstr, $flatten64(_index), $flatten64(new $Int64(_index.$high + 0, _index.$low + 1)))));
+					_index = getClampRealIndex(ctx, rIndex, ((rstr.$length >> 0)));
+					newArr = ($runesToString($subslice(rstr, _index, (_index + 1 >> 0))));
 					$s = -1; return VMValueNewStr(newArr);
 				/* } */ case 19:
 				$s = 7; continue;
@@ -45462,23 +45463,23 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	VMValue.prototype.ItemSet = function(ctx, index, val) { return this.$val.ItemSet(ctx, index, val); };
 	getRealIndex = function(ctx, index, length) {
 		var ctx, index, length;
-		if ((index.$high < 0 || (index.$high === 0 && index.$low < 0))) {
-			index = new $Int64(length.$high + index.$high, length.$low + index.$low);
+		if (index < 0) {
+			index = length + index >> 0;
 		}
-		if ((index.$high > length.$high || (index.$high === length.$high && index.$low >= length.$low)) || (index.$high < 0 || (index.$high === 0 && index.$low < 0))) {
+		if (index >= length || index < 0) {
 			ctx.Error = errors.New("\xE6\x97\xA0\xE6\xB3\x95\xE8\x8E\xB7\xE5\x8F\x96\xE6\xAD\xA4\xE4\xB8\x8B\xE6\xA0\x87");
 		}
 		return index;
 	};
 	getClampRealIndex = function(ctx, index, length) {
 		var ctx, index, length;
-		if ((index.$high < 0 || (index.$high === 0 && index.$low < 0))) {
-			index = new $Int64(length.$high + index.$high, length.$low + index.$low);
+		if (index < 0) {
+			index = length + index >> 0;
 		}
-		if ((index.$high < 0 || (index.$high === 0 && index.$low < 0))) {
-			index = new $Int64(0, 0);
+		if (index < 0) {
+			index = 0;
 		}
-		if ((index.$high > length.$high || (index.$high === length.$high && index.$low > length.$low))) {
+		if (index > length) {
 			index = length;
 		}
 		return index;
@@ -45492,19 +45493,19 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		}
 		_a = getClampRealIndex(ctx, a, length);
 		_b = getClampRealIndex(ctx, b, length);
-		if ((_a.$high > _b.$high || (_a.$high === _b.$high && _a.$low > _b.$low))) {
+		if (_a > _b) {
 			_a = _b;
 		}
 		_1 = v.TypeId;
 		if (_1 === (2)) {
 			_tuple = v.ReadString();
 			str = _tuple[0];
-			newArr = ($runesToString($subslice((new sliceType$8($stringToRunes(str))), $flatten64(_a), $flatten64(_b))));
+			newArr = ($runesToString($subslice((new sliceType$8($stringToRunes(str))), _a, _b)));
 			return VMValueNewStr(newArr);
 		} else if (_1 === (6)) {
 			_tuple$1 = v.ReadArray();
 			arr = _tuple$1[0];
-			newArr$1 = $subslice(arr.List, $flatten64(_a), $flatten64(_b));
+			newArr$1 = $subslice(arr.List, _a, _b);
 			return VMValueNewArray(newArr$1);
 		} else {
 			ctx.Error = errors.New("\xE8\xBF\x99\xE4\xB8\xAA\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE5\x8F\x96\xE5\xBE\x97\xE5\x88\x86\xE7\x89\x87");
@@ -45515,19 +45516,19 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	VMValue.ptr.prototype.Length = function(ctx) {
 		var _1, _tuple, _tuple$1, arr, ctx, length, str, v;
 		v = this;
-		length = new $Int64(0, 0);
+		length = 0;
 		_1 = v.TypeId;
 		if (_1 === (6)) {
 			_tuple = v.ReadArray();
 			arr = _tuple[0];
-			length = (new $Int64(0, arr.List.$length));
+			length = ((arr.List.$length >> 0));
 		} else if (_1 === (2)) {
 			_tuple$1 = v.ReadString();
 			str = _tuple$1[0];
-			length = (new $Int64(0, (new sliceType$8($stringToRunes(str))).$length));
+			length = (((new sliceType$8($stringToRunes(str))).$length >> 0));
 		} else {
 			ctx.Error = errors.New("\xE8\xBF\x99\xE4\xB8\xAA\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE5\x8F\x96\xE5\xBE\x97\xE5\x88\x86\xE7\x89\x87");
-			return new $Int64(0, 0);
+			return 0;
 		}
 		return length;
 	};
@@ -45536,7 +45537,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _tuple, _tuple$1, a, b, ctx, length, ok, v, valA, valB;
 		v = this;
 		if (a.TypeId === 3) {
-			a = VMValueNewInt(new $Int64(0, 0));
+			a = VMValueNewInt(0);
 		}
 		length = v.Length(ctx);
 		if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
@@ -45559,11 +45560,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			ctx.Error = errors.New("\xE7\xAC\xAC\xE4\xBA\x8C\xE4\xB8\xAA\xE5\x80\xBC\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF");
 			return ptrType.nil;
 		}
-		return v.GetSlice(ctx, valA, valB, new $Int64(0, 1));
+		return v.GetSlice(ctx, valA, valB, 1);
 	};
 	VMValue.prototype.GetSliceEx = function(ctx, a, b) { return this.$val.GetSliceEx(ctx, a, b); };
 	VMValue.ptr.prototype.SetSlice = function(ctx, a, b, step, val) {
-		var _a, _b, _tuple, _tuple$1, a, arr, arr2, b, ctx, i, i$1, i$2, length, newArr, offset, ok, step, v, val, x, x$1, x$2, x$3, x$4, x$5, x$6;
+		var _a, _b, _tuple, _tuple$1, a, arr, arr2, b, ctx, i, i$1, i$2, length, newArr, offset, ok, step, v, val, x, x$1, x$2, x$3, x$4;
 		v = this;
 		_tuple = v.ReadArray();
 		arr = _tuple[0];
@@ -45579,30 +45580,30 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			ctx.Error = errors.New("val \xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xE5\xBF\x85\xE9\xA1\xBB\xE6\x98\xAF\xE4\xB8\x80\xE4\xB8\xAA\xE5\x88\x97\xE8\xA1\xA8");
 			return false;
 		}
-		length = (new $Int64(0, arr.List.$length));
+		length = ((arr.List.$length >> 0));
 		_a = getClampRealIndex(ctx, a, length);
 		_b = getClampRealIndex(ctx, b, length);
-		if ((_a.$high > _b.$high || (_a.$high === _b.$high && _a.$low > _b.$low))) {
+		if (_a > _b) {
 			_a = _b;
 		}
-		offset = arr2.List.$length - (((x = new $Int64(_b.$high - _a.$high, _b.$low - _a.$low), x.$low + ((x.$high >> 31) * 4294967296)) >> 0)) >> 0;
+		offset = arr2.List.$length - (((_b - _a >> 0) >> 0)) >> 0;
 		newArr = $makeSlice(sliceType$2, (arr.List.$length + offset >> 0));
-		i = new $Int64(0, 0);
+		i = 0;
 		while (true) {
-			if (!((i.$high < _a.$high || (i.$high === _a.$high && i.$low < _a.$low)))) { break; }
-			(($flatten64(i) < 0 || $flatten64(i) >= newArr.$length) ? ($throwRuntimeError("index out of range"), undefined) : newArr.$array[newArr.$offset + $flatten64(i)] = (x$1 = arr.List, (($flatten64(i) < 0 || $flatten64(i) >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + $flatten64(i)])));
-			i = (x$2 = new $Int64(0, 1), new $Int64(i.$high + x$2.$high, i.$low + x$2.$low));
+			if (!(i < _a)) { break; }
+			((i < 0 || i >= newArr.$length) ? ($throwRuntimeError("index out of range"), undefined) : newArr.$array[newArr.$offset + i] = (x = arr.List, ((i < 0 || i >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + i])));
+			i = i + (1) >> 0;
 		}
 		i$1 = 0;
 		while (true) {
 			if (!(i$1 < arr2.List.$length)) { break; }
-			(x$4 = (((_a.$low + ((_a.$high >> 31) * 4294967296)) >> 0)) + i$1 >> 0, ((x$4 < 0 || x$4 >= newArr.$length) ? ($throwRuntimeError("index out of range"), undefined) : newArr.$array[newArr.$offset + x$4] = (x$3 = arr2.List, ((i$1 < 0 || i$1 >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + i$1]))));
+			(x$2 = ((_a >> 0)) + i$1 >> 0, ((x$2 < 0 || x$2 >= newArr.$length) ? ($throwRuntimeError("index out of range"), undefined) : newArr.$array[newArr.$offset + x$2] = (x$1 = arr2.List, ((i$1 < 0 || i$1 >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + i$1]))));
 			i$1 = i$1 + (1) >> 0;
 		}
-		i$2 = (((_b.$low + ((_b.$high >> 31) * 4294967296)) >> 0)) + offset >> 0;
+		i$2 = ((_b >> 0)) + offset >> 0;
 		while (true) {
 			if (!(i$2 < newArr.$length)) { break; }
-			((i$2 < 0 || i$2 >= newArr.$length) ? ($throwRuntimeError("index out of range"), undefined) : newArr.$array[newArr.$offset + i$2] = (x$5 = arr.List, x$6 = i$2 - offset >> 0, ((x$6 < 0 || x$6 >= x$5.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$5.$array[x$5.$offset + x$6])));
+			((i$2 < 0 || i$2 >= newArr.$length) ? ($throwRuntimeError("index out of range"), undefined) : newArr.$array[newArr.$offset + i$2] = (x$3 = arr.List, x$4 = i$2 - offset >> 0, ((x$4 < 0 || x$4 >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + x$4])));
 			i$2 = i$2 + (1) >> 0;
 		}
 		arr.List = newArr;
@@ -45613,7 +45614,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _tuple, _tuple$1, _tuple$2, a, arr, b, ctx, ok, v, val, valA, valB;
 		v = this;
 		if (a.TypeId === 3) {
-			a = VMValueNewInt(new $Int64(0, 0));
+			a = VMValueNewInt(0);
 		}
 		_tuple = v.ReadArray();
 		arr = _tuple[0];
@@ -45623,7 +45624,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			return false;
 		}
 		if (b.TypeId === 3) {
-			b = VMValueNewInt((new $Int64(0, arr.List.$length)));
+			b = VMValueNewInt(((arr.List.$length >> 0)));
 		}
 		_tuple$1 = a.ReadInt();
 		valA = _tuple$1[0];
@@ -45639,11 +45640,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			ctx.Error = errors.New("\xE7\xAC\xAC\xE4\xBA\x8C\xE4\xB8\xAA\xE5\x80\xBC\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF");
 			return false;
 		}
-		return v.SetSlice(ctx, valA, valB, new $Int64(0, 1), val);
+		return v.SetSlice(ctx, valA, valB, 1, val);
 	};
 	VMValue.prototype.SetSliceEx = function(ctx, a, b, val) { return this.$val.SetSliceEx(ctx, a, b, val); };
 	VMValue.ptr.prototype.ArrayRepeatTimesEx = function(ctx, times) {
-		var _1, _r$24, _tuple, _tuple$1, ad, arr, ctx, i, length, times, times$1, v, x, x$1, x$2;
+		var _1, _r$24, _tuple, _tuple$1, ad, arr, ctx, i, length, times, times$1, v, x, x$1;
 		v = this;
 		_1 = times.TypeId;
 		if (_1 === (0)) {
@@ -45651,17 +45652,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			times$1 = _tuple[0];
 			_tuple$1 = v.ReadArray();
 			ad = _tuple$1[0];
-			length = $mul64((new $Int64(0, ad.List.$length)), times$1);
-			if ((length.$high > 0 || (length.$high === 0 && length.$low > 512))) {
+			length = $imul(((ad.List.$length >> 0)), times$1);
+			if (length > 512) {
 				ctx.Error = errors.New("\xE4\xB8\x8D\xE8\x83\xBD\xE4\xB8\x80\xE6\xAC\xA1\xE6\x80\xA7\xE5\x88\x9B\xE5\xBB\xBA\xE8\xBF\x87\xE9\x95\xBF\xE7\x9A\x84\xE6\x95\xB0\xE7\xBB\x84");
 				return ptrType.nil;
 			}
-			arr = $makeSlice(sliceType$2, $flatten64(length));
-			i = new $Int64(0, 0);
+			arr = $makeSlice(sliceType$2, length);
+			i = 0;
 			while (true) {
-				if (!((i.$high < length.$high || (i.$high === length.$high && i.$low < length.$low)))) { break; }
-				(($flatten64(i) < 0 || $flatten64(i) >= arr.$length) ? ($throwRuntimeError("index out of range"), undefined) : arr.$array[arr.$offset + $flatten64(i)] = (x = ad.List, x$1 = (_r$24 = (((i.$low + ((i.$high >> 31) * 4294967296)) >> 0)) % ad.List.$length, _r$24 === _r$24 ? _r$24 : $throwRuntimeError("integer divide by zero")), ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])).Clone());
-				i = (x$2 = new $Int64(0, 1), new $Int64(i.$high + x$2.$high, i.$low + x$2.$low));
+				if (!(i < length)) { break; }
+				((i < 0 || i >= arr.$length) ? ($throwRuntimeError("index out of range"), undefined) : arr.$array[arr.$offset + i] = (x = ad.List, x$1 = (_r$24 = ((i >> 0)) % ad.List.$length, _r$24 === _r$24 ? _r$24 : $throwRuntimeError("integer divide by zero")), ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])).Clone());
+				i = i + (1) >> 0;
 			}
 			return VMValueNewArray(arr);
 		}
@@ -45673,9 +45674,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = this;
 		_1 = v.TypeId;
 		if (_1 === (0)) {
-			return "int64";
+			return "int";
 		} else if (_1 === (1)) {
-			return "float64";
+			return "float";
 		} else if (_1 === (2)) {
 			return "str";
 		} else if (_1 === (3)) {
@@ -45697,7 +45698,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	VMValue.prototype.GetTypeName = function() { return this.$val.GetTypeName(); };
 	VMValue.ptr.prototype.ComputedExecute = function(ctx) {
-		var {_r$24, _tuple, cd, ctx, ret, v, vm, x, x$1, x$2, x$3, x$4, x$5, $s, $r, $c} = $restore(this, {ctx});
+		var {_r$24, _tuple, cd, ctx, ret, v, vm, x, x$1, $s, $r, $c} = $restore(this, {ctx});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		v = this;
 		_tuple = v.ReadComputed();
@@ -45712,9 +45713,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		vm.GlobalValueLoadFunc = ctx.GlobalValueLoadFunc;
 		vm.subThreadDepth = ctx.subThreadDepth + 1 >> 0;
 		vm.upCtx = ctx;
-		vm.NumOpCount = (x = ctx.NumOpCount, new $Int64(x.$high + 0, x.$low + 100));
+		vm.NumOpCount = ctx.NumOpCount + 100 >> 0;
 		ctx.NumOpCount = vm.NumOpCount;
-		if ((x$1 = ctx.Config.OpCountLimit, (x$1.$high > 0 || (x$1.$high === 0 && x$1.$low > 0))) && (x$2 = vm.NumOpCount, x$3 = vm.Config.OpCountLimit, (x$2.$high > x$3.$high || (x$2.$high === x$3.$high && x$2.$low > x$3.$low)))) {
+		if (ctx.Config.OpCountLimit > 0 && vm.NumOpCount > vm.Config.OpCountLimit) {
 			vm.Error = errors.New("\xE5\x85\x81\xE8\xAE\xB8\xE7\xAE\x97\xE5\x8A\x9B\xE4\xB8\x8A\xE9\x99\x90");
 			ctx.Error = vm.Error;
 			$s = -1; return ptrType.nil;
@@ -45738,17 +45739,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		}
 		ret = ptrType.nil;
 		if (!((vm.top === 0))) {
-			ret = (x$4 = vm.stack, x$5 = vm.top - 1 >> 0, ((x$5 < 0 || x$5 >= x$4.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$4.$array[x$4.$offset + x$5])).Clone();
+			ret = (x = vm.stack, x$1 = vm.top - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])).Clone();
 		} else {
 			ret = VMValueNewUndefined();
 		}
 		ctx.NumOpCount = vm.NumOpCount;
 		$s = -1; return ret;
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ComputedExecute, $c: true, $r, _r$24, _tuple, cd, ctx, ret, v, vm, x, x$1, x$2, x$3, x$4, x$5, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ComputedExecute, $c: true, $r, _r$24, _tuple, cd, ctx, ret, v, vm, x, x$1, $s};return $f;
 	};
 	VMValue.prototype.ComputedExecute = function(ctx) { return this.$val.ComputedExecute(ctx); };
 	VMValue.ptr.prototype.FuncInvoke = function(ctx, params) {
-		var {_i, _r$24, _r$25, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, x$2, x$3, x$4, x$5, $s, $r, $c} = $restore(this, {ctx, params});
+		var {_i, _r$24, _r$25, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s, $r, $c} = $restore(this, {ctx, params});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		v = this;
 		vm = NewVM();
@@ -45777,9 +45778,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		vm.GlobalValueLoadFunc = ctx.GlobalValueLoadFunc;
 		vm.subThreadDepth = ctx.subThreadDepth + 1 >> 0;
 		vm.upCtx = ctx;
-		vm.NumOpCount = (x = ctx.NumOpCount, new $Int64(x.$high + 0, x.$low + 100));
+		vm.NumOpCount = ctx.NumOpCount + 100 >> 0;
 		ctx.NumOpCount = vm.NumOpCount;
-		if ((x$1 = ctx.Config.OpCountLimit, (x$1.$high > 0 || (x$1.$high === 0 && x$1.$low > 0))) && (x$2 = vm.NumOpCount, x$3 = vm.Config.OpCountLimit, (x$2.$high > x$3.$high || (x$2.$high === x$3.$high && x$2.$low > x$3.$low)))) {
+		if (ctx.Config.OpCountLimit > 0 && vm.NumOpCount > vm.Config.OpCountLimit) {
 			vm.Error = errors.New("\xE5\x85\x81\xE8\xAE\xB8\xE7\xAE\x97\xE5\x8A\x9B\xE4\xB8\x8A\xE9\x99\x90");
 			ctx.Error = vm.Error;
 			$s = -1; return ptrType.nil;
@@ -45803,14 +45804,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		}
 		ret = ptrType.nil;
 		if (!((vm.top === 0))) {
-			ret = (x$4 = vm.stack, x$5 = vm.top - 1 >> 0, ((x$5 < 0 || x$5 >= x$4.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$4.$array[x$4.$offset + x$5])).Clone();
+			ret = (x = vm.stack, x$1 = vm.top - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])).Clone();
 		} else {
 			ret = VMValueNewUndefined();
 		}
 		ctx.NumOpCount = vm.NumOpCount;
 		vm.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		$s = -1; return ret;
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.FuncInvoke, $c: true, $r, _i, _r$24, _r$25, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, x$2, x$3, x$4, x$5, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.FuncInvoke, $c: true, $r, _i, _r$24, _r$25, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s};return $f;
 	};
 	VMValue.prototype.FuncInvoke = function(ctx, params) { return this.$val.FuncInvoke(ctx, params); };
 	VMValue.ptr.prototype.FuncInvokeNative = function(ctx, params) {
@@ -45959,12 +45960,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				if (_2 === (0)) {
 					_3 = b.TypeId;
 					if (_3 === (1)) {
-						$s = -1; return ($flatten64($assertType(a.Value, $Int64))) === $assertType(b.Value, $Float64);
+						$s = -1; return ($assertType(a.Value, IntType)) === $assertType(b.Value, $Float64);
 					}
 				} else if (_2 === (1)) {
 					_4 = b.TypeId;
 					if (_4 === (0)) {
-						$s = -1; return $assertType(a.Value, $Float64) === ($flatten64($assertType(b.Value, $Int64)));
+						$s = -1; return $assertType(a.Value, $Float64) === ($assertType(b.Value, IntType));
 					}
 				}
 			}
@@ -45975,7 +45976,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	$pkg.ValueEqual = ValueEqual;
 	VMValueNewInt = function(i) {
 		var i;
-		return new VMValue.ptr(0, i);
+		return new VMValue.ptr(0, new IntType(i));
 	};
 	$pkg.VMValueNewInt = VMValueNewInt;
 	VMValueNewFloat = function(i) {
@@ -46078,7 +46079,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	$pkg.VMValueNewNativeObject = VMValueNewNativeObject;
 	NewVM = function() {
 		var p;
-		p = new Parser.ptr(new ParserData.ptr(sliceType$9.nil, sliceType$1.nil, sliceType$9.nil, sliceType$9.nil, sliceType$9.nil, sliceType$10.nil, new $Int64(0, 0), sliceType$11.nil), new Context.ptr(ptrType$13.nil, 0, ptrType$11.nil, ptrType$1.nil, sliceType$5.nil, 0, sliceType$12.nil, 0, new $Int64(0, 0), new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, new $Int64(0, 0), "", ptrType.nil, false, false, false, false), $ifaceNil, ptrType.nil, "", "", "", false, sliceType$13.nil, sliceType$14.nil, $throwNilPointerError, ptrType$11.nil, $throwNilPointerError, $throwNilPointerError), "", sliceType$8.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$15.nil));
+		p = new Parser.ptr(new ParserData.ptr(sliceType$9.nil, sliceType$1.nil, sliceType$9.nil, sliceType$9.nil, sliceType$9.nil, sliceType$10.nil, 0, sliceType$11.nil), new Context.ptr(ptrType$13.nil, 0, ptrType$11.nil, ptrType$1.nil, sliceType$5.nil, 0, sliceType$12.nil, 0, 0, new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, 0, "", ptrType.nil, false, false, false, false), $ifaceNil, ptrType.nil, "", "", "", false, sliceType$13.nil, sliceType$14.nil, $throwNilPointerError, ptrType$11.nil, $throwNilPointerError, $throwNilPointerError), "", sliceType$8.nil, arrayType.zero(), $throwNilPointerError, $throwNilPointerError, false, new tokens32.ptr(sliceType$15.nil));
 		p.ParserData.init();
 		p.Context.Init();
 		p.Context.parser = p;
@@ -46113,7 +46114,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		p.Context.code = $makeSlice(sliceType$5, 512);
 		p.Context.codeIndex = 0;
 		ctx.Error = $ifaceNil;
-		ctx.NumOpCount = new $Int64(0, 0);
+		ctx.NumOpCount = 0;
 		ctx.Detail = "";
 		_r$25 = p.Parse(sliceType$17.nil); /* */ $s = 2; case 2: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 		err = _r$25;
@@ -46162,9 +46163,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$ptrType(spanByBegin).prototype.Swap = function(i, j) { return this.$get().Swap(i, j); };
 	spanByBegin.prototype.Less = function(i, j) {
-		var a, i, j, x, x$1;
+		var a, i, j;
 		a = this;
-		return (x = ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).begin, x$1 = ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).begin, (x.$high < x$1.$high || (x.$high === x$1.$high && x.$low < x$1.$low)));
+		return ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).begin < ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).begin;
 	};
 	$ptrType(spanByBegin).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	spanByEnd.prototype.Len = function() {
@@ -46183,13 +46184,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$ptrType(spanByEnd).prototype.Swap = function(i, j) { return this.$get().Swap(i, j); };
 	spanByEnd.prototype.Less = function(i, j) {
-		var a, i, j, x, x$1;
+		var a, i, j;
 		a = this;
-		return (x = ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).end, x$1 = ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).end, (x.$high < x$1.$high || (x.$high === x$1.$high && x.$low < x$1.$low)));
+		return ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).end < ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).end;
 	};
 	$ptrType(spanByEnd).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	Parser.ptr.prototype.Evaluate = function() {
-		var {_1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$30, _tuple$31, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, fd, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, val$7, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
+		var {_1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$30, _tuple$31, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, fd, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, val$7, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = [ctx];
 		dcState = [dcState];
@@ -46207,9 +46208,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		ctx[0] = e[0].Context;
 		details[0] = sliceType$18.nil;
 		numOpCountAdd = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function(count) {
-			var count, x, x$1, x$2, x$3, x$4;
-			e[0].Context.NumOpCount = (x = e[0].Context.NumOpCount, x$1 = count, new $Int64(x.$high + x$1.$high, x.$low + x$1.$low));
-			if ((x$2 = ctx[0].Config.OpCountLimit, (x$2.$high > 0 || (x$2.$high === 0 && x$2.$low > 0))) && (x$3 = e[0].Context.NumOpCount, x$4 = ctx[0].Config.OpCountLimit, (x$3.$high > x$4.$high || (x$3.$high === x$4.$high && x$3.$low > x$4.$low)))) {
+			var count;
+			e[0].Context.NumOpCount = e[0].Context.NumOpCount + (count) >> 0;
+			if (ctx[0].Config.OpCountLimit > 0 && e[0].Context.NumOpCount > ctx[0].Config.OpCountLimit) {
 				ctx[0].Error = errors.New("\xE5\x85\x81\xE8\xAE\xB8\xE7\xAE\x97\xE5\x8A\x9B\xE4\xB8\x8A\xE9\x99\x90");
 				return true;
 			}
@@ -46220,50 +46221,50 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		diceInit = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
 			var data;
 			diceStateIndex[0] = diceStateIndex[0] + (1) >> 0;
-			data = new structType$19.ptr(new $Int64(0, 1), new $Int64(0, 0), new $Int64(0, 0), new $Int64(0, 0), ptrType$15.nil, ptrType$15.nil);
+			data = new structType$19.ptr(1, 0, 0, 0, ptrType$15.nil, ptrType$15.nil);
 			if (diceStateIndex[0] >= diceStates[0].$length) {
 				diceStates[0] = $append(diceStates[0], data);
 			} else {
 				structType$19.copy(((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]), data);
 			}
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
-		wodState[0] = new structType$20.ptr(new $Int64(0, 0), new $Int64(0, 0), new $Int64(0, 0), false);
+		wodState[0] = new structType$20.ptr(0, 0, 0, false);
 		wodInit = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
-			wodState[0].pool = new $Int64(0, 1);
-			wodState[0].points = new $Int64(0, 10);
-			wodState[0].threshold = new $Int64(0, 8);
+			wodState[0].pool = 1;
+			wodState[0].points = 10;
+			wodState[0].threshold = 8;
 			wodState[0].isGE = true;
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
-		dcState[0] = new structType$21.ptr(new $Int64(0, 0), new $Int64(0, 0));
+		dcState[0] = new structType$21.ptr(0, 0);
 		dcInit = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
-			dcState[0].pool = new $Int64(0, 1);
-			dcState[0].points = new $Int64(0, 10);
+			dcState[0].pool = 1;
+			dcState[0].points = 10;
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
 		solveDetail = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function $b() {
-			var {_arg$28, _arg$29, _i, _r$24, _r$25, _r$26, _ref, curPoint, detail, detailResult, exprText, i, i$1, item, j, last, lastEnd, m, r, runeBuffer, size, span, subDetailsText, x, x$1, x$10, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {});
+			var {_arg$28, _arg$29, _i, _r$24, _r$25, _r$26, _ref, curPoint, detail, detailResult, exprText, i, i$1, item, j, last, lastEnd, m, r, runeBuffer, size, span, subDetailsText, x, x$1, x$2, x$3, x$4, x$5, x$6, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			if (!((ctx[0].subThreadDepth === 0))) {
 				$s = -1; return;
 			}
 			m = sliceType$20.nil;
-			curPoint = new $Int64(-1, 4294967295);
-			lastEnd = new $Int64(-1, 4294967295);
+			curPoint = -1;
+			lastEnd = -1;
 			$r = sort.Sort(($convertSliceType(details[0], spanByBegin))); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_ref = details[0];
 			_i = 0;
 			while (true) {
 				if (!(_i < _ref.$length)) { break; }
 				i = $clone(((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]), BufferSpan);
-				if ((x = i.begin, (x.$high > lastEnd.$high || (x.$high === lastEnd.$high && x.$low > lastEnd.$low)))) {
+				if (i.begin > lastEnd) {
 					curPoint = i.begin;
 					m = $append(m, new structType$22.ptr(curPoint, i.end, new sliceType$18([$clone(i, BufferSpan)])));
 				} else {
-					(x$2 = m.$length - 1 >> 0, ((x$2 < 0 || x$2 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$2])).spans = $append((x$1 = m.$length - 1 >> 0, ((x$1 < 0 || x$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$1])).spans, i);
-					if ((x$3 = i.end, x$4 = (x$5 = m.$length - 1 >> 0, ((x$5 < 0 || x$5 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$5])).end, (x$3.$high > x$4.$high || (x$3.$high === x$4.$high && x$3.$low > x$4.$low)))) {
-						(x$6 = m.$length - 1 >> 0, ((x$6 < 0 || x$6 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$6])).end = i.end;
+					(x$1 = m.$length - 1 >> 0, ((x$1 < 0 || x$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$1])).spans = $append((x = m.$length - 1 >> 0, ((x < 0 || x >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x])).spans, i);
+					if (i.end > (x$2 = m.$length - 1 >> 0, ((x$2 < 0 || x$2 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$2])).end) {
+						(x$3 = m.$length - 1 >> 0, ((x$3 < 0 || x$3 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$3])).end = i.end;
 					}
 				}
-				if ((x$7 = i.end, (x$7.$high > lastEnd.$high || (x$7.$high === lastEnd.$high && x$7.$low > lastEnd.$low)))) {
+				if (i.end > lastEnd) {
 					lastEnd = i.end;
 				}
 				_i++;
@@ -46276,7 +46277,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				item = $clone(((i$1 < 0 || i$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + i$1]), structType$22);
 				size = item.spans.$length;
 				$r = sort.Sort(($convertSliceType(item.spans, spanByEnd))); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-				last = $clone((x$8 = item.spans, x$9 = size - 1 >> 0, ((x$9 < 0 || x$9 >= x$8.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$8.$array[x$8.$offset + x$9])), BufferSpan);
+				last = $clone((x$4 = item.spans, x$5 = size - 1 >> 0, ((x$5 < 0 || x$5 >= x$4.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$4.$array[x$4.$offset + x$5])), BufferSpan);
 				subDetailsText = "";
 				/* */ if (size > 1) { $s = 5; continue; }
 				/* */ $s = 6; continue;
@@ -46284,16 +46285,16 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					j = 0;
 					/* while (true) { */ case 7:
 						/* if (!(j < (item.spans.$length - 1 >> 0))) { break; } */ if(!(j < (item.spans.$length - 1 >> 0))) { $s = 8; continue; }
-						span = $clone((x$10 = item.spans, ((j < 0 || j >= x$10.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$10.$array[x$10.$offset + j])), BufferSpan);
+						span = $clone((x$6 = item.spans, ((j < 0 || j >= x$6.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$6.$array[x$6.$offset + j])), BufferSpan);
 						_r$24 = span.ret.ToString(); /* */ $s = 9; case 9: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
-						subDetailsText = subDetailsText + ("," + ($runesToString($subslice(runeBuffer, $flatten64(span.begin), $flatten64(span.end)))) + "=" + _r$24);
+						subDetailsText = subDetailsText + ("," + ($runesToString($subslice(runeBuffer, span.begin, span.end))) + "=" + _r$24);
 						j = j + (1) >> 0;
 					$s = 7; continue;
 					case 8:
 				/* } */ case 6:
-				exprText = ($runesToString($subslice(runeBuffer, $flatten64(item.begin), $flatten64(item.end))));
+				exprText = ($runesToString($subslice(runeBuffer, item.begin, item.end)));
 				r = sliceType$8.nil;
-				r = $appendSlice(r, $subslice(detailResult, 0, $flatten64(item.begin)));
+				r = $appendSlice(r, $subslice(detailResult, 0, item.begin));
 				_r$25 = last.ret.ToString(); /* */ $s = 10; case 10: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 				detail = "[" + exprText + "=" + _r$25;
 				if (!(last.text === "")) {
@@ -46304,14 +46305,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				_r$26 = last.ret.ToString(); /* */ $s = 11; case 11: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 				_arg$29 = (new sliceType$8($stringToRunes(_r$26 + detail)));
 				r = $appendSlice(_arg$28, _arg$29);
-				r = $appendSlice(r, $subslice(detailResult, $flatten64(item.end)));
+				r = $appendSlice(r, $subslice(detailResult, item.end));
 				detailResult = r;
 				i$1 = i$1 - (1) >> 0;
 			$s = 2; continue;
 			case 3:
 			ctx[0].Detail = ($runesToString(detailResult));
 			$s = -1; return;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _arg$28, _arg$29, _i, _r$24, _r$25, _r$26, _ref, curPoint, detail, detailResult, exprText, i, i$1, item, j, last, lastEnd, m, r, runeBuffer, size, span, subDetailsText, x, x$1, x$10, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _arg$28, _arg$29, _i, _r$24, _r$25, _r$26, _ref, curPoint, detail, detailResult, exprText, i, i$1, item, j, last, lastEnd, m, r, runeBuffer, size, span, subDetailsText, x, x$1, x$2, x$3, x$4, x$5, x$6, $s};return $f;
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
 		lastPop[0] = ptrType.nil;
 		stackPop[0] = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
@@ -46335,16 +46336,16 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$24, _r$25, _tmp, _tmp$1, v1, v2, $s};return $f;
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
 		stackPopN = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function $b(num) {
-			var {_r$24, _r$25, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, data, i, i$1, j, num, x, $s, $r, $c} = $restore(this, {num});
+			var {_r$24, _r$25, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, data, i, i$1, j, num, $s, $r, $c} = $restore(this, {num});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 			data = sliceType$2.nil;
-			i = new $Int64(0, 0);
+			i = 0;
 			/* while (true) { */ case 1:
-				/* if (!((i.$high < num.$high || (i.$high === num.$high && i.$low < num.$low)))) { break; } */ if(!((i.$high < num.$high || (i.$high === num.$high && i.$low < num.$low)))) { $s = 2; continue; }
+				/* if (!(i < num)) { break; } */ if(!(i < num)) { $s = 2; continue; }
 				_r$24 = stackPop[0](); /* */ $s = 3; case 3: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 				_r$25 = _r$24.Clone(); /* */ $s = 4; case 4: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 				data = $append(data, _r$25);
-				i = (x = new $Int64(0, 1), new $Int64(i.$high + x.$high, i.$low + x.$low));
+				i = i + (1) >> 0;
 			$s = 1; continue;
 			case 2:
 			_tmp = 0;
@@ -46362,11 +46363,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				i$1 = _tmp$4;
 				j = _tmp$5;
 			}
-			if ((num.$high > 0 || (num.$high === 0 && num.$low >= 1))) {
+			if (num >= 1) {
 				lastPop[0] = (0 >= data.$length ? ($throwRuntimeError("index out of range"), undefined) : data.$array[data.$offset + 0]);
 			}
 			$s = -1; return data;
-			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$24, _r$25, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, data, i, i$1, j, num, x, $s};return $f;
+			/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$24, _r$25, _tmp, _tmp$1, _tmp$2, _tmp$3, _tmp$4, _tmp$5, data, i, i$1, j, num, $s};return $f;
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
 		stackPush = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function(v) {
 			var v, x, x$1;
@@ -46381,7 +46382,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* if (!(opIndex < e[0].Context.codeIndex)) { break; } */ if(!(opIndex < e[0].Context.codeIndex)) { $s = 4; continue; }
 			i = [i];
 			i$1 = [i$1];
-			_r$26 = numOpCountAdd(new $Int64(0, 1)); /* */ $s = 5; case 5: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+			_r$26 = numOpCountAdd(1); /* */ $s = 5; case 5: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 			_r$26;
 			if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && (e[0].Context.top === stack.$length)) {
 				ctx[0].Error = errors.New("\xE6\x89\xA7\xE8\xA1\x8C\xE6\xA0\x88\xE5\x88\xB0\xE8\xBE\xBE\xE6\xBA\xA2\xE5\x87\xBA\xE7\xBA\xBF");
@@ -46494,14 +46495,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
 					$s = 74; continue;
 				/* } else if (_1 === (3)) { */ case 20:
-					num = $assertType(code.Value, $Int64);
+					num = $assertType(code.Value, IntType);
 					_r$33 = stackPopN(num); /* */ $s = 75; case 75: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
 					_r$34 = VMValueNewArray(_r$33); /* */ $s = 76; case 76: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
 					$r = stackPush(_r$34); /* */ $s = 77; case 77: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
 				/* } else if (_1 === (4)) { */ case 21:
-					num$1 = $assertType(code.Value, $Int64);
-					_r$35 = stackPopN($mul64(num$1, new $Int64(0, 2))); /* */ $s = 78; case 78: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+					num$1 = $assertType(code.Value, IntType);
+					_r$35 = stackPopN($imul(num$1, 2)); /* */ $s = 78; case 78: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
 					items = _r$35;
 					_r$36 = VMValueNewDictWithArray(items); /* */ $s = 79; case 79: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
 					_tuple$1 = _r$36;
@@ -46538,27 +46539,27 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						ctx[0].Error = errors.New("\xE5\xB7\xA6\xE5\x8F\xB3\xE4\xB8\xA4\xE4\xB8\xAA\xE5\x8C\xBA\xE9\x97\xB4\xE5\xBF\x85\xE9\xA1\xBB\xE9\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
 						$s = -1; return;
 					}
-					step = new $Int64(0, 1);
-					length = new $Int64(_b.$high - _a.$high, _b.$low - _a.$low);
-					if ((length.$high < 0 || (length.$high === 0 && length.$low < 0))) {
-						step = new $Int64(-1, 4294967295);
-						length = new $Int64(-length.$high, -length.$low);
+					step = 1;
+					length = _b - _a >> 0;
+					if (length < 0) {
+						step = -1;
+						length = -length;
 					}
-					length = (x$8 = new $Int64(0, 1), new $Int64(length.$high + x$8.$high, length.$low + x$8.$low));
-					if ((length.$high > 0 || (length.$high === 0 && length.$low > 512))) {
+					length = length + (1) >> 0;
+					if (length > 512) {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE8\x83\xBD\xE4\xB8\x80\xE6\xAC\xA1\xE6\x80\xA7\xE5\x88\x9B\xE5\xBB\xBA\xE8\xBF\x87\xE9\x95\xBF\xE7\x9A\x84\xE6\x95\xB0\xE7\xBB\x84");
 						$s = -1; return;
 					}
-					arr = $makeSlice(sliceType$2, $flatten64(length));
+					arr = $makeSlice(sliceType$2, length);
 					index = 0;
 					i$2 = _a;
 					while (true) {
 						((index < 0 || index >= arr.$length) ? ($throwRuntimeError("index out of range"), undefined) : arr.$array[arr.$offset + index] = VMValueNewInt(i$2));
 						index = index + (1) >> 0;
-						if ((i$2.$high === _b.$high && i$2.$low === _b.$low)) {
+						if (i$2 === _b) {
 							break;
 						}
-						i$2 = (x$9 = step, new $Int64(i$2.$high + x$9.$high, i$2.$low + x$9.$low));
+						i$2 = i$2 + (step) >> 0;
 					}
 					$r = stackPush(VMValueNewArray(arr)); /* */ $s = 85; case 85: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
@@ -46596,7 +46597,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						$r = stackPush(v); /* */ $s = 91; case 91: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 						$s = 89; continue;
 					/* } else { */ case 88:
-						$r = stackPush(VMValueNewInt(new $Int64(0, 100))); /* */ $s = 92; case 92: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$r = stackPush(VMValueNewInt(100)); /* */ $s = 92; case 92: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 89:
 					$s = 74; continue;
 				/* } else if (_1 === (44)) { */ case 28:
@@ -46614,7 +46615,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* } */ case 96:
 					$s = 74; continue;
 				/* } else if (_1 === (21)) { */ case 29:
-					paramsNum = $assertType(code.Value, $Int64);
+					paramsNum = $assertType(code.Value, IntType);
 					_r$40 = stackPopN(paramsNum); /* */ $s = 99; case 99: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
 					arr$1 = _r$40;
 					_r$41 = stackPop[0](); /* */ $s = 100; case 100: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
@@ -46664,7 +46665,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					itemIndex$1 = _r$48;
 					_r$49 = stackPop[0](); /* */ $s = 115; case 115: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
 					obj$1 = _r$49;
-					_r$50 = obj$1.ItemSet(ctx[0], itemIndex$1, val$2); /* */ $s = 116; case 116: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
+					_r$50 = obj$1.ItemSet(ctx[0], itemIndex$1, val$2.Clone()); /* */ $s = 116; case 116: if($c) { $c = false; _r$50 = _r$50.$blk(); } if (_r$50 && _r$50.$blk !== undefined) { break s; }
 					_r$50;
 					if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) {
 						$s = -1; return;
@@ -46676,7 +46677,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					attrVal = _tuple$7[0];
 					obj$2 = _tuple$7[1];
 					attrName = $assertType(code.Value, $String);
-					_r$52 = obj$2.AttrSet(ctx[0], attrName, attrVal); /* */ $s = 118; case 118: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
+					_r$52 = obj$2.AttrSet(ctx[0], attrName, attrVal.Clone()); /* */ $s = 118; case 118: if($c) { $c = false; _r$52 = _r$52.$blk(); } if (_r$52 && _r$52.$blk !== undefined) { break s; }
 					ret$3 = _r$52;
 					if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$3 === ptrType.nil) {
 						ctx[0].Error = errors.New("\xE4\xB8\x8D\xE6\x94\xAF\xE6\x8C\x81\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B\xEF\xBC\x9A\xE5\xBD\x93\xE5\x89\x8D\xE5\x8F\x98\xE9\x87\x8F\xE6\x97\xA0\xE6\xB3\x95\xE7\x94\xA8.\xE6\x9D\xA5\xE8\xAE\xBE\xE7\xBD\xAE\xE5\xB1\x9E\xE6\x80\xA7");
@@ -46748,7 +46749,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					ctx[0].IsRunning = false;
 					$s = -1; return;
 				/* } else if (_1 === (14)) { */ case 38:
-					num$2 = (((x$10 = $assertType(code.Value, $Int64), x$10.$low + ((x$10.$high >> 31) * 4294967296)) >> 0));
+					num$2 = (($assertType(code.Value, IntType) >> 0));
 					outStr = "";
 					index$1 = 0;
 					/* while (true) { */ case 132:
@@ -46758,7 +46759,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 							e[0].Context.Error = errors.New("E3:\xE6\x97\xA0\xE6\x95\x88\xE7\x9A\x84\xE8\xA1\xA8\xE8\xBE\xBE\xE5\xBC\x8F");
 							$s = -1; return;
 						} else {
-							VMValue.copy(val$4, (x$11 = (e[0].Context.top - num$2 >> 0) + index$1 >> 0, ((x$11 < 0 || x$11 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$11])));
+							VMValue.copy(val$4, (x$8 = (e[0].Context.top - num$2 >> 0) + index$1 >> 0, ((x$8 < 0 || x$8 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$8])));
 						}
 						_r$62 = val$4.ToString(); /* */ $s = 134; case 134: if($c) { $c = false; _r$62 = _r$62.$blk(); } if (_r$62 && _r$62.$blk !== undefined) { break s; }
 						outStr = outStr + (_r$62);
@@ -46766,8 +46767,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					$s = 132; continue;
 					case 133:
 					e[0].Context.top = e[0].Context.top - (num$2) >> 0;
-					(x$12 = e[0].Context.top, ((x$12 < 0 || x$12 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$12])).TypeId = 2;
-					(x$13 = e[0].Context.top, ((x$13 < 0 || x$13 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$13])).Value = new $String(outStr);
+					(x$9 = e[0].Context.top, ((x$9 < 0 || x$9 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$9])).TypeId = 2;
+					(x$10 = e[0].Context.top, ((x$10 < 0 || x$10 >= stack.$length) ? ($throwRuntimeError("index out of range"), undefined) : stack.$array[stack.$offset + x$10])).Value = new $String(outStr);
 					e[0].Context.top = e[0].Context.top + (1) >> 0;
 					$s = 74; continue;
 				/* } else if ((_1 === (15)) || (_1 === (17)) || (_1 === (16))) { */ case 39:
@@ -46784,8 +46785,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						/* */ $s = 139; continue;
 						/* if (!(val$5 === ptrType.nil)) { */ case 138:
 							if (16 === code.T) {
-								(x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).ret = val$5;
-								(x$15 = details[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$15])).text = "";
+								(x$11 = details[0].$length - 1 >> 0, ((x$11 < 0 || x$11 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$11])).ret = val$5;
+								(x$12 = details[0].$length - 1 >> 0, ((x$12 < 0 || x$12 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$12])).text = "";
 							}
 							$r = stackPush(val$5); /* */ $s = 140; case 140: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							opIndex = opIndex + (1) >> 0;
@@ -46798,8 +46799,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						$s = -1; return;
 					}
 					if (16 === code.T) {
-						(x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16])).ret = val$6;
-						(x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).text = "";
+						(x$13 = details[0].$length - 1 >> 0, ((x$13 < 0 || x$13 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$13])).ret = val$6;
+						(x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).text = "";
 					}
 					$r = stackPush(val$6); /* */ $s = 142; case 142: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
@@ -46818,7 +46819,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (v$2.AsBool()) { $s = 146; continue; }
 					/* */ $s = 147; continue;
 					/* if (v$2.AsBool()) { */ case 146:
-						opIndex = opIndex + ((((x$18 = $assertType(code.Value, $Int64), x$18.$low + ((x$18.$high >> 31) * 4294967296)) >> 0))) >> 0;
+						opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
 						/* */ if (code.T === 78) { $s = 148; continue; }
 						/* */ $s = 149; continue;
 						/* if (code.T === 78) { */ case 148:
@@ -46830,18 +46831,18 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_r$67 = stackPop[0](); /* */ $s = 151; case 151: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
 					t = _r$67;
 					if (!t.AsBool()) {
-						opIndex = opIndex + ((((x$19 = $assertType(code.Value, $Int64), x$19.$low + ((x$19.$high >> 31) * 4294967296)) >> 0))) >> 0;
+						opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
 					}
 					$s = 74; continue;
 				/* } else if (_1 === (75)) { */ case 43:
-					opIndex = opIndex + ((((x$20 = $assertType(code.Value, $Int64), x$20.$low + ((x$20.$high >> 31) * 4294967296)) >> 0))) >> 0;
+					opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
 					$s = 74; continue;
 				/* } else if (_1 === (72)) { */ case 44:
 					_r$68 = stackPop[0](); /* */ $s = 152; case 152: if($c) { $c = false; _r$68 = _r$68.$blk(); } if (_r$68 && _r$68.$blk !== undefined) { break s; }
 					_r$68;
 					$s = 74; continue;
 				/* } else if (_1 === (73)) { */ case 45:
-					_r$69 = stackPopN($assertType(code.Value, $Int64)); /* */ $s = 153; case 153: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
+					_r$69 = stackPopN($assertType(code.Value, IntType)); /* */ $s = 153; case 153: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
 					_r$69;
 					$s = 74; continue;
 				/* } else if ((_1 === (29)) || (_1 === (30)) || (_1 === (31)) || (_1 === (32)) || (_1 === (33)) || (_1 === (34)) || (_1 === (35)) || (_1 === (36)) || (_1 === (37)) || (_1 === (38)) || (_1 === (39)) || (_1 === (40)) || (_1 === (41)) || (_1 === (42)) || (_1 === (43))) { */ case 46:
@@ -46849,7 +46850,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_tuple$11 = _r$70;
 					v1 = _tuple$11[0];
 					v2 = _tuple$11[1];
-					opFunc = (x$21 = code.T - 29 << 24 >>> 24, ((x$21 < 0 || x$21 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$21]));
+					opFunc = (x$15 = code.T - 29 << 24 >>> 24, ((x$15 < 0 || x$15 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$15]));
 					_r$71 = opFunc(v1, ctx[0], v2); /* */ $s = 155; case 155: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
 					ret$6 = _r$71;
 					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { $s = 156; continue; }
@@ -46901,7 +46902,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_tuple$12 = v$4.ReadInt();
 					times = _tuple$12[0];
 					ok$1 = _tuple$12[1];
-					if (!ok$1 || (times.$high < 0 || (times.$high === 0 && times.$low <= 0))) {
+					if (!ok$1 || times <= 0) {
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE7\x82\xB9\xE6\xAC\xA1\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
 						$s = -1; return;
 					}
@@ -46910,28 +46911,28 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				/* } else if (_1 === (50)) { */ case 50:
 					_r$78 = stackPop[0](); /* */ $s = 169; case 169: if($c) { $c = false; _r$78 = _r$78.$blk(); } if (_r$78 && _r$78.$blk !== undefined) { break s; }
 					v$5 = _r$78;
-					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = new $Int64(0, 1);
+					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 1;
 					_tuple$13 = v$5.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).lowNum = _tuple$13[0];
 					$s = 74; continue;
 				/* } else if (_1 === (51)) { */ case 51:
 					_r$79 = stackPop[0](); /* */ $s = 170; case 170: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
 					v$6 = _r$79;
-					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = new $Int64(0, 2);
+					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 2;
 					_tuple$14 = v$6.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).highNum = _tuple$14[0];
 					$s = 74; continue;
 				/* } else if (_1 === (52)) { */ case 52:
 					_r$80 = stackPop[0](); /* */ $s = 171; case 171: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
 					v$7 = _r$80;
-					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = new $Int64(0, 3);
+					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 3;
 					_tuple$15 = v$7.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).lowNum = _tuple$15[0];
 					$s = 74; continue;
 				/* } else if (_1 === (53)) { */ case 53:
 					_r$81 = stackPop[0](); /* */ $s = 172; case 172: if($c) { $c = false; _r$81 = _r$81.$blk(); } if (_r$81 && _r$81.$blk !== undefined) { break s; }
 					v$8 = _r$81;
-					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = new $Int64(0, 4);
+					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 4;
 					_tuple$16 = v$8.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).highNum = _tuple$16[0];
 					$s = 74; continue;
@@ -46960,15 +46961,15 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_tuple$19 = val$7.ReadInt();
 					bInt = _tuple$19[0];
 					ok$2 = _tuple$19[1];
-					if (!ok$2 || (bInt.$high < 0 || (bInt.$high === 0 && bInt.$low <= 0))) {
+					if (!ok$2 || bInt <= 0) {
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE9\x9D\xA2\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
 						$s = -1; return;
 					}
-					if (ok$2 && ((x$22 = diceState.isKeepLH, (x$22.$high === 0 && x$22.$low === 1)) || (x$23 = diceState.isKeepLH, (x$23.$high === 0 && x$23.$low === 3))) && (x$24 = diceState.lowNum, (x$24.$high < 0 || (x$24.$high === 0 && x$24.$low <= 0)))) {
+					if (ok$2 && ((diceState.isKeepLH === 1) || (diceState.isKeepLH === 3)) && diceState.lowNum <= 0) {
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE5\x8F\x96\xE4\xBD\x8E\xE4\xB8\xAA\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
 						$s = -1; return;
 					}
-					if (ok$2 && ((x$25 = diceState.isKeepLH, (x$25.$high === 0 && x$25.$low === 2)) || (x$26 = diceState.isKeepLH, (x$26.$high === 0 && x$26.$low === 4))) && (x$27 = diceState.highNum, (x$27.$high < 0 || (x$27.$high === 0 && x$27.$low <= 0)))) {
+					if (ok$2 && ((diceState.isKeepLH === 2) || (diceState.isKeepLH === 4)) && diceState.highNum <= 0) {
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE5\x8F\x96\xE9\xAB\x98\xE4\xB8\xAA\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
 						$s = -1; return;
 					}
@@ -46983,8 +46984,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					detail = _tuple$20[1];
 					diceStateIndex[0] = diceStateIndex[0] - (1) >> 0;
 					ret$8 = VMValueNewInt(num$3);
-					(x$28 = details[0].$length - 1 >> 0, ((x$28 < 0 || x$28 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$28])).ret = ret$8;
-					(x$29 = details[0].$length - 1 >> 0, ((x$29 < 0 || x$29 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$29])).text = detail;
+					(x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16])).ret = ret$8;
+					(x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).text = detail;
 					$r = stackPush(ret$8); /* */ $s = 178; case 178: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
 				/* } else if (_1 === (59)) { */ case 58:
@@ -46993,8 +46994,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					sum = _tuple$21[0];
 					detail$1 = _tuple$21[1];
 					ret$9 = VMValueNewInt(sum);
-					(x$30 = details[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$30])).ret = ret$9;
-					(x$31 = details[0].$length - 1 >> 0, ((x$31 < 0 || x$31 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$31])).text = detail$1;
+					(x$18 = details[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$18])).ret = ret$9;
+					(x$19 = details[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$19])).text = detail$1;
 					$r = stackPush(ret$9); /* */ $s = 180; case 180: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
 				/* } else if ((_1 === (58)) || (_1 === (57))) { */ case 59:
@@ -47012,8 +47013,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					r = _tuple$22[0];
 					detailText = _tuple$22[1];
 					ret$10 = VMValueNewInt(r);
-					(x$32 = details[0].$length - 1 >> 0, ((x$32 < 0 || x$32 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$32])).ret = ret$10;
-					(x$33 = details[0].$length - 1 >> 0, ((x$33 < 0 || x$33 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$33])).text = detailText;
+					(x$20 = details[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$20])).ret = ret$10;
+					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).text = detailText;
 					$r = stackPush(ret$10); /* */ $s = 186; case 186: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
 				/* } else if (_1 === (61)) { */ case 60:
@@ -47052,8 +47053,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					num$4 = _tuple$23[0];
 					detailText$1 = _tuple$23[3];
 					ret$11 = VMValueNewInt(num$4);
-					(x$34 = details[0].$length - 1 >> 0, ((x$34 < 0 || x$34 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$34])).ret = ret$11;
-					(x$35 = details[0].$length - 1 >> 0, ((x$35 < 0 || x$35 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$35])).text = detailText$1;
+					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).ret = ret$11;
+					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).text = detailText$1;
 					$r = stackPush(ret$11); /* */ $s = 194; case 194: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
 				/* } else if (_1 === (67)) { */ case 66:
@@ -47080,8 +47081,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					success = _tuple$24[0];
 					detailText$2 = _tuple$24[3];
 					ret$12 = VMValueNewInt(success);
-					(x$36 = details[0].$length - 1 >> 0, ((x$36 < 0 || x$36 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$36])).ret = ret$12;
-					(x$37 = details[0].$length - 1 >> 0, ((x$37 < 0 || x$37 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$37])).text = detailText$2;
+					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).ret = ret$12;
+					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).text = detailText$2;
 					$r = stackPush(ret$12); /* */ $s = 200; case 200: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 74; continue;
 				/* } else if (_1 === (80)) { */ case 70:
@@ -47144,7 +47145,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$s = 3; continue;
 		case 4:
 		$s = -1; return;
-		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$30, _tuple$31, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, fd, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, val$7, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
+		/* */ } return; } var $f = {$blk: Parser.ptr.prototype.Evaluate, $c: true, $r, _1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$30, _tuple$31, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, err$1, fd, funcObj, i, i$1, i$2, index, index$1, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, unquote, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, val$7, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
 	};
 	Parser.prototype.Evaluate = function() { return this.$val.Evaluate(); };
 	Context.ptr.prototype.GetAsmText = function() {
@@ -47178,73 +47179,73 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	Context.prototype.GetAsmText = function() { return this.$val.GetAsmText(); };
 	Roll = function(dicePoints) {
-		var {_r$24, dicePoints, val, x, $s, $r, $c} = $restore(this, {dicePoints});
+		var {_r$24, _r$25, dicePoints, val, x, $s, $r, $c} = $restore(this, {dicePoints});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-		if ((dicePoints.$high === 0 && dicePoints.$low === 0)) {
-			$s = -1; return new $Int64(0, 0);
+		if (dicePoints === 0) {
+			$s = -1; return 0;
 		}
-		_r$24 = rand.Int63(); /* */ $s = 1; case 1: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
-		val = (x = $div64(_r$24, dicePoints, true), new $Int64(x.$high + 0, x.$low + 1));
+		_r$25 = rand.Int63(); /* */ $s = 1; case 1: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+		val = (_r$24 = (((x = _r$25, x.$low + ((x.$high >> 31) * 4294967296)) >> 0)) % dicePoints, _r$24 === _r$24 ? _r$24 : $throwRuntimeError("integer divide by zero")) + 1 >> 0;
 		$s = -1; return val;
-		/* */ } return; } var $f = {$blk: Roll, $c: true, $r, _r$24, dicePoints, val, x, $s};return $f;
+		/* */ } return; } var $f = {$blk: Roll, $c: true, $r, _r$24, _r$25, dicePoints, val, x, $s};return $f;
 	};
 	$pkg.Roll = Roll;
 	wodCheck = function(e, addLine, pool, points, threshold) {
 		var addLine, e, points, pool, threshold;
-		if ((pool.$high < 0 || (pool.$high === 0 && pool.$low < 1)) || (pool.$high > 0 || (pool.$high === 0 && pool.$low > 20000))) {
+		if (pool < 1 || pool > 20000) {
 			e.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE9\xAA\xB0\xE6\xB1\xA0\xE8\x8C\x83\xE5\x9B\xB4\xE6\x98\xAF1\xE5\x88\xB020000");
 			return false;
 		}
-		if (!((addLine.$high === 0 && addLine.$low === 0)) && (addLine.$high < 0 || (addLine.$high === 0 && addLine.$low < 2))) {
+		if (!((addLine === 0)) && addLine < 2) {
 			e.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE5\x8A\xA0\xE9\xAA\xB0\xE7\xBA\xBF\xE5\xBF\x85\xE9\xA1\xBB\xE4\xB8\xBA0[\xE4\xB8\x8D\xE5\x8A\xA0\xE9\xAA\xB0]\xEF\xBC\x8C\xE6\x88\x96\xE2\x89\xA52");
 			return false;
 		}
-		if ((points.$high < 0 || (points.$high === 0 && points.$low < 1))) {
+		if (points < 1) {
 			e.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE9\x9D\xA2\xE6\x95\xB0\xE8\x87\xB3\xE5\xB0\x91\xE4\xB8\xBA1");
 			return false;
 		}
-		if ((threshold.$high < 0 || (threshold.$high === 0 && threshold.$low < 1))) {
+		if (threshold < 1) {
 			e.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE6\x88\x90\xE5\x8A\x9F\xE7\xBA\xBF\xE8\x87\xB3\xE5\xB0\x91\xE4\xB8\xBA1");
 			return false;
 		}
 		return true;
 	};
 	RollWoD = function(addLine, pool, points, threshold, isGE) {
-		var {_r$24, _r$25, _r$26, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isGE, isShowDetails, one, points, pool, reachAddRound, reachSuccess, roundsText, successCount, threshold, times, x, x$1, x$2, x$3, $s, $r, $c} = $restore(this, {addLine, pool, points, threshold, isGE});
+		var {_r$24, _r$25, _r$26, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isGE, isShowDetails, one, points, pool, reachAddRound, reachSuccess, roundsText, successCount, threshold, times, $s, $r, $c} = $restore(this, {addLine, pool, points, threshold, isGE});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		details = sliceType$1.nil;
 		addTimes = 1;
-		isShowDetails = (pool.$high < 0 || (pool.$high === 0 && pool.$low < 15));
+		isShowDetails = pool < 15;
 		allRollCount = pool;
-		successCount = new $Int64(0, 0);
+		successCount = 0;
 		times = 0;
 		/* while (true) { */ case 1:
 			/* if (!(times < addTimes)) { break; } */ if(!(times < addTimes)) { $s = 2; continue; }
-			addCount = new $Int64(0, 0);
+			addCount = 0;
 			detailsOne = new sliceType$1([]);
-			i = new $Int64(0, 0);
+			i = 0;
 			/* while (true) { */ case 3:
-				/* if (!((i.$high < pool.$high || (i.$high === pool.$high && i.$low < pool.$low)))) { break; } */ if(!((i.$high < pool.$high || (i.$high === pool.$high && i.$low < pool.$low)))) { $s = 4; continue; }
+				/* if (!(i < pool)) { break; } */ if(!(i < pool)) { $s = 4; continue; }
 				reachSuccess = false;
 				reachAddRound = false;
 				_r$24 = Roll(points); /* */ $s = 5; case 5: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 				one = _r$24;
-				if (!((addLine.$high === 0 && addLine.$low === 0))) {
-					reachAddRound = (one.$high > addLine.$high || (one.$high === addLine.$high && one.$low >= addLine.$low));
+				if (!((addLine === 0))) {
+					reachAddRound = one >= addLine;
 				}
 				if (isGE) {
-					reachSuccess = (one.$high > threshold.$high || (one.$high === threshold.$high && one.$low >= threshold.$low));
+					reachSuccess = one >= threshold;
 				} else {
-					reachSuccess = (one.$high < threshold.$high || (one.$high === threshold.$high && one.$low <= threshold.$low));
+					reachSuccess = one <= threshold;
 				}
 				if (reachSuccess) {
-					successCount = (x = new $Int64(0, 1), new $Int64(successCount.$high + x.$high, successCount.$low + x.$low));
+					successCount = successCount + (1) >> 0;
 				}
 				if (reachAddRound) {
-					addCount = (x$1 = new $Int64(0, 1), new $Int64(addCount.$high + x$1.$high, addCount.$low + x$1.$low));
+					addCount = addCount + (1) >> 0;
 				}
 				if (isShowDetails) {
-					baseText = strconv.FormatInt(one, 10);
+					baseText = strconv.FormatInt((new $Int64(0, one)), 10);
 					if (reachSuccess) {
 						baseText = baseText + ("*");
 					}
@@ -47253,15 +47254,15 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					}
 					detailsOne = $append(detailsOne, baseText);
 				}
-				i = (x$2 = new $Int64(0, 1), new $Int64(i.$high + x$2.$high, i.$low + x$2.$low));
+				i = i + (1) >> 0;
 			$s = 3; continue;
 			case 4:
-			allRollCount = (x$3 = addCount, new $Int64(allRollCount.$high + x$3.$high, allRollCount.$low + x$3.$low));
-			if ((addCount.$high > 0 || (addCount.$high === 0 && addCount.$low > 0))) {
+			allRollCount = allRollCount + (addCount) >> 0;
+			if (addCount > 0) {
 				addTimes = addTimes + (1) >> 0;
 				pool = addCount;
 			}
-			if ((allRollCount.$high > 0 || (allRollCount.$high === 0 && allRollCount.$low > 100))) {
+			if (allRollCount > 100) {
 				isShowDetails = false;
 				details = $subslice(details, 0, 0);
 			}
@@ -47282,72 +47283,72 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (details.$length > 0) {
 			detailText = " " + strings.Join(details, ",");
 		}
-		_r$26 = fmt.Sprintf("\xE6\x88\x90\xE5\x8A\x9F%d/%d%s%s", new sliceType$7([successCount, allRollCount, new $String(roundsText), new $String(detailText)])); /* */ $s = 9; case 9: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+		_r$26 = fmt.Sprintf("\xE6\x88\x90\xE5\x8A\x9F%d/%d%s%s", new sliceType$7([new IntType(successCount), new IntType(allRollCount), new $String(roundsText), new $String(detailText)])); /* */ $s = 9; case 9: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 		detailText = _r$26;
-		$s = -1; return [successCount, allRollCount, (new $Int64(0, addTimes)), detailText];
-		/* */ } return; } var $f = {$blk: RollWoD, $c: true, $r, _r$24, _r$25, _r$26, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isGE, isShowDetails, one, points, pool, reachAddRound, reachSuccess, roundsText, successCount, threshold, times, x, x$1, x$2, x$3, $s};return $f;
+		$s = -1; return [successCount, allRollCount, ((addTimes >> 0)), detailText];
+		/* */ } return; } var $f = {$blk: RollWoD, $c: true, $r, _r$24, _r$25, _r$26, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isGE, isShowDetails, one, points, pool, reachAddRound, reachSuccess, roundsText, successCount, threshold, times, $s};return $f;
 	};
 	$pkg.RollWoD = RollWoD;
 	doubleCrossCheck = function(ctx, addLine, pool, points) {
 		var addLine, ctx, points, pool;
-		if ((pool.$high < 0 || (pool.$high === 0 && pool.$low < 1)) || (pool.$high > 0 || (pool.$high === 0 && pool.$low > 20000))) {
+		if (pool < 1 || pool > 20000) {
 			ctx.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE9\xAA\xB0\xE6\xB1\xA0\xE8\x8C\x83\xE5\x9B\xB4\xE6\x98\xAF1\xE5\x88\xB020000");
 			return false;
 		}
-		if ((addLine.$high < 0 || (addLine.$high === 0 && addLine.$low < 2))) {
+		if (addLine < 2) {
 			ctx.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE5\x8A\xA0\xE9\xAA\xB0\xE7\xBA\xBF\xE5\xBF\x85\xE9\xA1\xBB\xE5\xA4\xA7\xE4\xBA\x8E\xE7\xAD\x89\xE4\xBA\x8E2");
 			return false;
 		}
-		if ((points.$high < 0 || (points.$high === 0 && points.$low < 1))) {
+		if (points < 1) {
 			ctx.Error = errors.New("E7: \xE9\x9D\x9E\xE6\xB3\x95\xE6\x95\xB0\xE5\x80\xBC, \xE9\x9D\xA2\xE6\x95\xB0\xE8\x87\xB3\xE5\xB0\x91\xE4\xB8\xBA1");
 			return false;
 		}
 		return true;
 	};
 	RollDoubleCross = function(addLine, pool, points) {
-		var {_r$24, _r$25, _r$26, _r$27, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isShowDetails, lastDetail, maxDice, one, points, pool, reachAddRound, resultDice, roundsText, times, x, x$1, x$2, x$3, $s, $r, $c} = $restore(this, {addLine, pool, points});
+		var {_r$24, _r$25, _r$26, _r$27, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isShowDetails, lastDetail, maxDice, one, points, pool, reachAddRound, resultDice, roundsText, times, $s, $r, $c} = $restore(this, {addLine, pool, points});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		details = sliceType$1.nil;
 		addTimes = 1;
-		isShowDetails = (pool.$high < 0 || (pool.$high === 0 && pool.$low < 15));
+		isShowDetails = pool < 15;
 		allRollCount = pool;
-		resultDice = new $Int64(0, 0);
+		resultDice = 0;
 		times = 0;
 		/* while (true) { */ case 1:
 			/* if (!(times < addTimes)) { break; } */ if(!(times < addTimes)) { $s = 2; continue; }
-			addCount = new $Int64(0, 0);
+			addCount = 0;
 			detailsOne = new sliceType$1([]);
-			maxDice = new $Int64(0, 0);
-			i = new $Int64(0, 0);
+			maxDice = 0;
+			i = 0;
 			/* while (true) { */ case 3:
-				/* if (!((i.$high < pool.$high || (i.$high === pool.$high && i.$low < pool.$low)))) { break; } */ if(!((i.$high < pool.$high || (i.$high === pool.$high && i.$low < pool.$low)))) { $s = 4; continue; }
+				/* if (!(i < pool)) { break; } */ if(!(i < pool)) { $s = 4; continue; }
 				_r$24 = Roll(points); /* */ $s = 5; case 5: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 				one = _r$24;
-				if ((one.$high > maxDice.$high || (one.$high === maxDice.$high && one.$low > maxDice.$low))) {
+				if (one > maxDice) {
 					maxDice = one;
 				}
-				reachAddRound = (one.$high > addLine.$high || (one.$high === addLine.$high && one.$low >= addLine.$low));
+				reachAddRound = one >= addLine;
 				if (reachAddRound) {
-					addCount = (x = new $Int64(0, 1), new $Int64(addCount.$high + x.$high, addCount.$low + x.$low));
-					maxDice = new $Int64(0, 10);
+					addCount = addCount + (1) >> 0;
+					maxDice = 10;
 				}
 				if (isShowDetails) {
-					baseText = strconv.FormatInt(one, 10);
+					baseText = strconv.FormatInt((new $Int64(0, one)), 10);
 					if (reachAddRound) {
 						baseText = "<" + baseText + ">";
 					}
 					detailsOne = $append(detailsOne, baseText);
 				}
-				i = (x$1 = new $Int64(0, 1), new $Int64(i.$high + x$1.$high, i.$low + x$1.$low));
+				i = i + (1) >> 0;
 			$s = 3; continue;
 			case 4:
-			resultDice = (x$2 = maxDice, new $Int64(resultDice.$high + x$2.$high, resultDice.$low + x$2.$low));
-			allRollCount = (x$3 = addCount, new $Int64(allRollCount.$high + x$3.$high, allRollCount.$low + x$3.$low));
-			if ((addCount.$high > 0 || (addCount.$high === 0 && addCount.$low > 0))) {
+			resultDice = resultDice + (maxDice) >> 0;
+			allRollCount = allRollCount + (addCount) >> 0;
+			if (addCount > 0) {
 				addTimes = addTimes + (1) >> 0;
 				pool = addCount;
 			}
-			if ((allRollCount.$high > 0 || (allRollCount.$high === 0 && allRollCount.$low > 100))) {
+			if (allRollCount > 100) {
 				isShowDetails = false;
 				details = $subslice(details, 0, 0);
 			}
@@ -47369,98 +47370,98 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			roundsText = _r$25;
 		/* } */ case 7:
 		lastDetail = "";
-		/* */ if ((resultDice.$high === 0 && resultDice.$low === 1)) { $s = 9; continue; }
+		/* */ if (resultDice === 1) { $s = 9; continue; }
 		/* */ $s = 10; continue;
-		/* if ((resultDice.$high === 0 && resultDice.$low === 1)) { */ case 9:
-			_r$26 = fmt.Sprintf("\xE5\xA4\xA7\xE5\xA4\xB1\xE8\xB4\xA5 \xE5\x87\xBA\xE7\x9B\xAE%d/%d%s%s", new sliceType$7([resultDice, allRollCount, new $String(roundsText), new $String(detailText)])); /* */ $s = 12; case 12: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+		/* if (resultDice === 1) { */ case 9:
+			_r$26 = fmt.Sprintf("\xE5\xA4\xA7\xE5\xA4\xB1\xE8\xB4\xA5 \xE5\x87\xBA\xE7\x9B\xAE%d/%d%s%s", new sliceType$7([new IntType(resultDice), new IntType(allRollCount), new $String(roundsText), new $String(detailText)])); /* */ $s = 12; case 12: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 			lastDetail = _r$26;
 			$s = 11; continue;
 		/* } else { */ case 10:
-			_r$27 = fmt.Sprintf("\xE5\x87\xBA\xE7\x9B\xAE%d/%d%s%s", new sliceType$7([resultDice, allRollCount, new $String(roundsText), new $String(detailText)])); /* */ $s = 13; case 13: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+			_r$27 = fmt.Sprintf("\xE5\x87\xBA\xE7\x9B\xAE%d/%d%s%s", new sliceType$7([new IntType(resultDice), new IntType(allRollCount), new $String(roundsText), new $String(detailText)])); /* */ $s = 13; case 13: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
 			lastDetail = _r$27;
 		/* } */ case 11:
-		$s = -1; return [resultDice, allRollCount, (new $Int64(0, addTimes)), lastDetail];
-		/* */ } return; } var $f = {$blk: RollDoubleCross, $c: true, $r, _r$24, _r$25, _r$26, _r$27, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isShowDetails, lastDetail, maxDice, one, points, pool, reachAddRound, resultDice, roundsText, times, x, x$1, x$2, x$3, $s};return $f;
+		$s = -1; return [resultDice, allRollCount, ((addTimes >> 0)), lastDetail];
+		/* */ } return; } var $f = {$blk: RollDoubleCross, $c: true, $r, _r$24, _r$25, _r$26, _r$27, addCount, addLine, addTimes, allRollCount, baseText, detailText, details, detailsOne, i, isShowDetails, lastDetail, maxDice, one, points, pool, reachAddRound, resultDice, roundsText, times, $s};return $f;
 	};
 	$pkg.RollDoubleCross = RollDoubleCross;
 	RollCommon = function(times, dicePoints, diceMin, diceMax, isKeepLH, lowNum, highNum) {
-		var {_1, _r$24, _r$25, _r$26, diceMax, diceMin, dicePoints, die, highNum, i, i$1, i$2, i$3, isKeepLH, lowNum, num, nums, pickNum, text, times, x, x$1, x$10, x$11, x$12, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r, $c} = $restore(this, {times, dicePoints, diceMin, diceMax, isKeepLH, lowNum, highNum});
+		var {_1, _r$24, _r$25, _r$26, diceMax, diceMin, dicePoints, die, highNum, i, i$1, i$2, i$3, isKeepLH, lowNum, num, nums, pickNum, text, times, $s, $r, $c} = $restore(this, {times, dicePoints, diceMin, diceMax, isKeepLH, lowNum, highNum});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		nums = [nums];
 		nums[0] = sliceType$9.nil;
-		i = new $Int64(0, 0);
+		i = 0;
 		/* while (true) { */ case 1:
-			/* if (!((i.$high < times.$high || (i.$high === times.$high && i.$low < times.$low)))) { break; } */ if(!((i.$high < times.$high || (i.$high === times.$high && i.$low < times.$low)))) { $s = 2; continue; }
+			/* if (!(i < times)) { break; } */ if(!(i < times)) { $s = 2; continue; }
 			_r$24 = Roll(dicePoints); /* */ $s = 3; case 3: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 			die = _r$24;
 			if (!(diceMax === ptrType$15.nil)) {
-				if ((x = diceMax.$get(), (die.$high > x.$high || (die.$high === x.$high && die.$low > x.$low)))) {
+				if (die > diceMax.$get()) {
 					die = diceMax.$get();
 				}
 			}
 			if (!(diceMin === ptrType$15.nil)) {
-				if ((x$1 = diceMin.$get(), (die.$high < x$1.$high || (die.$high === x$1.$high && die.$low < x$1.$low)))) {
+				if (die < diceMin.$get()) {
 					die = diceMin.$get();
 				}
 			}
 			nums[0] = $append(nums[0], die);
-			i = (x$2 = new $Int64(0, 1), new $Int64(i.$high + x$2.$high, i.$low + x$2.$low));
+			i = i + (1) >> 0;
 		$s = 1; continue;
 		case 2:
 		pickNum = times;
-		/* */ if (!((isKeepLH.$high === 0 && isKeepLH.$low === 0))) { $s = 4; continue; }
+		/* */ if (!((isKeepLH === 0))) { $s = 4; continue; }
 		/* */ $s = 5; continue;
-		/* if (!((isKeepLH.$high === 0 && isKeepLH.$low === 0))) { */ case 4:
-			/* */ if ((isKeepLH.$high === 0 && isKeepLH.$low === 1) || (isKeepLH.$high === 0 && isKeepLH.$low === 4)) { $s = 6; continue; }
+		/* if (!((isKeepLH === 0))) { */ case 4:
+			/* */ if ((isKeepLH === 1) || (isKeepLH === 4)) { $s = 6; continue; }
 			/* */ $s = 7; continue;
-			/* if ((isKeepLH.$high === 0 && isKeepLH.$low === 1) || (isKeepLH.$high === 0 && isKeepLH.$low === 4)) { */ case 6:
+			/* if ((isKeepLH === 1) || (isKeepLH === 4)) { */ case 6:
 				$r = sort.Slice(nums[0], (function(nums) { return function(i$1, j) {
-					var i$1, j, x$3, x$4;
-					return (x$3 = ((i$1 < 0 || i$1 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$1]), x$4 = ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]), (x$3.$high < x$4.$high || (x$3.$high === x$4.$high && x$3.$low < x$4.$low)));
+					var i$1, j;
+					return ((i$1 < 0 || i$1 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$1]) < ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]);
 				}; })(nums)); /* */ $s = 9; case 9: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				$s = 8; continue;
 			/* } else { */ case 7:
 				$r = sort.Slice(nums[0], (function(nums) { return function(i$1, j) {
-					var i$1, j, x$3, x$4;
-					return (x$3 = ((i$1 < 0 || i$1 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$1]), x$4 = ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]), (x$3.$high > x$4.$high || (x$3.$high === x$4.$high && x$3.$low > x$4.$low)));
+					var i$1, j;
+					return ((i$1 < 0 || i$1 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$1]) > ((j < 0 || j >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + j]);
 				}; })(nums)); /* */ $s = 10; case 10: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			/* } */ case 8:
 			_1 = isKeepLH;
-			if ((x$3 = new $Int64(0, 1), (_1.$high === x$3.$high && _1.$low === x$3.$low)) || (x$4 = new $Int64(0, 3), (_1.$high === x$4.$high && _1.$low === x$4.$low))) {
+			if ((_1 === (1)) || (_1 === (3))) {
 				pickNum = lowNum;
-			} else if ((x$5 = new $Int64(0, 2), (_1.$high === x$5.$high && _1.$low === x$5.$low)) || (x$6 = new $Int64(0, 4), (_1.$high === x$6.$high && _1.$low === x$6.$low))) {
+			} else if ((_1 === (2)) || (_1 === (4))) {
 				pickNum = highNum;
 			}
-			if ((isKeepLH.$high > 0 || (isKeepLH.$high === 0 && isKeepLH.$low > 2))) {
-				pickNum = new $Int64(times.$high - pickNum.$high, times.$low - pickNum.$low);
+			if (isKeepLH > 2) {
+				pickNum = times - pickNum >> 0;
 			}
-			if ((pickNum.$high < 0 || (pickNum.$high === 0 && pickNum.$low < 0))) {
-				pickNum = new $Int64(0, 0);
+			if (pickNum < 0) {
+				pickNum = 0;
 			}
-			if ((pickNum.$high > times.$high || (pickNum.$high === times.$high && pickNum.$low > times.$low))) {
+			if (pickNum > times) {
 				pickNum = times;
 			}
 		/* } */ case 5:
-		num = new $Int64(0, 0);
-		i$1 = new $Int64(0, 0);
+		num = 0;
+		i$1 = 0;
 		while (true) {
-			if (!((i$1.$high < pickNum.$high || (i$1.$high === pickNum.$high && i$1.$low < pickNum.$low)))) { break; }
-			if ((x$7 = (new $Int64(0, nums[0].$length)), (i$1.$high > x$7.$high || (i$1.$high === x$7.$high && i$1.$low >= x$7.$low)))) {
-				i$1 = (x$8 = new $Int64(0, 1), new $Int64(i$1.$high + x$8.$high, i$1.$low + x$8.$low));
+			if (!(i$1 < pickNum)) { break; }
+			if (i$1 >= ((nums[0].$length >> 0))) {
+				i$1 = i$1 + (1) >> 0;
 				continue;
 			}
-			num = (x$9 = (($flatten64(i$1) < 0 || $flatten64(i$1) >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + $flatten64(i$1)]), new $Int64(num.$high + x$9.$high, num.$low + x$9.$low));
-			i$1 = (x$10 = new $Int64(0, 1), new $Int64(i$1.$high + x$10.$high, i$1.$low + x$10.$low));
+			num = num + (((i$1 < 0 || i$1 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$1])) >> 0;
+			i$1 = i$1 + (1) >> 0;
 		}
 		text = "";
-		/* */ if ((pickNum.$high === times.$high && pickNum.$low === times.$low)) { $s = 11; continue; }
+		/* */ if (pickNum === times) { $s = 11; continue; }
 		/* */ $s = 12; continue;
-		/* if ((pickNum.$high === times.$high && pickNum.$low === times.$low)) { */ case 11:
+		/* if (pickNum === times) { */ case 11:
 			text = "";
 			i$2 = 0;
 			/* while (true) { */ case 14:
 				/* if (!(i$2 < nums[0].$length)) { break; } */ if(!(i$2 < nums[0].$length)) { $s = 15; continue; }
-				_r$25 = fmt.Sprintf("%d+", new sliceType$7([((i$2 < 0 || i$2 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$2])])); /* */ $s = 16; case 16: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+				_r$25 = fmt.Sprintf("%d+", new sliceType$7([new IntType(((i$2 < 0 || i$2 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$2]))])); /* */ $s = 16; case 16: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 				text = text + (_r$25);
 				i$2 = i$2 + (1) >> 0;
 			$s = 14; continue;
@@ -47471,15 +47472,15 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			$s = 13; continue;
 		/* } else { */ case 12:
 			text = "{";
-			i$3 = new $Int64(0, 0);
+			i$3 = 0;
 			/* while (true) { */ case 17:
-				/* if (!((x$11 = (new $Int64(0, nums[0].$length)), (i$3.$high < x$11.$high || (i$3.$high === x$11.$high && i$3.$low < x$11.$low))))) { break; } */ if(!((x$11 = (new $Int64(0, nums[0].$length)), (i$3.$high < x$11.$high || (i$3.$high === x$11.$high && i$3.$low < x$11.$low))))) { $s = 18; continue; }
-				if ((i$3.$high === pickNum.$high && i$3.$low === pickNum.$low)) {
+				/* if (!(i$3 < ((nums[0].$length >> 0)))) { break; } */ if(!(i$3 < ((nums[0].$length >> 0)))) { $s = 18; continue; }
+				if (i$3 === pickNum) {
 					text = text + ("| ");
 				}
-				_r$26 = fmt.Sprintf("%d ", new sliceType$7([(($flatten64(i$3) < 0 || $flatten64(i$3) >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + $flatten64(i$3)])])); /* */ $s = 19; case 19: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+				_r$26 = fmt.Sprintf("%d ", new sliceType$7([new IntType(((i$3 < 0 || i$3 >= nums[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : nums[0].$array[nums[0].$offset + i$3]))])); /* */ $s = 19; case 19: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
 				text = text + (_r$26);
-				i$3 = (x$12 = new $Int64(0, 1), new $Int64(i$3.$high + x$12.$high, i$3.$low + x$12.$low));
+				i$3 = i$3 + (1) >> 0;
 			$s = 17; continue;
 			case 18:
 			if (nums[0].$length > 0) {
@@ -47488,89 +47489,89 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			text = text + ("}");
 		/* } */ case 13:
 		$s = -1; return [num, text];
-		/* */ } return; } var $f = {$blk: RollCommon, $c: true, $r, _1, _r$24, _r$25, _r$26, diceMax, diceMin, dicePoints, die, highNum, i, i$1, i$2, i$3, isKeepLH, lowNum, num, nums, pickNum, text, times, x, x$1, x$10, x$11, x$12, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s};return $f;
+		/* */ } return; } var $f = {$blk: RollCommon, $c: true, $r, _1, _r$24, _r$25, _r$26, diceMax, diceMin, dicePoints, die, highNum, i, i$1, i$2, i$3, isKeepLH, lowNum, num, nums, pickNum, text, times, $s};return $f;
 	};
 	$pkg.RollCommon = RollCommon;
 	RollCoC = function(isBonus, diceNum) {
-		var {_r$24, _r$25, _r$26, _r$27, diceMax, diceMin, diceNum, diceResult, diceTens, diceUnits, i, isBonus, lastDetail, lastDetail$1, n, newVal, newVal$1, num10Exists, nums, x, x$1, x$2, x$3, $s, $r, $c} = $restore(this, {isBonus, diceNum});
+		var {_q, _r$24, _r$25, _r$26, _r$27, _r$28, diceMax, diceMin, diceNum, diceResult, diceTens, diceUnits, i, isBonus, lastDetail, lastDetail$1, n, newVal, newVal$1, num10Exists, nums, $s, $r, $c} = $restore(this, {isBonus, diceNum});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-		_r$24 = Roll(new $Int64(0, 100)); /* */ $s = 1; case 1: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+		_r$24 = Roll(100); /* */ $s = 1; case 1: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
 		diceResult = _r$24;
-		diceTens = $div64(diceResult, new $Int64(0, 10), false);
-		diceUnits = $div64(diceResult, new $Int64(0, 10), true);
-		nums = new sliceType$1([]);
+		diceTens = (_q = diceResult / 10, (_q === _q && _q !== 1/0 && _q !== -1/0) ? _q >> 0 : $throwRuntimeError("integer divide by zero"));
+		diceUnits = (_r$25 = diceResult % 10, _r$25 === _r$25 ? _r$25 : $throwRuntimeError("integer divide by zero"));
+		nums = sliceType$1.nil;
 		diceMin = diceTens;
 		diceMax = diceTens;
 		num10Exists = false;
-		i = new $Int64(0, 0);
+		i = 0;
 		/* while (true) { */ case 2:
-			/* if (!((i.$high < diceNum.$high || (i.$high === diceNum.$high && i.$low < diceNum.$low)))) { break; } */ if(!((i.$high < diceNum.$high || (i.$high === diceNum.$high && i.$low < diceNum.$low)))) { $s = 3; continue; }
-			_r$25 = Roll(new $Int64(0, 10)); /* */ $s = 4; case 4: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
-			n = _r$25;
-			if ((n.$high === 0 && n.$low === 10)) {
+			/* if (!(i < diceNum)) { break; } */ if(!(i < diceNum)) { $s = 3; continue; }
+			_r$26 = Roll(10); /* */ $s = 4; case 4: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+			n = _r$26;
+			if (n === 10) {
 				num10Exists = true;
 				nums = $append(nums, "0");
-				i = (x = new $Int64(0, 1), new $Int64(i.$high + x.$high, i.$low + x.$low));
+				i = i + (1) >> 0;
 				/* continue; */ $s = 2; continue;
 			} else {
-				nums = $append(nums, strconv.FormatInt(n, 10));
+				nums = $append(nums, strconv.FormatInt((new $Int64(0, n)), 10));
 			}
-			if ((n.$high < diceMin.$high || (n.$high === diceMin.$high && n.$low < diceMin.$low))) {
+			if (n < diceMin) {
 				diceMin = n;
 			}
-			if ((n.$high > diceMax.$high || (n.$high === diceMax.$high && n.$low > diceMax.$low))) {
+			if (n > diceMax) {
 				diceMax = n;
 			}
-			i = (x$1 = new $Int64(0, 1), new $Int64(i.$high + x$1.$high, i.$low + x$1.$low));
+			i = i + (1) >> 0;
 		$s = 2; continue;
 		case 3:
 		/* */ if (isBonus) { $s = 5; continue; }
 		/* */ $s = 6; continue;
 		/* if (isBonus) { */ case 5:
-			if (!((diceUnits.$high === 0 && diceUnits.$low === 0)) && num10Exists) {
-				diceMin = new $Int64(0, 0);
+			if (!((diceUnits === 0)) && num10Exists) {
+				diceMin = 0;
 			}
-			newVal = (x$2 = $mul64(diceMin, new $Int64(0, 10)), new $Int64(x$2.$high + diceUnits.$high, x$2.$low + diceUnits.$low));
-			_r$26 = fmt.Sprintf("(D100=%d,\xE5\xA5\x96\xE5\x8A\xB1%s)", new sliceType$7([diceResult, new $String(strings.Join(nums, " "))])); /* */ $s = 8; case 8: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
-			lastDetail = _r$26;
+			newVal = ($imul(diceMin, 10)) + diceUnits >> 0;
+			_r$27 = fmt.Sprintf("(D100=%d,\xE5\xA5\x96\xE5\x8A\xB1%s)", new sliceType$7([new IntType(diceResult), new $String(strings.Join(nums, " "))])); /* */ $s = 8; case 8: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+			lastDetail = _r$27;
 			$s = -1; return [newVal, lastDetail];
 		/* } else { */ case 6:
-			if ((diceUnits.$high === 0 && diceUnits.$low === 0) && num10Exists) {
-				diceMax = new $Int64(0, 10);
+			if ((diceUnits === 0) && num10Exists) {
+				diceMax = 10;
 			}
-			newVal$1 = (x$3 = $mul64(diceMax, new $Int64(0, 10)), new $Int64(x$3.$high + diceUnits.$high, x$3.$low + diceUnits.$low));
-			_r$27 = fmt.Sprintf("(D100=%d,\xE6\x83\xA9\xE7\xBD\x9A%s)", new sliceType$7([diceResult, new $String(strings.Join(nums, " "))])); /* */ $s = 9; case 9: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
-			lastDetail$1 = _r$27;
+			newVal$1 = ($imul(diceMax, 10)) + diceUnits >> 0;
+			_r$28 = fmt.Sprintf("(D100=%d,\xE6\x83\xA9\xE7\xBD\x9A%s)", new sliceType$7([new IntType(diceResult), new $String(strings.Join(nums, " "))])); /* */ $s = 9; case 9: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+			lastDetail$1 = _r$28;
 			$s = -1; return [newVal$1, lastDetail$1];
 		/* } */ case 7:
-		$s = -1; return [new $Int64(0, 0), ""];
-		/* */ } return; } var $f = {$blk: RollCoC, $c: true, $r, _r$24, _r$25, _r$26, _r$27, diceMax, diceMin, diceNum, diceResult, diceTens, diceUnits, i, isBonus, lastDetail, lastDetail$1, n, newVal, newVal$1, num10Exists, nums, x, x$1, x$2, x$3, $s};return $f;
+		$s = -1; return [0, ""];
+		/* */ } return; } var $f = {$blk: RollCoC, $c: true, $r, _q, _r$24, _r$25, _r$26, _r$27, _r$28, diceMax, diceMin, diceNum, diceResult, diceTens, diceUnits, i, isBonus, lastDetail, lastDetail$1, n, newVal, newVal$1, num10Exists, nums, $s};return $f;
 	};
 	$pkg.RollCoC = RollCoC;
 	RollFate = function() {
-		var {_1, _r$24, detail, i, n, sum, x, x$1, x$2, x$3, x$4, $s, $r, $c} = $restore(this, {});
+		var {_1, _r$24, _r$25, detail, i, n, sum, x, $s, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		detail = "";
-		sum = new $Int64(0, 0);
+		sum = 0;
 		i = 0;
 		/* while (true) { */ case 1:
 			/* if (!(i < 4)) { break; } */ if(!(i < 4)) { $s = 2; continue; }
-			_r$24 = rand.Int63(); /* */ $s = 3; case 3: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
-			n = (x = $div64(_r$24, new $Int64(0, 3), true), new $Int64(x.$high - 0, x.$low - 1));
-			sum = (x$1 = n, new $Int64(sum.$high + x$1.$high, sum.$low + x$1.$low));
+			_r$25 = rand.Int63(); /* */ $s = 3; case 3: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+			n = (_r$24 = (((x = _r$25, x.$low + ((x.$high >> 31) * 4294967296)) >> 0)) % 3, _r$24 === _r$24 ? _r$24 : $throwRuntimeError("integer divide by zero")) - 1 >> 0;
+			sum = sum + (n) >> 0;
 			_1 = n;
-			if ((x$2 = new $Int64(-1, 4294967295), (_1.$high === x$2.$high && _1.$low === x$2.$low))) {
+			if (_1 === (-1)) {
 				detail = detail + ("-");
-			} else if ((x$3 = new $Int64(0, 0), (_1.$high === x$3.$high && _1.$low === x$3.$low))) {
+			} else if (_1 === (0)) {
 				detail = detail + ("0");
-			} else if ((x$4 = new $Int64(0, 1), (_1.$high === x$4.$high && _1.$low === x$4.$low))) {
+			} else if (_1 === (1)) {
 				detail = detail + ("+");
 			}
 			i = i + (1) >> 0;
 		$s = 1; continue;
 		case 2:
 		$s = -1; return [sum, detail];
-		/* */ } return; } var $f = {$blk: RollFate, $c: true, $r, _1, _r$24, detail, i, n, sum, x, x$1, x$2, x$3, x$4, $s};return $f;
+		/* */ } return; } var $f = {$blk: RollFate, $c: true, $r, _1, _r$24, _r$25, detail, i, n, sum, x, $s};return $f;
 	};
 	$pkg.RollFate = RollFate;
 	token32.ptr.prototype.String = function() {
@@ -47907,7 +47908,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	Parser.prototype.SprintSyntaxTree = function() { return this.$val.SprintSyntaxTree(); };
 	Parser.ptr.prototype.Execute = function() {
-		var _1, _buffer, _i, _ref, _tmp, _tmp$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, arr, arr$1, attr, attr$1, begin, buffer, end, i, i$1, i$2, limit, num, num$1, objName, objName$1, p, text, token, x, x$1, x$2, x$3;
+		var _1, _buffer, _i, _ref, _tmp, _tmp$1, _tmp$10, _tmp$11, _tmp$12, _tmp$13, _tmp$14, _tmp$15, _tmp$2, _tmp$3, _tmp$4, _tmp$5, _tmp$6, _tmp$7, _tmp$8, _tmp$9, arr, arr$1, attr, attr$1, begin, buffer, end, i, i$1, i$2, limit, num, num$1, objName, objName$1, p, text, token;
 		p = this;
 		_tmp = p.Buffer;
 		_tmp$1 = p.buffer;
@@ -47970,13 +47971,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				p.CounterPush();
 			} else if (_1 === (137)) {
 				p.CounterPush();
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (138)) {
 				p.NamePush(text);
 			} else if (_1 === (139)) {
 				p.NamePush(text);
 			} else if (_1 === (140)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (141)) {
 				p.NamePush(text);
 			} else if (_1 === (142)) {
@@ -47984,11 +47985,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_1 === (144)) {
 				num = p.CounterPop();
 				arr = new sliceType$1([]);
-				i = new $Int64(0, 0);
+				i = 0;
 				while (true) {
-					if (!((i.$high < num.$high || (i.$high === num.$high && i.$low < num.$low)))) { break; }
+					if (!(i < num)) { break; }
 					arr = $append(arr, p.NamePop());
-					i = (x = new $Int64(0, 1), new $Int64(i.$high + x.$high, i.$low + x.$low));
+					i = i + (1) >> 0;
 				}
 				p.AddStoreFunction(p.NamePop(), arr, (text));
 			} else if (_1 === (145)) {
@@ -48058,15 +48059,15 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_1 === (170)) {
 				p.CounterPush();
 			} else if (_1 === (171)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (172)) {
 				p.PushStr("");
-				limit = (x$1 = p.CounterPop(), new $Int64(x$1.$high + 0, x$1.$low + 1));
-				i$1 = new $Int64(0, 0);
+				limit = p.CounterPop() + 1 >> 0;
+				i$1 = 0;
 				while (true) {
-					if (!((i$1.$high < limit.$high || (i$1.$high === limit.$high && i$1.$low < limit.$low)))) { break; }
+					if (!(i$1 < limit)) { break; }
 					p.OffsetPopAndSet();
-					i$1 = (x$2 = new $Int64(0, 1), new $Int64(i$1.$high + x$2.$high, i$1.$low + x$2.$low));
+					i$1 = i$1 + (1) >> 0;
 				}
 			} else if (_1 === (173)) {
 				p.AddOp(78);
@@ -48150,9 +48151,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				p.AddOp(50);
 			} else if (_1 === (206)) {
 				p.CounterPush();
-				p.CounterAdd((new $Int64(0, token.begin)));
+				p.CounterAdd(((token.begin >> 0)));
 			} else if (_1 === (207)) {
-				p.AddDiceDetail(p.CounterPop(), (new $Int64(0, token.end)));
+				p.AddDiceDetail(p.CounterPop(), ((token.end >> 0)));
 			} else if (_1 === (208)) {
 				p.AddOp(48);
 				p.AddOp(49);
@@ -48210,30 +48211,30 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_1 === (233)) {
 				p.WriteCode(26, new $String("kh"));
 			} else if (_1 === (234)) {
-				p.AddInvoke(new $Int64(0, 1));
+				p.AddInvoke(1);
 			} else if (_1 === (235)) {
-				p.AddInvoke(new $Int64(0, 0));
+				p.AddInvoke(0);
 			} else if (_1 === (236)) {
 				p.WriteCode(26, new $String("kl"));
 			} else if (_1 === (237)) {
-				p.AddInvoke(new $Int64(0, 1));
+				p.AddInvoke(1);
 			} else if (_1 === (238)) {
-				p.AddInvoke(new $Int64(0, 0));
+				p.AddInvoke(0);
 			} else if (_1 === (239)) {
 				p.AddOp(23);
 			} else if (_1 === (240)) {
 				p.WriteCode(26, new $String((text)));
 			} else if (_1 === (241)) {
-				p.AddInvoke(new $Int64(0, 0));
+				p.AddInvoke(0);
 			} else if (_1 === (242)) {
 				p.CounterPush();
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (243)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (244)) {
 				p.AddInvoke(p.CounterPop());
 			} else if (_1 === (245)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (246)) {
 				p.WriteCode(15, new $String((text)));
 			} else if (_1 === (247)) {
@@ -48249,18 +48250,18 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_1 === (252)) {
 				p.WriteCode(16, new $String((text)));
 			} else if (_1 === (253)) {
-				p.PushArray(new $Int64(0, 0));
+				p.PushArray(0);
 			} else if (_1 === (254)) {
 				p.AddOp(5);
 			} else if (_1 === (255)) {
 				p.CounterPush();
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (256)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (257)) {
 				p.PushArray(p.CounterPop());
 			} else if (_1 === (258)) {
-				p.PushDict(new $Int64(0, 0));
+				p.PushDict(0);
 			} else if (_1 === (259)) {
 				p.CounterPush();
 			} else if (_1 === (260)) {
@@ -48270,11 +48271,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_1 === (262)) {
 				num$1 = p.CounterPop();
 				arr$1 = new sliceType$1([]);
-				i$2 = new $Int64(0, 0);
+				i$2 = 0;
 				while (true) {
-					if (!((i$2.$high < num$1.$high || (i$2.$high === num$1.$high && i$2.$low < num$1.$low)))) { break; }
+					if (!(i$2 < num$1)) { break; }
 					arr$1 = $append(arr$1, p.NamePop());
-					i$2 = (x$3 = new $Int64(0, 1), new $Int64(i$2.$high + x$3.$high, i$2.$low + x$3.$low));
+					i$2 = i$2 + (1) >> 0;
 				}
 				p.AddStoreFunction("", arr$1, (text));
 			} else if (_1 === (263)) {
@@ -48283,16 +48284,16 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				p.PushFloatNumber((text));
 			} else if (_1 === (265)) {
 				p.PushStr((text));
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (266)) {
 				p.PushStr((text));
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (267)) {
 				p.PushStr((text));
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (268)) {
 				p.PushStr((text));
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (269)) {
 				p.PushStr("");
 			} else if (_1 === (270)) {
@@ -48304,17 +48305,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			} else if (_1 === (273)) {
 				p.CounterPush();
 			} else if (_1 === (274)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (275)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (276)) {
 				p.AddFormatString((text), p.CounterPop());
 			} else if (_1 === (277)) {
 				p.CounterPush();
 			} else if (_1 === (278)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (279)) {
-				p.CounterAdd(new $Int64(0, 1));
+				p.CounterAdd(1);
 			} else if (_1 === (280)) {
 				p.AddFormatString((text), p.CounterPop());
 			} else if (_1 === (281)) {
@@ -60455,17 +60456,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	ParserData.prototype.init = function() { return this.$val.init(); };
 	Parser.ptr.prototype.LoopBegin = function() {
-		var e, x, x$1;
+		var e;
 		e = this;
-		e.ParserData.loopLayer = (x = e.ParserData.loopLayer, x$1 = new $Int64(0, 1), new $Int64(x.$high + x$1.$high, x.$low + x$1.$low));
+		e.ParserData.loopLayer = e.ParserData.loopLayer + (1) >> 0;
 		e.ParserData.loopInfo = $append(e.ParserData.loopInfo, new structType$17.ptr(e.ParserData.continueStack.$length, e.ParserData.breakStack.$length));
 	};
 	Parser.prototype.LoopBegin = function() { return this.$val.LoopBegin(); };
 	Parser.ptr.prototype.LoopEnd = function() {
-		var e, info, x, x$1, x$2, x$3;
+		var e, info, x, x$1;
 		e = this;
-		e.ParserData.loopLayer = (x = e.ParserData.loopLayer, x$1 = new $Int64(0, 1), new $Int64(x.$high - x$1.$high, x.$low - x$1.$low));
-		info = $clone((x$2 = e.ParserData.loopInfo, x$3 = e.ParserData.loopInfo.$length - 1 >> 0, ((x$3 < 0 || x$3 >= x$2.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$2.$array[x$2.$offset + x$3])), structType$17);
+		e.ParserData.loopLayer = e.ParserData.loopLayer - (1) >> 0;
+		info = $clone((x = e.ParserData.loopInfo, x$1 = e.ParserData.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$17);
 		e.ParserData.continueStack = $subslice(e.ParserData.continueStack, 0, info.continueIndex);
 		e.ParserData.breakStack = $subslice(e.ParserData.breakStack, 0, info.breakIndex);
 		e.ParserData.loopInfo = $subslice(e.ParserData.loopInfo, 0, (e.ParserData.loopInfo.$length - 1 >> 0));
@@ -60514,7 +60515,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		e = this;
 		val = $ifaceNil;
 		if ((operator === 77) || (operator === 75)) {
-			val = new $Int64(0, 0);
+			val = new IntType(0);
 		}
 		e.WriteCode(operator, val);
 	};
@@ -60530,7 +60531,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		e = this;
 		_tuple = strconv.ParseInt(value, 10, 64);
 		val = _tuple[0];
-		e.WriteCode(0, (val));
+		e.WriteCode(0, new IntType((((val.$low + ((val.$high >> 31) * 4294967296)) >> 0))));
 	};
 	Parser.prototype.PushIntNumber = function(value) { return this.$val.PushIntNumber(value); };
 	Parser.ptr.prototype.PushStr = function(value) {
@@ -60542,13 +60543,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.PushArray = function(value) {
 		var e, value;
 		e = this;
-		e.WriteCode(3, value);
+		e.WriteCode(3, new IntType(value));
 	};
 	Parser.prototype.PushArray = function(value) { return this.$val.PushArray(value); };
 	Parser.ptr.prototype.PushDict = function(value) {
 		var e, value;
 		e = this;
-		e.WriteCode(4, value);
+		e.WriteCode(4, new IntType(value));
 	};
 	Parser.prototype.PushDict = function(value) { return this.$val.PushDict(value); };
 	Parser.ptr.prototype.PushUndefined = function() {
@@ -60572,7 +60573,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.AddFormatString = function(value, num) {
 		var e, num, value;
 		e = this;
-		e.WriteCode(14, num);
+		e.WriteCode(14, new IntType(num));
 	};
 	Parser.prototype.AddFormatString = function(value, num) { return this.$val.AddFormatString(value, num); };
 	Parser.ptr.prototype.PushFloatNumber = function(value) {
@@ -60629,27 +60630,27 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	Parser.prototype.NamePop = function() { return this.$val.NamePop(); };
 	Parser.ptr.prototype.OffsetPush = function() {
-		var e, x;
+		var e;
 		e = this;
-		e.ParserData.jmpStack = $append(e.ParserData.jmpStack, (x = (new $Int64(0, e.Context.codeIndex)), new $Int64(x.$high - 0, x.$low - 1)));
+		e.ParserData.jmpStack = $append(e.ParserData.jmpStack, ((e.Context.codeIndex >> 0)) - 1 >> 0);
 	};
 	Parser.prototype.OffsetPush = function() { return this.$val.OffsetPush(); };
 	Parser.ptr.prototype.ContinuePush = function() {
-		var p, x, x$1;
+		var p;
 		p = this;
-		if ((x = p.ParserData.loopLayer, (x.$high > 0 || (x.$high === 0 && x.$low > 0)))) {
+		if (p.ParserData.loopLayer > 0) {
 			if (p.ParserData.continueStack === sliceType$9.nil) {
 				p.ParserData.continueStack = new sliceType$9([]);
 			}
 			p.AddOp(75);
-			p.ParserData.continueStack = $append(p.ParserData.continueStack, (x$1 = (new $Int64(0, p.Context.codeIndex)), new $Int64(x$1.$high - 0, x$1.$low - 1)));
+			p.ParserData.continueStack = $append(p.ParserData.continueStack, ((p.Context.codeIndex >> 0)) - 1 >> 0);
 		} else {
 			p.Context.Error = errors.New("\xE5\xBE\xAA\xE7\x8E\xAF\xE5\xA4\x96\xE4\xB8\x8D\xE8\x83\xBD\xE6\x94\xBE\xE7\xBD\xAEcontinue");
 		}
 	};
 	Parser.prototype.ContinuePush = function() { return this.$val.ContinuePush(); };
 	Parser.ptr.prototype.ContinueSet = function(offsetB) {
-		var _i, _ref, codeIndex, info, jmpIndex, lastB, offsetB, p, x, x$1, x$2, x$3, x$4, x$5;
+		var _i, _ref, codeIndex, info, jmpIndex, lastB, offsetB, p, x, x$1, x$2, x$3;
 		p = this;
 		if (!(p.ParserData.continueStack === sliceType$9.nil)) {
 			info = $clone((x = p.ParserData.loopInfo, x$1 = p.ParserData.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$17);
@@ -60660,14 +60661,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				codeIndex = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
 				lastB = (p.ParserData.jmpStack.$length - 1 >> 0) - offsetB >> 0;
 				jmpIndex = (x$2 = p.ParserData.jmpStack, ((lastB < 0 || lastB >= x$2.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$2.$array[x$2.$offset + lastB]));
-				(x$5 = p.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$5.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$5.$array[x$5.$offset + $flatten64(codeIndex)])).Value = (x$3 = (x$4 = (codeIndex), new $Int64(x$4.$high - jmpIndex.$high, x$4.$low - jmpIndex.$low)), new $Int64(-x$3.$high, -x$3.$low));
+				(x$3 = p.Context.code, ((codeIndex < 0 || codeIndex >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + codeIndex])).Value = new IntType(-(((codeIndex) - jmpIndex >> 0)));
 				_i++;
 			}
 		}
 	};
 	Parser.prototype.ContinueSet = function(offsetB) { return this.$val.ContinueSet(offsetB); };
 	Parser.ptr.prototype.BreakSet = function() {
-		var _i, _ref, codeIndex, info, p, x, x$1, x$2, x$3, x$4;
+		var _i, _ref, codeIndex, info, p, x, x$1, x$2;
 		p = this;
 		if (!(p.ParserData.breakStack === sliceType$9.nil)) {
 			info = $clone((x = p.ParserData.loopInfo, x$1 = p.ParserData.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$17);
@@ -60676,33 +60677,33 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			while (true) {
 				if (!(_i < _ref.$length)) { break; }
 				codeIndex = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-				(x$4 = p.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$4.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$4.$array[x$4.$offset + $flatten64(codeIndex)])).Value = (x$2 = (x$3 = (new $Int64(0, p.Context.codeIndex)), new $Int64(x$3.$high - codeIndex.$high, x$3.$low - codeIndex.$low)), new $Int64(x$2.$high - 0, x$2.$low - 1));
+				(x$2 = p.Context.code, ((codeIndex < 0 || codeIndex >= x$2.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$2.$array[x$2.$offset + codeIndex])).Value = new IntType(((((p.Context.codeIndex >> 0)) - codeIndex >> 0) - 1 >> 0));
 				_i++;
 			}
 		}
 	};
 	Parser.prototype.BreakSet = function() { return this.$val.BreakSet(); };
 	Parser.ptr.prototype.BreakPush = function() {
-		var p, x, x$1;
+		var p;
 		p = this;
-		if ((x = p.ParserData.loopLayer, (x.$high > 0 || (x.$high === 0 && x.$low > 0)))) {
+		if (p.ParserData.loopLayer > 0) {
 			if (p.ParserData.breakStack === sliceType$9.nil) {
 				p.ParserData.breakStack = new sliceType$9([]);
 			}
 			p.AddOp(75);
-			p.ParserData.breakStack = $append(p.ParserData.breakStack, (x$1 = (new $Int64(0, p.Context.codeIndex)), new $Int64(x$1.$high - 0, x$1.$low - 1)));
+			p.ParserData.breakStack = $append(p.ParserData.breakStack, ((p.Context.codeIndex >> 0)) - 1 >> 0);
 		} else {
 			p.Context.Error = errors.New("\xE5\xBE\xAA\xE7\x8E\xAF\xE5\xA4\x96\xE4\xB8\x8D\xE8\x83\xBD\xE6\x94\xBE\xE7\xBD\xAEbreak");
 		}
 	};
 	Parser.prototype.BreakPush = function() { return this.$val.BreakPush(); };
 	Parser.ptr.prototype.OffsetPopAndSet = function() {
-		var codeIndex, e, last, x, x$1, x$2, x$3;
+		var codeIndex, e, last, x, x$1;
 		e = this;
 		last = e.ParserData.jmpStack.$length - 1 >> 0;
 		codeIndex = (x = e.ParserData.jmpStack, ((last < 0 || last >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + last]));
 		e.ParserData.jmpStack = $subslice(e.ParserData.jmpStack, 0, last);
-		(x$3 = e.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + $flatten64(codeIndex)])).Value = ((x$1 = (x$2 = (new $Int64(0, e.Context.codeIndex)), new $Int64(x$2.$high - codeIndex.$high, x$2.$low - codeIndex.$low)), new $Int64(x$1.$high - 0, x$1.$low - 1)));
+		(x$1 = e.Context.code, ((codeIndex < 0 || codeIndex >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + codeIndex])).Value = new IntType((((((e.Context.codeIndex >> 0)) - codeIndex >> 0) - 1 >> 0)));
 	};
 	Parser.prototype.OffsetPopAndSet = function() { return this.$val.OffsetPopAndSet(); };
 	Parser.ptr.prototype.OffsetPopN = function(num) {
@@ -60713,31 +60714,31 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	Parser.prototype.OffsetPopN = function(num) { return this.$val.OffsetPopN(num); };
 	Parser.ptr.prototype.OffsetJmpSetX = function(offsetA, offsetB, rev) {
-		var codeIndex, e, jmpIndex, lastA, lastB, offsetA, offsetB, rev, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8;
+		var codeIndex, e, jmpIndex, lastA, lastB, offsetA, offsetB, rev, x, x$1, x$2, x$3;
 		e = this;
 		lastA = (e.ParserData.jmpStack.$length - 1 >> 0) - offsetA >> 0;
 		lastB = (e.ParserData.jmpStack.$length - 1 >> 0) - offsetB >> 0;
 		codeIndex = (x = e.ParserData.jmpStack, ((lastA < 0 || lastA >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + lastA]));
 		jmpIndex = (x$1 = e.ParserData.jmpStack, ((lastB < 0 || lastB >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + lastB]));
 		if (rev) {
-			(x$5 = e.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$5.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$5.$array[x$5.$offset + $flatten64(codeIndex)])).Value = (x$2 = (x$3 = (x$4 = (new $Int64(0, e.Context.codeIndex)), new $Int64(x$4.$high - jmpIndex.$high, x$4.$low - jmpIndex.$low)), new $Int64(x$3.$high - 0, x$3.$low - 1)), new $Int64(-x$2.$high, -x$2.$low));
+			(x$2 = e.Context.code, ((codeIndex < 0 || codeIndex >= x$2.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$2.$array[x$2.$offset + codeIndex])).Value = new IntType(-(((((e.Context.codeIndex >> 0)) - jmpIndex >> 0) - 1 >> 0)));
 		} else {
-			(x$8 = e.Context.code, (($flatten64(codeIndex) < 0 || $flatten64(codeIndex) >= x$8.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$8.$array[x$8.$offset + $flatten64(codeIndex)])).Value = (x$6 = (x$7 = (new $Int64(0, e.Context.codeIndex)), new $Int64(x$7.$high - jmpIndex.$high, x$7.$low - jmpIndex.$low)), new $Int64(x$6.$high - 0, x$6.$low - 1));
+			(x$3 = e.Context.code, ((codeIndex < 0 || codeIndex >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + codeIndex])).Value = new IntType(((((e.Context.codeIndex >> 0)) - jmpIndex >> 0) - 1 >> 0));
 		}
 	};
 	Parser.prototype.OffsetJmpSetX = function(offsetA, offsetB, rev) { return this.$val.OffsetJmpSetX(offsetA, offsetB, rev); };
 	Parser.ptr.prototype.CounterPush = function() {
 		var e;
 		e = this;
-		e.ParserData.counterStack = $append(e.ParserData.counterStack, new $Int64(0, 0));
+		e.ParserData.counterStack = $append(e.ParserData.counterStack, 0);
 	};
 	Parser.prototype.CounterPush = function() { return this.$val.CounterPush(); };
 	Parser.ptr.prototype.CounterAdd = function(offset) {
-		var e, last, offset, x, x$1, x$2, x$3;
+		var e, last, offset, x, x$1;
 		e = this;
 		last = e.ParserData.counterStack.$length - 1 >> 0;
 		if (!((last === -1))) {
-			(x$3 = e.ParserData.counterStack, ((last < 0 || last >= x$3.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$3.$array[x$3.$offset + last] = (x = (x$1 = e.ParserData.counterStack, ((last < 0 || last >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + last])), x$2 = offset, new $Int64(x.$high + x$2.$high, x.$low + x$2.$low))));
+			(x$1 = e.ParserData.counterStack, ((last < 0 || last >= x$1.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$1.$array[x$1.$offset + last] = ((x = e.ParserData.counterStack, ((last < 0 || last >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + last])) + (offset) >> 0)));
 		}
 	};
 	Parser.prototype.CounterAdd = function(offset) { return this.$val.CounterAdd(offset); };
@@ -60767,14 +60768,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.ptr.prototype.AddInvokeMethod = function(name, paramsNum) {
 		var e, name, paramsNum;
 		e = this;
-		e.WriteCode(0, paramsNum);
+		e.WriteCode(0, new IntType(paramsNum));
 		e.WriteCode(22, new $String(name));
 	};
 	Parser.prototype.AddInvokeMethod = function(name, paramsNum) { return this.$val.AddInvokeMethod(name, paramsNum); };
 	Parser.ptr.prototype.AddInvoke = function(paramsNum) {
 		var e, paramsNum;
 		e = this;
-		e.WriteCode(21, paramsNum);
+		e.WriteCode(21, new IntType(paramsNum));
 	};
 	Parser.prototype.AddInvoke = function(paramsNum) { return this.$val.AddInvoke(paramsNum); };
 	Parser.ptr.prototype.AddStoreComputed = function(name, text) {
@@ -60951,7 +60952,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* */ if (_1 === (83)) { $s = 85; continue; }
 			/* */ $s = 86; continue;
 			/* if (_1 === (0)) { */ case 2:
-				$s = -1; return "push.int " + strconv.FormatInt($assertType(code.Value, $Int64), 10);
+				$s = -1; return "push.int " + strconv.FormatInt((new $Int64(0, $assertType(code.Value, IntType))), 10);
 			/* } else if (_1 === (1)) { */ case 3:
 				$s = -1; return "push.flt " + strconv.FormatFloat($assertType(code.Value, $Float64), 102, 2, 64);
 			/* } else if (_1 === (2)) { */ case 4:
@@ -60959,9 +60960,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* } else if (_1 === (5)) { */ case 5:
 				$s = -1; return "push.range";
 			/* } else if (_1 === (3)) { */ case 6:
-				$s = -1; return "push.arr " + strconv.FormatInt($assertType(code.Value, $Int64), 10);
+				$s = -1; return "push.arr " + strconv.FormatInt((new $Int64(0, $assertType(code.Value, IntType))), 10);
 			/* } else if (_1 === (4)) { */ case 7:
-				$s = -1; return "push.dict " + strconv.FormatInt($assertType(code.Value, $Int64), 10);
+				$s = -1; return "push.dict " + strconv.FormatInt((new $Int64(0, $assertType(code.Value, IntType))), 10);
 			/* } else if (_1 === (6)) { */ case 8:
 				_tuple = $assertType(code.Value, ptrType).ReadComputed();
 				computed = _tuple[0];
@@ -60979,7 +60980,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				computed$1 = _tuple$1[0];
 				$s = -1; return "push.func " + computed$1.Name;
 			/* } else if (_1 === (21)) { */ case 14:
-				$s = -1; return "invoke " + strconv.FormatInt($assertType(code.Value, $Int64), 10);
+				$s = -1; return "invoke " + strconv.FormatInt((new $Int64(0, $assertType(code.Value, IntType))), 10);
 			/* } else if (_1 === (22)) { */ case 15:
 				$s = -1; return "invoke.self " + $assertType(code.Value, $String);
 			/* } else if (_1 === (23)) { */ case 16:
@@ -61090,7 +61091,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				$s = -1; return "halt";
 			/* } else if (_1 === (71)) { */ case 65:
 				v = $clone($assertType(code.Value, BufferSpan), BufferSpan);
-				_r$28 = fmt.Sprintf("mark.detail %d, %d", new sliceType$7([v.begin, v.end])); /* */ $s = 95; case 95: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+				_r$28 = fmt.Sprintf("mark.detail %d, %d", new sliceType$7([new IntType(v.begin), new IntType(v.end)])); /* */ $s = 95; case 95: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 				$24r$4 = _r$28;
 				$s = 96; case 96: return $24r$4;
 			/* } else if (_1 === (75)) { */ case 66:
@@ -61157,7 +61158,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = _tuple[0];
 		ok = _tuple[1];
 		if (ok) {
-			return VMValueNewInt((new $Int64(0, math.Ceil(v))));
+			return VMValueNewInt(((math.Ceil(v) >> 0)));
 		} else {
 			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAFfloat");
 		}
@@ -61169,7 +61170,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = _tuple[0];
 		ok = _tuple[1];
 		if (ok) {
-			return VMValueNewInt((new $Int64(0, math.Round(v))));
+			return VMValueNewInt(((math.Round(v) >> 0)));
 		} else {
 			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAFfloat");
 		}
@@ -61181,7 +61182,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		v = _tuple[0];
 		ok = _tuple[1];
 		if (ok) {
-			return VMValueNewInt((new $Int64(0, math.Floor(v))));
+			return VMValueNewInt(((math.Floor(v) >> 0)));
 		} else {
 			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAFfloat");
 		}
@@ -61193,8 +61194,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		_1 = v.TypeId;
 		if (_1 === (0)) {
 			val = v.MustReadInt();
-			if ((val.$high < 0 || (val.$high === 0 && val.$low < 0))) {
-				return VMValueNewInt(new $Int64(-val.$high, -val.$low));
+			if (val < 0) {
+				return VMValueNewInt(-val);
 			}
 			return v;
 		} else if (_1 === (1)) {
@@ -61215,7 +61216,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		} else if (_1 === (1)) {
 			_tuple = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).ReadFloat();
 			v = _tuple[0];
-			return VMValueNewInt((new $Int64(0, v)));
+			return VMValueNewInt(((v >> 0)));
 		} else if (_1 === (2)) {
 			_tuple$1 = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).ReadString();
 			s = _tuple$1[0];
@@ -61223,7 +61224,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			val = _tuple$2[0];
 			err = _tuple$2[1];
 			if ($interfaceIsEqual(err, $ifaceNil)) {
-				return VMValueNewInt(val);
+				return VMValueNewInt((((val.$low + ((val.$high >> 31) * 4294967296)) >> 0)));
 			} else {
 				ctx.Error = errors.New("\xE5\x80\xBC\xE9\x94\x99\xE8\xAF\xAF: \xE6\x97\xA0\xE6\xB3\x95\xE8\xBF\x9B\xE8\xA1\x8C int() \xE8\xBD\xAC\xE6\x8D\xA2: " + s);
 			}
@@ -61238,7 +61239,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (_1 === (0)) {
 			_tuple = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).ReadInt();
 			v = _tuple[0];
-			return VMValueNewFloat(($flatten64(v)));
+			return VMValueNewFloat((v));
 		} else if (_1 === (1)) {
 			return (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]);
 		} else if (_1 === (2)) {
@@ -61305,23 +61306,23 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$11.methods = [{prop: "Load", name: "Load", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "MustLoad", name: "MustLoad", pkg: "", typ: $funcType([$String], [ptrType], false)}, {prop: "Store", name: "Store", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "LoadOrStore", name: "LoadOrStore", pkg: "", typ: $funcType([$String, ptrType], [ptrType, $Bool], false)}, {prop: "LoadAndDelete", name: "LoadAndDelete", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Delete", name: "Delete", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$3], [], false)}, {prop: "missLocked", name: "missLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "dirtyLocked", name: "dirtyLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
 	ptrType$3.methods = [{prop: "load", name: "load", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryStore", name: "tryStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [$Bool], false)}, {prop: "unexpungeLocked", name: "unexpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "storeLocked", name: "storeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [], false)}, {prop: "tryLoadOrStore", name: "tryLoadOrStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType], [ptrType, $Bool, $Bool], false)}, {prop: "delete$", name: "delete", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryExpungeLocked", name: "tryExpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}];
 	ptrType$1.methods = [{prop: "StackTop", name: "StackTop", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Depth", name: "Depth", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetConfig", name: "SetConfig", pkg: "", typ: $funcType([ptrType$20], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([], [], false)}, {prop: "loadInnerVar", name: "loadInnerVar", pkg: "github.com/sealdice/dicescript", typ: $funcType([$String], [ptrType], false)}, {prop: "LoadNameGlobal", name: "LoadNameGlobal", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "LoadNameLocal", name: "LoadNameLocal", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "LoadName", name: "LoadName", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "StoreName", name: "StoreName", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "StoreNameLocal", name: "StoreNameLocal", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "StoreNameGlobal", name: "StoreNameGlobal", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "RegCustomDice", name: "RegCustomDice", pkg: "", typ: $funcType([$String, funcType$6], [$error], false)}, {prop: "RunExpr", name: "RunExpr", pkg: "", typ: $funcType([$String], [ptrType, $error], false)}, {prop: "Run", name: "Run", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "GetAsmText", name: "GetAsmText", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType.methods = [{prop: "ToJSONRaw", name: "ToJSONRaw", pkg: "", typ: $funcType([mapType$2], [sliceType$3, $error], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [sliceType$3, $error], false)}, {prop: "UnmarshalJSON", name: "UnmarshalJSON", pkg: "", typ: $funcType([sliceType$3], [$error], false)}, {prop: "ArrayItemGet", name: "ArrayItemGet", pkg: "", typ: $funcType([ptrType$1, $Int64], [ptrType], false)}, {prop: "ArrayItemSet", name: "ArrayItemSet", pkg: "", typ: $funcType([ptrType$1, $Int64, ptrType], [$Bool], false)}, {prop: "ArrayFuncKeepBase", name: "ArrayFuncKeepBase", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1, $Int64], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1, $Int64], [$Bool, $Float64], false)}, {prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "toStringRaw", name: "toStringRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$21], [$String], false)}, {prop: "toReprRaw", name: "toReprRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$21], [$String], false)}, {prop: "ToRepr", name: "ToRepr", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt", name: "ReadInt", pkg: "", typ: $funcType([], [$Int64, $Bool], false)}, {prop: "ReadFloat", name: "ReadFloat", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [ptrType$5, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$6, $Bool], false)}, {prop: "ReadDictData", name: "ReadDictData", pkg: "", typ: $funcType([], [ptrType$7, $Bool], false)}, {prop: "MustReadDictData", name: "MustReadDictData", pkg: "", typ: $funcType([], [ptrType$7], false)}, {prop: "MustReadArray", name: "MustReadArray", pkg: "", typ: $funcType([], [ptrType$5], false)}, {prop: "MustReadInt", name: "MustReadInt", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "MustReadFloat", name: "MustReadFloat", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$8, $Bool], false)}, {prop: "ReadNativeFunctionData", name: "ReadNativeFunctionData", pkg: "", typ: $funcType([], [ptrType$9, $Bool], false)}, {prop: "ReadNativeObjectData", name: "ReadNativeObjectData", pkg: "", typ: $funcType([], [ptrType$10, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpNullCoalescing", name: "OpNullCoalescing", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseAnd", name: "OpBitwiseAnd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseOr", name: "OpBitwiseOr", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AttrSet", name: "AttrSet", pkg: "", typ: $funcType([ptrType$1, $String, ptrType], [ptrType], false)}, {prop: "AttrGet", name: "AttrGet", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "ItemGet", name: "ItemGet", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "ItemSet", name: "ItemSet", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [$Bool], false)}, {prop: "GetSlice", name: "GetSlice", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int64, $Int64], [ptrType], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([ptrType$1], [$Int64], false)}, {prop: "GetSliceEx", name: "GetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [ptrType], false)}, {prop: "SetSlice", name: "SetSlice", pkg: "", typ: $funcType([ptrType$1, $Int64, $Int64, $Int64, ptrType], [$Bool], false)}, {prop: "SetSliceEx", name: "SetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType, ptrType], [$Bool], false)}, {prop: "ArrayRepeatTimesEx", name: "ArrayRepeatTimesEx", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}, {prop: "FuncInvokeNative", name: "FuncInvokeNative", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}, {prop: "AsDictKey", name: "AsDictKey", pkg: "", typ: $funcType([], [$String, $error], false)}];
+	ptrType.methods = [{prop: "ToJSONRaw", name: "ToJSONRaw", pkg: "", typ: $funcType([mapType$2], [sliceType$3, $error], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [sliceType$3, $error], false)}, {prop: "UnmarshalJSON", name: "UnmarshalJSON", pkg: "", typ: $funcType([sliceType$3], [$error], false)}, {prop: "ArrayItemGet", name: "ArrayItemGet", pkg: "", typ: $funcType([ptrType$1, IntType], [ptrType], false)}, {prop: "ArrayItemSet", name: "ArrayItemSet", pkg: "", typ: $funcType([ptrType$1, IntType, ptrType], [$Bool], false)}, {prop: "ArrayFuncKeepBase", name: "ArrayFuncKeepBase", pkg: "", typ: $funcType([ptrType$1, IntType, $Int], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1, IntType], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1, IntType], [$Bool, $Float64], false)}, {prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "toStringRaw", name: "toStringRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$21], [$String], false)}, {prop: "toReprRaw", name: "toReprRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$21], [$String], false)}, {prop: "ToRepr", name: "ToRepr", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt", name: "ReadInt", pkg: "", typ: $funcType([], [IntType, $Bool], false)}, {prop: "ReadFloat", name: "ReadFloat", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [ptrType$5, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$6, $Bool], false)}, {prop: "ReadDictData", name: "ReadDictData", pkg: "", typ: $funcType([], [ptrType$7, $Bool], false)}, {prop: "MustReadDictData", name: "MustReadDictData", pkg: "", typ: $funcType([], [ptrType$7], false)}, {prop: "MustReadArray", name: "MustReadArray", pkg: "", typ: $funcType([], [ptrType$5], false)}, {prop: "MustReadInt", name: "MustReadInt", pkg: "", typ: $funcType([], [IntType], false)}, {prop: "MustReadFloat", name: "MustReadFloat", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$8, $Bool], false)}, {prop: "ReadNativeFunctionData", name: "ReadNativeFunctionData", pkg: "", typ: $funcType([], [ptrType$9, $Bool], false)}, {prop: "ReadNativeObjectData", name: "ReadNativeObjectData", pkg: "", typ: $funcType([], [ptrType$10, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpNullCoalescing", name: "OpNullCoalescing", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseAnd", name: "OpBitwiseAnd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseOr", name: "OpBitwiseOr", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AttrSet", name: "AttrSet", pkg: "", typ: $funcType([ptrType$1, $String, ptrType], [ptrType], false)}, {prop: "AttrGet", name: "AttrGet", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "ItemGet", name: "ItemGet", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "ItemSet", name: "ItemSet", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [$Bool], false)}, {prop: "GetSlice", name: "GetSlice", pkg: "", typ: $funcType([ptrType$1, IntType, IntType, IntType], [ptrType], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([ptrType$1], [IntType], false)}, {prop: "GetSliceEx", name: "GetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [ptrType], false)}, {prop: "SetSlice", name: "SetSlice", pkg: "", typ: $funcType([ptrType$1, IntType, IntType, IntType, ptrType], [$Bool], false)}, {prop: "SetSliceEx", name: "SetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType, ptrType], [$Bool], false)}, {prop: "ArrayRepeatTimesEx", name: "ArrayRepeatTimesEx", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}, {prop: "FuncInvokeNative", name: "FuncInvokeNative", pkg: "", typ: $funcType([ptrType$1, sliceType$2], [ptrType], false)}, {prop: "AsDictKey", name: "AsDictKey", pkg: "", typ: $funcType([], [$String, $error], false)}];
 	ptrType$12.methods = [{prop: "V", name: "V", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "Store", name: "Store", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$3], [], false)}, {prop: "Load", name: "Load", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}];
 	spanByBegin.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Swap", name: "Swap", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Less", name: "Less", pkg: "", typ: $funcType([$Int, $Int], [$Bool], false)}];
 	spanByEnd.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Swap", name: "Swap", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Less", name: "Less", pkg: "", typ: $funcType([$Int, $Int], [$Bool], false)}];
 	ptrType$22.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 	ptrType$16.methods = [{prop: "print", name: "print", pkg: "github.com/sealdice/dicescript", typ: $funcType([io.Writer, $Bool, $String], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrint", name: "PrettyPrint", pkg: "", typ: $funcType([io.Writer, $String], [], false)}];
 	ptrType$23.methods = [{prop: "Trim", name: "Trim", pkg: "", typ: $funcType([$Uint32], [], false)}, {prop: "Print", name: "Print", pkg: "", typ: $funcType([], [], false)}, {prop: "AST", name: "AST", pkg: "", typ: $funcType([], [ptrType$16], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer, $String], [], false)}, {prop: "PrettyPrintSyntaxTree", name: "PrettyPrintSyntaxTree", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([pegRule, $Uint32, $Uint32, $Uint32], [], false)}, {prop: "Tokens", name: "Tokens", pkg: "", typ: $funcType([], [sliceType$15], false)}];
-	ptrType$13.methods = [{prop: "Evaluate", name: "Evaluate", pkg: "", typ: $funcType([], [], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([sliceType$17], [$error], true)}, {prop: "Reset", name: "Reset", pkg: "", typ: $funcType([], [], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer], [], false)}, {prop: "SprintSyntaxTree", name: "SprintSyntaxTree", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Execute", name: "Execute", pkg: "", typ: $funcType([], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([sliceType$16], [$error], true)}, {prop: "LoopBegin", name: "LoopBegin", pkg: "", typ: $funcType([], [], false)}, {prop: "LoopEnd", name: "LoopEnd", pkg: "", typ: $funcType([], [], false)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "AddDiceDetail", name: "AddDiceDetail", pkg: "", typ: $funcType([$Int64, $Int64], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "PushDict", name: "PushDict", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "PushUndefined", name: "PushUndefined", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "PushGlobal", name: "PushGlobal", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStName", name: "AddStName", pkg: "", typ: $funcType([], [], false)}, {prop: "AddStModify", name: "AddStModify", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreGlobal", name: "AddStoreGlobal", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreLocal", name: "AddStoreLocal", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinuePush", name: "ContinuePush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinueSet", name: "ContinueSet", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "BreakSet", name: "BreakSet", pkg: "", typ: $funcType([], [], false)}, {prop: "BreakPush", name: "BreakPush", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopN", name: "OffsetPopN", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "OffsetJmpSetX", name: "OffsetJmpSetX", pkg: "", typ: $funcType([$Int, $Int, $Bool], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [$Int64], false)}, {prop: "FlagsPush", name: "FlagsPush", pkg: "", typ: $funcType([], [], false)}, {prop: "FlagsPop", name: "FlagsPop", pkg: "", typ: $funcType([], [], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, $Int64], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([$Int64], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreComputedOnStack", name: "AddStoreComputedOnStack", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$1, $String], [], false)}, {prop: "AddAttrSet", name: "AddAttrSet", pkg: "", typ: $funcType([$String, $String, $Bool], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$5, $Int], false)}];
+	ptrType$13.methods = [{prop: "Evaluate", name: "Evaluate", pkg: "", typ: $funcType([], [], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([sliceType$17], [$error], true)}, {prop: "Reset", name: "Reset", pkg: "", typ: $funcType([], [], false)}, {prop: "PrintSyntaxTree", name: "PrintSyntaxTree", pkg: "", typ: $funcType([], [], false)}, {prop: "WriteSyntaxTree", name: "WriteSyntaxTree", pkg: "", typ: $funcType([io.Writer], [], false)}, {prop: "SprintSyntaxTree", name: "SprintSyntaxTree", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Execute", name: "Execute", pkg: "", typ: $funcType([], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([sliceType$16], [$error], true)}, {prop: "LoopBegin", name: "LoopBegin", pkg: "", typ: $funcType([], [], false)}, {prop: "LoopEnd", name: "LoopEnd", pkg: "", typ: $funcType([], [], false)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "AddDiceDetail", name: "AddDiceDetail", pkg: "", typ: $funcType([IntType, IntType], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "PushDict", name: "PushDict", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "PushUndefined", name: "PushUndefined", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "PushGlobal", name: "PushGlobal", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([$String, IntType], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStName", name: "AddStName", pkg: "", typ: $funcType([], [], false)}, {prop: "AddStModify", name: "AddStModify", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreGlobal", name: "AddStoreGlobal", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreLocal", name: "AddStoreLocal", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinuePush", name: "ContinuePush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinueSet", name: "ContinueSet", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "BreakSet", name: "BreakSet", pkg: "", typ: $funcType([], [], false)}, {prop: "BreakPush", name: "BreakPush", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopN", name: "OffsetPopN", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "OffsetJmpSetX", name: "OffsetJmpSetX", pkg: "", typ: $funcType([$Int, $Int, $Bool], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [IntType], false)}, {prop: "FlagsPush", name: "FlagsPush", pkg: "", typ: $funcType([], [], false)}, {prop: "FlagsPop", name: "FlagsPop", pkg: "", typ: $funcType([], [], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, IntType], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreComputedOnStack", name: "AddStoreComputedOnStack", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$1, $String], [], false)}, {prop: "AddAttrSet", name: "AddAttrSet", pkg: "", typ: $funcType([$String, $String, $Bool], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$5, $Int], false)}];
 	ptrType$24.methods = [{prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
 	ptrType$25.methods = [{prop: "init", name: "init", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
 	ptrType$26.methods = [{prop: "CodeString", name: "CodeString", pkg: "", typ: $funcType([], [$String], false)}];
 	ValueMap.init("github.com/sealdice/dicescript", [{prop: "mu", name: "mu", embedded: false, exported: false, typ: sync.Mutex, tag: ""}, {prop: "read", name: "read", embedded: false, exported: false, typ: atomic.Value, tag: ""}, {prop: "dirty", name: "dirty", embedded: false, exported: false, typ: mapType$1, tag: ""}, {prop: "misses", name: "misses", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	readOnlyValueMap.init("github.com/sealdice/dicescript", [{prop: "m", name: "m", embedded: false, exported: false, typ: mapType$1, tag: ""}, {prop: "amended", name: "amended", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 	entryValueMap.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: $UnsafePointer, tag: ""}]);
-	RollConfig.init("github.com/sealdice/dicescript", [{prop: "EnableDiceWoD", name: "EnableDiceWoD", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceCoC", name: "EnableDiceCoC", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceFate", name: "EnableDiceFate", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceDoubleCross", name: "EnableDiceDoubleCross", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableBitwiseOp", name: "DisableBitwiseOp", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableStmts", name: "DisableStmts", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableNDice", name: "DisableNDice", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "CallbackLoadVar", name: "CallbackLoadVar", embedded: false, exported: true, typ: funcType$4, tag: ""}, {prop: "CallbackSt", name: "CallbackSt", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "OpCountLimit", name: "OpCountLimit", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "DefaultDiceSideExpr", name: "DefaultDiceSideExpr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "defaultDiceSideExprCacheFunc", name: "defaultDiceSideExprCacheFunc", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "PrintBytecode", name: "PrintBytecode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "IgnoreDiv0", name: "IgnoreDiv0", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMinMode", name: "DiceMinMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMaxMode", name: "DiceMaxMode", embedded: false, exported: true, typ: $Bool, tag: ""}]);
+	RollConfig.init("github.com/sealdice/dicescript", [{prop: "EnableDiceWoD", name: "EnableDiceWoD", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceCoC", name: "EnableDiceCoC", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceFate", name: "EnableDiceFate", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceDoubleCross", name: "EnableDiceDoubleCross", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableBitwiseOp", name: "DisableBitwiseOp", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableStmts", name: "DisableStmts", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableNDice", name: "DisableNDice", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "CallbackLoadVar", name: "CallbackLoadVar", embedded: false, exported: true, typ: funcType$4, tag: ""}, {prop: "CallbackSt", name: "CallbackSt", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "OpCountLimit", name: "OpCountLimit", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "DefaultDiceSideExpr", name: "DefaultDiceSideExpr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "defaultDiceSideExprCacheFunc", name: "defaultDiceSideExprCacheFunc", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "PrintBytecode", name: "PrintBytecode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "IgnoreDiv0", name: "IgnoreDiv0", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMinMode", name: "DiceMinMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMaxMode", name: "DiceMaxMode", embedded: false, exported: true, typ: $Bool, tag: ""}]);
 	customDiceItem.init("github.com/sealdice/dicescript", [{prop: "re", name: "re", embedded: false, exported: false, typ: ptrType$19, tag: ""}, {prop: "callback", name: "callback", embedded: false, exported: false, typ: funcType$6, tag: ""}]);
-	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$13, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$11, tag: ""}, {prop: "upCtx", name: "upCtx", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: $Int64, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Detail", name: "Detail", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "IsRunning", name: "IsRunning", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "flagsStack", name: "flagsStack", embedded: false, exported: false, typ: sliceType$13, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$14, tag: ""}, {prop: "ValueStoreHookFunc", name: "ValueStoreHookFunc", embedded: false, exported: true, typ: funcType$7, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$11, tag: ""}, {prop: "GlobalValueStoreFunc", name: "GlobalValueStoreFunc", embedded: false, exported: true, typ: funcType$8, tag: ""}, {prop: "GlobalValueLoadFunc", name: "GlobalValueLoadFunc", embedded: false, exported: true, typ: funcType$9, tag: ""}]);
+	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$13, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$11, tag: ""}, {prop: "upCtx", name: "upCtx", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Detail", name: "Detail", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "IsRunning", name: "IsRunning", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "flagsStack", name: "flagsStack", embedded: false, exported: false, typ: sliceType$13, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$14, tag: ""}, {prop: "ValueStoreHookFunc", name: "ValueStoreHookFunc", embedded: false, exported: true, typ: funcType$7, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$11, tag: ""}, {prop: "GlobalValueStoreFunc", name: "GlobalValueStoreFunc", embedded: false, exported: true, typ: funcType$8, tag: ""}, {prop: "GlobalValueLoadFunc", name: "GlobalValueLoadFunc", embedded: false, exported: true, typ: funcType$9, tag: ""}]);
 	VMValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"value\""}]);
 	VMDictValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"typeId\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"value\""}]);
 	ArrayData.init("", [{prop: "List", name: "List", embedded: false, exported: true, typ: sliceType$2, tag: ""}]);
@@ -61340,8 +61341,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Parser.init("github.com/sealdice/dicescript", [{prop: "ParserData", name: "ParserData", embedded: true, exported: true, typ: ParserData, tag: ""}, {prop: "Context", name: "Context", embedded: true, exported: true, typ: Context, tag: ""}, {prop: "Buffer", name: "Buffer", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "buffer", name: "buffer", embedded: false, exported: false, typ: sliceType$8, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: arrayType, tag: ""}, {prop: "parse", name: "parse", embedded: false, exported: false, typ: funcType$16, tag: ""}, {prop: "reset", name: "reset", embedded: false, exported: false, typ: funcType$17, tag: ""}, {prop: "Pretty", name: "Pretty", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "tokens32", name: "tokens32", embedded: true, exported: false, typ: tokens32, tag: ""}]);
 	textPosition.init("github.com/sealdice/dicescript", [{prop: "line", name: "line", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "symbol", name: "symbol", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	parseError.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: ptrType$13, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: token32, tag: ""}]);
-	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "loopInfo", name: "loopInfo", embedded: false, exported: false, typ: sliceType$10, tag: ""}, {prop: "loopLayer", name: "loopLayer", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$11, tag: ""}]);
-	BufferSpan.init("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: $Int64, tag: ""}, {prop: "ret", name: "ret", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "text", name: "text", embedded: false, exported: false, typ: $String, tag: ""}]);
+	ParserData.init("github.com/sealdice/dicescript", [{prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "loopInfo", name: "loopInfo", embedded: false, exported: false, typ: sliceType$10, tag: ""}, {prop: "loopLayer", name: "loopLayer", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$11, tag: ""}]);
+	BufferSpan.init("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "ret", name: "ret", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "text", name: "text", embedded: false, exported: false, typ: $String, tag: ""}]);
 	StInfo.init("", [{prop: "Op", name: "Op", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}]);
 	ByteCode.init("", [{prop: "T", name: "T", embedded: false, exported: true, typ: CodeType, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: ""}]);
 	element.init("github.com/sealdice/dicescript", [{prop: "node", name: "node", embedded: false, exported: false, typ: ptrType$16, tag: ""}, {prop: "down", name: "down", embedded: false, exported: false, typ: ptrType$17, tag: ""}]);
@@ -61369,10 +61370,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		rul3s = $toNativeArray($kindString, ["Unknown", "dicescript", "stmtUnderground", "stmtRoot", "stmtLines", "nextLine", "_switchEnablePrefix", "_switchTrue", "_switchFalse", "flagsSwitch", "stmtWithSemicolon", "stmtWithBlock", "stmtBreak", "stmtContinue", "stmtReturn", "stmtWhile", "block", "stmtElse", "stmtIf", "func_def_params", "stmtFunc", "stmtAssign", "exprRoot", "_step", "_sliceSuffix", "exprSlice", "exprValueIfExists", "exprTernary", "exprLogicOr", "exprLogicAnd", "exprBitwiseOr", "exprBitwiseAnd", "exprCompare", "exprAdditive", "exprMultiplicative", "exprNullCoalescing", "exprExp", "exprUnaryNeg", "exprUnaryPos", "nos", "_diceMod", "_diceMod2", "_dicePearMod", "detailStart", "detailEnd", "_diceType1", "_diceType2", "_diceType3", "_diceType4", "_diceExpr1", "_diceExpr2", "_diceExpr3", "_diceExprX", "_wodTypeMain", "_wodDiceType", "_wodMain", "_cocDiceType", "_diceCocBonus", "_diceCocPenalty", "_dcDiceType", "_fateDiceType", "exprDice", "item_get", "array_call", "attr_get", "func_invoke", "dict_item", "value_id_without_colon", "value", "number", "float", "strPart", "strPart1", "strPart2", "strPart3", "fstring", "keywords", "identifier_ch0", "identifier_ch", "no_keywords", "identifier", "identifierWithoutColon", "sub", "parenOpen", "parenClose", "add", "minus", "multiply", "divide", "modulus", "exponentiation", "nullCoalescing", "bitwiseOr", "bitwiseAnd", "logicOr", "logicAnd", "lt", "gt", "le", "ge", "eq", "ne", "sp", "spNoCR", "sp1", "escape", "comment", "st_expr", "e0", "est", "st_assign_multi", "st_star", "st_assign", "st_modify_multi_1", "st_modify_rest1", "st_modify_multi_2", "st_modify_multi_rest", "st_modify2", "st_modify_rest", "st_name1", "st_name1r", "st_name2", "st_name2r", "id_ch0", "id_ch", "Action0", "Action1", "Action2", "Action3", "Action4", "Action5", "Action6", "Action7", "Action8", "Action9", "Action10", "Action11", "Action12", "Action13", "Action14", "Action15", "Action16", "Action17", "PegText", "Action18", "Action19", "Action20", "Action21", "Action22", "Action23", "Action24", "Action25", "Action26", "Action27", "Action28", "Action29", "Action30", "Action31", "Action32", "Action33", "Action34", "Action35", "Action36", "Action37", "Action38", "Action39", "Action40", "Action41", "Action42", "Action43", "Action44", "Action45", "Action46", "Action47", "Action48", "Action49", "Action50", "Action51", "Action52", "Action53", "Action54", "Action55", "Action56", "Action57", "Action58", "Action59", "Action60", "Action61", "Action62", "Action63", "Action64", "Action65", "Action66", "Action67", "Action68", "Action69", "Action70", "Action71", "Action72", "Action73", "Action74", "Action75", "Action76", "Action77", "Action78", "Action79", "Action80", "Action81", "Action82", "Action83", "Action84", "Action85", "Action86", "Action87", "Action88", "Action89", "Action90", "Action91", "Action92", "Action93", "Action94", "Action95", "Action96", "Action97", "Action98", "Action99", "Action100", "Action101", "Action102", "Action103", "Action104", "Action105", "Action106", "Action107", "Action108", "Action109", "Action110", "Action111", "Action112", "Action113", "Action114", "Action115", "Action116", "Action117", "Action118", "Action119", "Action120", "Action121", "Action122", "Action123", "Action124", "Action125", "Action126", "Action127", "Action128", "Action129", "Action130", "Action131", "Action132", "Action133", "Action134", "Action135", "Action136", "Action137", "Action138", "Action139", "Action140", "Action141", "Action142", "Action143", "Action144", "Action145", "Action146", "Action147", "Action148", "Action149", "Action150", "Action151", "Action152", "Action153", "Action154", "Action155", "Action156", "Action157", "Action158", "Action159", "Action160", "Action161", "Action162", "Action163", "Action164", "Action165", "Action166", "Action167", "Action168", "Action169", "Action170", "Action171", "Action172", "Action173", "Action174", "Action175", "Action176", "Action177", "Action178"]);
 		nnf = VMValueNewNativeFunction;
 		_arg = VMValueNewStr("kh");
-		_r = nnf(new NativeFunctionData.ptr("Array.kh", new sliceType$1(["num"]), new sliceType$2([VMValueNewInt(new $Int64(0, 1))]), ptrType.nil, funcArrayKeepHigh)); /* */ $s = 17; case 17: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+		_r = nnf(new NativeFunctionData.ptr("Array.kh", new sliceType$1(["num"]), new sliceType$2([VMValueNewInt(1)]), ptrType.nil, funcArrayKeepHigh)); /* */ $s = 17; case 17: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		_arg$1 = _r;
 		_arg$2 = VMValueNewStr("kl");
-		_r$1 = nnf(new NativeFunctionData.ptr("Array.kl", new sliceType$1(["num"]), new sliceType$2([VMValueNewInt(new $Int64(0, 1))]), ptrType.nil, funcArrayKeepLow)); /* */ $s = 18; case 18: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		_r$1 = nnf(new NativeFunctionData.ptr("Array.kl", new sliceType$1(["num"]), new sliceType$2([VMValueNewInt(1)]), ptrType.nil, funcArrayKeepLow)); /* */ $s = 18; case 18: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		_arg$3 = _r$1;
 		_arg$4 = VMValueNewStr("sum");
 		_r$2 = nnf(new NativeFunctionData.ptr("Array.sum", new sliceType$1([]), sliceType$2.nil, ptrType.nil, funcArraySum)); /* */ $s = 19; case 19: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
@@ -61438,7 +61439,7 @@ $packages["github.com/sealdice/dicescript/jsport"] = (function() {
 	ptrType$2 = $ptrType(js.Object);
 	funcType = $funcType([$String], [ptrType$2], false);
 	funcType$1 = $funcType([], [ptrType$2], false);
-	funcType$2 = $funcType([$Int64], [ptrType$2], false);
+	funcType$2 = $funcType([dicescript.IntType], [ptrType$2], false);
 	funcType$3 = $funcType([$Float64], [ptrType$2], false);
 	mapType = $mapType($String, $emptyInterface);
 	newVM = function(name) {
@@ -61447,9 +61448,9 @@ $packages["github.com/sealdice/dicescript/jsport"] = (function() {
 		player = [player];
 		re = [re];
 		player[0] = dicescript.VMValueNewDict(ptrType.nil);
-		$r = player[0].Store("\xE5\x8A\x9B\xE9\x87\x8F", dicescript.VMValueNewInt(new $Int64(0, 50))); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = player[0].Store("\xE6\x95\x8F\xE6\x8D\xB7", dicescript.VMValueNewInt(new $Int64(0, 60))); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = player[0].Store("\xE6\x99\xBA\xE5\x8A\x9B", dicescript.VMValueNewInt(new $Int64(0, 70))); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = player[0].Store("\xE5\x8A\x9B\xE9\x87\x8F", dicescript.VMValueNewInt(50)); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = player[0].Store("\xE6\x95\x8F\xE6\x8D\xB7", dicescript.VMValueNewInt(60)); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = player[0].Store("\xE6\x99\xBA\xE5\x8A\x9B", dicescript.VMValueNewInt(70)); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		_key = "player"; (scope || $throwRuntimeError("assignment to entry in nil map"))[$String.keyFor(_key)] = { k: _key, v: player[0].V() };
 		vm = dicescript.NewVM();
 		_r = regexp.MustCompile("^_(\\D+)(\\d+)$"); /* */ $s = 4; case 4: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
@@ -61462,7 +61463,7 @@ $packages["github.com/sealdice/dicescript/jsport"] = (function() {
 			if (m.$length > 1) {
 				_tuple = strconv.ParseInt((2 >= m.$length ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + 2]), 10, 64);
 				val = _tuple[0];
-				$s = -1; return dicescript.VMValueNewInt(val);
+				$s = -1; return dicescript.VMValueNewInt((((val.$low + ((val.$high >> 31) * 4294967296)) >> 0)));
 			}
 			_r$2 = player[0].Load(name$1); /* */ $s = 2; case 2: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 			_tuple$1 = _r$2;
@@ -61498,7 +61499,7 @@ $packages["github.com/sealdice/dicescript/jsport"] = (function() {
 		})) }, { k: "newConfig", v: new funcType$1((function $b() {
 			var {$24r, _r, $s, $r, $c} = $restore(this, {});
 			/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
-			_r = js.MakeFullWrapper(new dicescript.RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, new $Int64(0, 0), "", ptrType$1.nil, false, false, false, false)); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
+			_r = js.MakeFullWrapper(new dicescript.RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, 0, "", ptrType$1.nil, false, false, false, false)); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 			$24r = _r;
 			$s = 2; case 2: return $24r;
 			/* */ } return; } var $f = {$blk: $b, $c: true, $r, $24r, _r, $s};return $f;
