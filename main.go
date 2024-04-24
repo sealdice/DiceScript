@@ -4,10 +4,10 @@
 package main
 
 import (
-	"github.com/gopherjs/gopherjs/js"
 	"regexp"
 	"strconv"
 
+	"github.com/gopherjs/gopherjs/js"
 	ds "github.com/sealdice/dicescript"
 )
 

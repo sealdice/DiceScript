@@ -1,6 +1,6 @@
 {
   "name": "dicescript",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Simple script language for TRPG dice engine.",
   "module": "./dist/main.mjs",
   "type": "module",
