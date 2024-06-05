@@ -36882,19 +36882,19 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.loopLayer = loopLayer_;
 		this.codeStack = codeStack_;
 	});
-	BufferSpan = $pkg.BufferSpan = $newType(0, $kindStruct, "dicescript.BufferSpan", true, "github.com/sealdice/dicescript", true, function(begin_, end_, ret_, text_) {
+	BufferSpan = $pkg.BufferSpan = $newType(0, $kindStruct, "dicescript.BufferSpan", true, "github.com/sealdice/dicescript", true, function(Begin_, End_, Ret_, Text_) {
 		this.$val = this;
 		if (arguments.length === 0) {
-			this.begin = 0;
-			this.end = 0;
-			this.ret = ptrType.nil;
-			this.text = "";
+			this.Begin = 0;
+			this.End = 0;
+			this.Ret = ptrType.nil;
+			this.Text = "";
 			return;
 		}
-		this.begin = begin_;
-		this.end = end_;
-		this.ret = ret_;
-		this.text = text_;
+		this.Begin = Begin_;
+		this.End = End_;
+		this.Ret = Ret_;
+		this.Text = Text_;
 	});
 	StInfo = $pkg.StInfo = $newType(0, $kindStruct, "dicescript.StInfo", true, "github.com/sealdice/dicescript", true, function(Op_, Text_) {
 		this.$val = this;
@@ -40168,7 +40168,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	spanByBegin.prototype.Less = function(i, j) {
 		var a, i, j;
 		a = this;
-		return ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).begin < ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).begin;
+		return ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).Begin < ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).Begin;
 	};
 	$ptrType(spanByBegin).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	spanByEnd.prototype.Len = function() {
@@ -40189,7 +40189,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	spanByEnd.prototype.Less = function(i, j) {
 		var a, i, j;
 		a = this;
-		return ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).end < ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).end;
+		return ((i < 0 || i >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + i]).End < ((j < 0 || j >= a.$length) ? ($throwRuntimeError("index out of range"), undefined) : a.$array[a.$offset + j]).End;
 	};
 	$ptrType(spanByEnd).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	Context.ptr.prototype.makeDetailStr = function(details) {
@@ -40211,17 +40211,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		while (true) {
 			if (!(_i < _ref.$length)) { break; }
 			i = $clone(((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]), BufferSpan);
-			if (i.begin > lastEnd) {
-				curPoint = i.begin;
-				m = $append(m, new structType$17.ptr(curPoint, i.end, new sliceType$11([$clone(i, BufferSpan)])));
+			if (i.Begin > lastEnd) {
+				curPoint = i.Begin;
+				m = $append(m, new structType$17.ptr(curPoint, i.End, new sliceType$11([$clone(i, BufferSpan)])));
 			} else {
 				(x$1 = m.$length - 1 >> 0, ((x$1 < 0 || x$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$1])).spans = $append((x = m.$length - 1 >> 0, ((x < 0 || x >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x])).spans, i);
-				if (i.end > (x$2 = m.$length - 1 >> 0, ((x$2 < 0 || x$2 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$2])).end) {
-					(x$3 = m.$length - 1 >> 0, ((x$3 < 0 || x$3 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$3])).end = i.end;
+				if (i.End > (x$2 = m.$length - 1 >> 0, ((x$2 < 0 || x$2 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$2])).end) {
+					(x$3 = m.$length - 1 >> 0, ((x$3 < 0 || x$3 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$3])).end = i.End;
 				}
 			}
-			if (i.end > lastEnd) {
-				lastEnd = i.end;
+			if (i.End > lastEnd) {
+				lastEnd = i.End;
 			}
 			_i++;
 		}
@@ -40241,8 +40241,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				/* while (true) { */ case 10:
 					/* if (!(j < (item.spans.$length - 1 >> 0))) { break; } */ if(!(j < (item.spans.$length - 1 >> 0))) { $s = 11; continue; }
 					span = $clone((x$6 = item.spans, ((j < 0 || j >= x$6.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$6.$array[x$6.$offset + j])), BufferSpan);
-					_r$26 = span.ret.ToString(); /* */ $s = 12; case 12: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
-					subDetailsText = subDetailsText + ("," + ($bytesToString($subslice(detailResult, span.begin, span.end))) + "=" + _r$26);
+					_r$26 = span.Ret.ToString(); /* */ $s = 12; case 12: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+					subDetailsText = subDetailsText + ("," + ($bytesToString($subslice(detailResult, span.Begin, span.End))) + "=" + _r$26);
 					j = j + (1) >> 0;
 				$s = 10; continue;
 				case 11:
@@ -40250,14 +40250,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			exprText = ($bytesToString($subslice(detailResult, item.begin, item.end)));
 			r = sliceType$7.nil;
 			r = $appendSlice(r, $subslice(detailResult, 0, item.begin));
-			_r$27 = last.ret.ToString(); /* */ $s = 13; case 13: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+			_r$27 = last.Ret.ToString(); /* */ $s = 13; case 13: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
 			detail = "[" + exprText + "=" + _r$27;
-			if (!(last.text === "")) {
-				detail = detail + ("=" + last.text);
+			if (!(last.Text === "")) {
+				detail = detail + ("=" + last.Text);
 			}
 			detail = detail + (subDetailsText + "]");
 			_arg$28 = r;
-			_r$28 = last.ret.ToString(); /* */ $s = 14; case 14: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+			_r$28 = last.Ret.ToString(); /* */ $s = 14; case 14: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 			_arg$29 = (new sliceType$7($stringToBytes(_r$28 + detail)));
 			r = $appendSlice(_arg$28, _arg$29);
 			r = $appendSlice(r, $subslice(detailResult, item.end));
@@ -40842,8 +40842,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						/* */ $s = 196; continue;
 						/* if (!(val$5 === ptrType.nil)) { */ case 195:
 							if (15 === code.T) {
-								(x$11 = details[0].$length - 1 >> 0, ((x$11 < 0 || x$11 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$11])).ret = val$5;
-								(x$12 = details[0].$length - 1 >> 0, ((x$12 < 0 || x$12 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$12])).text = "";
+								(x$11 = details[0].$length - 1 >> 0, ((x$11 < 0 || x$11 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$11])).Ret = val$5;
+								(x$12 = details[0].$length - 1 >> 0, ((x$12 < 0 || x$12 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$12])).Text = "";
 							}
 							$r = stackPush(val$5); /* */ $s = 197; case 197: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 							opIndex = opIndex + (1) >> 0;
@@ -40858,8 +40858,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						$s = 201; case 201: return;
 					/* } */ case 200:
 					if (15 === code.T) {
-						(x$13 = details[0].$length - 1 >> 0, ((x$13 < 0 || x$13 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$13])).ret = val$6;
-						(x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).text = "";
+						(x$13 = details[0].$length - 1 >> 0, ((x$13 < 0 || x$13 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$13])).Ret = val$6;
+						(x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).Text = "";
 					}
 					$r = stackPush(val$6); /* */ $s = 202; case 202: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 77; continue;
@@ -41059,8 +41059,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					detail = _tuple$20[1];
 					diceStateIndex[0] = diceStateIndex[0] - (1) >> 0;
 					ret$8 = NewIntVal(num$3);
-					(x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16])).ret = ret$8;
-					(x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).text = detail;
+					(x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16])).Ret = ret$8;
+					(x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).Text = detail;
 					$r = stackPush(ret$8); /* */ $s = 262; case 262: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 77; continue;
 				/* } else if (_1 === (58)) { */ case 61:
@@ -41068,8 +41068,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					sum = _tuple$21[0];
 					detail$1 = _tuple$21[1];
 					ret$9 = NewIntVal(sum);
-					(x$18 = details[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$18])).ret = ret$9;
-					(x$19 = details[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$19])).text = detail$1;
+					(x$18 = details[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$18])).Ret = ret$9;
+					(x$19 = details[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$19])).Text = detail$1;
 					$r = stackPush(ret$9); /* */ $s = 263; case 263: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 77; continue;
 				/* } else if ((_1 === (57)) || (_1 === (56))) { */ case 62:
@@ -41087,8 +41087,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					r = _tuple$22[0];
 					detailText = _tuple$22[1];
 					ret$10 = NewIntVal(r);
-					(x$20 = details[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$20])).ret = ret$10;
-					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).text = detailText;
+					(x$20 = details[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$20])).Ret = ret$10;
+					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).Text = detailText;
 					$r = stackPush(ret$10); /* */ $s = 270; case 270: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 77; continue;
 				/* } else if (_1 === (60)) { */ case 63:
@@ -41129,8 +41129,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					num$4 = _tuple$23[0];
 					detailText$1 = _tuple$23[3];
 					ret$11 = NewIntVal(num$4);
-					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).ret = ret$11;
-					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).text = detailText$1;
+					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).Ret = ret$11;
+					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).Text = detailText$1;
 					$r = stackPush(ret$11); /* */ $s = 281; case 281: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 77; continue;
 				/* } else if (_1 === (66)) { */ case 69:
@@ -41159,8 +41159,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					success = _tuple$24[0];
 					detailText$2 = _tuple$24[3];
 					ret$12 = NewIntVal(success);
-					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).ret = ret$12;
-					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).text = detailText$2;
+					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).Ret = ret$12;
+					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).Text = detailText$2;
 					$r = stackPush(ret$12); /* */ $s = 290; case 290: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 77; continue;
 				/* } else if (_1 === (79)) { */ case 73:
@@ -45529,7 +45529,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				$s = -1; return "halt";
 			/* } else if (_1 === (70)) { */ case 64:
 				v = $clone($assertType(code.Value, BufferSpan), BufferSpan);
-				_r$29 = fmt.Sprintf("mark.detail %d, %d", new sliceType$2([new IntType(v.begin), new IntType(v.end)])); /* */ $s = 94; case 94: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+				_r$29 = fmt.Sprintf("mark.detail %d, %d", new sliceType$2([new IntType(v.Begin), new IntType(v.End)])); /* */ $s = 94; case 94: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 				$24r$4 = _r$29;
 				$s = 95; case 95: return $24r$4;
 			/* } else if (_1 === (74)) { */ case 65:
@@ -45808,7 +45808,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Stats.init("", [{prop: "ExprCnt", name: "ExprCnt", embedded: false, exported: true, typ: $Uint64, tag: ""}, {prop: "ChoiceAltCnt", name: "ChoiceAltCnt", embedded: false, exported: true, typ: mapType$6, tag: ""}]);
 	parser.init("github.com/sealdice/dicescript", [{prop: "filename", name: "filename", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "pt", name: "pt", embedded: false, exported: false, typ: savepoint, tag: ""}, {prop: "cur", name: "cur", embedded: false, exported: false, typ: current, tag: ""}, {prop: "data", name: "data", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "errs", name: "errs", embedded: false, exported: false, typ: ptrType$20, tag: ""}, {prop: "depth", name: "depth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "recover", name: "recover", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: mapType$7, tag: ""}, {prop: "rulesArray", name: "rulesArray", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "vstack", name: "vstack", embedded: false, exported: false, typ: sliceType$20, tag: ""}, {prop: "rstack", name: "rstack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "maxFailPos", name: "maxFailPos", embedded: false, exported: false, typ: position, tag: ""}, {prop: "maxFailExpected", name: "maxFailExpected", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "maxFailInvertExpected", name: "maxFailInvertExpected", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "maxExprCnt", name: "maxExprCnt", embedded: false, exported: false, typ: $Uint64, tag: ""}, {prop: "entrypoint", name: "entrypoint", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "allowInvalidUTF8", name: "allowInvalidUTF8", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "Stats", name: "Stats", embedded: true, exported: true, typ: ptrType$22, tag: ""}, {prop: "choiceNoMatch", name: "choiceNoMatch", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "recoveryStack", name: "recoveryStack", embedded: false, exported: false, typ: sliceType$20, tag: ""}, {prop: "_errPos", name: "_errPos", embedded: false, exported: false, typ: ptrType$23, tag: ""}, {prop: "scStack", name: "scStack", embedded: false, exported: false, typ: sliceType$21, tag: ""}, {prop: "spStack", name: "spStack", embedded: false, exported: false, typ: parserStack, tag: ""}]);
 	ParserData.init("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "flagsStack", name: "flagsStack", embedded: false, exported: false, typ: sliceType$22, tag: ""}, {prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "loopInfo", name: "loopInfo", embedded: false, exported: false, typ: sliceType$23, tag: ""}, {prop: "loopLayer", name: "loopLayer", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$24, tag: ""}]);
-	BufferSpan.init("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "ret", name: "ret", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "text", name: "text", embedded: false, exported: false, typ: $String, tag: ""}]);
+	BufferSpan.init("", [{prop: "Begin", name: "Begin", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "End", name: "End", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}]);
 	StInfo.init("", [{prop: "Op", name: "Op", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}]);
 	ByteCode.init("", [{prop: "T", name: "T", embedded: false, exported: true, typ: CodeType, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: ""}]);
 	$init = function() {
