@@ -68,7 +68,7 @@
             if (ctx.Error) {
               this.items.push(`错误: ${ctx.Error.Error()}`)
             } else {
-              this.items.push("过程:" + ctx.Detail)
+              this.items.push("过程:" + ctx.GetDetail())
               this.items.push("结果:" + ctx.Ret.ToString())
               this.items.push(`栈顶: ${ctx.StackTop()} 层数:${ctx.Depth()} 算力: ${ctx.NumOpCount}`)
 
