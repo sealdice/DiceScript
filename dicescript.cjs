@@ -37018,7 +37018,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	mapType$2 = $mapType($String, ptrType$6);
 	funcType$2 = $funcType([$String], [$String, ptrType], false);
 	funcType$3 = $funcType([$String, $String, ptrType, ptrType, $String, $String], [], false);
-	funcType$4 = $funcType([ptrType$1, sliceType$11], [$String], false);
+	funcType$4 = $funcType([ptrType$1, sliceType$11, sliceType$7], [$String], false);
 	ptrType$45 = $ptrType(RollConfig);
 	funcType$5 = $funcType([ptrType$1, sliceType$5], [ptrType], false);
 	funcType$6 = $funcType([ptrType$1, $String, ptrType], [$Bool], false);
@@ -40199,10 +40199,11 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ if (!(ctx.Config.CustomMakeDetailFunc === $throwNilPointerError)) { $s = 1; continue; }
 		/* */ $s = 2; continue;
 		/* if (!(ctx.Config.CustomMakeDetailFunc === $throwNilPointerError)) { */ case 1:
-			_r$25 = ctx.Config.CustomMakeDetailFunc(ctx, details); /* */ $s = 3; case 3: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+			_r$25 = ctx.Config.CustomMakeDetailFunc(ctx, details, ctx.parser.data); /* */ $s = 3; case 3: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 			$24r = _r$25;
 			$s = 4; case 4: return $24r;
 		/* } */ case 2:
+		detailResult = ctx.parser.data;
 		curPoint = -1;
 		lastEnd = -1;
 		m = sliceType$15.nil;
@@ -40225,7 +40226,6 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			}
 			_i++;
 		}
-		detailResult = ctx.parser.data;
 		i$1 = m.$length - 1 >> 0;
 		/* while (true) { */ case 5:
 			/* if (!(i$1 >= 0)) { break; } */ if(!(i$1 >= 0)) { $s = 6; continue; }
