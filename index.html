@@ -40,7 +40,7 @@
     let ctx = ds.newVMForPlaygournd();
     console.log('module', ds);
     console.log('vm', ctx);
-    
+
     const c = ds.newConfig();
     c.OpCountLimit = 30000
     c.PrintBytecode = true;
@@ -66,7 +66,7 @@
           try {
             ctx.Run(this.message)
             if (ctx.Error) {
-              this.items.push(`错误: ${ctx.Error.Error()}`)
+              this.items.push(`错误: ${ctx.GetErrorText()}`)
             } else {
               this.items.push("过程:" + ctx.GetDetailText())
               this.items.push("结果:" + ctx.Ret.ToString())
