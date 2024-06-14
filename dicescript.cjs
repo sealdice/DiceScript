@@ -36448,12 +36448,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			return;
 		}
 	});
-	Context = $pkg.Context = $newType(0, $kindStruct, "dicescript.Context", true, "github.com/sealdice/dicescript", true, function(parser_, subThreadDepth_, attrs_, UpCtx_, code_, codeIndex_, stack_, top_, NumOpCount_, V1IfCompatibleCount_, Config_, Error_, Ret_, RestInput_, Matched_, DetailSpans_, detailCache_, Seed_, randSrc_, IsRunning_, CustomDiceInfo_, globalNames_, GlobalValueStoreFunc_, GlobalValueLoadFunc_, GlobalValueLoadOverwriteFunc_) {
+	Context = $pkg.Context = $newType(0, $kindStruct, "dicescript.Context", true, "github.com/sealdice/dicescript", true, function(parser_, subThreadDepth_, Attrs_, UpCtx_, code_, codeIndex_, stack_, top_, NumOpCount_, V1IfCompatibleCount_, Config_, Error_, Ret_, RestInput_, Matched_, DetailSpans_, detailCache_, Seed_, randSrc_, IsRunning_, CustomDiceInfo_, globalNames_, GlobalValueStoreFunc_, GlobalValueLoadFunc_, GlobalValueLoadOverwriteFunc_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.parser = ptrType$3.nil;
 			this.subThreadDepth = 0;
-			this.attrs = ptrType$15.nil;
+			this.Attrs = ptrType$15.nil;
 			this.UpCtx = ptrType$1.nil;
 			this.code = sliceType$9.nil;
 			this.codeIndex = 0;
@@ -36480,7 +36480,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		}
 		this.parser = parser_;
 		this.subThreadDepth = subThreadDepth_;
-		this.attrs = attrs_;
+		this.Attrs = Attrs_;
 		this.UpCtx = UpCtx_;
 		this.code = code_;
 		this.codeIndex = codeIndex_;
@@ -38448,7 +38448,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	Context.ptr.prototype.Init = function() {
 		var ctx, s;
 		ctx = this;
-		ctx.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
+		ctx.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		ctx.globalNames = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		ctx.detailCache = "";
 		ctx.DetailSpans = sliceType$11.nil;
@@ -38529,7 +38529,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var {_r$25, _r$26, _tuple, ctx, exists, isRaw, name, ret, $s, $r, $c} = $restore(this, {name, isRaw});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
-		_r$25 = ctx.attrs.Load(name); /* */ $s = 1; case 1: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+		_r$25 = ctx.Attrs.Load(name); /* */ $s = 1; case 1: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
 		_tuple = _r$25;
 		ret = _tuple[0];
 		exists = _tuple[1];
@@ -38626,7 +38626,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var {ctx, name, v, $s, $r, $c} = $restore(this, {name, v});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
-		$r = ctx.attrs.Store(name, v); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = ctx.Attrs.Store(name, v); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$s = -1; return;
 		/* */ } return; } var $f = {$blk: Context.ptr.prototype.StoreNameLocal, $c: true, $r, ctx, name, v, $s};return $f;
 	};
@@ -39887,7 +39887,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (cd.Attrs === ptrType$15.nil) {
 			cd.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		}
-		vm.attrs = cd.Attrs;
+		vm.Attrs = cd.Attrs;
 		vm.GlobalValueStoreFunc = ctx.GlobalValueStoreFunc;
 		vm.GlobalValueLoadFunc = ctx.GlobalValueLoadFunc;
 		vm.GlobalValueLoadOverwriteFunc = ctx.GlobalValueLoadOverwriteFunc;
@@ -39936,7 +39936,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		vm = NewVM();
 		_tuple = v.ReadFunctionData();
 		cd = _tuple[0];
-		vm.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
+		vm.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		/* */ if (!((cd.Params.$length === params.$length))) { $s = 1; continue; }
 		/* */ $s = 2; continue;
 		/* if (!((cd.Params.$length === params.$length))) { */ case 1:
@@ -39950,7 +39950,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* if (!(_i < _ref.$length)) { break; } */ if(!(_i < _ref.$length)) { $s = 5; continue; }
 			index = _i;
 			i = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-			$r = vm.attrs.Store(i, ((index < 0 || index >= params.$length) ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + index])); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = vm.Attrs.Store(i, ((index < 0 || index >= params.$length) ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + index])); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_i++;
 		$s = 4; continue;
 		case 5:
@@ -39992,7 +39992,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			ret = NewNullVal();
 		}
 		ctx.NumOpCount = vm.NumOpCount;
-		vm.attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
+		vm.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		$s = -1; return ret;
 		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.FuncInvoke, $c: true, $r, _i, _r$25, _r$26, _ref, _tuple, cd, ctx, i, index, params, ret, v, vm, x, x$1, $s};return $f;
 	};
@@ -46187,7 +46187,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	entryValueMap.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: $UnsafePointer, tag: ""}]);
 	RollConfig.init("github.com/sealdice/dicescript", [{prop: "EnableDiceWoD", name: "EnableDiceWoD", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceCoC", name: "EnableDiceCoC", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceFate", name: "EnableDiceFate", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceDoubleCross", name: "EnableDiceDoubleCross", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableBitwiseOp", name: "DisableBitwiseOp", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableStmts", name: "DisableStmts", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableNDice", name: "DisableNDice", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "HookFuncValueStore", name: "HookFuncValueStore", embedded: false, exported: true, typ: funcType$2, tag: ""}, {prop: "HookFuncValueLoad", name: "HookFuncValueLoad", embedded: false, exported: true, typ: funcType$3, tag: ""}, {prop: "CallbackSt", name: "CallbackSt", embedded: false, exported: true, typ: funcType$4, tag: ""}, {prop: "CustomMakeDetailFunc", name: "CustomMakeDetailFunc", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "ParseExprLimit", name: "ParseExprLimit", embedded: false, exported: true, typ: $Uint64, tag: ""}, {prop: "OpCountLimit", name: "OpCountLimit", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "DefaultDiceSideExpr", name: "DefaultDiceSideExpr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "defaultDiceSideExprCacheFunc", name: "defaultDiceSideExprCacheFunc", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "PrintBytecode", name: "PrintBytecode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "IgnoreDiv0", name: "IgnoreDiv0", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableV1IfCompatible", name: "EnableV1IfCompatible", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMinMode", name: "DiceMinMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMaxMode", name: "DiceMaxMode", embedded: false, exported: true, typ: $Bool, tag: ""}]);
 	customDiceItem.init("", []);
-	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "UpCtx", name: "UpCtx", embedded: false, exported: true, typ: ptrType$1, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "V1IfCompatibleCount", name: "V1IfCompatibleCount", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DetailSpans", name: "DetailSpans", embedded: false, exported: true, typ: sliceType$11, tag: ""}, {prop: "detailCache", name: "detailCache", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "Seed", name: "Seed", embedded: false, exported: true, typ: sliceType$7, tag: ""}, {prop: "randSrc", name: "randSrc", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "IsRunning", name: "IsRunning", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$13, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "GlobalValueStoreFunc", name: "GlobalValueStoreFunc", embedded: false, exported: true, typ: funcType$7, tag: ""}, {prop: "GlobalValueLoadFunc", name: "GlobalValueLoadFunc", embedded: false, exported: true, typ: funcType$8, tag: ""}, {prop: "GlobalValueLoadOverwriteFunc", name: "GlobalValueLoadOverwriteFunc", embedded: false, exported: true, typ: funcType$9, tag: ""}]);
+	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "Attrs", name: "Attrs", embedded: false, exported: true, typ: ptrType$15, tag: ""}, {prop: "UpCtx", name: "UpCtx", embedded: false, exported: true, typ: ptrType$1, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "V1IfCompatibleCount", name: "V1IfCompatibleCount", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DetailSpans", name: "DetailSpans", embedded: false, exported: true, typ: sliceType$11, tag: ""}, {prop: "detailCache", name: "detailCache", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "Seed", name: "Seed", embedded: false, exported: true, typ: sliceType$7, tag: ""}, {prop: "randSrc", name: "randSrc", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "IsRunning", name: "IsRunning", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$13, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "GlobalValueStoreFunc", name: "GlobalValueStoreFunc", embedded: false, exported: true, typ: funcType$7, tag: ""}, {prop: "GlobalValueLoadFunc", name: "GlobalValueLoadFunc", embedded: false, exported: true, typ: funcType$8, tag: ""}, {prop: "GlobalValueLoadOverwriteFunc", name: "GlobalValueLoadOverwriteFunc", embedded: false, exported: true, typ: funcType$9, tag: ""}]);
 	VMValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"t\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"v\""}]);
 	VMDictValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"t\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"v\""}]);
 	ArrayData.init("", [{prop: "List", name: "List", embedded: false, exported: true, typ: sliceType$6, tag: ""}]);
