@@ -36448,13 +36448,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			return;
 		}
 	});
-	Context = $pkg.Context = $newType(0, $kindStruct, "dicescript.Context", true, "github.com/sealdice/dicescript", true, function(parser_, subThreadDepth_, attrs_, upCtx_, code_, codeIndex_, stack_, top_, NumOpCount_, V1IfCompatibleCount_, Config_, Error_, Ret_, RestInput_, Matched_, DetailSpans_, detailCache_, Seed_, randSrc_, IsRunning_, CustomDiceInfo_, globalNames_, GlobalValueStoreFunc_, GlobalValueLoadFunc_, GlobalValueLoadOverwriteFunc_) {
+	Context = $pkg.Context = $newType(0, $kindStruct, "dicescript.Context", true, "github.com/sealdice/dicescript", true, function(parser_, subThreadDepth_, attrs_, UpCtx_, code_, codeIndex_, stack_, top_, NumOpCount_, V1IfCompatibleCount_, Config_, Error_, Ret_, RestInput_, Matched_, DetailSpans_, detailCache_, Seed_, randSrc_, IsRunning_, CustomDiceInfo_, globalNames_, GlobalValueStoreFunc_, GlobalValueLoadFunc_, GlobalValueLoadOverwriteFunc_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.parser = ptrType$3.nil;
 			this.subThreadDepth = 0;
 			this.attrs = ptrType$15.nil;
-			this.upCtx = ptrType$1.nil;
+			this.UpCtx = ptrType$1.nil;
 			this.code = sliceType$9.nil;
 			this.codeIndex = 0;
 			this.stack = sliceType$12.nil;
@@ -36481,7 +36481,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.parser = parser_;
 		this.subThreadDepth = subThreadDepth_;
 		this.attrs = attrs_;
-		this.upCtx = upCtx_;
+		this.UpCtx = UpCtx_;
 		this.code = code_;
 		this.codeIndex = codeIndex_;
 		this.stack = stack_;
@@ -38576,10 +38576,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			if (!((ret.TypeId === 4))) {
 				$s = -1; return ret;
 			}
-			if (curCtx.upCtx === ptrType$1.nil) {
+			if (curCtx.UpCtx === ptrType$1.nil) {
 				/* break; */ $s = 5; continue;
 			} else {
-				curCtx = curCtx.upCtx;
+				curCtx = curCtx.UpCtx;
 			}
 		$s = 4; continue;
 		case 5:
@@ -39892,7 +39892,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		vm.GlobalValueLoadFunc = ctx.GlobalValueLoadFunc;
 		vm.GlobalValueLoadOverwriteFunc = ctx.GlobalValueLoadOverwriteFunc;
 		vm.subThreadDepth = ctx.subThreadDepth + 1 >> 0;
-		vm.upCtx = ctx;
+		vm.UpCtx = ctx;
 		vm.NumOpCount = ctx.NumOpCount + 100 >> 0;
 		ctx.NumOpCount = vm.NumOpCount;
 		vm.randSrc = ctx.randSrc;
@@ -39959,7 +39959,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		vm.GlobalValueLoadFunc = ctx.GlobalValueLoadFunc;
 		vm.GlobalValueLoadOverwriteFunc = ctx.GlobalValueLoadOverwriteFunc;
 		vm.subThreadDepth = ctx.subThreadDepth + 1 >> 0;
-		vm.upCtx = ctx;
+		vm.UpCtx = ctx;
 		vm.NumOpCount = ctx.NumOpCount + 100 >> 0;
 		ctx.NumOpCount = vm.NumOpCount;
 		vm.randSrc = ctx.randSrc;
@@ -46187,7 +46187,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	entryValueMap.init("github.com/sealdice/dicescript", [{prop: "p", name: "p", embedded: false, exported: false, typ: $UnsafePointer, tag: ""}]);
 	RollConfig.init("github.com/sealdice/dicescript", [{prop: "EnableDiceWoD", name: "EnableDiceWoD", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceCoC", name: "EnableDiceCoC", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceFate", name: "EnableDiceFate", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableDiceDoubleCross", name: "EnableDiceDoubleCross", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableBitwiseOp", name: "DisableBitwiseOp", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableStmts", name: "DisableStmts", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DisableNDice", name: "DisableNDice", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "HookFuncValueStore", name: "HookFuncValueStore", embedded: false, exported: true, typ: funcType$2, tag: ""}, {prop: "HookFuncValueLoad", name: "HookFuncValueLoad", embedded: false, exported: true, typ: funcType$3, tag: ""}, {prop: "CallbackSt", name: "CallbackSt", embedded: false, exported: true, typ: funcType$4, tag: ""}, {prop: "CustomMakeDetailFunc", name: "CustomMakeDetailFunc", embedded: false, exported: true, typ: funcType$5, tag: ""}, {prop: "ParseExprLimit", name: "ParseExprLimit", embedded: false, exported: true, typ: $Uint64, tag: ""}, {prop: "OpCountLimit", name: "OpCountLimit", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "DefaultDiceSideExpr", name: "DefaultDiceSideExpr", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "defaultDiceSideExprCacheFunc", name: "defaultDiceSideExprCacheFunc", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "PrintBytecode", name: "PrintBytecode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "IgnoreDiv0", name: "IgnoreDiv0", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "EnableV1IfCompatible", name: "EnableV1IfCompatible", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMinMode", name: "DiceMinMode", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "DiceMaxMode", name: "DiceMaxMode", embedded: false, exported: true, typ: $Bool, tag: ""}]);
 	customDiceItem.init("", []);
-	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "upCtx", name: "upCtx", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "V1IfCompatibleCount", name: "V1IfCompatibleCount", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DetailSpans", name: "DetailSpans", embedded: false, exported: true, typ: sliceType$11, tag: ""}, {prop: "detailCache", name: "detailCache", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "Seed", name: "Seed", embedded: false, exported: true, typ: sliceType$7, tag: ""}, {prop: "randSrc", name: "randSrc", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "IsRunning", name: "IsRunning", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$13, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "GlobalValueStoreFunc", name: "GlobalValueStoreFunc", embedded: false, exported: true, typ: funcType$7, tag: ""}, {prop: "GlobalValueLoadFunc", name: "GlobalValueLoadFunc", embedded: false, exported: true, typ: funcType$8, tag: ""}, {prop: "GlobalValueLoadOverwriteFunc", name: "GlobalValueLoadOverwriteFunc", embedded: false, exported: true, typ: funcType$9, tag: ""}]);
+	Context.init("github.com/sealdice/dicescript", [{prop: "parser", name: "parser", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "subThreadDepth", name: "subThreadDepth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "attrs", name: "attrs", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "UpCtx", name: "UpCtx", embedded: false, exported: true, typ: ptrType$1, tag: ""}, {prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "stack", name: "stack", embedded: false, exported: false, typ: sliceType$12, tag: ""}, {prop: "top", name: "top", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "NumOpCount", name: "NumOpCount", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "V1IfCompatibleCount", name: "V1IfCompatibleCount", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "Error", name: "Error", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "RestInput", name: "RestInput", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Matched", name: "Matched", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DetailSpans", name: "DetailSpans", embedded: false, exported: true, typ: sliceType$11, tag: ""}, {prop: "detailCache", name: "detailCache", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "Seed", name: "Seed", embedded: false, exported: true, typ: sliceType$7, tag: ""}, {prop: "randSrc", name: "randSrc", embedded: false, exported: false, typ: ptrType$8, tag: ""}, {prop: "IsRunning", name: "IsRunning", embedded: false, exported: true, typ: $Bool, tag: ""}, {prop: "CustomDiceInfo", name: "CustomDiceInfo", embedded: false, exported: true, typ: sliceType$13, tag: ""}, {prop: "globalNames", name: "globalNames", embedded: false, exported: false, typ: ptrType$15, tag: ""}, {prop: "GlobalValueStoreFunc", name: "GlobalValueStoreFunc", embedded: false, exported: true, typ: funcType$7, tag: ""}, {prop: "GlobalValueLoadFunc", name: "GlobalValueLoadFunc", embedded: false, exported: true, typ: funcType$8, tag: ""}, {prop: "GlobalValueLoadOverwriteFunc", name: "GlobalValueLoadOverwriteFunc", embedded: false, exported: true, typ: funcType$9, tag: ""}]);
 	VMValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"t\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"v\""}]);
 	VMDictValue.init("", [{prop: "TypeId", name: "TypeId", embedded: false, exported: true, typ: VMValueType, tag: "json:\"t\""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: "json:\"v\""}]);
 	ArrayData.init("", [{prop: "List", name: "List", embedded: false, exported: true, typ: sliceType$6, tag: ""}]);
