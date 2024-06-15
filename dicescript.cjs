@@ -39947,9 +39947,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		_tuple = v.ReadFunctionData();
 		cd = _tuple[0];
 		if (useUpCtxLocal) {
-			vm.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
-		} else {
 			vm.Attrs = ctx.Attrs;
+		} else {
+			vm.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		}
 		/* */ if (!((cd.Params.$length === params.$length))) { $s = 1; continue; }
 		/* */ $s = 2; continue;
