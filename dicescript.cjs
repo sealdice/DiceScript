@@ -40606,7 +40606,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	Context.prototype.makeDetailStr = function(details) { return this.$val.makeDetailStr(details); };
 	Context.ptr.prototype.evaluate = function() {
-		var {_1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred, $r, $c} = $restore(this, {});
+		var {_1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, oldRet, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; var $err = null; try { s: while (true) { switch ($s) { case 0: $deferred = []; $curGoroutine.deferStack.push($deferred);
 		ctx = [ctx];
 		dcState = [dcState];
@@ -41181,13 +41181,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { $s = 200; continue; }
 					/* */ $s = 201; continue;
 					/* if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { */ case 200:
-						_r$67 = ctx[0].Config.HookFuncValueLoadOverwrite(name, val$5, (x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14]))); /* */ $s = 202; case 202: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
+						oldRet = (x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).Ret;
+						_r$67 = ctx[0].Config.HookFuncValueLoadOverwrite(name, val$5, (x$15 = details[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$15]))); /* */ $s = 202; case 202: if($c) { $c = false; _r$67 = _r$67.$blk(); } if (_r$67 && _r$67.$blk !== undefined) { break s; }
 						val$5 = _r$67;
+						if (oldRet === (x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16])).Ret) {
+							(x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).Ret = val$5;
+						}
 					/* } */ case 201:
 					$r = stackPush(val$5); /* */ $s = 203; case 203: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (17)) { */ case 43:
-					v$1 = (x$15 = e[0].stack, x$16 = e[0].top - 1 >> 0, ((x$16 < 0 || x$16 >= x$15.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$15.$array[x$15.$offset + x$16])).Clone();
+					v$1 = (x$18 = e[0].stack, x$19 = e[0].top - 1 >> 0, ((x$19 < 0 || x$19 >= x$18.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$18.$array[x$18.$offset + x$19])).Clone();
 					name$1 = $assertType(code.Value, $String);
 					$r = ctx[0].StoreName(name$1, v$1, true); /* */ $s = 204; case 204: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 205; continue; }
@@ -41237,7 +41241,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					_tuple$9 = _r$74;
 					v1 = _tuple$9[0];
 					v2 = _tuple$9[1];
-					opFunc = (x$17 = code.T - 28 << 24 >>> 24, ((x$17 < 0 || x$17 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$17]));
+					opFunc = (x$20 = code.T - 28 << 24 >>> 24, ((x$20 < 0 || x$20 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$20]));
 					_r$75 = opFunc(v1, ctx[0], v2); /* */ $s = 222; case 222: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
 					ret$6 = _r$75;
 					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { $s = 223; continue; }
@@ -41385,9 +41389,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					detail = _tuple$18[1];
 					diceStateIndex[0] = diceStateIndex[0] - (1) >> 0;
 					ret$8 = NewIntVal(num$3);
-					(x$18 = details[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$18])).Ret = ret$8;
-					(x$19 = details[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$19])).Text = detail;
-					(x$20 = details[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$20])).Tag = "dice";
+					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).Ret = ret$8;
+					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).Text = detail;
+					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).Tag = "dice";
 					$r = stackPush(ret$8); /* */ $s = 266; case 266: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (58)) { */ case 61:
@@ -41395,9 +41399,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					sum = _tuple$19[0];
 					detail$1 = _tuple$19[1];
 					ret$9 = NewIntVal(sum);
-					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).Ret = ret$9;
-					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).Text = detail$1;
-					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).Tag = "dice-fate";
+					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).Ret = ret$9;
+					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).Text = detail$1;
+					(x$26 = details[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$26])).Tag = "dice-fate";
 					$r = stackPush(ret$9); /* */ $s = 267; case 267: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if ((_1 === (57)) || (_1 === (56))) { */ case 62:
@@ -41416,12 +41420,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					r = _tuple$20[0];
 					detailText = _tuple$20[1];
 					ret$10 = NewIntVal(r);
-					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).Ret = ret$10;
-					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).Text = detailText;
+					(x$27 = details[0].$length - 1 >> 0, ((x$27 < 0 || x$27 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$27])).Ret = ret$10;
+					(x$28 = details[0].$length - 1 >> 0, ((x$28 < 0 || x$28 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$28])).Text = detailText;
 					if (isBonus) {
-						(x$26 = details[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$26])).Tag = "dice-coc-bonus";
+						(x$29 = details[0].$length - 1 >> 0, ((x$29 < 0 || x$29 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$29])).Tag = "dice-coc-bonus";
 					} else {
-						(x$27 = details[0].$length - 1 >> 0, ((x$27 < 0 || x$27 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$27])).Tag = "dice-coc-penalty";
+						(x$30 = details[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$30])).Tag = "dice-coc-penalty";
 					}
 					$r = stackPush(ret$10); /* */ $s = 274; case 274: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
@@ -41463,9 +41467,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					num$4 = _tuple$21[0];
 					detailText$1 = _tuple$21[3];
 					ret$11 = NewIntVal(num$4);
-					(x$28 = details[0].$length - 1 >> 0, ((x$28 < 0 || x$28 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$28])).Ret = ret$11;
-					(x$29 = details[0].$length - 1 >> 0, ((x$29 < 0 || x$29 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$29])).Text = detailText$1;
-					(x$30 = details[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$30])).Tag = "dice-wod";
+					(x$31 = details[0].$length - 1 >> 0, ((x$31 < 0 || x$31 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$31])).Ret = ret$11;
+					(x$32 = details[0].$length - 1 >> 0, ((x$32 < 0 || x$32 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$32])).Text = detailText$1;
+					(x$33 = details[0].$length - 1 >> 0, ((x$33 < 0 || x$33 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$33])).Tag = "dice-wod";
 					$r = stackPush(ret$11); /* */ $s = 285; case 285: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (66)) { */ case 69:
@@ -41494,9 +41498,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					success = _tuple$22[0];
 					detailText$2 = _tuple$22[3];
 					ret$12 = NewIntVal(success);
-					(x$31 = details[0].$length - 1 >> 0, ((x$31 < 0 || x$31 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$31])).Ret = ret$12;
-					(x$32 = details[0].$length - 1 >> 0, ((x$32 < 0 || x$32 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$32])).Text = detailText$2;
-					(x$33 = details[0].$length - 1 >> 0, ((x$33 < 0 || x$33 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$33])).Tag = "dice-dc";
+					(x$34 = details[0].$length - 1 >> 0, ((x$34 < 0 || x$34 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$34])).Ret = ret$12;
+					(x$35 = details[0].$length - 1 >> 0, ((x$35 < 0 || x$35 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$35])).Text = detailText$2;
+					(x$36 = details[0].$length - 1 >> 0, ((x$36 < 0 || x$36 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$36])).Tag = "dice-dc";
 					$r = stackPush(ret$12); /* */ $s = 294; case 294: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (79)) { */ case 73:
@@ -41510,7 +41514,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					fstrBlockIndex = fstrBlockIndex + (1) >> 0;
 					$s = 80; continue;
 				/* } else if (_1 === (80)) { */ case 74:
-					newTop = (x$34 = fstrBlockIndex - 1 >> 0, ((x$34 < 0 || x$34 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$34]));
+					newTop = (x$37 = fstrBlockIndex - 1 >> 0, ((x$37 < 0 || x$37 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$37]));
 					v$19 = ptrType.nil;
 					/* */ if (!((newTop === e[0].top))) { $s = 298; continue; }
 					/* */ $s = 299; continue;
@@ -41533,7 +41537,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ if (fstrBlockIndex > 0) { $s = 306; continue; }
 					/* */ $s = 307; continue;
 					/* if (fstrBlockIndex > 0) { */ case 306:
-						newTop$1 = (x$35 = fstrBlockIndex - 1 >> 0, ((x$35 < 0 || x$35 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$35]));
+						newTop$1 = (x$38 = fstrBlockIndex - 1 >> 0, ((x$38 < 0 || x$38 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$38]));
 						/* */ if (!((newTop$1 === e[0].top))) { $s = 308; continue; }
 						/* */ $s = 309; continue;
 						/* if (!((newTop$1 === e[0].top))) { */ case 308:
@@ -41602,7 +41606,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$s = 3; continue;
 		case 4:
 		$s = -1; return;
-		/* */ } return; } } catch(err) { $err = err; $s = -1; } finally { $callDeferred($deferred, $err); if($curGoroutine.asleep) { var $f = {$blk: Context.ptr.prototype.evaluate, $c: true, $r, _1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred};return $f; } }
+		/* */ } return; } } catch(err) { $err = err; $s = -1; } finally { $callDeferred($deferred, $err); if($curGoroutine.asleep) { var $f = {$blk: Context.ptr.prototype.evaluate, $c: true, $r, _1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, oldRet, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred};return $f; } }
 	};
 	Context.prototype.evaluate = function() { return this.$val.evaluate(); };
 	Context.ptr.prototype.GetAsmText = function() {
@@ -46282,37 +46286,46 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ByteCode.prototype.CodeString = function() { return this.$val.CodeString(); };
 	funcCeil = function(ctx, this$1, params) {
 		var _tuple, ctx, ok, params, this$1, v;
+		if ((0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).TypeId === 0) {
+			return (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]);
+		}
 		_tuple = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).ReadFloat();
 		v = _tuple[0];
 		ok = _tuple[1];
 		if (ok) {
 			return NewIntVal(((math.Ceil(v) >> 0)));
 		} else {
-			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAFfloat");
+			ctx.Error = errors.New("(ceil)\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
 		}
 		return ptrType.nil;
 	};
 	funcRound = function(ctx, this$1, params) {
 		var _tuple, ctx, ok, params, this$1, v;
+		if ((0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).TypeId === 0) {
+			return (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]);
+		}
 		_tuple = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).ReadFloat();
 		v = _tuple[0];
 		ok = _tuple[1];
 		if (ok) {
 			return NewIntVal(((math.Round(v) >> 0)));
 		} else {
-			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAFfloat");
+			ctx.Error = errors.New("(round)\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
 		}
 		return ptrType.nil;
 	};
 	funcFloor = function(ctx, this$1, params) {
 		var _tuple, ctx, ok, params, this$1, v;
+		if ((0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).TypeId === 0) {
+			return (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]);
+		}
 		_tuple = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).ReadFloat();
 		v = _tuple[0];
 		ok = _tuple[1];
 		if (ok) {
 			return NewIntVal(((math.Floor(v) >> 0)));
 		} else {
-			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAFfloat");
+			ctx.Error = errors.New("(floor)\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
 		}
 		return ptrType.nil;
 	};
@@ -46333,7 +46346,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			}
 			return v;
 		}
-		ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\x82\xE6\x95\xB0\xE5\xBF\x85\xE9\xA1\xBB\xE4\xB8\xBAint\xE6\x88\x96float");
+		ctx.Error = errors.New("(abs)\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\x82\xE6\x95\xB0\xE5\xBF\x85\xE9\xA1\xBB\xE4\xB8\xBAint\xE6\x88\x96float");
 		return ptrType.nil;
 	};
 	funcBool = function(ctx, this$1, params) {
@@ -46367,10 +46380,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			if ($interfaceIsEqual(err, $ifaceNil)) {
 				return NewIntVal((((val.$low + ((val.$high >> 31) * 4294967296)) >> 0)));
 			} else {
-				ctx.Error = errors.New("\xE5\x80\xBC\xE9\x94\x99\xE8\xAF\xAF: \xE6\x97\xA0\xE6\xB3\x95\xE8\xBF\x9B\xE8\xA1\x8C int() \xE8\xBD\xAC\xE6\x8D\xA2: " + s);
+				ctx.Error = errors.New("(int)\xE5\x80\xBC\xE9\x94\x99\xE8\xAF\xAF: \xE6\x97\xA0\xE6\xB3\x95\xE8\xBF\x9B\xE8\xA1\x8C int() \xE8\xBD\xAC\xE6\x8D\xA2: " + s);
 			}
 		} else {
-			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
+			ctx.Error = errors.New("(int)\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
 		}
 		return ptrType.nil;
 	};
@@ -46392,10 +46405,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			if ($interfaceIsEqual(err, $ifaceNil)) {
 				return NewFloatVal(val);
 			} else {
-				ctx.Error = errors.New("\xE5\x80\xBC\xE9\x94\x99\xE8\xAF\xAF: \xE6\x97\xA0\xE6\xB3\x95\xE8\xBF\x9B\xE8\xA1\x8C float() \xE8\xBD\xAC\xE6\x8D\xA2: " + s);
+				ctx.Error = errors.New("(float)\xE5\x80\xBC\xE9\x94\x99\xE8\xAF\xAF: \xE6\x97\xA0\xE6\xB3\x95\xE8\xBF\x9B\xE8\xA1\x8C float() \xE8\xBD\xAC\xE6\x8D\xA2: " + s);
 			}
 		} else {
-			ctx.Error = errors.New("\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
+			ctx.Error = errors.New("(float)\xE7\xB1\xBB\xE5\x9E\x8B\xE9\x94\x99\xE8\xAF\xAF: \xE5\x8F\xAA\xE8\x83\xBD\xE6\x98\xAF\xE6\x95\xB0\xE5\xAD\x97\xE7\xB1\xBB\xE5\x9E\x8B");
 		}
 		return ptrType.nil;
 	};
