@@ -36303,7 +36303,7 @@ $packages["math/rand"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/sealdice/dicescript"] = (function() {
-	var $pkg = {}, $init, bytes, json, errors, fmt, rand$1, math, rand, reflect, sort, strconv, strings, sync, atomic, time, unicode, utf8, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, IntType, RollConfig, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, NativeObjectData, recursionInfo, spanByBegin, spanByEnd, ParserCustomData, parserStack, option, position, savepoint, current, grammar, rule, choiceExpr, actionExpr, recoveryExpr, seqExpr, throwExpr, labeledExpr, andExpr, notExpr, andLogicalExpr, notLogicalExpr, zeroOrOneExpr, zeroOrMoreExpr, oneOrMoreExpr, ruleRefExpr, ruleIRefExpr, andCodeExpr, notCodeExpr, litMatcher, codeExpr, charClassMatcher, anyMatcher, errList, parserError, resultTuple, Stats, parser, ParserData, BufferSpan, StInfo, CodeType, ByteCode, ptrType, ptrType$1, funcType, sliceType, ptrType$2, sliceType$1, ptrType$3, sliceType$2, sliceType$3, ptrType$4, sliceType$4, sliceType$5, sliceType$6, ptrType$5, ptrType$6, ptrType$7, sliceType$7, sliceType$8, mapType, ptrType$8, structType, structType$1, structType$2, ptrType$9, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, sliceType$9, structType$11, structType$12, structType$13, structType$14, structType$15, structType$16, sliceType$10, sliceType$11, ptrType$10, ptrType$11, ptrType$12, ptrType$13, ptrType$14, ptrType$15, ptrType$16, ptrType$17, sliceType$12, ptrType$18, sliceType$13, sliceType$14, ptrType$19, structType$17, sliceType$15, ptrType$20, structType$18, sliceType$16, structType$19, structType$20, arrayType, sliceType$17, sliceType$18, ptrType$21, sliceType$19, ptrType$22, mapType$1, sliceType$20, ptrType$23, ptrType$24, sliceType$21, sliceType$22, structType$21, sliceType$23, structType$22, sliceType$24, structType$23, ptrType$25, ptrType$26, ptrType$27, ptrType$28, ptrType$29, ptrType$30, ptrType$31, ptrType$32, ptrType$33, ptrType$34, ptrType$35, ptrType$36, ptrType$37, ptrType$38, ptrType$39, ptrType$40, ptrType$41, ptrType$42, ptrType$43, ptrType$44, ptrType$45, ptrType$46, ptrType$47, funcType$1, mapType$2, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, ptrType$48, funcType$7, funcType$8, funcType$9, funcType$10, mapType$3, ptrType$49, funcType$11, funcType$12, funcType$13, funcType$14, funcType$15, funcType$16, mapType$4, ptrType$50, ptrType$51, funcType$17, funcType$18, ptrType$52, mapType$5, mapType$6, mapType$7, mapType$8, mapType$9, ptrType$53, ptrType$54, expungedValueMap, builtinProto, binOperator, randSource, g, errNoRule, errInvalidEntrypoint, errInvalidEncoding, errMaxExprCnt, nnf, builtinValues, _r, _arg, _r$1, _arg$1, _arg$2, _r$2, _arg$3, _arg$4, _r$3, _arg$5, _arg$6, _r$4, _arg$7, _arg$8, _r$5, _arg$9, _arg$10, _r$6, _arg$11, _arg$12, _r$7, _arg$13, _arg$14, _r$8, _arg$15, _arg$16, _r$9, _arg$17, _arg$18, _r$10, _arg$19, _r$11, _arg$20, _r$12, _arg$21, _arg$22, _r$13, _arg$23, _arg$24, _r$14, _arg$25, _arg$26, _r$15, _arg$27, _r$16, _r$17, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, newEntryValueMap, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, funcDictKeys, funcDictValues, funcDictItems, funcDictLen, getBindMethod, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, NewIntVal, NewFloatVal, NewStrVal, vmValueNewLocal, NewNullVal, NewArrayValRaw, NewArrayVal, NewDictVal, NewDictValWithArray, NewDictValWithArrayMust, NewComputedValRaw, NewFunctionValRaw, NewNativeFunctionVal, NewNativeObjectVal, NewVM, getSource, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, toStr, stringsJoin, newParser, listJoin, funcCeil, funcRound, funcFloor, funcAbs, funcBool, funcInt, funcFloat, funcStr, funcRepr, funcLoad, funcDir, _init;
+	var $pkg = {}, $init, bytes, json, errors, fmt, rand$1, math, rand, reflect, sort, strconv, strings, sync, atomic, time, unicode, utf8, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, IntType, RollConfig, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, NativeObjectData, recursionInfo, spanByBegin, spanByEnd, ParserCustomData, parserStack, option, position, savepoint, current, grammar, rule, choiceExpr, actionExpr, recoveryExpr, seqExpr, throwExpr, labeledExpr, andExpr, notExpr, andLogicalExpr, notLogicalExpr, zeroOrOneExpr, zeroOrMoreExpr, oneOrMoreExpr, ruleRefExpr, ruleIRefExpr, andCodeExpr, notCodeExpr, litMatcher, codeExpr, charClassMatcher, anyMatcher, errList, parserError, resultTuple, Stats, parser, ParserData, BufferSpan, StInfo, CodeType, ByteCode, Group, ptrType, ptrType$1, funcType, sliceType, ptrType$2, sliceType$1, ptrType$3, sliceType$2, sliceType$3, ptrType$4, sliceType$4, sliceType$5, sliceType$6, ptrType$5, ptrType$6, ptrType$7, sliceType$7, sliceType$8, mapType, ptrType$8, structType, structType$1, structType$2, ptrType$9, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, sliceType$9, structType$11, structType$12, structType$13, structType$14, structType$15, structType$16, sliceType$10, sliceType$11, ptrType$10, ptrType$11, ptrType$12, ptrType$13, ptrType$14, ptrType$15, ptrType$16, ptrType$17, ptrType$18, sliceType$12, ptrType$19, sliceType$13, sliceType$14, ptrType$20, sliceType$15, ptrType$21, structType$17, sliceType$16, structType$18, structType$19, arrayType, sliceType$17, sliceType$18, ptrType$22, sliceType$19, ptrType$23, mapType$1, sliceType$20, ptrType$24, ptrType$25, sliceType$21, sliceType$22, structType$20, sliceType$23, structType$21, sliceType$24, structType$22, ptrType$26, ptrType$27, ptrType$28, ptrType$29, ptrType$30, ptrType$31, ptrType$32, ptrType$33, ptrType$34, ptrType$35, ptrType$36, ptrType$37, ptrType$38, ptrType$39, ptrType$40, ptrType$41, ptrType$42, ptrType$43, ptrType$44, ptrType$45, ptrType$46, ptrType$47, funcType$1, mapType$2, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, ptrType$48, funcType$7, funcType$8, funcType$9, funcType$10, mapType$3, ptrType$49, funcType$11, funcType$12, funcType$13, funcType$14, funcType$15, funcType$16, mapType$4, ptrType$50, ptrType$51, funcType$17, funcType$18, ptrType$52, mapType$5, mapType$6, mapType$7, mapType$8, mapType$9, ptrType$53, ptrType$54, expungedValueMap, builtinProto, binOperator, randSource, g, errNoRule, errInvalidEntrypoint, errInvalidEncoding, errMaxExprCnt, nnf, builtinValues, _r, _arg, _r$1, _arg$1, _arg$2, _r$2, _arg$3, _arg$4, _r$3, _arg$5, _arg$6, _r$4, _arg$7, _arg$8, _r$5, _arg$9, _arg$10, _r$6, _arg$11, _arg$12, _r$7, _arg$13, _arg$14, _r$8, _arg$15, _arg$16, _r$9, _arg$17, _arg$18, _r$10, _arg$19, _r$11, _arg$20, _r$12, _arg$21, _arg$22, _r$13, _arg$23, _arg$24, _r$14, _arg$25, _arg$26, _r$15, _arg$27, _r$16, _r$17, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, newEntryValueMap, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, funcDictKeys, funcDictValues, funcDictItems, funcDictLen, getBindMethod, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, NewIntVal, NewFloatVal, NewStrVal, vmValueNewLocal, NewNullVal, NewArrayValRaw, NewArrayVal, NewDictVal, NewDictValWithArray, NewDictValWithArrayMust, NewComputedValRaw, NewFunctionValRaw, NewNativeFunctionVal, NewNativeObjectVal, NewVM, getSource, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, toStr, stringsJoin, newParser, listJoin, funcCeil, funcRound, funcFloor, funcAbs, funcBool, funcInt, funcFloat, funcStr, funcRepr, funcLoad, funcDir, _init;
 	bytes = $packages["bytes"];
 	json = $packages["encoding/json"];
 	errors = $packages["errors"];
@@ -36633,7 +36633,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (arguments.length === 0) {
 			this.pos = new position.ptr(0, 0, 0);
 			this.text = sliceType$7.nil;
-			this.data = ptrType$22.nil;
+			this.data = ptrType$23.nil;
 			return;
 		}
 		this.pos = pos_;
@@ -36896,9 +36896,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (arguments.length === 0) {
 			this.filename = "";
 			this.pt = new savepoint.ptr(new position.ptr(0, 0, 0), 0, 0);
-			this.cur = new current.ptr(new position.ptr(0, 0, 0), sliceType$7.nil, ptrType$22.nil);
+			this.cur = new current.ptr(new position.ptr(0, 0, 0), sliceType$7.nil, ptrType$23.nil);
 			this.data = sliceType$7.nil;
-			this.errs = ptrType$21.nil;
+			this.errs = ptrType$22.nil;
 			this.depth = 0;
 			this.recover = false;
 			this.memo1 = false;
@@ -36913,10 +36913,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			this.maxExprCnt = new $Uint64(0, 0);
 			this.entrypoint = "";
 			this.allowInvalidUTF8 = false;
-			this.Stats = ptrType$23.nil;
+			this.Stats = ptrType$24.nil;
 			this.choiceNoMatch = "";
 			this.recoveryStack = sliceType$20.nil;
-			this._errPos = ptrType$24.nil;
+			this._errPos = ptrType$25.nil;
 			this.scStack = sliceType$21.nil;
 			this.spStack = new parserStack.ptr(sliceType$18.nil, 0, 0);
 			return;
@@ -37014,6 +37014,22 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		this.T = T_;
 		this.Value = Value_;
 	});
+	Group = $newType(0, $kindStruct, "dicescript.Group", true, "github.com/sealdice/dicescript", true, function(begin_, end_, tag_, spans_, val_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.begin = 0;
+			this.end = 0;
+			this.tag = "";
+			this.spans = sliceType$11.nil;
+			this.val = ptrType.nil;
+			return;
+		}
+		this.begin = begin_;
+		this.end = end_;
+		this.tag = tag_;
+		this.spans = spans_;
+		this.val = val_;
+	});
 	ptrType = $ptrType(VMValue);
 	ptrType$1 = $ptrType(Context);
 	funcType = $funcType([ptrType, ptrType$1, ptrType], [ptrType], false);
@@ -37056,70 +37072,69 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	sliceType$10 = $sliceType($Float64);
 	sliceType$11 = $sliceType(BufferSpan);
 	ptrType$10 = $ptrType(rand$1.PCGSource);
-	ptrType$11 = $ptrType(ComputedData);
-	ptrType$12 = $ptrType(ArrayData);
-	ptrType$13 = $ptrType(DictData);
-	ptrType$14 = $ptrType(FunctionData);
-	ptrType$15 = $ptrType(NativeFunctionData);
-	ptrType$16 = $ptrType(NativeObjectData);
-	ptrType$17 = $ptrType(VMDictValue);
+	ptrType$11 = $ptrType(BufferSpan);
+	ptrType$12 = $ptrType(ComputedData);
+	ptrType$13 = $ptrType(ArrayData);
+	ptrType$14 = $ptrType(DictData);
+	ptrType$15 = $ptrType(FunctionData);
+	ptrType$16 = $ptrType(NativeFunctionData);
+	ptrType$17 = $ptrType(NativeObjectData);
+	ptrType$18 = $ptrType(VMDictValue);
 	sliceType$12 = $sliceType(VMValue);
-	ptrType$18 = $ptrType(customDiceItem);
-	sliceType$13 = $sliceType(ptrType$18);
+	ptrType$19 = $ptrType(customDiceItem);
+	sliceType$13 = $sliceType(ptrType$19);
 	sliceType$14 = $sliceType(option);
-	ptrType$19 = $ptrType(grammar);
-	structType$17 = $structType("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "spans", name: "spans", embedded: false, exported: false, typ: sliceType$11, tag: ""}]);
-	sliceType$15 = $sliceType(structType$17);
-	ptrType$20 = $ptrType(IntType);
-	structType$18 = $structType("github.com/sealdice/dicescript", [{prop: "times", name: "times", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "isKeepLH", name: "isKeepLH", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "lowNum", name: "lowNum", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "highNum", name: "highNum", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "min", name: "min", embedded: false, exported: false, typ: ptrType$20, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: ptrType$20, tag: ""}]);
-	sliceType$16 = $sliceType(structType$18);
-	structType$19 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "threshold", name: "threshold", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "isGE", name: "isGE", embedded: false, exported: false, typ: $Bool, tag: ""}]);
-	structType$20 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: IntType, tag: ""}]);
+	ptrType$20 = $ptrType(grammar);
+	sliceType$15 = $sliceType(Group);
+	ptrType$21 = $ptrType(IntType);
+	structType$17 = $structType("github.com/sealdice/dicescript", [{prop: "times", name: "times", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "isKeepLH", name: "isKeepLH", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "lowNum", name: "lowNum", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "highNum", name: "highNum", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "min", name: "min", embedded: false, exported: false, typ: ptrType$21, tag: ""}, {prop: "max", name: "max", embedded: false, exported: false, typ: ptrType$21, tag: ""}]);
+	sliceType$16 = $sliceType(structType$17);
+	structType$18 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "threshold", name: "threshold", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "isGE", name: "isGE", embedded: false, exported: false, typ: $Bool, tag: ""}]);
+	structType$19 = $structType("github.com/sealdice/dicescript", [{prop: "pool", name: "pool", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "points", name: "points", embedded: false, exported: false, typ: IntType, tag: ""}]);
 	arrayType = $arrayType($Int, 5);
 	sliceType$17 = $sliceType(IntType);
 	sliceType$18 = $sliceType(savepoint);
-	ptrType$21 = $ptrType(errList);
+	ptrType$22 = $ptrType(errList);
 	sliceType$19 = $sliceType($error);
-	ptrType$22 = $ptrType(ParserCustomData);
+	ptrType$23 = $ptrType(ParserCustomData);
 	mapType$1 = $mapType($String, $emptyInterface);
 	sliceType$20 = $sliceType(mapType$1);
-	ptrType$23 = $ptrType(Stats);
-	ptrType$24 = $ptrType(position);
+	ptrType$24 = $ptrType(Stats);
+	ptrType$25 = $ptrType(position);
 	sliceType$21 = $sliceType($Bool);
 	sliceType$22 = $sliceType(RollConfig);
-	structType$21 = $structType("github.com/sealdice/dicescript", [{prop: "continueIndex", name: "continueIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "breakIndex", name: "breakIndex", embedded: false, exported: false, typ: $Int, tag: ""}]);
-	sliceType$23 = $sliceType(structType$21);
-	structType$22 = $structType("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}]);
-	sliceType$24 = $sliceType(structType$22);
-	structType$23 = $structType("", []);
-	ptrType$25 = $ptrType(resultTuple);
-	ptrType$26 = $ptrType(actionExpr);
-	ptrType$27 = $ptrType(andCodeExpr);
-	ptrType$28 = $ptrType(andExpr);
-	ptrType$29 = $ptrType(andLogicalExpr);
-	ptrType$30 = $ptrType(anyMatcher);
-	ptrType$31 = $ptrType(charClassMatcher);
-	ptrType$32 = $ptrType(choiceExpr);
-	ptrType$33 = $ptrType(codeExpr);
-	ptrType$34 = $ptrType(labeledExpr);
-	ptrType$35 = $ptrType(litMatcher);
-	ptrType$36 = $ptrType(notCodeExpr);
-	ptrType$37 = $ptrType(notExpr);
-	ptrType$38 = $ptrType(notLogicalExpr);
-	ptrType$39 = $ptrType(oneOrMoreExpr);
-	ptrType$40 = $ptrType(recoveryExpr);
-	ptrType$41 = $ptrType(ruleRefExpr);
-	ptrType$42 = $ptrType(ruleIRefExpr);
-	ptrType$43 = $ptrType(seqExpr);
-	ptrType$44 = $ptrType(throwExpr);
-	ptrType$45 = $ptrType(zeroOrMoreExpr);
-	ptrType$46 = $ptrType(zeroOrOneExpr);
-	ptrType$47 = $ptrType(BufferSpan);
+	structType$20 = $structType("github.com/sealdice/dicescript", [{prop: "continueIndex", name: "continueIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "breakIndex", name: "breakIndex", embedded: false, exported: false, typ: $Int, tag: ""}]);
+	sliceType$23 = $sliceType(structType$20);
+	structType$21 = $structType("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "index", name: "index", embedded: false, exported: false, typ: $Int, tag: ""}]);
+	sliceType$24 = $sliceType(structType$21);
+	structType$22 = $structType("", []);
+	ptrType$26 = $ptrType(resultTuple);
+	ptrType$27 = $ptrType(actionExpr);
+	ptrType$28 = $ptrType(andCodeExpr);
+	ptrType$29 = $ptrType(andExpr);
+	ptrType$30 = $ptrType(andLogicalExpr);
+	ptrType$31 = $ptrType(anyMatcher);
+	ptrType$32 = $ptrType(charClassMatcher);
+	ptrType$33 = $ptrType(choiceExpr);
+	ptrType$34 = $ptrType(codeExpr);
+	ptrType$35 = $ptrType(labeledExpr);
+	ptrType$36 = $ptrType(litMatcher);
+	ptrType$37 = $ptrType(notCodeExpr);
+	ptrType$38 = $ptrType(notExpr);
+	ptrType$39 = $ptrType(notLogicalExpr);
+	ptrType$40 = $ptrType(oneOrMoreExpr);
+	ptrType$41 = $ptrType(recoveryExpr);
+	ptrType$42 = $ptrType(ruleRefExpr);
+	ptrType$43 = $ptrType(ruleIRefExpr);
+	ptrType$44 = $ptrType(seqExpr);
+	ptrType$45 = $ptrType(throwExpr);
+	ptrType$46 = $ptrType(zeroOrMoreExpr);
+	ptrType$47 = $ptrType(zeroOrOneExpr);
 	funcType$1 = $funcType([$String, ptrType], [$Bool], false);
 	mapType$2 = $mapType($String, ptrType$6);
 	funcType$2 = $funcType([ptrType$1, $String, ptrType], [ptrType, $Bool], false);
 	funcType$3 = $funcType([$String], [$String, ptrType], false);
-	funcType$4 = $funcType([$String, ptrType, ptrType$47], [ptrType], false);
+	funcType$4 = $funcType([$String, ptrType, ptrType$11], [ptrType], false);
 	funcType$5 = $funcType([$String, $String, ptrType, ptrType, $String, $String], [], false);
 	funcType$6 = $funcType([ptrType$1, sliceType$11, sliceType$7], [$String], false);
 	ptrType$48 = $ptrType(RollConfig);
@@ -37143,7 +37158,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ptrType$52 = $ptrType(parserError);
 	mapType$5 = $mapType($String, $Int);
 	mapType$6 = $mapType($String, mapType$5);
-	mapType$7 = $mapType($emptyInterface, ptrType$25);
+	mapType$7 = $mapType($emptyInterface, ptrType$26);
 	mapType$8 = $mapType($Int, mapType$7);
 	mapType$9 = $mapType($String, ptrType$2);
 	ptrType$53 = $ptrType(ParserData);
@@ -38494,8 +38509,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		return (_entry = $mapIndex(builtinValues,$String.keyFor(name)), _entry !== undefined ? _entry.v : ptrType.nil);
 	};
 	Context.prototype.loadInnerVar = function(name) { return this.$val.loadInnerVar(name); };
-	Context.ptr.prototype.LoadNameGlobal = function(name, isRaw) {
-		var {_r$28, _r$29, _r$30, _r$31, ctx, isRaw, loadFunc, name, val, val$1, $s, $r, $c} = $restore(this, {name, isRaw});
+	Context.ptr.prototype.LoadNameGlobalWithDetail = function(name, isRaw, detail) {
+		var {_r$28, _r$29, _r$30, _r$31, ctx, detail, isRaw, loadFunc, name, val, val$1, $s, $r, $c} = $restore(this, {name, isRaw, detail});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
 		loadFunc = $throwNilPointerError;
@@ -38513,7 +38528,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				/* */ if (!isRaw && (val.TypeId === 5)) { $s = 6; continue; }
 				/* */ $s = 7; continue;
 				/* if (!isRaw && (val.TypeId === 5)) { */ case 6:
-					_r$29 = val.ComputedExecute(ctx); /* */ $s = 8; case 8: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+					_r$29 = val.ComputedExecute(ctx, detail); /* */ $s = 8; case 8: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 					val = _r$29;
 					if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
 						$s = -1; return ptrType.nil;
@@ -38535,18 +38550,28 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ if (!isRaw && (val$1.TypeId === 5)) { $s = 12; continue; }
 		/* */ $s = 13; continue;
 		/* if (!isRaw && (val$1.TypeId === 5)) { */ case 12:
-			_r$31 = val$1.ComputedExecute(ctx); /* */ $s = 14; case 14: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+			_r$31 = val$1.ComputedExecute(ctx, detail); /* */ $s = 14; case 14: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
 			val$1 = _r$31;
 			if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
 				$s = -1; return ptrType.nil;
 			}
 		/* } */ case 13:
 		$s = -1; return val$1;
-		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameGlobal, $c: true, $r, _r$28, _r$29, _r$30, _r$31, ctx, isRaw, loadFunc, name, val, val$1, $s};return $f;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameGlobalWithDetail, $c: true, $r, _r$28, _r$29, _r$30, _r$31, ctx, detail, isRaw, loadFunc, name, val, val$1, $s};return $f;
+	};
+	Context.prototype.LoadNameGlobalWithDetail = function(name, isRaw, detail) { return this.$val.LoadNameGlobalWithDetail(name, isRaw, detail); };
+	Context.ptr.prototype.LoadNameGlobal = function(name, isRaw) {
+		var {$24r, _r$28, ctx, isRaw, name, $s, $r, $c} = $restore(this, {name, isRaw});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		ctx = this;
+		_r$28 = ctx.LoadNameGlobalWithDetail(name, isRaw, ptrType$11.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+		$24r = _r$28;
+		$s = 2; case 2: return $24r;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameGlobal, $c: true, $r, $24r, _r$28, ctx, isRaw, name, $s};return $f;
 	};
 	Context.prototype.LoadNameGlobal = function(name, isRaw) { return this.$val.LoadNameGlobal(name, isRaw); };
-	Context.ptr.prototype.LoadNameLocal = function(name, isRaw) {
-		var {_r$28, _r$29, _tuple, ctx, exists, isRaw, name, ret, $s, $r, $c} = $restore(this, {name, isRaw});
+	Context.ptr.prototype.LoadNameLocalWithDetail = function(name, isRaw, detail) {
+		var {_r$28, _r$29, _tuple, ctx, detail, exists, isRaw, name, ret, $s, $r, $c} = $restore(this, {name, isRaw, detail});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
 		_r$28 = ctx.Attrs.Load(name); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
@@ -38559,18 +38584,28 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ if (!isRaw && (ret.TypeId === 5)) { $s = 2; continue; }
 		/* */ $s = 3; continue;
 		/* if (!isRaw && (ret.TypeId === 5)) { */ case 2:
-			_r$29 = ret.ComputedExecute(ctx); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+			_r$29 = ret.ComputedExecute(ctx, detail); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			ret = _r$29;
 			if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
 				$s = -1; return ptrType.nil;
 			}
 		/* } */ case 3:
 		$s = -1; return ret;
-		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameLocal, $c: true, $r, _r$28, _r$29, _tuple, ctx, exists, isRaw, name, ret, $s};return $f;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameLocalWithDetail, $c: true, $r, _r$28, _r$29, _tuple, ctx, detail, exists, isRaw, name, ret, $s};return $f;
+	};
+	Context.prototype.LoadNameLocalWithDetail = function(name, isRaw, detail) { return this.$val.LoadNameLocalWithDetail(name, isRaw, detail); };
+	Context.ptr.prototype.LoadNameLocal = function(name, isRaw) {
+		var {$24r, _r$28, ctx, isRaw, name, $s, $r, $c} = $restore(this, {name, isRaw});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		ctx = this;
+		_r$28 = ctx.LoadNameLocalWithDetail(name, isRaw, ptrType$11.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+		$24r = _r$28;
+		$s = 2; case 2: return $24r;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameLocal, $c: true, $r, $24r, _r$28, ctx, isRaw, name, $s};return $f;
 	};
 	Context.prototype.LoadNameLocal = function(name, isRaw) { return this.$val.LoadNameLocal(name, isRaw); };
-	Context.ptr.prototype.LoadName = function(name, isRaw, useHook) {
-		var {$24r, _r$28, _r$29, _r$30, _tuple, ctx, curCtx, isRaw, name, overwrite, ret, useHook, $s, $r, $c} = $restore(this, {name, isRaw, useHook});
+	Context.ptr.prototype.LoadNameWithDetail = function(name, isRaw, useHook, detail) {
+		var {$24r, _r$28, _r$29, _r$30, _tuple, ctx, curCtx, detail, isRaw, name, overwrite, ret, useHook, $s, $r, $c} = $restore(this, {name, isRaw, useHook, detail});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
 		/* */ if (useHook && !(ctx.Config.HookFuncValueLoad === $throwNilPointerError)) { $s = 1; continue; }
@@ -38587,7 +38622,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* } */ case 2:
 		curCtx = ctx;
 		/* while (true) { */ case 4:
-			_r$29 = curCtx.LoadNameLocal(name, isRaw); /* */ $s = 6; case 6: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+			_r$29 = curCtx.LoadNameLocalWithDetail(name, isRaw, detail); /* */ $s = 6; case 6: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			ret = _r$29;
 			if (!($interfaceIsEqual(curCtx.Error, $ifaceNil))) {
 				ctx.Error = curCtx.Error;
@@ -38603,10 +38638,20 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			}
 		$s = 4; continue;
 		case 5:
-		_r$30 = ctx.LoadNameGlobal(name, isRaw); /* */ $s = 7; case 7: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+		_r$30 = ctx.LoadNameGlobalWithDetail(name, isRaw, detail); /* */ $s = 7; case 7: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 		$24r = _r$30;
 		$s = 8; case 8: return $24r;
-		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadName, $c: true, $r, $24r, _r$28, _r$29, _r$30, _tuple, ctx, curCtx, isRaw, name, overwrite, ret, useHook, $s};return $f;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadNameWithDetail, $c: true, $r, $24r, _r$28, _r$29, _r$30, _tuple, ctx, curCtx, detail, isRaw, name, overwrite, ret, useHook, $s};return $f;
+	};
+	Context.prototype.LoadNameWithDetail = function(name, isRaw, useHook, detail) { return this.$val.LoadNameWithDetail(name, isRaw, useHook, detail); };
+	Context.ptr.prototype.LoadName = function(name, isRaw, useHook) {
+		var {$24r, _r$28, ctx, isRaw, name, useHook, $s, $r, $c} = $restore(this, {name, isRaw, useHook});
+		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+		ctx = this;
+		_r$28 = ctx.LoadNameWithDetail(name, isRaw, useHook, ptrType$11.nil); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+		$24r = _r$28;
+		$s = 2; case 2: return $24r;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.LoadName, $c: true, $r, $24r, _r$28, ctx, isRaw, name, useHook, $s};return $f;
 	};
 	Context.prototype.LoadName = function(name, isRaw, useHook) { return this.$val.LoadName(name, isRaw, useHook); };
 	Context.ptr.prototype.StoreName = function(name, v, useHook) {
@@ -38704,7 +38749,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			/* } else if (_1 === (4)) { */ case 5:
 				$s = -1; return false;
 			/* } else if (_1 === (5)) { */ case 6:
-				vd = $assertType(v.Value, ptrType$11);
+				vd = $assertType(v.Value, ptrType$12);
 				$s = -1; return !(vd.Expr === "");
 			/* } else if (_1 === (6)) { */ case 7:
 				ad = v.MustReadArray();
@@ -38905,34 +38950,34 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var v;
 		v = this;
 		if (v.TypeId === 6) {
-			return [$assertType(v.Value, ptrType$12), true];
+			return [$assertType(v.Value, ptrType$13), true];
 		}
-		return [ptrType$12.nil, false];
+		return [ptrType$13.nil, false];
 	};
 	VMValue.prototype.ReadArray = function() { return this.$val.ReadArray(); };
 	VMValue.ptr.prototype.ReadComputed = function() {
 		var v;
 		v = this;
 		if (v.TypeId === 5) {
-			return [$assertType(v.Value, ptrType$11), true];
+			return [$assertType(v.Value, ptrType$12), true];
 		}
-		return [ptrType$11.nil, false];
+		return [ptrType$12.nil, false];
 	};
 	VMValue.prototype.ReadComputed = function() { return this.$val.ReadComputed(); };
 	VMValue.ptr.prototype.ReadDictData = function() {
 		var v;
 		v = this;
 		if (v.TypeId === 7) {
-			return [$assertType(v.Value, ptrType$13), true];
+			return [$assertType(v.Value, ptrType$14), true];
 		}
-		return [ptrType$13.nil, false];
+		return [ptrType$14.nil, false];
 	};
 	VMValue.prototype.ReadDictData = function() { return this.$val.ReadDictData(); };
 	VMValue.ptr.prototype.MustReadDictData = function() {
 		var v;
 		v = this;
 		if (v.TypeId === 7) {
-			return $assertType(v.Value, ptrType$13);
+			return $assertType(v.Value, ptrType$14);
 		}
 		$panic(new $String("\xE9\x94\x99\xE8\xAF\xAF: \xE4\xB8\x8D\xE6\xAD\xA3\xE7\xA1\xAE\xE7\x9A\x84\xE7\xB1\xBB\xE5\x9E\x8B"));
 	};
@@ -38977,27 +39022,27 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var v;
 		v = this;
 		if (v.TypeId === 8) {
-			return [$assertType(v.Value, ptrType$14), true];
+			return [$assertType(v.Value, ptrType$15), true];
 		}
-		return [ptrType$14.nil, false];
+		return [ptrType$15.nil, false];
 	};
 	VMValue.prototype.ReadFunctionData = function() { return this.$val.ReadFunctionData(); };
 	VMValue.ptr.prototype.ReadNativeFunctionData = function() {
 		var v;
 		v = this;
 		if (v.TypeId === 9) {
-			return [$assertType(v.Value, ptrType$15), true];
+			return [$assertType(v.Value, ptrType$16), true];
 		}
-		return [ptrType$15.nil, false];
+		return [ptrType$16.nil, false];
 	};
 	VMValue.prototype.ReadNativeFunctionData = function() { return this.$val.ReadNativeFunctionData(); };
 	VMValue.ptr.prototype.ReadNativeObjectData = function() {
 		var v;
 		v = this;
 		if (v.TypeId === 10) {
-			return [$assertType(v.Value, ptrType$16), true];
+			return [$assertType(v.Value, ptrType$17), true];
 		}
-		return [ptrType$16.nil, false];
+		return [ptrType$17.nil, false];
 	};
 	VMValue.prototype.ReadNativeObjectData = function() { return this.$val.ReadNativeObjectData(); };
 	VMValue.ptr.prototype.OpAdd = function(ctx, v2) {
@@ -39447,7 +39492,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				$r = cd.Attrs.Store(name, val.Clone()); /* */ $s = 6; case 6: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				$s = -1; return val;
 			/* } else if (_1 === (7)) { */ case 3:
-				d = ($pointerOfStructConversion(v, ptrType$17));
+				d = ($pointerOfStructConversion(v, ptrType$18));
 				$r = d.Store(name, val); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 				$s = -1; return val;
 			/* } else if (_1 === (10)) { */ case 4:
@@ -39488,7 +39533,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				}
 				$s = -1; return ret;
 			/* } else if (_1 === (7)) { */ case 3:
-				a = ($pointerOfStructConversion(v, ptrType$17));
+				a = ($pointerOfStructConversion(v, ptrType$18));
 				_r$29 = a.Load(name); /* */ $s = 11; case 11: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 				_tuple$2 = _r$29;
 				ret$1 = _tuple$2[0];
@@ -39507,7 +39552,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 						/* */ $s = 18; continue;
 						/* if (ok && (p1.TypeId === 7)) { */ case 17:
 							exists = false;
-							p1x = ($pointerOfStructConversion(p1, ptrType$17));
+							p1x = ($pointerOfStructConversion(p1, ptrType$18));
 							_r$31 = p1x.Load(name); /* */ $s = 20; case 20: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
 							_tuple$4 = _r$31;
 							ret$1 = _tuple$4[0];
@@ -39550,10 +39595,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				}
 			/* } */ case 7:
 		case 1:
-		proto = (_entry = $mapIndex(builtinProto,VMValueType.keyFor(v.TypeId)), _entry !== undefined ? _entry.v : ptrType$17.nil);
-		/* */ if (!(proto === ptrType$17.nil)) { $s = 24; continue; }
+		proto = (_entry = $mapIndex(builtinProto,VMValueType.keyFor(v.TypeId)), _entry !== undefined ? _entry.v : ptrType$18.nil);
+		/* */ if (!(proto === ptrType$18.nil)) { $s = 24; continue; }
 		/* */ $s = 25; continue;
-		/* if (!(proto === ptrType$17.nil)) { */ case 24:
+		/* if (!(proto === ptrType$18.nil)) { */ case 24:
 			_r$35 = proto.Load(name); /* */ $s = 26; case 26: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
 			_tuple$6 = _r$35;
 			method = _tuple$6[0];
@@ -39602,7 +39647,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					ctx.Error = err;
 					$s = 15; continue;
 				/* } else { */ case 14:
-					_r$30 = ($pointerOfStructConversion(v, ptrType$17)).Load(key); /* */ $s = 16; case 16: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+					_r$30 = ($pointerOfStructConversion(v, ptrType$18)).Load(key); /* */ $s = 16; case 16: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 					_tuple$1 = _r$30;
 					val = _tuple$1[0];
 					$s = -1; return val;
@@ -39673,7 +39718,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					ctx.Error = err;
 					$s = 14; continue;
 				/* } else { */ case 13:
-					$r = ($pointerOfStructConversion(v, ptrType$17)).Store(key, val); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = ($pointerOfStructConversion(v, ptrType$18)).Store(key, val); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = -1; return true;
 				/* } */ case 14:
 				$s = 6; continue;
@@ -39950,8 +39995,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		return "unknown";
 	};
 	VMValue.prototype.GetTypeName = function() { return this.$val.GetTypeName(); };
-	VMValue.ptr.prototype.ComputedExecute = function(ctx) {
-		var {_r$28, _tuple, cd, ctx, ret, v, vm, x, x$1, $s, $r, $c} = $restore(this, {ctx});
+	VMValue.ptr.prototype.ComputedExecute = function(ctx, detail) {
+		var {_r$28, _tuple, cd, ctx, detail, ret, v, vm, x, x$1, $s, $r, $c} = $restore(this, {ctx, detail});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		v = this;
 		_tuple = v.ReadComputed();
@@ -40000,10 +40045,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		}
 		ctx.NumOpCount = vm.NumOpCount;
 		ctx.IsComputedLoaded = true;
+		if (!(detail === ptrType$11.nil)) {
+			detail.Tag = "load.computed";
+			detail.Text = cd.Expr;
+		}
 		$s = -1; return ret;
-		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ComputedExecute, $c: true, $r, _r$28, _tuple, cd, ctx, ret, v, vm, x, x$1, $s};return $f;
+		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ComputedExecute, $c: true, $r, _r$28, _tuple, cd, ctx, detail, ret, v, vm, x, x$1, $s};return $f;
 	};
-	VMValue.prototype.ComputedExecute = function(ctx) { return this.$val.ComputedExecute(ctx); };
+	VMValue.prototype.ComputedExecute = function(ctx, detail) { return this.$val.ComputedExecute(ctx, detail); };
 	VMValue.ptr.prototype.FuncInvoke = function(ctx, params) {
 		var {$24r, _r$28, ctx, params, v, $s, $r, $c} = $restore(this, {ctx, params});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
@@ -40310,7 +40359,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			kName = _tuple[0];
 			err = _tuple[1];
 			if (!($interfaceIsEqual(err, $ifaceNil))) {
-				$s = -1; return [ptrType$17.nil, err];
+				$s = -1; return [ptrType$18.nil, err];
 			}
 			$r = data.Store(kName, (x = i + 1 >> 0, ((x < 0 || x >= arr.$length) ? ($throwRuntimeError("index out of range"), undefined) : arr.$array[arr.$offset + x]))); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			i = i + (2) >> 0;
@@ -40407,7 +40456,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (!((x = ctx.Config.ParseExprLimit, (x.$high === 0 && x.$low === 0)))) {
 			p.maxExprCnt = ctx.Config.ParseExprLimit;
 		}
-		_r$29 = p.parse(ptrType$19.nil); /* */ $s = 2; case 2: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+		_r$29 = p.parse(ptrType$20.nil); /* */ $s = 2; case 2: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 		_tuple = _r$29;
 		err = _tuple[1];
 		if (!($interfaceIsEqual(err, $ifaceNil))) {
@@ -40543,7 +40592,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$ptrType(spanByEnd).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	Context.ptr.prototype.makeDetailStr = function(details) {
-		var {$24r, _arg$28, _arg$29, _i, _r$28, _r$29, _r$30, _r$31, _ref, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, r, size, span, subDetailsText, x, x$1, x$2, x$3, x$4, x$5, x$6, $s, $r, $c} = $restore(this, {details});
+		var {$24r, _1, _i, _r$28, _r$29, _r$30, _ref, buf, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, partRet, size, span, subDetailsText, writeBuf, writeBufStr, x, x$1, x$2, x$3, x$4, x$5, x$6, $s, $r, $c} = $restore(this, {details});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
 		/* */ if (!(ctx.Config.CustomMakeDetailFunc === $throwNilPointerError)) { $s = 1; continue; }
@@ -40564,7 +40613,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			i = $clone(((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]), BufferSpan);
 			if (i.Begin > lastEnd) {
 				curPoint = i.Begin;
-				m = $append(m, new structType$17.ptr(curPoint, i.End, new sliceType$11([$clone(i, BufferSpan)])));
+				m = $append(m, new Group.ptr(curPoint, i.End, i.Tag, new sliceType$11([$clone(i, BufferSpan)]), i.Ret));
 			} else {
 				(x$1 = m.$length - 1 >> 0, ((x$1 < 0 || x$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$1])).spans = $append((x = m.$length - 1 >> 0, ((x < 0 || x >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x])).spans, i);
 				if (i.End > (x$2 = m.$length - 1 >> 0, ((x$2 < 0 || x$2 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + x$2])).end) {
@@ -40579,7 +40628,25 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		i$1 = m.$length - 1 >> 0;
 		/* while (true) { */ case 5:
 			/* if (!(i$1 >= 0)) { break; } */ if(!(i$1 >= 0)) { $s = 6; continue; }
-			item = $clone(((i$1 < 0 || i$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + i$1]), structType$17);
+			buf = [buf];
+			buf[0] = new bytes.Buffer.ptr(sliceType$7.nil, 0, 0);
+			writeBuf = (function(buf) { return function $b(p) {
+				var {_r$29, p, $s, $r, $c} = $restore(this, {p});
+				/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+				_r$29 = buf[0].Write(p); /* */ $s = 1; case 1: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+				_r$29;
+				$s = -1; return;
+				/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$29, p, $s};return $f;
+			}; })(buf);
+			writeBufStr = (function(buf) { return function $b(s) {
+				var {_r$29, s, $s, $r, $c} = $restore(this, {s});
+				/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
+				_r$29 = buf[0].WriteString(s); /* */ $s = 1; case 1: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+				_r$29;
+				$s = -1; return;
+				/* */ } return; } var $f = {$blk: $b, $c: true, $r, _r$29, s, $s};return $f;
+			}; })(buf);
+			item = $clone(((i$1 < 0 || i$1 >= m.$length) ? ($throwRuntimeError("index out of range"), undefined) : m.$array[m.$offset + i$1]), Group);
 			size = item.spans.$length;
 			$r = sort.Sort(($convertSliceType(item.spans, spanByEnd))); /* */ $s = 7; case 7: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			last = $clone((x$4 = item.spans, x$5 = size - 1 >> 0, ((x$5 < 0 || x$5 >= x$4.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$4.$array[x$4.$offset + x$5])), BufferSpan);
@@ -40598,29 +40665,36 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				case 11:
 			/* } */ case 9:
 			exprText = ($bytesToString($subslice(detailResult, item.begin, item.end)));
-			r = sliceType$7.nil;
-			r = $appendSlice(r, $subslice(detailResult, 0, item.begin));
-			_r$30 = last.Ret.ToString(); /* */ $s = 13; case 13: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
-			detail = "[" + exprText + "=" + _r$30;
-			if (!(last.Text === "")) {
+			$r = writeBuf($subslice(detailResult, 0, item.begin)); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			_r$30 = last.Ret.ToString(); /* */ $s = 14; case 14: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+			partRet = _r$30;
+			detail = "[" + exprText;
+			if (!(last.Text === "") && !(partRet === last.Text)) {
 				detail = detail + ("=" + last.Text);
 			}
+			_1 = item.tag;
+			if (_1 === ("load.computed")) {
+				detail = detail + ("=" + partRet);
+			}
 			detail = detail + (subDetailsText + "]");
-			_arg$28 = r;
-			_r$31 = last.Ret.ToString(); /* */ $s = 14; case 14: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
-			_arg$29 = (new sliceType$7($stringToBytes(_r$31 + detail)));
-			r = $appendSlice(_arg$28, _arg$29);
-			r = $appendSlice(r, $subslice(detailResult, item.end));
-			detailResult = r;
+			if ((m.$length === 1) && detail === "[" + exprText + "]") {
+				detail = "";
+			}
+			if (detail.length > 400) {
+				detail = "[\xE7\x95\xA5]";
+			}
+			$r = writeBufStr(partRet + detail); /* */ $s = 15; case 15: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			$r = writeBuf($subslice(detailResult, item.end)); /* */ $s = 16; case 16: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+			detailResult = buf[0].Bytes();
 			i$1 = i$1 - (1) >> 0;
 		$s = 5; continue;
 		case 6:
 		$s = -1; return ($bytesToString(detailResult));
-		/* */ } return; } var $f = {$blk: Context.ptr.prototype.makeDetailStr, $c: true, $r, $24r, _arg$28, _arg$29, _i, _r$28, _r$29, _r$30, _r$31, _ref, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, r, size, span, subDetailsText, x, x$1, x$2, x$3, x$4, x$5, x$6, $s};return $f;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.makeDetailStr, $c: true, $r, $24r, _1, _i, _r$28, _r$29, _r$30, _ref, buf, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, partRet, size, span, subDetailsText, writeBuf, writeBufStr, x, x$1, x$2, x$3, x$4, x$5, x$6, $s};return $f;
 	};
 	Context.prototype.makeDetailStr = function(details) { return this.$val.makeDetailStr(details); };
 	Context.ptr.prototype.evaluate = function() {
-		var {_1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$111, _r$112, _r$113, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, oldRet, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred, $r, $c} = $restore(this, {});
+		var {_1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$111, _r$112, _r$113, _r$114, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detail$2, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, oldRet, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred, $r, $c} = $restore(this, {});
 		/* */ $s = $s || 0; var $err = null; try { s: while (true) { switch ($s) { case 0: $deferred = []; $curGoroutine.deferStack.push($deferred);
 		ctx = [ctx];
 		dcState = [dcState];
@@ -40655,21 +40729,21 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		diceInit = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
 			var data;
 			diceStateIndex[0] = diceStateIndex[0] + (1) >> 0;
-			data = new structType$18.ptr(1, 0, 0, 0, ptrType$20.nil, ptrType$20.nil);
+			data = new structType$17.ptr(1, 0, 0, 0, ptrType$21.nil, ptrType$21.nil);
 			if (diceStateIndex[0] >= diceStates[0].$length) {
 				diceStates[0] = $append(diceStates[0], data);
 			} else {
-				structType$18.copy(((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]), data);
+				structType$17.copy(((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]), data);
 			}
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
-		wodState[0] = new structType$19.ptr(0, 0, 0, false);
+		wodState[0] = new structType$18.ptr(0, 0, 0, false);
 		wodInit = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
 			wodState[0].pool = 1;
 			wodState[0].points = 10;
 			wodState[0].threshold = 8;
 			wodState[0].isGE = true;
 		}; })(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState);
-		dcState[0] = new structType$20.ptr(0, 0);
+		dcState[0] = new structType$19.ptr(0, 0);
 		dcInit = (function(ctx, dcState, details, diceStateIndex, diceStates, e, lastPop, stackPop, wodState) { return function() {
 			dcState[0].pool = 1;
 			dcState[0].points = 10;
@@ -41181,447 +41255,455 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					$s = 80; continue;
 				/* } else if ((_1 === (14)) || (_1 === (16)) || (_1 === (15))) { */ case 42:
 					name = $assertType(code.Value, $String);
-					_r$69 = ctx[0].LoadName(name, 16 === code.T, true); /* */ $s = 197; case 197: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
-					val$5 = _r$69;
-					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 198; continue; }
-					/* */ $s = 199; continue;
-					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 198:
-						$s = 200; case 200: return;
-					/* } */ case 199:
-					if (15 === code.T) {
-						(x$11 = details[0].$length - 1 >> 0, ((x$11 < 0 || x$11 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$11])).Tag = "load";
-						(x$12 = details[0].$length - 1 >> 0, ((x$12 < 0 || x$12 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$12])).Ret = val$5;
-						(x$13 = details[0].$length - 1 >> 0, ((x$13 < 0 || x$13 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$13])).Text = "";
-					}
-					/* */ if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { $s = 201; continue; }
-					/* */ $s = 202; continue;
-					/* if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { */ case 201:
-						oldRet = (x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).Ret;
-						_r$70 = ctx[0].Config.HookFuncValueLoadOverwrite(name, val$5, (x$15 = details[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$15]))); /* */ $s = 203; case 203: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
+					val$5 = ptrType.nil;
+					/* */ if (15 === code.T) { $s = 197; continue; }
+					/* */ $s = 198; continue;
+					/* if (15 === code.T) { */ case 197:
+						detail = (x$11 = details[0].$length - 1 >> 0, ((x$11 < 0 || x$11 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$11]));
+						detail.Tag = "load";
+						detail.Text = "";
+						_r$69 = ctx[0].LoadNameWithDetail(name, 16 === code.T, true, detail); /* */ $s = 200; case 200: if($c) { $c = false; _r$69 = _r$69.$blk(); } if (_r$69 && _r$69.$blk !== undefined) { break s; }
+						val$5 = _r$69;
+						detail.Ret = val$5;
+						$s = 199; continue;
+					/* } else { */ case 198:
+						_r$70 = ctx[0].LoadName(name, 16 === code.T, true); /* */ $s = 201; case 201: if($c) { $c = false; _r$70 = _r$70.$blk(); } if (_r$70 && _r$70.$blk !== undefined) { break s; }
 						val$5 = _r$70;
-						if (oldRet === (x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16])).Ret) {
-							(x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).Ret = val$5;
+					/* } */ case 199:
+					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 202; continue; }
+					/* */ $s = 203; continue;
+					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 202:
+						$s = 204; case 204: return;
+					/* } */ case 203:
+					/* */ if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { $s = 205; continue; }
+					/* */ $s = 206; continue;
+					/* if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { */ case 205:
+						oldRet = (x$12 = details[0].$length - 1 >> 0, ((x$12 < 0 || x$12 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$12])).Ret;
+						_r$71 = ctx[0].Config.HookFuncValueLoadOverwrite(name, val$5, (x$13 = details[0].$length - 1 >> 0, ((x$13 < 0 || x$13 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$13]))); /* */ $s = 207; case 207: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
+						val$5 = _r$71;
+						if (oldRet === (x$14 = details[0].$length - 1 >> 0, ((x$14 < 0 || x$14 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$14])).Ret) {
+							(x$15 = details[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$15])).Ret = val$5;
 						}
-					/* } */ case 202:
-					$r = stackPush(val$5); /* */ $s = 204; case 204: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 206:
+					$r = stackPush(val$5); /* */ $s = 208; case 208: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (17)) { */ case 43:
-					v$1 = (x$18 = e[0].stack, x$19 = e[0].top - 1 >> 0, ((x$19 < 0 || x$19 >= x$18.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$18.$array[x$18.$offset + x$19])).Clone();
+					v$1 = (x$16 = e[0].stack, x$17 = e[0].top - 1 >> 0, ((x$17 < 0 || x$17 >= x$16.$length) ? ($throwRuntimeError("index out of range"), undefined) : x$16.$array[x$16.$offset + x$17])).Clone();
 					name$1 = $assertType(code.Value, $String);
-					$r = ctx[0].StoreName(name$1, v$1, true); /* */ $s = 205; case 205: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 206; continue; }
-					/* */ $s = 207; continue;
-					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 206:
-						$s = 208; case 208: return;
-					/* } */ case 207:
-					$s = 80; continue;
-				/* } else if ((_1 === (75)) || (_1 === (77))) { */ case 44:
-					_r$71 = stackPop[0](); /* */ $s = 209; case 209: if($c) { $c = false; _r$71 = _r$71.$blk(); } if (_r$71 && _r$71.$blk !== undefined) { break s; }
-					v$2 = _r$71;
-					_r$72 = v$2.AsBool(); /* */ $s = 212; case 212: if($c) { $c = false; _r$72 = _r$72.$blk(); } if (_r$72 && _r$72.$blk !== undefined) { break s; }
-					/* */ if (_r$72) { $s = 210; continue; }
+					$r = ctx[0].StoreName(name$1, v$1, true); /* */ $s = 209; case 209: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 210; continue; }
 					/* */ $s = 211; continue;
-					/* if (_r$72) { */ case 210:
-						opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
-						/* */ if (code.T === 77) { $s = 213; continue; }
-						/* */ $s = 214; continue;
-						/* if (code.T === 77) { */ case 213:
-							$r = stackPush(v$2); /* */ $s = 215; case 215: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						/* } */ case 214:
+					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 210:
+						$s = 212; case 212: return;
 					/* } */ case 211:
 					$s = 80; continue;
-				/* } else if (_1 === (76)) { */ case 45:
-					_r$73 = stackPop[0](); /* */ $s = 216; case 216: if($c) { $c = false; _r$73 = _r$73.$blk(); } if (_r$73 && _r$73.$blk !== undefined) { break s; }
-					t = _r$73;
-					_r$74 = t.AsBool(); /* */ $s = 219; case 219: if($c) { $c = false; _r$74 = _r$74.$blk(); } if (_r$74 && _r$74.$blk !== undefined) { break s; }
-					/* */ if (!_r$74) { $s = 217; continue; }
-					/* */ $s = 218; continue;
-					/* if (!_r$74) { */ case 217:
+				/* } else if ((_1 === (75)) || (_1 === (77))) { */ case 44:
+					_r$72 = stackPop[0](); /* */ $s = 213; case 213: if($c) { $c = false; _r$72 = _r$72.$blk(); } if (_r$72 && _r$72.$blk !== undefined) { break s; }
+					v$2 = _r$72;
+					_r$73 = v$2.AsBool(); /* */ $s = 216; case 216: if($c) { $c = false; _r$73 = _r$73.$blk(); } if (_r$73 && _r$73.$blk !== undefined) { break s; }
+					/* */ if (_r$73) { $s = 214; continue; }
+					/* */ $s = 215; continue;
+					/* if (_r$73) { */ case 214:
 						opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
-					/* } */ case 218:
+						/* */ if (code.T === 77) { $s = 217; continue; }
+						/* */ $s = 218; continue;
+						/* if (code.T === 77) { */ case 217:
+							$r = stackPush(v$2); /* */ $s = 219; case 219: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						/* } */ case 218:
+					/* } */ case 215:
+					$s = 80; continue;
+				/* } else if (_1 === (76)) { */ case 45:
+					_r$74 = stackPop[0](); /* */ $s = 220; case 220: if($c) { $c = false; _r$74 = _r$74.$blk(); } if (_r$74 && _r$74.$blk !== undefined) { break s; }
+					t = _r$74;
+					_r$75 = t.AsBool(); /* */ $s = 223; case 223: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
+					/* */ if (!_r$75) { $s = 221; continue; }
+					/* */ $s = 222; continue;
+					/* if (!_r$75) { */ case 221:
+						opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
+					/* } */ case 222:
 					$s = 80; continue;
 				/* } else if (_1 === (74)) { */ case 46:
 					opIndex = opIndex + ((($assertType(code.Value, IntType) >> 0))) >> 0;
 					$s = 80; continue;
 				/* } else if (_1 === (71)) { */ case 47:
-					_r$75 = stackPop[0](); /* */ $s = 220; case 220: if($c) { $c = false; _r$75 = _r$75.$blk(); } if (_r$75 && _r$75.$blk !== undefined) { break s; }
-					_r$75;
-					$s = 80; continue;
-				/* } else if (_1 === (72)) { */ case 48:
-					_r$76 = stackPopN($assertType(code.Value, IntType)); /* */ $s = 221; case 221: if($c) { $c = false; _r$76 = _r$76.$blk(); } if (_r$76 && _r$76.$blk !== undefined) { break s; }
+					_r$76 = stackPop[0](); /* */ $s = 224; case 224: if($c) { $c = false; _r$76 = _r$76.$blk(); } if (_r$76 && _r$76.$blk !== undefined) { break s; }
 					_r$76;
 					$s = 80; continue;
+				/* } else if (_1 === (72)) { */ case 48:
+					_r$77 = stackPopN($assertType(code.Value, IntType)); /* */ $s = 225; case 225: if($c) { $c = false; _r$77 = _r$77.$blk(); } if (_r$77 && _r$77.$blk !== undefined) { break s; }
+					_r$77;
+					$s = 80; continue;
 				/* } else if ((_1 === (28)) || (_1 === (29)) || (_1 === (30)) || (_1 === (31)) || (_1 === (32)) || (_1 === (33)) || (_1 === (34)) || (_1 === (35)) || (_1 === (36)) || (_1 === (37)) || (_1 === (38)) || (_1 === (39)) || (_1 === (40)) || (_1 === (41)) || (_1 === (42))) { */ case 49:
-					_r$77 = stackPop2(); /* */ $s = 222; case 222: if($c) { $c = false; _r$77 = _r$77.$blk(); } if (_r$77 && _r$77.$blk !== undefined) { break s; }
-					_tuple$9 = _r$77;
+					_r$78 = stackPop2(); /* */ $s = 226; case 226: if($c) { $c = false; _r$78 = _r$78.$blk(); } if (_r$78 && _r$78.$blk !== undefined) { break s; }
+					_tuple$9 = _r$78;
 					v1 = _tuple$9[0];
 					v2 = _tuple$9[1];
-					opFunc = (x$20 = code.T - 28 << 24 >>> 24, ((x$20 < 0 || x$20 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$20]));
-					_r$78 = opFunc(v1, ctx[0], v2); /* */ $s = 223; case 223: if($c) { $c = false; _r$78 = _r$78.$blk(); } if (_r$78 && _r$78.$blk !== undefined) { break s; }
-					ret$6 = _r$78;
-					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { $s = 224; continue; }
-					/* */ $s = 225; continue;
-					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { */ case 224:
-						_r$79 = code.CodeString(); /* */ $s = 226; case 226: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
-						_arg$32 = new $String(_r$79);
+					opFunc = (x$18 = code.T - 28 << 24 >>> 24, ((x$18 < 0 || x$18 >= binOperator.$length) ? ($throwRuntimeError("index out of range"), undefined) : binOperator.$array[binOperator.$offset + x$18]));
+					_r$79 = opFunc(v1, ctx[0], v2); /* */ $s = 227; case 227: if($c) { $c = false; _r$79 = _r$79.$blk(); } if (_r$79 && _r$79.$blk !== undefined) { break s; }
+					ret$6 = _r$79;
+					/* */ if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { $s = 228; continue; }
+					/* */ $s = 229; continue;
+					/* if ($interfaceIsEqual(ctx[0].Error, $ifaceNil) && ret$6 === ptrType.nil) { */ case 228:
+						_r$80 = code.CodeString(); /* */ $s = 230; case 230: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
+						_arg$32 = new $String(_r$80);
 						_arg$33 = new $String(v1.GetTypeName());
 						_arg$34 = new $String(v2.GetTypeName());
-						_r$80 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$2([_arg$32, _arg$33, _arg$34])); /* */ $s = 227; case 227: if($c) { $c = false; _r$80 = _r$80.$blk(); } if (_r$80 && _r$80.$blk !== undefined) { break s; }
-						opErr = _r$80;
+						_r$81 = fmt.Sprintf("\xE8\xBF\x99\xE4\xB8\xA4\xE7\xA7\x8D\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8 %s \xE7\xAE\x97\xE7\xAC\xA6\xE8\xBF\x9E\xE6\x8E\xA5: %s, %s", new sliceType$2([_arg$32, _arg$33, _arg$34])); /* */ $s = 231; case 231: if($c) { $c = false; _r$81 = _r$81.$blk(); } if (_r$81 && _r$81.$blk !== undefined) { break s; }
+						opErr = _r$81;
 						ctx[0].Error = errors.New(opErr);
-					/* } */ case 225:
-					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 228; continue; }
-					/* */ $s = 229; continue;
-					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 228:
-						$s = 230; case 230: return;
 					/* } */ case 229:
-					$r = stackPush(ret$6); /* */ $s = 231; case 231: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 232; continue; }
+					/* */ $s = 233; continue;
+					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 232:
+						$s = 234; case 234: return;
+					/* } */ case 233:
+					$r = stackPush(ret$6); /* */ $s = 235; case 235: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if ((_1 === (46)) || (_1 === (45))) { */ case 50:
-					_r$81 = stackPop[0](); /* */ $s = 232; case 232: if($c) { $c = false; _r$81 = _r$81.$blk(); } if (_r$81 && _r$81.$blk !== undefined) { break s; }
-					v$3 = _r$81;
+					_r$82 = stackPop[0](); /* */ $s = 236; case 236: if($c) { $c = false; _r$82 = _r$82.$blk(); } if (_r$82 && _r$82.$blk !== undefined) { break s; }
+					v$3 = _r$82;
 					ret$7 = ptrType.nil;
 					if (code.T === 46) {
 						ret$7 = v$3.OpPositive();
 					} else {
 						ret$7 = v$3.OpNegation();
 					}
-					/* */ if (ret$7 === ptrType.nil) { $s = 233; continue; }
-					/* */ $s = 234; continue;
-					/* if (ret$7 === ptrType.nil) { */ case 233:
-						_r$82 = code.CodeString(); /* */ $s = 235; case 235: if($c) { $c = false; _r$82 = _r$82.$blk(); } if (_r$82 && _r$82.$blk !== undefined) { break s; }
-						_arg$35 = new $String(_r$82);
-						_arg$36 = new $String(v$3.GetTypeName());
-						_r$83 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$2([_arg$35, _arg$36])); /* */ $s = 236; case 236: if($c) { $c = false; _r$83 = _r$83.$blk(); } if (_r$83 && _r$83.$blk !== undefined) { break s; }
-						opErr$1 = _r$83;
-						ctx[0].Error = errors.New(opErr$1);
-					/* } */ case 234:
-					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 237; continue; }
+					/* */ if (ret$7 === ptrType.nil) { $s = 237; continue; }
 					/* */ $s = 238; continue;
-					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 237:
-						$s = 239; case 239: return;
+					/* if (ret$7 === ptrType.nil) { */ case 237:
+						_r$83 = code.CodeString(); /* */ $s = 239; case 239: if($c) { $c = false; _r$83 = _r$83.$blk(); } if (_r$83 && _r$83.$blk !== undefined) { break s; }
+						_arg$35 = new $String(_r$83);
+						_arg$36 = new $String(v$3.GetTypeName());
+						_r$84 = fmt.Sprintf("\xE6\xAD\xA4\xE7\xB1\xBB\xE5\x9E\x8B\xE6\x97\xA0\xE6\xB3\x95\xE4\xBD\xBF\xE7\x94\xA8\xE4\xB8\x80\xE5\x85\x83\xE7\xAE\x97\xE7\xAC\xA6 %s: %s", new sliceType$2([_arg$35, _arg$36])); /* */ $s = 240; case 240: if($c) { $c = false; _r$84 = _r$84.$blk(); } if (_r$84 && _r$84.$blk !== undefined) { break s; }
+						opErr$1 = _r$84;
+						ctx[0].Error = errors.New(opErr$1);
 					/* } */ case 238:
-					$r = stackPush(ret$7); /* */ $s = 240; case 240: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 241; continue; }
+					/* */ $s = 242; continue;
+					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 241:
+						$s = 243; case 243: return;
+					/* } */ case 242:
+					$r = stackPush(ret$7); /* */ $s = 244; case 244: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (47)) { */ case 51:
-					$r = diceInit(); /* */ $s = 241; case 241: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = diceInit(); /* */ $s = 245; case 245: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (48)) { */ case 52:
-					_r$84 = stackPop[0](); /* */ $s = 242; case 242: if($c) { $c = false; _r$84 = _r$84.$blk(); } if (_r$84 && _r$84.$blk !== undefined) { break s; }
-					v$4 = _r$84;
+					_r$85 = stackPop[0](); /* */ $s = 246; case 246: if($c) { $c = false; _r$85 = _r$85.$blk(); } if (_r$85 && _r$85.$blk !== undefined) { break s; }
+					v$4 = _r$85;
 					_tuple$10 = v$4.ReadInt();
 					times = _tuple$10[0];
 					ok$1 = _tuple$10[1];
-					/* */ if (!ok$1 || times <= 0) { $s = 243; continue; }
-					/* */ $s = 244; continue;
-					/* if (!ok$1 || times <= 0) { */ case 243:
+					/* */ if (!ok$1 || times <= 0) { $s = 247; continue; }
+					/* */ $s = 248; continue;
+					/* if (!ok$1 || times <= 0) { */ case 247:
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE7\x82\xB9\xE6\xAC\xA1\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
-						$s = 245; case 245: return;
-					/* } */ case 244:
+						$s = 249; case 249: return;
+					/* } */ case 248:
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).times = times;
 					$s = 80; continue;
 				/* } else if (_1 === (49)) { */ case 53:
-					_r$85 = stackPop[0](); /* */ $s = 246; case 246: if($c) { $c = false; _r$85 = _r$85.$blk(); } if (_r$85 && _r$85.$blk !== undefined) { break s; }
-					v$5 = _r$85;
+					_r$86 = stackPop[0](); /* */ $s = 250; case 250: if($c) { $c = false; _r$86 = _r$86.$blk(); } if (_r$86 && _r$86.$blk !== undefined) { break s; }
+					v$5 = _r$86;
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 1;
 					_tuple$11 = v$5.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).lowNum = _tuple$11[0];
 					$s = 80; continue;
 				/* } else if (_1 === (50)) { */ case 54:
-					_r$86 = stackPop[0](); /* */ $s = 247; case 247: if($c) { $c = false; _r$86 = _r$86.$blk(); } if (_r$86 && _r$86.$blk !== undefined) { break s; }
-					v$6 = _r$86;
+					_r$87 = stackPop[0](); /* */ $s = 251; case 251: if($c) { $c = false; _r$87 = _r$87.$blk(); } if (_r$87 && _r$87.$blk !== undefined) { break s; }
+					v$6 = _r$87;
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 2;
 					_tuple$12 = v$6.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).highNum = _tuple$12[0];
 					$s = 80; continue;
 				/* } else if (_1 === (51)) { */ case 55:
-					_r$87 = stackPop[0](); /* */ $s = 248; case 248: if($c) { $c = false; _r$87 = _r$87.$blk(); } if (_r$87 && _r$87.$blk !== undefined) { break s; }
-					v$7 = _r$87;
+					_r$88 = stackPop[0](); /* */ $s = 252; case 252: if($c) { $c = false; _r$88 = _r$88.$blk(); } if (_r$88 && _r$88.$blk !== undefined) { break s; }
+					v$7 = _r$88;
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 3;
 					_tuple$13 = v$7.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).lowNum = _tuple$13[0];
 					$s = 80; continue;
 				/* } else if (_1 === (52)) { */ case 56:
-					_r$88 = stackPop[0](); /* */ $s = 249; case 249: if($c) { $c = false; _r$88 = _r$88.$blk(); } if (_r$88 && _r$88.$blk !== undefined) { break s; }
-					v$8 = _r$88;
+					_r$89 = stackPop[0](); /* */ $s = 253; case 253: if($c) { $c = false; _r$89 = _r$89.$blk(); } if (_r$89 && _r$89.$blk !== undefined) { break s; }
+					v$8 = _r$89;
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).isKeepLH = 4;
 					_tuple$14 = v$8.ReadInt();
 					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).highNum = _tuple$14[0];
 					$s = 80; continue;
 				/* } else if (_1 === (53)) { */ case 57:
-					_r$89 = stackPop[0](); /* */ $s = 250; case 250: if($c) { $c = false; _r$89 = _r$89.$blk(); } if (_r$89 && _r$89.$blk !== undefined) { break s; }
-					v$9 = _r$89;
+					_r$90 = stackPop[0](); /* */ $s = 254; case 254: if($c) { $c = false; _r$90 = _r$90.$blk(); } if (_r$90 && _r$90.$blk !== undefined) { break s; }
+					v$9 = _r$90;
 					_tuple$15 = v$9.ReadInt();
 					i[0] = _tuple$15[0];
-					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).min = (i.$ptr || (i.$ptr = new ptrType$20(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i)));
+					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).min = (i.$ptr || (i.$ptr = new ptrType$21(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i)));
 					$s = 80; continue;
 				/* } else if (_1 === (54)) { */ case 58:
-					_r$90 = stackPop[0](); /* */ $s = 251; case 251: if($c) { $c = false; _r$90 = _r$90.$blk(); } if (_r$90 && _r$90.$blk !== undefined) { break s; }
-					v$10 = _r$90;
+					_r$91 = stackPop[0](); /* */ $s = 255; case 255: if($c) { $c = false; _r$91 = _r$91.$blk(); } if (_r$91 && _r$91.$blk !== undefined) { break s; }
+					v$10 = _r$91;
 					_tuple$16 = v$10.ReadInt();
 					i$1[0] = _tuple$16[0];
-					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).max = (i$1.$ptr || (i$1.$ptr = new ptrType$20(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i$1)));
+					((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]).max = (i$1.$ptr || (i$1.$ptr = new ptrType$21(function() { return this.$target[0]; }, function($v) { this.$target[0] = $v; }, i$1)));
 					$s = 80; continue;
 				/* } else if (_1 === (70)) { */ case 59:
 					span = $clone($assertType(code.Value, BufferSpan), BufferSpan);
 					details[0] = $append(details[0], span);
 					$s = 80; continue;
 				/* } else if (_1 === (55)) { */ case 60:
-					diceState = $clone(((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]), structType$18);
-					_r$91 = stackPop[0](); /* */ $s = 252; case 252: if($c) { $c = false; _r$91 = _r$91.$blk(); } if (_r$91 && _r$91.$blk !== undefined) { break s; }
-					val$6 = _r$91;
+					diceState = $clone(((diceStateIndex[0] < 0 || diceStateIndex[0] >= diceStates[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : diceStates[0].$array[diceStates[0].$offset + diceStateIndex[0]]), structType$17);
+					_r$92 = stackPop[0](); /* */ $s = 256; case 256: if($c) { $c = false; _r$92 = _r$92.$blk(); } if (_r$92 && _r$92.$blk !== undefined) { break s; }
+					val$6 = _r$92;
 					_tuple$17 = val$6.ReadInt();
 					bInt = _tuple$17[0];
 					ok$2 = _tuple$17[1];
-					/* */ if (!ok$2 || bInt <= 0) { $s = 253; continue; }
-					/* */ $s = 254; continue;
-					/* if (!ok$2 || bInt <= 0) { */ case 253:
+					/* */ if (!ok$2 || bInt <= 0) { $s = 257; continue; }
+					/* */ $s = 258; continue;
+					/* if (!ok$2 || bInt <= 0) { */ case 257:
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE9\x9D\xA2\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
-						$s = 255; case 255: return;
-					/* } */ case 254:
-					/* */ if (ok$2 && ((diceState.isKeepLH === 1) || (diceState.isKeepLH === 3)) && diceState.lowNum <= 0) { $s = 256; continue; }
-					/* */ $s = 257; continue;
-					/* if (ok$2 && ((diceState.isKeepLH === 1) || (diceState.isKeepLH === 3)) && diceState.lowNum <= 0) { */ case 256:
+						$s = 259; case 259: return;
+					/* } */ case 258:
+					/* */ if (ok$2 && ((diceState.isKeepLH === 1) || (diceState.isKeepLH === 3)) && diceState.lowNum <= 0) { $s = 260; continue; }
+					/* */ $s = 261; continue;
+					/* if (ok$2 && ((diceState.isKeepLH === 1) || (diceState.isKeepLH === 3)) && diceState.lowNum <= 0) { */ case 260:
 						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE5\x8F\x96\xE4\xBD\x8E\xE4\xB8\xAA\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
-						$s = 258; case 258: return;
-					/* } */ case 257:
-					/* */ if (ok$2 && ((diceState.isKeepLH === 2) || (diceState.isKeepLH === 4)) && diceState.highNum <= 0) { $s = 259; continue; }
-					/* */ $s = 260; continue;
-					/* if (ok$2 && ((diceState.isKeepLH === 2) || (diceState.isKeepLH === 4)) && diceState.highNum <= 0) { */ case 259:
-						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE5\x8F\x96\xE9\xAB\x98\xE4\xB8\xAA\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
-						$s = 261; case 261: return;
-					/* } */ case 260:
-					_r$92 = numOpCountAdd(diceState.times); /* */ $s = 262; case 262: if($c) { $c = false; _r$92 = _r$92.$blk(); } if (_r$92 && _r$92.$blk !== undefined) { break s; }
-					_r$92;
-					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 263; continue; }
+						$s = 262; case 262: return;
+					/* } */ case 261:
+					/* */ if (ok$2 && ((diceState.isKeepLH === 2) || (diceState.isKeepLH === 4)) && diceState.highNum <= 0) { $s = 263; continue; }
 					/* */ $s = 264; continue;
-					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 263:
+					/* if (ok$2 && ((diceState.isKeepLH === 2) || (diceState.isKeepLH === 4)) && diceState.highNum <= 0) { */ case 263:
+						ctx[0].Error = errors.New("\xE9\xAA\xB0\xE5\xAD\x90\xE5\x8F\x96\xE9\xAB\x98\xE4\xB8\xAA\xE6\x95\xB0\xE4\xB8\x8D\xE4\xB8\xBA\xE6\xAD\xA3\xE6\x95\xB4\xE6\x95\xB0");
 						$s = 265; case 265: return;
 					/* } */ case 264:
-					_r$93 = RollCommon(ctx[0].randSrc, diceState.times, bInt, diceState.min, diceState.max, diceState.isKeepLH, diceState.lowNum, diceState.highNum); /* */ $s = 266; case 266: if($c) { $c = false; _r$93 = _r$93.$blk(); } if (_r$93 && _r$93.$blk !== undefined) { break s; }
-					_tuple$18 = _r$93;
+					_r$93 = numOpCountAdd(diceState.times); /* */ $s = 266; case 266: if($c) { $c = false; _r$93 = _r$93.$blk(); } if (_r$93 && _r$93.$blk !== undefined) { break s; }
+					_r$93;
+					/* */ if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { $s = 267; continue; }
+					/* */ $s = 268; continue;
+					/* if (!($interfaceIsEqual(ctx[0].Error, $ifaceNil))) { */ case 267:
+						$s = 269; case 269: return;
+					/* } */ case 268:
+					_r$94 = RollCommon(ctx[0].randSrc, diceState.times, bInt, diceState.min, diceState.max, diceState.isKeepLH, diceState.lowNum, diceState.highNum); /* */ $s = 270; case 270: if($c) { $c = false; _r$94 = _r$94.$blk(); } if (_r$94 && _r$94.$blk !== undefined) { break s; }
+					_tuple$18 = _r$94;
 					num$3 = _tuple$18[0];
-					detail = _tuple$18[1];
+					detail$1 = _tuple$18[1];
 					diceStateIndex[0] = diceStateIndex[0] - (1) >> 0;
 					ret$8 = NewIntVal(num$3);
-					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).Ret = ret$8;
-					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).Text = detail;
-					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).Tag = "dice";
-					$r = stackPush(ret$8); /* */ $s = 267; case 267: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					(x$19 = details[0].$length - 1 >> 0, ((x$19 < 0 || x$19 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$19])).Ret = ret$8;
+					(x$20 = details[0].$length - 1 >> 0, ((x$20 < 0 || x$20 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$20])).Text = detail$1;
+					(x$21 = details[0].$length - 1 >> 0, ((x$21 < 0 || x$21 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$21])).Tag = "dice";
+					$r = stackPush(ret$8); /* */ $s = 271; case 271: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (58)) { */ case 61:
 					_tuple$19 = RollFate(ctx[0].randSrc);
 					sum = _tuple$19[0];
-					detail$1 = _tuple$19[1];
+					detail$2 = _tuple$19[1];
 					ret$9 = NewIntVal(sum);
-					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).Ret = ret$9;
-					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).Text = detail$1;
-					(x$26 = details[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$26])).Tag = "dice-fate";
-					$r = stackPush(ret$9); /* */ $s = 268; case 268: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					(x$22 = details[0].$length - 1 >> 0, ((x$22 < 0 || x$22 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$22])).Ret = ret$9;
+					(x$23 = details[0].$length - 1 >> 0, ((x$23 < 0 || x$23 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$23])).Text = detail$2;
+					(x$24 = details[0].$length - 1 >> 0, ((x$24 < 0 || x$24 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$24])).Tag = "dice-fate";
+					$r = stackPush(ret$9); /* */ $s = 272; case 272: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if ((_1 === (57)) || (_1 === (56))) { */ case 62:
-					_r$94 = stackPop[0](); /* */ $s = 269; case 269: if($c) { $c = false; _r$94 = _r$94.$blk(); } if (_r$94 && _r$94.$blk !== undefined) { break s; }
-					t$1 = _r$94;
+					_r$95 = stackPop[0](); /* */ $s = 273; case 273: if($c) { $c = false; _r$95 = _r$95.$blk(); } if (_r$95 && _r$95.$blk !== undefined) { break s; }
+					t$1 = _r$95;
 					diceNum = t$1.MustReadInt();
-					_r$95 = numOpCountAdd(diceNum); /* */ $s = 272; case 272: if($c) { $c = false; _r$95 = _r$95.$blk(); } if (_r$95 && _r$95.$blk !== undefined) { break s; }
-					/* */ if (_r$95) { $s = 270; continue; }
-					/* */ $s = 271; continue;
-					/* if (_r$95) { */ case 270:
-						$s = 273; case 273: return;
-					/* } */ case 271:
+					_r$96 = numOpCountAdd(diceNum); /* */ $s = 276; case 276: if($c) { $c = false; _r$96 = _r$96.$blk(); } if (_r$96 && _r$96.$blk !== undefined) { break s; }
+					/* */ if (_r$96) { $s = 274; continue; }
+					/* */ $s = 275; continue;
+					/* if (_r$96) { */ case 274:
+						$s = 277; case 277: return;
+					/* } */ case 275:
 					isBonus = code.T === 57;
-					_r$96 = RollCoC(ctx[0].randSrc, isBonus, diceNum); /* */ $s = 274; case 274: if($c) { $c = false; _r$96 = _r$96.$blk(); } if (_r$96 && _r$96.$blk !== undefined) { break s; }
-					_tuple$20 = _r$96;
+					_r$97 = RollCoC(ctx[0].randSrc, isBonus, diceNum); /* */ $s = 278; case 278: if($c) { $c = false; _r$97 = _r$97.$blk(); } if (_r$97 && _r$97.$blk !== undefined) { break s; }
+					_tuple$20 = _r$97;
 					r = _tuple$20[0];
 					detailText = _tuple$20[1];
 					ret$10 = NewIntVal(r);
-					(x$27 = details[0].$length - 1 >> 0, ((x$27 < 0 || x$27 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$27])).Ret = ret$10;
-					(x$28 = details[0].$length - 1 >> 0, ((x$28 < 0 || x$28 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$28])).Text = detailText;
+					(x$25 = details[0].$length - 1 >> 0, ((x$25 < 0 || x$25 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$25])).Ret = ret$10;
+					(x$26 = details[0].$length - 1 >> 0, ((x$26 < 0 || x$26 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$26])).Text = detailText;
 					if (isBonus) {
-						(x$29 = details[0].$length - 1 >> 0, ((x$29 < 0 || x$29 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$29])).Tag = "dice-coc-bonus";
+						(x$27 = details[0].$length - 1 >> 0, ((x$27 < 0 || x$27 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$27])).Tag = "dice-coc-bonus";
 					} else {
-						(x$30 = details[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$30])).Tag = "dice-coc-penalty";
+						(x$28 = details[0].$length - 1 >> 0, ((x$28 < 0 || x$28 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$28])).Tag = "dice-coc-penalty";
 					}
-					$r = stackPush(ret$10); /* */ $s = 275; case 275: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = stackPush(ret$10); /* */ $s = 279; case 279: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (60)) { */ case 63:
-					$r = wodInit(); /* */ $s = 276; case 276: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = wodInit(); /* */ $s = 280; case 280: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (62)) { */ case 64:
-					_r$97 = stackPop[0](); /* */ $s = 277; case 277: if($c) { $c = false; _r$97 = _r$97.$blk(); } if (_r$97 && _r$97.$blk !== undefined) { break s; }
-					v$11 = _r$97;
+					_r$98 = stackPop[0](); /* */ $s = 281; case 281: if($c) { $c = false; _r$98 = _r$98.$blk(); } if (_r$98 && _r$98.$blk !== undefined) { break s; }
+					v$11 = _r$98;
 					wodState[0].points = v$11.MustReadInt();
 					$s = 80; continue;
 				/* } else if (_1 === (63)) { */ case 65:
-					_r$98 = stackPop[0](); /* */ $s = 278; case 278: if($c) { $c = false; _r$98 = _r$98.$blk(); } if (_r$98 && _r$98.$blk !== undefined) { break s; }
-					v$12 = _r$98;
+					_r$99 = stackPop[0](); /* */ $s = 282; case 282: if($c) { $c = false; _r$99 = _r$99.$blk(); } if (_r$99 && _r$99.$blk !== undefined) { break s; }
+					v$12 = _r$99;
 					wodState[0].threshold = v$12.MustReadInt();
 					wodState[0].isGE = true;
 					$s = 80; continue;
 				/* } else if (_1 === (64)) { */ case 66:
-					_r$99 = stackPop[0](); /* */ $s = 279; case 279: if($c) { $c = false; _r$99 = _r$99.$blk(); } if (_r$99 && _r$99.$blk !== undefined) { break s; }
-					v$13 = _r$99;
+					_r$100 = stackPop[0](); /* */ $s = 283; case 283: if($c) { $c = false; _r$100 = _r$100.$blk(); } if (_r$100 && _r$100.$blk !== undefined) { break s; }
+					v$13 = _r$100;
 					wodState[0].threshold = v$13.MustReadInt();
 					wodState[0].isGE = false;
 					$s = 80; continue;
 				/* } else if (_1 === (61)) { */ case 67:
-					_r$100 = stackPop[0](); /* */ $s = 280; case 280: if($c) { $c = false; _r$100 = _r$100.$blk(); } if (_r$100 && _r$100.$blk !== undefined) { break s; }
-					v$14 = _r$100;
+					_r$101 = stackPop[0](); /* */ $s = 284; case 284: if($c) { $c = false; _r$101 = _r$101.$blk(); } if (_r$101 && _r$101.$blk !== undefined) { break s; }
+					v$14 = _r$101;
 					wodState[0].pool = v$14.MustReadInt();
 					$s = 80; continue;
 				/* } else if (_1 === (59)) { */ case 68:
-					_r$101 = stackPop[0](); /* */ $s = 281; case 281: if($c) { $c = false; _r$101 = _r$101.$blk(); } if (_r$101 && _r$101.$blk !== undefined) { break s; }
-					v$15 = _r$101;
-					/* */ if (!wodCheck(ctx[0], v$15.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold)) { $s = 282; continue; }
-					/* */ $s = 283; continue;
-					/* if (!wodCheck(ctx[0], v$15.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold)) { */ case 282:
-						$s = 284; case 284: return;
-					/* } */ case 283:
-					_r$102 = RollWoD(ctx[0].randSrc, v$15.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold, wodState[0].isGE); /* */ $s = 285; case 285: if($c) { $c = false; _r$102 = _r$102.$blk(); } if (_r$102 && _r$102.$blk !== undefined) { break s; }
-					_tuple$21 = _r$102;
+					_r$102 = stackPop[0](); /* */ $s = 285; case 285: if($c) { $c = false; _r$102 = _r$102.$blk(); } if (_r$102 && _r$102.$blk !== undefined) { break s; }
+					v$15 = _r$102;
+					/* */ if (!wodCheck(ctx[0], v$15.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold)) { $s = 286; continue; }
+					/* */ $s = 287; continue;
+					/* if (!wodCheck(ctx[0], v$15.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold)) { */ case 286:
+						$s = 288; case 288: return;
+					/* } */ case 287:
+					_r$103 = RollWoD(ctx[0].randSrc, v$15.MustReadInt(), wodState[0].pool, wodState[0].points, wodState[0].threshold, wodState[0].isGE); /* */ $s = 289; case 289: if($c) { $c = false; _r$103 = _r$103.$blk(); } if (_r$103 && _r$103.$blk !== undefined) { break s; }
+					_tuple$21 = _r$103;
 					num$4 = _tuple$21[0];
 					detailText$1 = _tuple$21[3];
 					ret$11 = NewIntVal(num$4);
-					(x$31 = details[0].$length - 1 >> 0, ((x$31 < 0 || x$31 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$31])).Ret = ret$11;
-					(x$32 = details[0].$length - 1 >> 0, ((x$32 < 0 || x$32 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$32])).Text = detailText$1;
-					(x$33 = details[0].$length - 1 >> 0, ((x$33 < 0 || x$33 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$33])).Tag = "dice-wod";
-					$r = stackPush(ret$11); /* */ $s = 286; case 286: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					(x$29 = details[0].$length - 1 >> 0, ((x$29 < 0 || x$29 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$29])).Ret = ret$11;
+					(x$30 = details[0].$length - 1 >> 0, ((x$30 < 0 || x$30 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$30])).Text = detailText$1;
+					(x$31 = details[0].$length - 1 >> 0, ((x$31 < 0 || x$31 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$31])).Tag = "dice-wod";
+					$r = stackPush(ret$11); /* */ $s = 290; case 290: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (66)) { */ case 69:
-					$r = dcInit(); /* */ $s = 287; case 287: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					$r = dcInit(); /* */ $s = 291; case 291: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (67)) { */ case 70:
-					_r$103 = stackPop[0](); /* */ $s = 288; case 288: if($c) { $c = false; _r$103 = _r$103.$blk(); } if (_r$103 && _r$103.$blk !== undefined) { break s; }
-					v$16 = _r$103;
+					_r$104 = stackPop[0](); /* */ $s = 292; case 292: if($c) { $c = false; _r$104 = _r$104.$blk(); } if (_r$104 && _r$104.$blk !== undefined) { break s; }
+					v$16 = _r$104;
 					dcState[0].pool = v$16.MustReadInt();
 					$s = 80; continue;
 				/* } else if (_1 === (68)) { */ case 71:
-					_r$104 = stackPop[0](); /* */ $s = 289; case 289: if($c) { $c = false; _r$104 = _r$104.$blk(); } if (_r$104 && _r$104.$blk !== undefined) { break s; }
-					v$17 = _r$104;
+					_r$105 = stackPop[0](); /* */ $s = 293; case 293: if($c) { $c = false; _r$105 = _r$105.$blk(); } if (_r$105 && _r$105.$blk !== undefined) { break s; }
+					v$17 = _r$105;
 					dcState[0].points = v$17.MustReadInt();
 					$s = 80; continue;
 				/* } else if (_1 === (65)) { */ case 72:
-					_r$105 = stackPop[0](); /* */ $s = 290; case 290: if($c) { $c = false; _r$105 = _r$105.$blk(); } if (_r$105 && _r$105.$blk !== undefined) { break s; }
-					v$18 = _r$105;
-					/* */ if (!doubleCrossCheck(ctx[0], v$18.MustReadInt(), dcState[0].pool, dcState[0].points)) { $s = 291; continue; }
-					/* */ $s = 292; continue;
-					/* if (!doubleCrossCheck(ctx[0], v$18.MustReadInt(), dcState[0].pool, dcState[0].points)) { */ case 291:
-						$s = 293; case 293: return;
-					/* } */ case 292:
-					_r$106 = RollDoubleCross(ptrType$10.nil, v$18.MustReadInt(), dcState[0].pool, dcState[0].points); /* */ $s = 294; case 294: if($c) { $c = false; _r$106 = _r$106.$blk(); } if (_r$106 && _r$106.$blk !== undefined) { break s; }
-					_tuple$22 = _r$106;
+					_r$106 = stackPop[0](); /* */ $s = 294; case 294: if($c) { $c = false; _r$106 = _r$106.$blk(); } if (_r$106 && _r$106.$blk !== undefined) { break s; }
+					v$18 = _r$106;
+					/* */ if (!doubleCrossCheck(ctx[0], v$18.MustReadInt(), dcState[0].pool, dcState[0].points)) { $s = 295; continue; }
+					/* */ $s = 296; continue;
+					/* if (!doubleCrossCheck(ctx[0], v$18.MustReadInt(), dcState[0].pool, dcState[0].points)) { */ case 295:
+						$s = 297; case 297: return;
+					/* } */ case 296:
+					_r$107 = RollDoubleCross(ptrType$10.nil, v$18.MustReadInt(), dcState[0].pool, dcState[0].points); /* */ $s = 298; case 298: if($c) { $c = false; _r$107 = _r$107.$blk(); } if (_r$107 && _r$107.$blk !== undefined) { break s; }
+					_tuple$22 = _r$107;
 					success = _tuple$22[0];
 					detailText$2 = _tuple$22[3];
 					ret$12 = NewIntVal(success);
-					(x$34 = details[0].$length - 1 >> 0, ((x$34 < 0 || x$34 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$34])).Ret = ret$12;
-					(x$35 = details[0].$length - 1 >> 0, ((x$35 < 0 || x$35 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$35])).Text = detailText$2;
-					(x$36 = details[0].$length - 1 >> 0, ((x$36 < 0 || x$36 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$36])).Tag = "dice-dc";
-					$r = stackPush(ret$12); /* */ $s = 295; case 295: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					(x$32 = details[0].$length - 1 >> 0, ((x$32 < 0 || x$32 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$32])).Ret = ret$12;
+					(x$33 = details[0].$length - 1 >> 0, ((x$33 < 0 || x$33 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$33])).Text = detailText$2;
+					(x$34 = details[0].$length - 1 >> 0, ((x$34 < 0 || x$34 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$34])).Tag = "dice-dc";
+					$r = stackPush(ret$12); /* */ $s = 299; case 299: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					$s = 80; continue;
 				/* } else if (_1 === (79)) { */ case 73:
-					/* */ if (fstrBlockIndex >= 4) { $s = 296; continue; }
-					/* */ $s = 297; continue;
-					/* if (fstrBlockIndex >= 4) { */ case 296:
+					/* */ if (fstrBlockIndex >= 4) { $s = 300; continue; }
+					/* */ $s = 301; continue;
+					/* if (fstrBlockIndex >= 4) { */ case 300:
 						ctx[0].Error = errors.New("\xE5\xAD\x97\xE7\xAC\xA6\xE4\xB8\xB2\xE6\xA8\xA1\xE6\x9D\xBF\xE5\xB5\x8C\xE5\xA5\x97\xE5\xB1\x82\xE6\x95\xB0\xE8\xBF\x87\xE5\xA4\x9A");
-						$s = 298; case 298: return;
-					/* } */ case 297:
+						$s = 302; case 302: return;
+					/* } */ case 301:
 					((fstrBlockIndex < 0 || fstrBlockIndex >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[fstrBlockIndex] = e[0].top);
 					fstrBlockIndex = fstrBlockIndex + (1) >> 0;
 					$s = 80; continue;
 				/* } else if (_1 === (80)) { */ case 74:
-					newTop = (x$37 = fstrBlockIndex - 1 >> 0, ((x$37 < 0 || x$37 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$37]));
+					newTop = (x$35 = fstrBlockIndex - 1 >> 0, ((x$35 < 0 || x$35 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$35]));
 					v$19 = ptrType.nil;
-					/* */ if (!((newTop === e[0].top))) { $s = 299; continue; }
-					/* */ $s = 300; continue;
-					/* if (!((newTop === e[0].top))) { */ case 299:
-						_r$107 = stackPop[0](); /* */ $s = 301; case 301: if($c) { $c = false; _r$107 = _r$107.$blk(); } if (_r$107 && _r$107.$blk !== undefined) { break s; }
-						v$19 = _r$107;
-					/* } */ case 300:
+					/* */ if (!((newTop === e[0].top))) { $s = 303; continue; }
+					/* */ $s = 304; continue;
+					/* if (!((newTop === e[0].top))) { */ case 303:
+						_r$108 = stackPop[0](); /* */ $s = 305; case 305: if($c) { $c = false; _r$108 = _r$108.$blk(); } if (_r$108 && _r$108.$blk !== undefined) { break s; }
+						v$19 = _r$108;
+					/* } */ case 304:
 					e[0].top = newTop;
 					fstrBlockIndex = fstrBlockIndex - (1) >> 0;
-					/* */ if (!(v$19 === ptrType.nil)) { $s = 302; continue; }
-					/* */ $s = 303; continue;
-					/* if (!(v$19 === ptrType.nil)) { */ case 302:
-						$r = stackPush(v$19); /* */ $s = 305; case 305: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-						$s = 304; continue;
-					/* } else { */ case 303:
-						$r = stackPush(NewStrVal("")); /* */ $s = 306; case 306: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* } */ case 304:
-					$s = 80; continue;
-				/* } else if (_1 === (81)) { */ case 75:
-					/* */ if (fstrBlockIndex > 0) { $s = 307; continue; }
-					/* */ $s = 308; continue;
-					/* if (fstrBlockIndex > 0) { */ case 307:
-						newTop$1 = (x$38 = fstrBlockIndex - 1 >> 0, ((x$38 < 0 || x$38 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$38]));
-						/* */ if (!((newTop$1 === e[0].top))) { $s = 309; continue; }
-						/* */ $s = 310; continue;
-						/* if (!((newTop$1 === e[0].top))) { */ case 309:
-							$r = stackPush(NewStrVal("")); /* */ $s = 311; case 311: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-							ctx[0].V1IfCompatibleCount = ctx[0].V1IfCompatibleCount + (1) >> 0;
-						/* } */ case 310:
+					/* */ if (!(v$19 === ptrType.nil)) { $s = 306; continue; }
+					/* */ $s = 307; continue;
+					/* if (!(v$19 === ptrType.nil)) { */ case 306:
+						$r = stackPush(v$19); /* */ $s = 309; case 309: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						$s = 308; continue;
+					/* } else { */ case 307:
+						$r = stackPush(NewStrVal("")); /* */ $s = 310; case 310: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 308:
 					$s = 80; continue;
+				/* } else if (_1 === (81)) { */ case 75:
+					/* */ if (fstrBlockIndex > 0) { $s = 311; continue; }
+					/* */ $s = 312; continue;
+					/* if (fstrBlockIndex > 0) { */ case 311:
+						newTop$1 = (x$36 = fstrBlockIndex - 1 >> 0, ((x$36 < 0 || x$36 >= fstrBlockStack.length) ? ($throwRuntimeError("index out of range"), undefined) : fstrBlockStack[x$36]));
+						/* */ if (!((newTop$1 === e[0].top))) { $s = 313; continue; }
+						/* */ $s = 314; continue;
+						/* if (!((newTop$1 === e[0].top))) { */ case 313:
+							$r = stackPush(NewStrVal("")); /* */ $s = 315; case 315: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+							ctx[0].V1IfCompatibleCount = ctx[0].V1IfCompatibleCount + (1) >> 0;
+						/* } */ case 314:
+					/* } */ case 312:
+					$s = 80; continue;
 				/* } else if (_1 === (82)) { */ case 76:
-					_r$108 = stackPop2(); /* */ $s = 312; case 312: if($c) { $c = false; _r$108 = _r$108.$blk(); } if (_r$108 && _r$108.$blk !== undefined) { break s; }
-					_tuple$23 = _r$108;
+					_r$109 = stackPop2(); /* */ $s = 316; case 316: if($c) { $c = false; _r$109 = _r$109.$blk(); } if (_r$109 && _r$109.$blk !== undefined) { break s; }
+					_tuple$23 = _r$109;
 					stName = _tuple$23[0];
 					stVal = _tuple$23[1];
-					/* */ if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { $s = 313; continue; }
-					/* */ $s = 314; continue;
-					/* if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { */ case 313:
-						_tuple$24 = stName.ReadString();
-						name$2 = _tuple$24[0];
-						$r = e[0].Config.CallbackSt("set", name$2, stVal.Clone(), ptrType.nil, "", ""); /* */ $s = 315; case 315: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* } */ case 314:
-					$s = 80; continue;
-				/* } else if (_1 === (83)) { */ case 77:
-					_r$109 = stackPop2(); /* */ $s = 316; case 316: if($c) { $c = false; _r$109 = _r$109.$blk(); } if (_r$109 && _r$109.$blk !== undefined) { break s; }
-					_tuple$25 = _r$109;
-					stName$1 = _tuple$25[0];
-					stVal$1 = _tuple$25[1];
-					stInfo = $clone($assertType(code.Value, StInfo), StInfo);
 					/* */ if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { $s = 317; continue; }
 					/* */ $s = 318; continue;
 					/* if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { */ case 317:
-						_tuple$26 = stName$1.ReadString();
-						name$3 = _tuple$26[0];
-						$r = e[0].Config.CallbackSt("mod", name$3, stVal$1.Clone(), ptrType.nil, stInfo.Op, stInfo.Text); /* */ $s = 319; case 319: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						_tuple$24 = stName.ReadString();
+						name$2 = _tuple$24[0];
+						$r = e[0].Config.CallbackSt("set", name$2, stVal.Clone(), ptrType.nil, "", ""); /* */ $s = 319; case 319: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 318:
 					$s = 80; continue;
-				/* } else if (_1 === (84)) { */ case 78:
+				/* } else if (_1 === (83)) { */ case 77:
 					_r$110 = stackPop2(); /* */ $s = 320; case 320: if($c) { $c = false; _r$110 = _r$110.$blk(); } if (_r$110 && _r$110.$blk !== undefined) { break s; }
-					_tuple$27 = _r$110;
-					stName$2 = _tuple$27[0];
-					stVal$2 = _tuple$27[1];
+					_tuple$25 = _r$110;
+					stName$1 = _tuple$25[0];
+					stVal$1 = _tuple$25[1];
+					stInfo = $clone($assertType(code.Value, StInfo), StInfo);
 					/* */ if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { $s = 321; continue; }
 					/* */ $s = 322; continue;
 					/* if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { */ case 321:
-						_tuple$28 = stName$2.ReadString();
-						name$4 = _tuple$28[0];
-						$r = e[0].Config.CallbackSt("set.x0", name$4, stVal$2.Clone(), ptrType.nil, "", ""); /* */ $s = 323; case 323: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+						_tuple$26 = stName$1.ReadString();
+						name$3 = _tuple$26[0];
+						$r = e[0].Config.CallbackSt("mod", name$3, stVal$1.Clone(), ptrType.nil, stInfo.Op, stInfo.Text); /* */ $s = 323; case 323: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 					/* } */ case 322:
 					$s = 80; continue;
+				/* } else if (_1 === (84)) { */ case 78:
+					_r$111 = stackPop2(); /* */ $s = 324; case 324: if($c) { $c = false; _r$111 = _r$111.$blk(); } if (_r$111 && _r$111.$blk !== undefined) { break s; }
+					_tuple$27 = _r$111;
+					stName$2 = _tuple$27[0];
+					stVal$2 = _tuple$27[1];
+					/* */ if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { $s = 325; continue; }
+					/* */ $s = 326; continue;
+					/* if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { */ case 325:
+						_tuple$28 = stName$2.ReadString();
+						name$4 = _tuple$28[0];
+						$r = e[0].Config.CallbackSt("set.x0", name$4, stVal$2.Clone(), ptrType.nil, "", ""); /* */ $s = 327; case 327: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 326:
+					$s = 80; continue;
 				/* } else if (_1 === (85)) { */ case 79:
-					_r$111 = stackPop[0](); /* */ $s = 324; case 324: if($c) { $c = false; _r$111 = _r$111.$blk(); } if (_r$111 && _r$111.$blk !== undefined) { break s; }
-					stVal$3 = _r$111;
-					_r$112 = stackPop[0](); /* */ $s = 325; case 325: if($c) { $c = false; _r$112 = _r$112.$blk(); } if (_r$112 && _r$112.$blk !== undefined) { break s; }
-					stExtra = _r$112;
-					_r$113 = stackPop[0](); /* */ $s = 326; case 326: if($c) { $c = false; _r$113 = _r$113.$blk(); } if (_r$113 && _r$113.$blk !== undefined) { break s; }
-					stName$3 = _r$113;
-					/* */ if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { $s = 327; continue; }
-					/* */ $s = 328; continue;
-					/* if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { */ case 327:
+					_r$112 = stackPop[0](); /* */ $s = 328; case 328: if($c) { $c = false; _r$112 = _r$112.$blk(); } if (_r$112 && _r$112.$blk !== undefined) { break s; }
+					stVal$3 = _r$112;
+					_r$113 = stackPop[0](); /* */ $s = 329; case 329: if($c) { $c = false; _r$113 = _r$113.$blk(); } if (_r$113 && _r$113.$blk !== undefined) { break s; }
+					stExtra = _r$113;
+					_r$114 = stackPop[0](); /* */ $s = 330; case 330: if($c) { $c = false; _r$114 = _r$114.$blk(); } if (_r$114 && _r$114.$blk !== undefined) { break s; }
+					stName$3 = _r$114;
+					/* */ if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { $s = 331; continue; }
+					/* */ $s = 332; continue;
+					/* if (!(e[0].Config.CallbackSt === $throwNilPointerError)) { */ case 331:
 						_tuple$29 = stName$3.ReadString();
 						name$5 = _tuple$29[0];
-						$r = e[0].Config.CallbackSt("set.x1", name$5, stVal$3.Clone(), stExtra.Clone(), "", ""); /* */ $s = 329; case 329: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-					/* } */ case 328:
+						$r = e[0].Config.CallbackSt("set.x1", name$5, stVal$3.Clone(), stExtra.Clone(), "", ""); /* */ $s = 333; case 333: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+					/* } */ case 332:
 				/* } */ case 80:
 			case 19:
 			opIndex = opIndex + (1) >> 0;
 		$s = 3; continue;
 		case 4:
 		$s = -1; return;
-		/* */ } return; } } catch(err) { $err = err; $s = -1; } finally { $callDeferred($deferred, $err); if($curGoroutine.asleep) { var $f = {$blk: Context.ptr.prototype.evaluate, $c: true, $r, _1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$111, _r$112, _r$113, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, oldRet, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$37, x$38, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred};return $f; } }
+		/* */ } return; } } catch(err) { $err = err; $s = -1; } finally { $callDeferred($deferred, $err); if($curGoroutine.asleep) { var $f = {$blk: Context.ptr.prototype.evaluate, $c: true, $r, _1, _a, _arg$28, _arg$29, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _b, _r$100, _r$101, _r$102, _r$103, _r$104, _r$105, _r$106, _r$107, _r$108, _r$109, _r$110, _r$111, _r$112, _r$113, _r$114, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$40, _r$41, _r$42, _r$43, _r$44, _r$45, _r$46, _r$47, _r$48, _r$49, _r$50, _r$51, _r$52, _r$53, _r$54, _r$55, _r$56, _r$57, _r$58, _r$59, _r$60, _r$61, _r$62, _r$63, _r$64, _r$65, _r$66, _r$67, _r$68, _r$69, _r$70, _r$71, _r$72, _r$73, _r$74, _r$75, _r$76, _r$77, _r$78, _r$79, _r$80, _r$81, _r$82, _r$83, _r$84, _r$85, _r$86, _r$87, _r$88, _r$89, _r$90, _r$91, _r$92, _r$93, _r$94, _r$95, _r$96, _r$97, _r$98, _r$99, _tuple, _tuple$1, _tuple$10, _tuple$11, _tuple$12, _tuple$13, _tuple$14, _tuple$15, _tuple$16, _tuple$17, _tuple$18, _tuple$19, _tuple$2, _tuple$20, _tuple$21, _tuple$22, _tuple$23, _tuple$24, _tuple$25, _tuple$26, _tuple$27, _tuple$28, _tuple$29, _tuple$3, _tuple$4, _tuple$5, _tuple$6, _tuple$7, _tuple$8, _tuple$9, a, a$1, a$2, a$3, arr, arr$1, attrName, attrName$1, attrVal, b, b$1, b$2, b$3, bInt, cIndex, code, ctx, dcInit, dcState, detail, detail$1, detail$2, detailText, detailText$1, detailText$2, details, diceInit, diceNum, diceState, diceStateIndex, diceStates, dict, e, err, fd, fstrBlockIndex, fstrBlockStack, funcObj, i, i$1, i$2, index, index$1, isBonus, itemIndex, itemIndex$1, items, lastPop, length, name, name$1, name$2, name$3, name$4, name$5, newTop, newTop$1, num, num$1, num$2, num$3, num$4, numOpCountAdd, obj, obj$1, obj$2, obj$3, obj$4, obj$5, ok, ok$1, ok$2, ok1, ok2, oldRet, opErr, opErr$1, opFunc, opIndex, outStr, paramsNum, r, ret, ret$1, ret$10, ret$11, ret$12, ret$2, ret$3, ret$4, ret$5, ret$6, ret$7, ret$8, ret$9, s, solveDetail, span, stExtra, stInfo, stName, stName$1, stName$2, stName$3, stVal, stVal$1, stVal$2, stVal$3, stack, stackPop, stackPop2, stackPopN, stackPush, startTime, step, step$1, step$2, subThread, success, sum, t, t$1, times, v, v$1, v$10, v$11, v$12, v$13, v$14, v$15, v$16, v$17, v$18, v$19, v$2, v$3, v$4, v$5, v$6, v$7, v$8, v$9, v1, v2, val, val$1, val$2, val$3, val$4, val$5, val$6, wodInit, wodState, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$24, x$25, x$26, x$27, x$28, x$29, x$3, x$30, x$31, x$32, x$33, x$34, x$35, x$36, x$4, x$5, x$6, x$7, x$8, x$9, $s, $deferred};return $f; } }
 	};
 	Context.prototype.evaluate = function() { return this.$val.evaluate(); };
 	Context.ptr.prototype.GetAsmText = function() {
@@ -41873,12 +41955,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		while (true) {
 			if (!(i < times)) { break; }
 			die = Roll(src, dicePoints);
-			if (!(diceMax === ptrType$20.nil)) {
+			if (!(diceMax === ptrType$21.nil)) {
 				if (die > diceMax.$get()) {
 					die = diceMax.$get();
 				}
 			}
-			if (!(diceMin === ptrType$20.nil)) {
+			if (!(diceMin === ptrType$21.nil)) {
 				if (die < diceMin.$get()) {
 					die = diceMin.$get();
 				}
@@ -44391,7 +44473,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (e.$length === 0) {
 			$s = -1; return $ifaceNil;
 		}
-		$r = (e$24ptr || (e$24ptr = new ptrType$21(function() { return e; }, function($v) { e = $v; }))).dedupe(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = (e$24ptr || (e$24ptr = new ptrType$22(function() { return e; }, function($v) { e = $v; }))).dedupe(); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$s = -1; return e;
 		/* */ } return; } var $f = {$blk: errList.prototype.err, $c: true, $r, e, e$24ptr, $s};return $f;
 	};
@@ -44476,7 +44558,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		stats = [stats];
 		stats[0] = new Stats.ptr(new $Uint64(0, 0), new $global.Map());
-		p = new parser.ptr(filename, $clone(new savepoint.ptr($clone(new position.ptr(1, 0, 0), position), 0, 0), savepoint), $clone(new current.ptr(new position.ptr(0, 0, 0), sliceType$7.nil, new ParserCustomData.ptr(new ParserData.ptr(sliceType$9.nil, 0, new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, new $Uint64(0, 0), 0, "", ptrType.nil, false, false, false, false, false), sliceType$22.nil, sliceType$17.nil, sliceType$5.nil, sliceType$17.nil, sliceType$17.nil, sliceType$17.nil, sliceType$23.nil, 0, sliceType$24.nil))), current), b, $newDataPointer(errList.nil, ptrType$21), 0, false, $makeMap($Int.keyFor, []), $makeMap($Int.keyFor, []), false, sliceType$1.nil, sliceType$20.nil, sliceType$1.nil, $clone(new position.ptr(1, 1, 0), position), $makeSlice(sliceType$5, 0, 20), false, new $Uint64(0, 0), "dicescript", false, stats[0], "", sliceType$20.nil, ptrType$24.nil, new sliceType$21([false]), new parserStack.ptr(sliceType$18.nil, 0, 0));
+		p = new parser.ptr(filename, $clone(new savepoint.ptr($clone(new position.ptr(1, 0, 0), position), 0, 0), savepoint), $clone(new current.ptr(new position.ptr(0, 0, 0), sliceType$7.nil, new ParserCustomData.ptr(new ParserData.ptr(sliceType$9.nil, 0, new RollConfig.ptr(false, false, false, false, false, false, false, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, $throwNilPointerError, new $Uint64(0, 0), 0, "", ptrType.nil, false, false, false, false, false), sliceType$22.nil, sliceType$17.nil, sliceType$5.nil, sliceType$17.nil, sliceType$17.nil, sliceType$17.nil, sliceType$23.nil, 0, sliceType$24.nil))), current), b, $newDataPointer(errList.nil, ptrType$22), 0, false, $makeMap($Int.keyFor, []), $makeMap($Int.keyFor, []), false, sliceType$1.nil, sliceType$20.nil, sliceType$1.nil, $clone(new position.ptr(1, 1, 0), position), $makeSlice(sliceType$5, 0, 20), false, new $Uint64(0, 0), "dicescript", false, stats[0], "", sliceType$20.nil, ptrType$25.nil, new sliceType$21([false]), new parserStack.ptr(sliceType$18.nil, 0, 0));
 		p.spStack.init(5);
 		$r = p.setOptions(opts); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		if ((x = p.maxExprCnt, (x.$high === 0 && x.$low === 0))) {
@@ -44566,9 +44648,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var {err, p, $s, $r, $c} = $restore(this, {err});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		p = this;
-		/* */ if (!(p._errPos === ptrType$24.nil)) { $s = 1; continue; }
+		/* */ if (!(p._errPos === ptrType$25.nil)) { $s = 1; continue; }
 		/* */ $s = 2; continue;
-		/* if (!(p._errPos === ptrType$24.nil)) { */ case 1:
+		/* if (!(p._errPos === ptrType$25.nil)) { */ case 1:
 			$r = p.addErrAt(err, $clone(p._errPos, position), new sliceType$5([])); /* */ $s = 4; case 4: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			$s = 3; continue;
 		/* } else { */ case 2:
@@ -44715,7 +44797,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		val[0] = $ifaceNil;
 		err[0] = $ifaceNil;
 		p[0] = this;
-		if (grammar$1 === ptrType$19.nil) {
+		if (grammar$1 === ptrType$20.nil) {
 			grammar$1 = g;
 		}
 		/* */ if (grammar$1.rules.$length === 0) { $s = 1; continue; }
@@ -44794,12 +44876,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				while (true) {
 					if (!(_i < _ref.$length)) { break; }
 					v = ((_i < 0 || _i >= _ref.$length) ? ($throwRuntimeError("index out of range"), undefined) : _ref.$array[_ref.$offset + _i]);
-					_key = v; (maxFailExpectedMap || $throwRuntimeError("assignment to entry in nil map")).set($String.keyFor(_key), { k: _key, v: $clone(new structType$23.ptr(), structType$23) });
+					_key = v; (maxFailExpectedMap || $throwRuntimeError("assignment to entry in nil map")).set($String.keyFor(_key), { k: _key, v: $clone(new structType$22.ptr(), structType$22) });
 					_i++;
 				}
 				expected = $makeSlice(sliceType$5, 0, (maxFailExpectedMap ? maxFailExpectedMap.size : 0));
 				eof = false;
-				_tuple$2 = (_entry$1 = $mapIndex(maxFailExpectedMap,$String.keyFor("!.")), _entry$1 !== undefined ? [_entry$1.v, true] : [new structType$23.ptr(), false]);
+				_tuple$2 = (_entry$1 = $mapIndex(maxFailExpectedMap,$String.keyFor("!.")), _entry$1 !== undefined ? [_entry$1.v, true] : [new structType$22.ptr(), false]);
 				ok$1 = _tuple$2[1];
 				if (ok$1) {
 					$mapDelete(maxFailExpectedMap, $String.keyFor("!."));
@@ -44910,13 +44992,13 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			var _entry, _entry$1, _entry$2, expr$2, pos;
 			pos = p[0].pt.position.offset;
 			if ((_entry = $mapIndex(memo[0],$Int.keyFor(pos)), _entry !== undefined ? _entry.v : false) === false) {
-				return ptrType$25.nil;
+				return ptrType$26.nil;
 			}
-			return (_entry$1 = $mapIndex((_entry$2 = $mapIndex(memo[0],$Int.keyFor(pos)), _entry$2 !== undefined ? _entry$2.v : false),$emptyInterface.keyFor(expr$2)), _entry$1 !== undefined ? _entry$1.v : ptrType$25.nil);
+			return (_entry$1 = $mapIndex((_entry$2 = $mapIndex(memo[0],$Int.keyFor(pos)), _entry$2 !== undefined ? _entry$2.v : false),$emptyInterface.keyFor(expr$2)), _entry$1 !== undefined ? _entry$1.v : ptrType$26.nil);
 		}; })(memo, p);
 		_r$28 = getMemoized(expr$1); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 		m = _r$28;
-		if (!(m === ptrType$25.nil)) {
+		if (!(m === ptrType$26.nil)) {
 			p[0].restore(m.end);
 			$s = -1; return [m.v, m.b];
 		}
@@ -44924,169 +45006,169 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		val = $ifaceNil;
 		ok = false;
 		_ref = expr$1;
-		/* */ if ($assertType(_ref, ptrType$26, true)[1]) { $s = 2; continue; }
-		/* */ if ($assertType(_ref, ptrType$27, true)[1]) { $s = 3; continue; }
-		/* */ if ($assertType(_ref, ptrType$28, true)[1]) { $s = 4; continue; }
-		/* */ if ($assertType(_ref, ptrType$29, true)[1]) { $s = 5; continue; }
-		/* */ if ($assertType(_ref, ptrType$30, true)[1]) { $s = 6; continue; }
-		/* */ if ($assertType(_ref, ptrType$31, true)[1]) { $s = 7; continue; }
-		/* */ if ($assertType(_ref, ptrType$32, true)[1]) { $s = 8; continue; }
-		/* */ if ($assertType(_ref, ptrType$33, true)[1]) { $s = 9; continue; }
-		/* */ if ($assertType(_ref, ptrType$34, true)[1]) { $s = 10; continue; }
-		/* */ if ($assertType(_ref, ptrType$35, true)[1]) { $s = 11; continue; }
-		/* */ if ($assertType(_ref, ptrType$36, true)[1]) { $s = 12; continue; }
-		/* */ if ($assertType(_ref, ptrType$37, true)[1]) { $s = 13; continue; }
-		/* */ if ($assertType(_ref, ptrType$38, true)[1]) { $s = 14; continue; }
-		/* */ if ($assertType(_ref, ptrType$39, true)[1]) { $s = 15; continue; }
-		/* */ if ($assertType(_ref, ptrType$40, true)[1]) { $s = 16; continue; }
-		/* */ if ($assertType(_ref, ptrType$41, true)[1]) { $s = 17; continue; }
-		/* */ if ($assertType(_ref, ptrType$42, true)[1]) { $s = 18; continue; }
-		/* */ if ($assertType(_ref, ptrType$43, true)[1]) { $s = 19; continue; }
-		/* */ if ($assertType(_ref, ptrType$44, true)[1]) { $s = 20; continue; }
-		/* */ if ($assertType(_ref, ptrType$45, true)[1]) { $s = 21; continue; }
-		/* */ if ($assertType(_ref, ptrType$46, true)[1]) { $s = 22; continue; }
+		/* */ if ($assertType(_ref, ptrType$27, true)[1]) { $s = 2; continue; }
+		/* */ if ($assertType(_ref, ptrType$28, true)[1]) { $s = 3; continue; }
+		/* */ if ($assertType(_ref, ptrType$29, true)[1]) { $s = 4; continue; }
+		/* */ if ($assertType(_ref, ptrType$30, true)[1]) { $s = 5; continue; }
+		/* */ if ($assertType(_ref, ptrType$31, true)[1]) { $s = 6; continue; }
+		/* */ if ($assertType(_ref, ptrType$32, true)[1]) { $s = 7; continue; }
+		/* */ if ($assertType(_ref, ptrType$33, true)[1]) { $s = 8; continue; }
+		/* */ if ($assertType(_ref, ptrType$34, true)[1]) { $s = 9; continue; }
+		/* */ if ($assertType(_ref, ptrType$35, true)[1]) { $s = 10; continue; }
+		/* */ if ($assertType(_ref, ptrType$36, true)[1]) { $s = 11; continue; }
+		/* */ if ($assertType(_ref, ptrType$37, true)[1]) { $s = 12; continue; }
+		/* */ if ($assertType(_ref, ptrType$38, true)[1]) { $s = 13; continue; }
+		/* */ if ($assertType(_ref, ptrType$39, true)[1]) { $s = 14; continue; }
+		/* */ if ($assertType(_ref, ptrType$40, true)[1]) { $s = 15; continue; }
+		/* */ if ($assertType(_ref, ptrType$41, true)[1]) { $s = 16; continue; }
+		/* */ if ($assertType(_ref, ptrType$42, true)[1]) { $s = 17; continue; }
+		/* */ if ($assertType(_ref, ptrType$43, true)[1]) { $s = 18; continue; }
+		/* */ if ($assertType(_ref, ptrType$44, true)[1]) { $s = 19; continue; }
+		/* */ if ($assertType(_ref, ptrType$45, true)[1]) { $s = 20; continue; }
+		/* */ if ($assertType(_ref, ptrType$46, true)[1]) { $s = 21; continue; }
+		/* */ if ($assertType(_ref, ptrType$47, true)[1]) { $s = 22; continue; }
 		/* */ $s = 23; continue;
-		/* if ($assertType(_ref, ptrType$26, true)[1]) { */ case 2:
+		/* if ($assertType(_ref, ptrType$27, true)[1]) { */ case 2:
 			expr$2 = _ref.$val;
 			_r$29 = p[0].parseActionExpr(expr$2); /* */ $s = 25; case 25: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			_tuple = _r$29;
 			val = _tuple[0];
 			ok = _tuple[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$27, true)[1]) { */ case 3:
+		/* } else if ($assertType(_ref, ptrType$28, true)[1]) { */ case 3:
 			expr$3 = _ref.$val;
 			_r$30 = p[0].parseAndCodeExpr(expr$3); /* */ $s = 26; case 26: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 			_tuple$1 = _r$30;
 			val = _tuple$1[0];
 			ok = _tuple$1[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$28, true)[1]) { */ case 4:
+		/* } else if ($assertType(_ref, ptrType$29, true)[1]) { */ case 4:
 			expr$4 = _ref.$val;
 			_r$31 = p[0].parseAndExpr(expr$4); /* */ $s = 27; case 27: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
 			_tuple$2 = _r$31;
 			val = _tuple$2[0];
 			ok = _tuple$2[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$29, true)[1]) { */ case 5:
+		/* } else if ($assertType(_ref, ptrType$30, true)[1]) { */ case 5:
 			expr$5 = _ref.$val;
 			_r$32 = p[0].parseAndLogicalExpr(expr$5); /* */ $s = 28; case 28: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
 			_tuple$3 = _r$32;
 			val = _tuple$3[0];
 			ok = _tuple$3[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$30, true)[1]) { */ case 6:
+		/* } else if ($assertType(_ref, ptrType$31, true)[1]) { */ case 6:
 			expr$6 = _ref.$val;
 			_r$33 = p[0].parseAnyMatcher(expr$6); /* */ $s = 29; case 29: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
 			_tuple$4 = _r$33;
 			val = _tuple$4[0];
 			ok = _tuple$4[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$31, true)[1]) { */ case 7:
+		/* } else if ($assertType(_ref, ptrType$32, true)[1]) { */ case 7:
 			expr$7 = _ref.$val;
 			_r$34 = p[0].parseCharClassMatcher(expr$7); /* */ $s = 30; case 30: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
 			_tuple$5 = _r$34;
 			val = _tuple$5[0];
 			ok = _tuple$5[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$32, true)[1]) { */ case 8:
+		/* } else if ($assertType(_ref, ptrType$33, true)[1]) { */ case 8:
 			expr$8 = _ref.$val;
 			_r$35 = p[0].parseChoiceExpr(expr$8); /* */ $s = 31; case 31: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
 			_tuple$6 = _r$35;
 			val = _tuple$6[0];
 			ok = _tuple$6[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$33, true)[1]) { */ case 9:
+		/* } else if ($assertType(_ref, ptrType$34, true)[1]) { */ case 9:
 			expr$9 = _ref.$val;
 			_r$36 = p[0].parseCodeExpr(expr$9); /* */ $s = 32; case 32: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
 			_tuple$7 = _r$36;
 			val = _tuple$7[0];
 			ok = _tuple$7[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$34, true)[1]) { */ case 10:
+		/* } else if ($assertType(_ref, ptrType$35, true)[1]) { */ case 10:
 			expr$10 = _ref.$val;
 			_r$37 = p[0].parseLabeledExpr(expr$10); /* */ $s = 33; case 33: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
 			_tuple$8 = _r$37;
 			val = _tuple$8[0];
 			ok = _tuple$8[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$35, true)[1]) { */ case 11:
+		/* } else if ($assertType(_ref, ptrType$36, true)[1]) { */ case 11:
 			expr$11 = _ref.$val;
 			_r$38 = p[0].parseLitMatcher(expr$11); /* */ $s = 34; case 34: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
 			_tuple$9 = _r$38;
 			val = _tuple$9[0];
 			ok = _tuple$9[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$36, true)[1]) { */ case 12:
+		/* } else if ($assertType(_ref, ptrType$37, true)[1]) { */ case 12:
 			expr$12 = _ref.$val;
 			_r$39 = p[0].parseNotCodeExpr(expr$12); /* */ $s = 35; case 35: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
 			_tuple$10 = _r$39;
 			val = _tuple$10[0];
 			ok = _tuple$10[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$37, true)[1]) { */ case 13:
+		/* } else if ($assertType(_ref, ptrType$38, true)[1]) { */ case 13:
 			expr$13 = _ref.$val;
 			_r$40 = p[0].parseNotExpr(expr$13); /* */ $s = 36; case 36: if($c) { $c = false; _r$40 = _r$40.$blk(); } if (_r$40 && _r$40.$blk !== undefined) { break s; }
 			_tuple$11 = _r$40;
 			val = _tuple$11[0];
 			ok = _tuple$11[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$38, true)[1]) { */ case 14:
+		/* } else if ($assertType(_ref, ptrType$39, true)[1]) { */ case 14:
 			expr$14 = _ref.$val;
 			_r$41 = p[0].parseNotLogicalExpr(expr$14); /* */ $s = 37; case 37: if($c) { $c = false; _r$41 = _r$41.$blk(); } if (_r$41 && _r$41.$blk !== undefined) { break s; }
 			_tuple$12 = _r$41;
 			val = _tuple$12[0];
 			ok = _tuple$12[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$39, true)[1]) { */ case 15:
+		/* } else if ($assertType(_ref, ptrType$40, true)[1]) { */ case 15:
 			expr$15 = _ref.$val;
 			_r$42 = p[0].parseOneOrMoreExpr(expr$15); /* */ $s = 38; case 38: if($c) { $c = false; _r$42 = _r$42.$blk(); } if (_r$42 && _r$42.$blk !== undefined) { break s; }
 			_tuple$13 = _r$42;
 			val = _tuple$13[0];
 			ok = _tuple$13[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$40, true)[1]) { */ case 16:
+		/* } else if ($assertType(_ref, ptrType$41, true)[1]) { */ case 16:
 			expr$16 = _ref.$val;
 			_r$43 = p[0].parseRecoveryExpr(expr$16); /* */ $s = 39; case 39: if($c) { $c = false; _r$43 = _r$43.$blk(); } if (_r$43 && _r$43.$blk !== undefined) { break s; }
 			_tuple$14 = _r$43;
 			val = _tuple$14[0];
 			ok = _tuple$14[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$41, true)[1]) { */ case 17:
+		/* } else if ($assertType(_ref, ptrType$42, true)[1]) { */ case 17:
 			expr$17 = _ref.$val;
 			_r$44 = p[0].parseRuleRefExpr(expr$17); /* */ $s = 40; case 40: if($c) { $c = false; _r$44 = _r$44.$blk(); } if (_r$44 && _r$44.$blk !== undefined) { break s; }
 			_tuple$15 = _r$44;
 			val = _tuple$15[0];
 			ok = _tuple$15[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$42, true)[1]) { */ case 18:
+		/* } else if ($assertType(_ref, ptrType$43, true)[1]) { */ case 18:
 			expr$18 = _ref.$val;
 			_r$45 = p[0].parseRuleIRefExpr(expr$18); /* */ $s = 41; case 41: if($c) { $c = false; _r$45 = _r$45.$blk(); } if (_r$45 && _r$45.$blk !== undefined) { break s; }
 			_tuple$16 = _r$45;
 			val = _tuple$16[0];
 			ok = _tuple$16[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$43, true)[1]) { */ case 19:
+		/* } else if ($assertType(_ref, ptrType$44, true)[1]) { */ case 19:
 			expr$19 = _ref.$val;
 			_r$46 = p[0].parseSeqExpr(expr$19); /* */ $s = 42; case 42: if($c) { $c = false; _r$46 = _r$46.$blk(); } if (_r$46 && _r$46.$blk !== undefined) { break s; }
 			_tuple$17 = _r$46;
 			val = _tuple$17[0];
 			ok = _tuple$17[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$44, true)[1]) { */ case 20:
+		/* } else if ($assertType(_ref, ptrType$45, true)[1]) { */ case 20:
 			expr$20 = _ref.$val;
 			_r$47 = p[0].parseThrowExpr(expr$20); /* */ $s = 43; case 43: if($c) { $c = false; _r$47 = _r$47.$blk(); } if (_r$47 && _r$47.$blk !== undefined) { break s; }
 			_tuple$18 = _r$47;
 			val = _tuple$18[0];
 			ok = _tuple$18[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$45, true)[1]) { */ case 21:
+		/* } else if ($assertType(_ref, ptrType$46, true)[1]) { */ case 21:
 			expr$21 = _ref.$val;
 			_r$48 = p[0].parseZeroOrMoreExpr(expr$21); /* */ $s = 44; case 44: if($c) { $c = false; _r$48 = _r$48.$blk(); } if (_r$48 && _r$48.$blk !== undefined) { break s; }
 			_tuple$19 = _r$48;
 			val = _tuple$19[0];
 			ok = _tuple$19[1];
 			$s = 24; continue;
-		/* } else if ($assertType(_ref, ptrType$46, true)[1]) { */ case 22:
+		/* } else if ($assertType(_ref, ptrType$47, true)[1]) { */ case 22:
 			expr$22 = _ref.$val;
 			_r$49 = p[0].parseZeroOrOneExpr(expr$22); /* */ $s = 45; case 45: if($c) { $c = false; _r$49 = _r$49.$blk(); } if (_r$49 && _r$49.$blk !== undefined) { break s; }
 			_tuple$20 = _r$49;
@@ -45129,7 +45211,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			p._errPos = start.position;
 			_r$30 = act.run(p); /* */ $s = 7; case 7: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
 			actVal = _r$30;
-			p._errPos = ptrType$24.nil;
+			p._errPos = ptrType$25.nil;
 			val = actVal;
 		/* } */ case 6:
 		$s = -1; return [val, ok$1];
@@ -45160,7 +45242,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var {$24r, _r$28, and, p, $s, $r, $c} = $restore(this, {and});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		p = this;
-		_r$28 = p.parseAndExprBase(($pointerOfStructConversion(and, ptrType$28)), true); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+		_r$28 = p.parseAndExprBase(($pointerOfStructConversion(and, ptrType$29)), true); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 		$24r = _r$28;
 		$s = 2; case 2: return $24r;
 		/* */ } return; } var $f = {$blk: parser.ptr.prototype.parseAndLogicalExpr, $c: true, $r, $24r, _r$28, and, p, $s};return $f;
@@ -45394,7 +45476,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var {$24r, _r$28, not, p, $s, $r, $c} = $restore(this, {not});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		p = this;
-		_r$28 = p.parseNotExprBase(($pointerOfStructConversion(not, ptrType$37)), true); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+		_r$28 = p.parseNotExprBase(($pointerOfStructConversion(not, ptrType$38)), true); /* */ $s = 1; case 1: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 		$24r = _r$28;
 		$s = 2; case 2: return $24r;
 		/* */ } return; } var $f = {$blk: parser.ptr.prototype.parseNotLogicalExpr, $c: true, $r, $24r, _r$28, not, p, $s};return $f;
@@ -45593,14 +45675,14 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var e;
 		e = this;
 		e.loopLayer = e.loopLayer + (1) >> 0;
-		e.loopInfo = $append(e.loopInfo, new structType$21.ptr(e.continueStack.$length, e.breakStack.$length));
+		e.loopInfo = $append(e.loopInfo, new structType$20.ptr(e.continueStack.$length, e.breakStack.$length));
 	};
 	ParserData.prototype.LoopBegin = function() { return this.$val.LoopBegin(); };
 	ParserData.ptr.prototype.LoopEnd = function() {
 		var e, info, x, x$1;
 		e = this;
 		e.loopLayer = e.loopLayer - (1) >> 0;
-		info = $clone((x = e.loopInfo, x$1 = e.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$21);
+		info = $clone((x = e.loopInfo, x$1 = e.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$20);
 		e.continueStack = $subslice(e.continueStack, 0, info.continueIndex);
 		e.breakStack = $subslice(e.breakStack, 0, info.breakIndex);
 		e.loopInfo = $subslice(e.loopInfo, 0, (e.loopInfo.$length - 1 >> 0));
@@ -45784,7 +45866,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _i, _ref, codeIndex, info, jmpIndex, lastB, offsetB, p, x, x$1, x$2, x$3;
 		p = this;
 		if (!(p.continueStack === sliceType$17.nil)) {
-			info = $clone((x = p.loopInfo, x$1 = p.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$21);
+			info = $clone((x = p.loopInfo, x$1 = p.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$20);
 			_ref = $subslice(p.continueStack, info.continueIndex);
 			_i = 0;
 			while (true) {
@@ -45802,7 +45884,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		var _i, _ref, codeIndex, info, p, x, x$1, x$2;
 		p = this;
 		if (!(p.breakStack === sliceType$17.nil)) {
-			info = $clone((x = p.loopInfo, x$1 = p.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$21);
+			info = $clone((x = p.loopInfo, x$1 = p.loopInfo.$length - 1 >> 0, ((x$1 < 0 || x$1 >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + x$1])), structType$20);
 			_ref = $subslice(p.breakStack, info.breakIndex);
 			_i = 0;
 			while (true) {
@@ -45973,7 +46055,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	ParserData.ptr.prototype.CodePush = function() {
 		var p;
 		p = this;
-		p.codeStack = $append(p.codeStack, new structType$22.ptr(p.code, p.codeIndex));
+		p.codeStack = $append(p.codeStack, new structType$21.ptr(p.code, p.codeIndex));
 		p.code = $makeSlice(sliceType$9, 256);
 		p.codeIndex = 0;
 	};
@@ -45986,7 +46068,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		lastCode = _tmp;
 		lastIndex = _tmp$1;
 		last = p.codeStack.$length - 1 >> 0;
-		info = $clone((x = p.codeStack, ((last < 0 || last >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + last])), structType$22);
+		info = $clone((x = p.codeStack, ((last < 0 || last >= x.$length) ? ($throwRuntimeError("index out of range"), undefined) : x.$array[x.$offset + last])), structType$21);
 		p.codeStack = $subslice(p.codeStack, 0, last);
 		p.code = info.code;
 		p.codeIndex = info.index;
@@ -46453,7 +46535,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ if (!(ctx.Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { $s = 2; continue; }
 		/* */ $s = 3; continue;
 		/* if (!(ctx.Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { */ case 2:
-			_r$29 = ctx.Config.HookFuncValueLoadOverwrite(name, val, ptrType$47.nil); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+			_r$29 = ctx.Config.HookFuncValueLoadOverwrite(name, val, ptrType$11.nil); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			val = _r$29;
 		/* } */ case 3:
 		$s = -1; return val.Clone();
@@ -46465,7 +46547,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		arr = [arr];
 		typeId = (0 >= params.$length ? ($throwRuntimeError("index out of range"), undefined) : params.$array[params.$offset + 0]).TypeId;
 		arr[0] = sliceType$6.nil;
-		_tuple = (_entry = $mapIndex(builtinProto,VMValueType.keyFor(typeId)), _entry !== undefined ? [_entry.v, true] : [ptrType$17.nil, false]);
+		_tuple = (_entry = $mapIndex(builtinProto,VMValueType.keyFor(typeId)), _entry !== undefined ? [_entry.v, true] : [ptrType$18.nil, false]);
 		v = _tuple[0];
 		ok = _tuple[1];
 		/* */ if (ok) { $s = 1; continue; }
@@ -46504,17 +46586,17 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	ptrType$9.methods = [{prop: "Load", name: "Load", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Clear", name: "Clear", pkg: "", typ: $funcType([], [], false)}, {prop: "MustLoad", name: "MustLoad", pkg: "", typ: $funcType([$String], [ptrType], false)}, {prop: "Store", name: "Store", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "LoadOrStore", name: "LoadOrStore", pkg: "", typ: $funcType([$String, ptrType], [ptrType, $Bool], false)}, {prop: "LoadAndDelete", name: "LoadAndDelete", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "Delete", name: "Delete", pkg: "", typ: $funcType([$String], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$1], [], false)}, {prop: "missLocked", name: "missLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "dirtyLocked", name: "dirtyLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [sliceType$7, $error], false)}, {prop: "UnmarshalJSON", name: "UnmarshalJSON", pkg: "", typ: $funcType([sliceType$7], [$error], false)}];
 	ptrType$6.methods = [{prop: "load", name: "load", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryStore", name: "tryStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$5], [$Bool], false)}, {prop: "unexpungeLocked", name: "unexpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "storeLocked", name: "storeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$5], [], false)}, {prop: "tryLoadOrStore", name: "tryLoadOrStore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType], [ptrType, $Bool, $Bool], false)}, {prop: "delete$", name: "delete", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType, $Bool], false)}, {prop: "tryExpungeLocked", name: "tryExpungeLocked", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}];
-	ptrType$1.methods = [{prop: "GetDetailText", name: "GetDetailText", pkg: "", typ: $funcType([], [$String], false)}, {prop: "StackTop", name: "StackTop", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Depth", name: "Depth", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetConfig", name: "SetConfig", pkg: "", typ: $funcType([ptrType$48], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([], [], false)}, {prop: "GetCurSeed", name: "GetCurSeed", pkg: "", typ: $funcType([], [sliceType$7, $error], false)}, {prop: "loadInnerVar", name: "loadInnerVar", pkg: "github.com/sealdice/dicescript", typ: $funcType([$String], [ptrType], false)}, {prop: "LoadNameGlobal", name: "LoadNameGlobal", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "LoadNameLocal", name: "LoadNameLocal", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "LoadName", name: "LoadName", pkg: "", typ: $funcType([$String, $Bool, $Bool], [ptrType], false)}, {prop: "StoreName", name: "StoreName", pkg: "", typ: $funcType([$String, ptrType, $Bool], [], false)}, {prop: "StoreNameLocal", name: "StoreNameLocal", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "StoreNameGlobal", name: "StoreNameGlobal", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "RegCustomDice", name: "RegCustomDice", pkg: "", typ: $funcType([$String, funcType$7], [$error], false)}, {prop: "RunExpr", name: "RunExpr", pkg: "", typ: $funcType([$String, $Bool], [ptrType, $error], false)}, {prop: "GetErrorText", name: "GetErrorText", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "IsCalculateExists", name: "IsCalculateExists", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsV1IfCompatibleExists", name: "IsV1IfCompatibleExists", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "RunAfterParsed", name: "RunAfterParsed", pkg: "", typ: $funcType([], [$error], false)}, {prop: "Run", name: "Run", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "makeDetailStr", name: "makeDetailStr", pkg: "github.com/sealdice/dicescript", typ: $funcType([sliceType$11], [$String], false)}, {prop: "evaluate", name: "evaluate", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "GetAsmText", name: "GetAsmText", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType.methods = [{prop: "ToJSONRaw", name: "ToJSONRaw", pkg: "", typ: $funcType([mapType$3], [sliceType$7, $error], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [sliceType$7, $error], false)}, {prop: "UnmarshalJSON", name: "UnmarshalJSON", pkg: "", typ: $funcType([sliceType$7], [$error], false)}, {prop: "ArrayItemGet", name: "ArrayItemGet", pkg: "", typ: $funcType([ptrType$1, IntType], [ptrType], false)}, {prop: "ArrayItemSet", name: "ArrayItemSet", pkg: "", typ: $funcType([ptrType$1, IntType, ptrType], [$Bool], false)}, {prop: "ArrayFuncKeepBase", name: "ArrayFuncKeepBase", pkg: "", typ: $funcType([ptrType$1, IntType, $Int], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1, IntType], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1, IntType], [$Bool, $Float64], false)}, {prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "toStringRaw", name: "toStringRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$49], [$String], false)}, {prop: "toReprRaw", name: "toReprRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$49], [$String], false)}, {prop: "ToRepr", name: "ToRepr", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt", name: "ReadInt", pkg: "", typ: $funcType([], [IntType, $Bool], false)}, {prop: "ReadFloat", name: "ReadFloat", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [ptrType$12, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$11, $Bool], false)}, {prop: "ReadDictData", name: "ReadDictData", pkg: "", typ: $funcType([], [ptrType$13, $Bool], false)}, {prop: "MustReadDictData", name: "MustReadDictData", pkg: "", typ: $funcType([], [ptrType$13], false)}, {prop: "MustReadArray", name: "MustReadArray", pkg: "", typ: $funcType([], [ptrType$12], false)}, {prop: "MustReadInt", name: "MustReadInt", pkg: "", typ: $funcType([], [IntType], false)}, {prop: "MustReadFloat", name: "MustReadFloat", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$14, $Bool], false)}, {prop: "ReadNativeFunctionData", name: "ReadNativeFunctionData", pkg: "", typ: $funcType([], [ptrType$15, $Bool], false)}, {prop: "ReadNativeObjectData", name: "ReadNativeObjectData", pkg: "", typ: $funcType([], [ptrType$16, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpNullCoalescing", name: "OpNullCoalescing", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseAnd", name: "OpBitwiseAnd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseOr", name: "OpBitwiseOr", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AttrSet", name: "AttrSet", pkg: "", typ: $funcType([ptrType$1, $String, ptrType], [ptrType], false)}, {prop: "AttrGet", name: "AttrGet", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "ItemGet", name: "ItemGet", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "ItemSet", name: "ItemSet", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [$Bool], false)}, {prop: "GetSlice", name: "GetSlice", pkg: "", typ: $funcType([ptrType$1, IntType, IntType, IntType], [ptrType], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([ptrType$1], [IntType], false)}, {prop: "GetSliceEx", name: "GetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [ptrType], false)}, {prop: "SetSlice", name: "SetSlice", pkg: "", typ: $funcType([ptrType$1, IntType, IntType, IntType, ptrType], [$Bool], false)}, {prop: "SetSliceEx", name: "SetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType, ptrType], [$Bool], false)}, {prop: "ArrayRepeatTimesEx", name: "ArrayRepeatTimesEx", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$6], [ptrType], false)}, {prop: "FuncInvokeRaw", name: "FuncInvokeRaw", pkg: "", typ: $funcType([ptrType$1, sliceType$6, $Bool], [ptrType], false)}, {prop: "FuncInvokeNative", name: "FuncInvokeNative", pkg: "", typ: $funcType([ptrType$1, sliceType$6], [ptrType], false)}, {prop: "AsDictKey", name: "AsDictKey", pkg: "", typ: $funcType([], [$String, $error], false)}];
-	ptrType$17.methods = [{prop: "V", name: "V", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "Store", name: "Store", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$1], [], false)}, {prop: "Load", name: "Load", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}];
+	ptrType$1.methods = [{prop: "GetDetailText", name: "GetDetailText", pkg: "", typ: $funcType([], [$String], false)}, {prop: "StackTop", name: "StackTop", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Depth", name: "Depth", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "SetConfig", name: "SetConfig", pkg: "", typ: $funcType([ptrType$48], [], false)}, {prop: "Init", name: "Init", pkg: "", typ: $funcType([], [], false)}, {prop: "GetCurSeed", name: "GetCurSeed", pkg: "", typ: $funcType([], [sliceType$7, $error], false)}, {prop: "loadInnerVar", name: "loadInnerVar", pkg: "github.com/sealdice/dicescript", typ: $funcType([$String], [ptrType], false)}, {prop: "LoadNameGlobalWithDetail", name: "LoadNameGlobalWithDetail", pkg: "", typ: $funcType([$String, $Bool, ptrType$11], [ptrType], false)}, {prop: "LoadNameGlobal", name: "LoadNameGlobal", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "LoadNameLocalWithDetail", name: "LoadNameLocalWithDetail", pkg: "", typ: $funcType([$String, $Bool, ptrType$11], [ptrType], false)}, {prop: "LoadNameLocal", name: "LoadNameLocal", pkg: "", typ: $funcType([$String, $Bool], [ptrType], false)}, {prop: "LoadNameWithDetail", name: "LoadNameWithDetail", pkg: "", typ: $funcType([$String, $Bool, $Bool, ptrType$11], [ptrType], false)}, {prop: "LoadName", name: "LoadName", pkg: "", typ: $funcType([$String, $Bool, $Bool], [ptrType], false)}, {prop: "StoreName", name: "StoreName", pkg: "", typ: $funcType([$String, ptrType, $Bool], [], false)}, {prop: "StoreNameLocal", name: "StoreNameLocal", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "StoreNameGlobal", name: "StoreNameGlobal", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "RegCustomDice", name: "RegCustomDice", pkg: "", typ: $funcType([$String, funcType$7], [$error], false)}, {prop: "RunExpr", name: "RunExpr", pkg: "", typ: $funcType([$String, $Bool], [ptrType, $error], false)}, {prop: "GetErrorText", name: "GetErrorText", pkg: "", typ: $funcType([], [$String], false)}, {prop: "Parse", name: "Parse", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "IsCalculateExists", name: "IsCalculateExists", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "IsV1IfCompatibleExists", name: "IsV1IfCompatibleExists", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "RunAfterParsed", name: "RunAfterParsed", pkg: "", typ: $funcType([], [$error], false)}, {prop: "Run", name: "Run", pkg: "", typ: $funcType([$String], [$error], false)}, {prop: "makeDetailStr", name: "makeDetailStr", pkg: "github.com/sealdice/dicescript", typ: $funcType([sliceType$11], [$String], false)}, {prop: "evaluate", name: "evaluate", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "GetAsmText", name: "GetAsmText", pkg: "", typ: $funcType([], [$String], false)}];
+	ptrType.methods = [{prop: "ToJSONRaw", name: "ToJSONRaw", pkg: "", typ: $funcType([mapType$3], [sliceType$7, $error], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [sliceType$7, $error], false)}, {prop: "UnmarshalJSON", name: "UnmarshalJSON", pkg: "", typ: $funcType([sliceType$7], [$error], false)}, {prop: "ArrayItemGet", name: "ArrayItemGet", pkg: "", typ: $funcType([ptrType$1, IntType], [ptrType], false)}, {prop: "ArrayItemSet", name: "ArrayItemSet", pkg: "", typ: $funcType([ptrType$1, IntType, ptrType], [$Bool], false)}, {prop: "ArrayFuncKeepBase", name: "ArrayFuncKeepBase", pkg: "", typ: $funcType([ptrType$1, IntType, $Int], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepHigh", name: "ArrayFuncKeepHigh", pkg: "", typ: $funcType([ptrType$1, IntType], [$Bool, $Float64], false)}, {prop: "ArrayFuncKeepLow", name: "ArrayFuncKeepLow", pkg: "", typ: $funcType([ptrType$1, IntType], [$Bool, $Float64], false)}, {prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AsBool", name: "AsBool", pkg: "", typ: $funcType([], [$Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}, {prop: "toStringRaw", name: "toStringRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$49], [$String], false)}, {prop: "toReprRaw", name: "toReprRaw", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$49], [$String], false)}, {prop: "ToRepr", name: "ToRepr", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ReadInt", name: "ReadInt", pkg: "", typ: $funcType([], [IntType, $Bool], false)}, {prop: "ReadFloat", name: "ReadFloat", pkg: "", typ: $funcType([], [$Float64, $Bool], false)}, {prop: "ReadString", name: "ReadString", pkg: "", typ: $funcType([], [$String, $Bool], false)}, {prop: "ReadArray", name: "ReadArray", pkg: "", typ: $funcType([], [ptrType$13, $Bool], false)}, {prop: "ReadComputed", name: "ReadComputed", pkg: "", typ: $funcType([], [ptrType$12, $Bool], false)}, {prop: "ReadDictData", name: "ReadDictData", pkg: "", typ: $funcType([], [ptrType$14, $Bool], false)}, {prop: "MustReadDictData", name: "MustReadDictData", pkg: "", typ: $funcType([], [ptrType$14], false)}, {prop: "MustReadArray", name: "MustReadArray", pkg: "", typ: $funcType([], [ptrType$13], false)}, {prop: "MustReadInt", name: "MustReadInt", pkg: "", typ: $funcType([], [IntType], false)}, {prop: "MustReadFloat", name: "MustReadFloat", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "ReadFunctionData", name: "ReadFunctionData", pkg: "", typ: $funcType([], [ptrType$15, $Bool], false)}, {prop: "ReadNativeFunctionData", name: "ReadNativeFunctionData", pkg: "", typ: $funcType([], [ptrType$16, $Bool], false)}, {prop: "ReadNativeObjectData", name: "ReadNativeObjectData", pkg: "", typ: $funcType([], [ptrType$17, $Bool], false)}, {prop: "OpAdd", name: "OpAdd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpSub", name: "OpSub", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpMultiply", name: "OpMultiply", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpDivide", name: "OpDivide", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpModulus", name: "OpModulus", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPower", name: "OpPower", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpNullCoalescing", name: "OpNullCoalescing", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLT", name: "OpCompLT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompLE", name: "OpCompLE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompEQ", name: "OpCompEQ", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompNE", name: "OpCompNE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGE", name: "OpCompGE", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpCompGT", name: "OpCompGT", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseAnd", name: "OpBitwiseAnd", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpBitwiseOr", name: "OpBitwiseOr", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "OpPositive", name: "OpPositive", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "OpNegation", name: "OpNegation", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "AttrSet", name: "AttrSet", pkg: "", typ: $funcType([ptrType$1, $String, ptrType], [ptrType], false)}, {prop: "AttrGet", name: "AttrGet", pkg: "", typ: $funcType([ptrType$1, $String], [ptrType], false)}, {prop: "ItemGet", name: "ItemGet", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "ItemSet", name: "ItemSet", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [$Bool], false)}, {prop: "GetSlice", name: "GetSlice", pkg: "", typ: $funcType([ptrType$1, IntType, IntType, IntType], [ptrType], false)}, {prop: "Length", name: "Length", pkg: "", typ: $funcType([ptrType$1], [IntType], false)}, {prop: "GetSliceEx", name: "GetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType], [ptrType], false)}, {prop: "SetSlice", name: "SetSlice", pkg: "", typ: $funcType([ptrType$1, IntType, IntType, IntType, ptrType], [$Bool], false)}, {prop: "SetSliceEx", name: "SetSliceEx", pkg: "", typ: $funcType([ptrType$1, ptrType, ptrType, ptrType], [$Bool], false)}, {prop: "ArrayRepeatTimesEx", name: "ArrayRepeatTimesEx", pkg: "", typ: $funcType([ptrType$1, ptrType], [ptrType], false)}, {prop: "GetTypeName", name: "GetTypeName", pkg: "", typ: $funcType([], [$String], false)}, {prop: "ComputedExecute", name: "ComputedExecute", pkg: "", typ: $funcType([ptrType$1, ptrType$11], [ptrType], false)}, {prop: "FuncInvoke", name: "FuncInvoke", pkg: "", typ: $funcType([ptrType$1, sliceType$6], [ptrType], false)}, {prop: "FuncInvokeRaw", name: "FuncInvokeRaw", pkg: "", typ: $funcType([ptrType$1, sliceType$6, $Bool], [ptrType], false)}, {prop: "FuncInvokeNative", name: "FuncInvokeNative", pkg: "", typ: $funcType([ptrType$1, sliceType$6], [ptrType], false)}, {prop: "AsDictKey", name: "AsDictKey", pkg: "", typ: $funcType([], [$String, $error], false)}];
+	ptrType$18.methods = [{prop: "V", name: "V", pkg: "", typ: $funcType([], [ptrType], false)}, {prop: "Store", name: "Store", pkg: "", typ: $funcType([$String, ptrType], [], false)}, {prop: "Range", name: "Range", pkg: "", typ: $funcType([funcType$1], [], false)}, {prop: "Load", name: "Load", pkg: "", typ: $funcType([$String], [ptrType, $Bool], false)}, {prop: "ToString", name: "ToString", pkg: "", typ: $funcType([], [$String], false)}];
 	spanByBegin.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Swap", name: "Swap", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Less", name: "Less", pkg: "", typ: $funcType([$Int, $Int], [$Bool], false)}];
 	spanByEnd.methods = [{prop: "Len", name: "Len", pkg: "", typ: $funcType([], [$Int], false)}, {prop: "Swap", name: "Swap", pkg: "", typ: $funcType([$Int, $Int], [], false)}, {prop: "Less", name: "Less", pkg: "", typ: $funcType([$Int, $Int], [$Bool], false)}];
 	ptrType$51.methods = [{prop: "init", name: "init", pkg: "github.com/sealdice/dicescript", typ: $funcType([$Int], [], false)}, {prop: "push", name: "push", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$50], [], false)}, {prop: "pop", name: "pop", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType$50], false)}, {prop: "top", name: "top", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [ptrType$50], false)}];
 	position.methods = [{prop: "String", name: "String", pkg: "", typ: $funcType([], [$String], false)}];
 	errList.methods = [{prop: "err", name: "err", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$error], false)}, {prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType$21.methods = [{prop: "add", name: "add", pkg: "github.com/sealdice/dicescript", typ: $funcType([$error], [], false)}, {prop: "dedupe", name: "dedupe", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
+	ptrType$22.methods = [{prop: "add", name: "add", pkg: "github.com/sealdice/dicescript", typ: $funcType([$error], [], false)}, {prop: "dedupe", name: "dedupe", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}];
 	ptrType$52.methods = [{prop: "Error", name: "Error", pkg: "", typ: $funcType([], [$String], false)}];
-	ptrType$3.methods = [{prop: "call_ondicescript_1", name: "call_ondicescript_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtLines_3", name: "call_onstmtLines_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onflagsSwitch_1", name: "call_onflagsSwitch_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtBreak_1", name: "call_onstmtBreak_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtContinue_1", name: "call_onstmtContinue_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtReturn_2", name: "call_onstmtReturn_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtReturn_7", name: "call_onstmtReturn_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtWhile_2", name: "call_onstmtWhile_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtWhile_4", name: "call_onstmtWhile_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtWhile_9", name: "call_onstmtWhile_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_6", name: "call_onstmtIf_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_10", name: "call_onstmtIf_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_12", name: "call_onstmtIf_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_15", name: "call_onstmtIf_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfunc_def_params_2", name: "call_onfunc_def_params_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_9", name: "call_onfunc_def_params_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_13", name: "call_onfunc_def_params_13", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_21", name: "call_onfunc_def_params_21", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_28", name: "call_onfunc_def_params_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtFunc_2", name: "call_onstmtFunc_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtFunc_9", name: "call_onstmtFunc_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtFunc_14", name: "call_onstmtFunc_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType1_2", name: "call_onstmtAssignType1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType1_7", name: "call_onstmtAssignType1_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType2_2", name: "call_onstmtAssignType2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType2_8", name: "call_onstmtAssignType2_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType2_12", name: "call_onstmtAssignType2_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType3_2", name: "call_onstmtAssignType3_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType3_8", name: "call_onstmtAssignType3_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType3_14", name: "call_onstmtAssignType3_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType4_2", name: "call_onstmtAssignType4_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType4_11", name: "call_onstmtAssignType4_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType5_2", name: "call_onstmtAssignType5_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType5_7", name: "call_onstmtAssignType5_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType5_14", name: "call_onstmtAssignType5_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType6_1", name: "call_onstmtAssignType6_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType7_1", name: "call_onstmtAssignType7_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_step_7", name: "call_on_step_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_step_9", name: "call_on_step_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_sliceSuffix_6", name: "call_on_sliceSuffix_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_sliceSuffix_12", name: "call_on_sliceSuffix_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprSliceType1_1", name: "call_onexprSliceType1_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprValueIfExists_2", name: "call_onexprValueIfExists_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprValueIfExists_8", name: "call_onexprValueIfExists_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType1_2", name: "call_onexprTernaryType1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType1_8", name: "call_onexprTernaryType1_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType1_14", name: "call_onexprTernaryType1_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType2_2", name: "call_onexprTernaryType2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType2_6", name: "call_onexprTernaryType2_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType2_4", name: "call_onexprTernaryType2_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicOr_5", name: "call_onexprLogicOr_5", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicOr_9", name: "call_onexprLogicOr_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicOr_11", name: "call_onexprLogicOr_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicAnd_4", name: "call_onexprLogicAnd_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprBitwiseOr_3", name: "call_onexprBitwiseOr_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprBitwiseOr_8", name: "call_onexprBitwiseOr_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprBitwiseAnd_4", name: "call_onexprBitwiseAnd_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_7", name: "call_onexprCompare_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_11", name: "call_onexprCompare_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_15", name: "call_onexprCompare_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_19", name: "call_onexprCompare_19", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_23", name: "call_onexprCompare_23", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_27", name: "call_onexprCompare_27", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprAdditive_7", name: "call_onexprAdditive_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprAdditive_11", name: "call_onexprAdditive_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprMultiplicative_7", name: "call_onexprMultiplicative_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprMultiplicative_11", name: "call_onexprMultiplicative_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprMultiplicative_15", name: "call_onexprMultiplicative_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprNullCoalescing_4", name: "call_onexprNullCoalescing_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprExp_4", name: "call_onexprExp_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprUnaryNeg_2", name: "call_onexprUnaryNeg_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprUnaryPos_2", name: "call_onexprUnaryPos_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_ondetailStart_1", name: "call_ondetailStart_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_ondetailEnd_1", name: "call_ondetailEnd_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_2", name: "call_on_diceMod_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_8", name: "call_on_diceMod_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_12", name: "call_on_diceMod_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_18", name: "call_on_diceMod_18", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_22", name: "call_on_diceMod_22", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_26", name: "call_on_diceMod_26", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_28", name: "call_on_diceMod_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_32", name: "call_on_diceMod_32", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceModType2_2", name: "call_on_diceModType2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceModType2_6", name: "call_on_diceModType2_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_dicePearMod_2", name: "call_on_dicePearMod_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_dicePearMod_4", name: "call_on_dicePearMod_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExpr1_2", name: "call_on_diceExpr1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExpr2_2", name: "call_on_diceExpr2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExpr3_2", name: "call_on_diceExpr3_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExprX_1", name: "call_on_diceExprX_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_wodMain_6", name: "call_on_wodMain_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_wodMain_10", name: "call_on_wodMain_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_wodMain_14", name: "call_on_wodMain_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocBonus_9", name: "call_on_diceCocBonus_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocBonus_1", name: "call_on_diceCocBonus_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocPenalty_9", name: "call_on_diceCocPenalty_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocPenalty_1", name: "call_on_diceCocPenalty_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_3", name: "call_onexprDice_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_14", name: "call_onexprDice_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_26", name: "call_onexprDice_26", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_24", name: "call_onexprDice_24", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_38", name: "call_onexprDice_38", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_36", name: "call_onexprDice_36", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_42", name: "call_onexprDice_42", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_49", name: "call_onexprDice_49", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_59", name: "call_onexprDice_59", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_57", name: "call_onexprDice_57", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_67", name: "call_onexprDice_67", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_63", name: "call_onexprDice_63", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_78", name: "call_onexprDice_78", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_76", name: "call_onexprDice_76", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_82", name: "call_onexprDice_82", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_89", name: "call_onexprDice_89", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_84", name: "call_onexprDice_84", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_96", name: "call_onexprDice_96", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_94", name: "call_onexprDice_94", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_3", name: "call_onarray_call_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_6", name: "call_onarray_call_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_8", name: "call_onarray_call_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_10", name: "call_onarray_call_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_13", name: "call_onarray_call_13", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_15", name: "call_onarray_call_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_17", name: "call_onarray_call_17", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onitem_getX_3", name: "call_onitem_getX_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onattr_getX_4", name: "call_onattr_getX_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_2", name: "call_onfunc_invoke_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_8", name: "call_onfunc_invoke_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_17", name: "call_onfunc_invoke_17", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_12", name: "call_onfunc_invoke_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_ondict_item_1", name: "call_ondict_item_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_id_without_colon_2", name: "call_onvalue_id_without_colon_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_range_1", name: "call_onvalue_array_range_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_2", name: "call_onvalue_array_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_10", name: "call_onvalue_array_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_6", name: "call_onvalue_array_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_2", name: "call_onvalue_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_6", name: "call_onvalue_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_10", name: "call_onvalue_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_15", name: "call_onvalue_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_23", name: "call_onvalue_23", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_33", name: "call_onvalue_33", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_55", name: "call_onvalue_55", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_80", name: "call_onvalue_80", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_90", name: "call_onvalue_90", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_94", name: "call_onvalue_94", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onnumber_1", name: "call_onnumber_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfloat_1", name: "call_onfloat_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart1_1", name: "call_onstrPart1_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart1Normal_1", name: "call_onstrPart1Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart2_1", name: "call_onstrPart2_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart2Normal_1", name: "call_onstrPart2Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart3_1", name: "call_onstrPart3_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart3Normal_1", name: "call_onstrPart3Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart4_1", name: "call_onstrPart4_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart4Normal_1", name: "call_onstrPart4Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_2", name: "call_onstrEscape_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_4", name: "call_onstrEscape_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_6", name: "call_onstrEscape_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_8", name: "call_onstrEscape_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_10", name: "call_onstrEscape_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_12", name: "call_onstrEscape_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_14", name: "call_onstrEscape_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_16", name: "call_onstrEscape_16", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_18", name: "call_onstrEscape_18", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_20", name: "call_onstrEscape_20", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringExpr1_2", name: "call_onfstringExpr1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringExpr1_4", name: "call_onfstringExpr1_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfstringExpr_8", name: "call_onfstringExpr_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfstringStmt_6", name: "call_onfstringStmt_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringStmt_7", name: "call_onfstringStmt_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringStmt_9", name: "call_onfstringStmt_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfstring_3", name: "call_onfstring_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_7", name: "call_onfstring_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_11", name: "call_onfstring_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_15", name: "call_onfstring_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_20", name: "call_onfstring_20", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_22", name: "call_onfstring_22", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_28", name: "call_onfstring_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_30", name: "call_onfstring_30", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_36", name: "call_onfstring_36", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_38", name: "call_onfstring_38", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_47", name: "call_onfstring_47", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_49", name: "call_onfstring_49", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onkeywords_test_6", name: "call_onkeywords_test_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onidentifier_1", name: "call_onidentifier_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onidentifierWithoutColon_1", name: "call_onidentifierWithoutColon_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onest_7", name: "call_onest_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onest_10", name: "call_onest_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_2", name: "call_onst_assign_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_20", name: "call_onst_assign_20", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_28", name: "call_onst_assign_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_50", name: "call_onst_assign_50", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_72", name: "call_onst_assign_72", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_90", name: "call_onst_assign_90", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_99", name: "call_onst_assign_99", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_117", name: "call_onst_assign_117", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_121", name: "call_onst_assign_121", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_139", name: "call_onst_assign_139", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest1_4", name: "call_onst_modify_rest1_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest1_10", name: "call_onst_modify_rest1_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest_4", name: "call_onst_modify_rest_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest_12", name: "call_onst_modify_rest_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name1_1", name: "call_onst_name1_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name1r_2", name: "call_onst_name1r_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name1r_6", name: "call_onst_name1r_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name2r_2", name: "call_onst_name2r_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name2r_6", name: "call_onst_name2r_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "setOptions", name: "setOptions", pkg: "github.com/sealdice/dicescript", typ: $funcType([sliceType$14], [], false)}, {prop: "setCustomData", name: "setCustomData", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$22], [], false)}, {prop: "checkSkipCode", name: "checkSkipCode", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "pushV", name: "pushV", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "popV", name: "popV", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "pushRecovery", name: "pushRecovery", pkg: "github.com/sealdice/dicescript", typ: $funcType([sliceType$5, $emptyInterface], [], false)}, {prop: "popRecovery", name: "popRecovery", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "addErr", name: "addErr", pkg: "github.com/sealdice/dicescript", typ: $funcType([$error], [], false)}, {prop: "addErrAt", name: "addErrAt", pkg: "github.com/sealdice/dicescript", typ: $funcType([$error, position, sliceType$5], [], false)}, {prop: "failAt", name: "failAt", pkg: "github.com/sealdice/dicescript", typ: $funcType([$Bool, ptrType$24, $String], [], false)}, {prop: "read", name: "read", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "restore", name: "restore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$50], [], false)}, {prop: "sliceFrom", name: "sliceFrom", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$50], [sliceType$7], false)}, {prop: "sliceFromOffset", name: "sliceFromOffset", pkg: "github.com/sealdice/dicescript", typ: $funcType([$Int], [sliceType$7], false)}, {prop: "buildRulesTable", name: "buildRulesTable", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$19], [], false)}, {prop: "parse", name: "parse", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$19], [$emptyInterface, $error], false)}, {prop: "parseRuleWrap", name: "parseRuleWrap", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [$emptyInterface, $Bool], false)}, {prop: "parseExprWrap", name: "parseExprWrap", pkg: "github.com/sealdice/dicescript", typ: $funcType([$emptyInterface], [$emptyInterface, $Bool], false)}, {prop: "parseActionExpr", name: "parseActionExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$26], [$emptyInterface, $Bool], false)}, {prop: "parseAndCodeExpr", name: "parseAndCodeExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$27], [$emptyInterface, $Bool], false)}, {prop: "parseAndExpr", name: "parseAndExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$28], [$emptyInterface, $Bool], false)}, {prop: "parseAndLogicalExpr", name: "parseAndLogicalExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$29], [$emptyInterface, $Bool], false)}, {prop: "parseAndExprBase", name: "parseAndExprBase", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$28, $Bool], [$emptyInterface, $Bool], false)}, {prop: "parseAnyMatcher", name: "parseAnyMatcher", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$30], [$emptyInterface, $Bool], false)}, {prop: "parseCharClassMatcher", name: "parseCharClassMatcher", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$31], [$emptyInterface, $Bool], false)}, {prop: "parseChoiceExpr", name: "parseChoiceExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$32], [$emptyInterface, $Bool], false)}, {prop: "parseLabeledExpr", name: "parseLabeledExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$34], [$emptyInterface, $Bool], false)}, {prop: "parseCodeExpr", name: "parseCodeExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$33], [$emptyInterface, $Bool], false)}, {prop: "parseLitMatcher", name: "parseLitMatcher", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$35], [$emptyInterface, $Bool], false)}, {prop: "parseNotCodeExpr", name: "parseNotCodeExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$36], [$emptyInterface, $Bool], false)}, {prop: "parseNotExpr", name: "parseNotExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$37], [$emptyInterface, $Bool], false)}, {prop: "parseNotLogicalExpr", name: "parseNotLogicalExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$38], [$emptyInterface, $Bool], false)}, {prop: "parseNotExprBase", name: "parseNotExprBase", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$37, $Bool], [$emptyInterface, $Bool], false)}, {prop: "parseOneOrMoreExpr", name: "parseOneOrMoreExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$39], [$emptyInterface, $Bool], false)}, {prop: "parseRecoveryExpr", name: "parseRecoveryExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$40], [$emptyInterface, $Bool], false)}, {prop: "parseRuleRefExpr", name: "parseRuleRefExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$41], [$emptyInterface, $Bool], false)}, {prop: "parseRuleIRefExpr", name: "parseRuleIRefExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$42], [$emptyInterface, $Bool], false)}, {prop: "parseSeqExpr", name: "parseSeqExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$43], [$emptyInterface, $Bool], false)}, {prop: "parseThrowExpr", name: "parseThrowExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$44], [$emptyInterface, $Bool], false)}, {prop: "parseZeroOrMoreExpr", name: "parseZeroOrMoreExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$45], [$emptyInterface, $Bool], false)}, {prop: "parseZeroOrOneExpr", name: "parseZeroOrOneExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$46], [$emptyInterface, $Bool], false)}];
+	ptrType$3.methods = [{prop: "call_ondicescript_1", name: "call_ondicescript_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtLines_3", name: "call_onstmtLines_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onflagsSwitch_1", name: "call_onflagsSwitch_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtBreak_1", name: "call_onstmtBreak_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtContinue_1", name: "call_onstmtContinue_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtReturn_2", name: "call_onstmtReturn_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtReturn_7", name: "call_onstmtReturn_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtWhile_2", name: "call_onstmtWhile_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtWhile_4", name: "call_onstmtWhile_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtWhile_9", name: "call_onstmtWhile_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_6", name: "call_onstmtIf_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_10", name: "call_onstmtIf_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_12", name: "call_onstmtIf_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtIf_15", name: "call_onstmtIf_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfunc_def_params_2", name: "call_onfunc_def_params_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_9", name: "call_onfunc_def_params_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_13", name: "call_onfunc_def_params_13", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_21", name: "call_onfunc_def_params_21", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_def_params_28", name: "call_onfunc_def_params_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtFunc_2", name: "call_onstmtFunc_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtFunc_9", name: "call_onstmtFunc_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtFunc_14", name: "call_onstmtFunc_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType1_2", name: "call_onstmtAssignType1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType1_7", name: "call_onstmtAssignType1_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType2_2", name: "call_onstmtAssignType2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType2_8", name: "call_onstmtAssignType2_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType2_12", name: "call_onstmtAssignType2_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType3_2", name: "call_onstmtAssignType3_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType3_8", name: "call_onstmtAssignType3_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType3_14", name: "call_onstmtAssignType3_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType4_2", name: "call_onstmtAssignType4_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType4_11", name: "call_onstmtAssignType4_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType5_2", name: "call_onstmtAssignType5_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType5_7", name: "call_onstmtAssignType5_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType5_14", name: "call_onstmtAssignType5_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType6_1", name: "call_onstmtAssignType6_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstmtAssignType7_1", name: "call_onstmtAssignType7_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_step_7", name: "call_on_step_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_step_9", name: "call_on_step_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_sliceSuffix_6", name: "call_on_sliceSuffix_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_sliceSuffix_12", name: "call_on_sliceSuffix_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprSliceType1_1", name: "call_onexprSliceType1_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprValueIfExists_2", name: "call_onexprValueIfExists_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprValueIfExists_8", name: "call_onexprValueIfExists_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType1_2", name: "call_onexprTernaryType1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType1_8", name: "call_onexprTernaryType1_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType1_14", name: "call_onexprTernaryType1_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType2_2", name: "call_onexprTernaryType2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType2_6", name: "call_onexprTernaryType2_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprTernaryType2_4", name: "call_onexprTernaryType2_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicOr_5", name: "call_onexprLogicOr_5", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicOr_9", name: "call_onexprLogicOr_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicOr_11", name: "call_onexprLogicOr_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprLogicAnd_4", name: "call_onexprLogicAnd_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprBitwiseOr_3", name: "call_onexprBitwiseOr_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprBitwiseOr_8", name: "call_onexprBitwiseOr_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprBitwiseAnd_4", name: "call_onexprBitwiseAnd_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_7", name: "call_onexprCompare_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_11", name: "call_onexprCompare_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_15", name: "call_onexprCompare_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_19", name: "call_onexprCompare_19", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_23", name: "call_onexprCompare_23", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprCompare_27", name: "call_onexprCompare_27", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprAdditive_7", name: "call_onexprAdditive_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprAdditive_11", name: "call_onexprAdditive_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprMultiplicative_7", name: "call_onexprMultiplicative_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprMultiplicative_11", name: "call_onexprMultiplicative_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprMultiplicative_15", name: "call_onexprMultiplicative_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprNullCoalescing_4", name: "call_onexprNullCoalescing_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprExp_4", name: "call_onexprExp_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprUnaryNeg_2", name: "call_onexprUnaryNeg_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprUnaryPos_2", name: "call_onexprUnaryPos_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_ondetailStart_1", name: "call_ondetailStart_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_ondetailEnd_1", name: "call_ondetailEnd_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_2", name: "call_on_diceMod_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_8", name: "call_on_diceMod_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_12", name: "call_on_diceMod_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_18", name: "call_on_diceMod_18", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_22", name: "call_on_diceMod_22", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_26", name: "call_on_diceMod_26", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_28", name: "call_on_diceMod_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceMod_32", name: "call_on_diceMod_32", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceModType2_2", name: "call_on_diceModType2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceModType2_6", name: "call_on_diceModType2_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_dicePearMod_2", name: "call_on_dicePearMod_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_dicePearMod_4", name: "call_on_dicePearMod_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExpr1_2", name: "call_on_diceExpr1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExpr2_2", name: "call_on_diceExpr2_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExpr3_2", name: "call_on_diceExpr3_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceExprX_1", name: "call_on_diceExprX_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_wodMain_6", name: "call_on_wodMain_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_wodMain_10", name: "call_on_wodMain_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_wodMain_14", name: "call_on_wodMain_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocBonus_9", name: "call_on_diceCocBonus_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocBonus_1", name: "call_on_diceCocBonus_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocPenalty_9", name: "call_on_diceCocPenalty_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_on_diceCocPenalty_1", name: "call_on_diceCocPenalty_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_3", name: "call_onexprDice_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_14", name: "call_onexprDice_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_26", name: "call_onexprDice_26", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_24", name: "call_onexprDice_24", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_38", name: "call_onexprDice_38", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_36", name: "call_onexprDice_36", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_42", name: "call_onexprDice_42", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_49", name: "call_onexprDice_49", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_59", name: "call_onexprDice_59", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_57", name: "call_onexprDice_57", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_67", name: "call_onexprDice_67", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_63", name: "call_onexprDice_63", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_78", name: "call_onexprDice_78", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_76", name: "call_onexprDice_76", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_82", name: "call_onexprDice_82", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_89", name: "call_onexprDice_89", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_84", name: "call_onexprDice_84", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onexprDice_96", name: "call_onexprDice_96", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onexprDice_94", name: "call_onexprDice_94", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_3", name: "call_onarray_call_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_6", name: "call_onarray_call_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_8", name: "call_onarray_call_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_10", name: "call_onarray_call_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_13", name: "call_onarray_call_13", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_15", name: "call_onarray_call_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onarray_call_17", name: "call_onarray_call_17", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onitem_getX_3", name: "call_onitem_getX_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onattr_getX_4", name: "call_onattr_getX_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_2", name: "call_onfunc_invoke_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_8", name: "call_onfunc_invoke_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_17", name: "call_onfunc_invoke_17", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfunc_invoke_12", name: "call_onfunc_invoke_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_ondict_item_1", name: "call_ondict_item_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_id_without_colon_2", name: "call_onvalue_id_without_colon_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_range_1", name: "call_onvalue_array_range_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_2", name: "call_onvalue_array_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_10", name: "call_onvalue_array_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_array_6", name: "call_onvalue_array_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_2", name: "call_onvalue_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_6", name: "call_onvalue_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_10", name: "call_onvalue_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_15", name: "call_onvalue_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_23", name: "call_onvalue_23", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_33", name: "call_onvalue_33", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_55", name: "call_onvalue_55", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_80", name: "call_onvalue_80", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_90", name: "call_onvalue_90", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onvalue_94", name: "call_onvalue_94", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onnumber_1", name: "call_onnumber_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfloat_1", name: "call_onfloat_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart1_1", name: "call_onstrPart1_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart1Normal_1", name: "call_onstrPart1Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart2_1", name: "call_onstrPart2_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart2Normal_1", name: "call_onstrPart2Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart3_1", name: "call_onstrPart3_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart3Normal_1", name: "call_onstrPart3Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart4_1", name: "call_onstrPart4_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrPart4Normal_1", name: "call_onstrPart4Normal_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_2", name: "call_onstrEscape_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_4", name: "call_onstrEscape_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_6", name: "call_onstrEscape_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_8", name: "call_onstrEscape_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_10", name: "call_onstrEscape_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_12", name: "call_onstrEscape_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_14", name: "call_onstrEscape_14", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_16", name: "call_onstrEscape_16", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_18", name: "call_onstrEscape_18", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onstrEscape_20", name: "call_onstrEscape_20", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringExpr1_2", name: "call_onfstringExpr1_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringExpr1_4", name: "call_onfstringExpr1_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfstringExpr_8", name: "call_onfstringExpr_8", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfstringStmt_6", name: "call_onfstringStmt_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringStmt_7", name: "call_onfstringStmt_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstringStmt_9", name: "call_onfstringStmt_9", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onfstring_3", name: "call_onfstring_3", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_7", name: "call_onfstring_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_11", name: "call_onfstring_11", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_15", name: "call_onfstring_15", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_20", name: "call_onfstring_20", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_22", name: "call_onfstring_22", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_28", name: "call_onfstring_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_30", name: "call_onfstring_30", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_36", name: "call_onfstring_36", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_38", name: "call_onfstring_38", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_47", name: "call_onfstring_47", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onfstring_49", name: "call_onfstring_49", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onkeywords_test_6", name: "call_onkeywords_test_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "call_onidentifier_1", name: "call_onidentifier_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onidentifierWithoutColon_1", name: "call_onidentifierWithoutColon_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onest_7", name: "call_onest_7", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onest_10", name: "call_onest_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_2", name: "call_onst_assign_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_20", name: "call_onst_assign_20", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_28", name: "call_onst_assign_28", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_50", name: "call_onst_assign_50", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_72", name: "call_onst_assign_72", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_90", name: "call_onst_assign_90", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_99", name: "call_onst_assign_99", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_117", name: "call_onst_assign_117", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_121", name: "call_onst_assign_121", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_assign_139", name: "call_onst_assign_139", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest1_4", name: "call_onst_modify_rest1_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest1_10", name: "call_onst_modify_rest1_10", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest_4", name: "call_onst_modify_rest_4", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_modify_rest_12", name: "call_onst_modify_rest_12", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name1_1", name: "call_onst_name1_1", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name1r_2", name: "call_onst_name1r_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name1r_6", name: "call_onst_name1r_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name2r_2", name: "call_onst_name2r_2", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "call_onst_name2r_6", name: "call_onst_name2r_6", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$emptyInterface], false)}, {prop: "setOptions", name: "setOptions", pkg: "github.com/sealdice/dicescript", typ: $funcType([sliceType$14], [], false)}, {prop: "setCustomData", name: "setCustomData", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$23], [], false)}, {prop: "checkSkipCode", name: "checkSkipCode", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "pushV", name: "pushV", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "popV", name: "popV", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "pushRecovery", name: "pushRecovery", pkg: "github.com/sealdice/dicescript", typ: $funcType([sliceType$5, $emptyInterface], [], false)}, {prop: "popRecovery", name: "popRecovery", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "addErr", name: "addErr", pkg: "github.com/sealdice/dicescript", typ: $funcType([$error], [], false)}, {prop: "addErrAt", name: "addErrAt", pkg: "github.com/sealdice/dicescript", typ: $funcType([$error, position, sliceType$5], [], false)}, {prop: "failAt", name: "failAt", pkg: "github.com/sealdice/dicescript", typ: $funcType([$Bool, ptrType$25, $String], [], false)}, {prop: "read", name: "read", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [], false)}, {prop: "restore", name: "restore", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$50], [], false)}, {prop: "sliceFrom", name: "sliceFrom", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$50], [sliceType$7], false)}, {prop: "sliceFromOffset", name: "sliceFromOffset", pkg: "github.com/sealdice/dicescript", typ: $funcType([$Int], [sliceType$7], false)}, {prop: "buildRulesTable", name: "buildRulesTable", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$20], [], false)}, {prop: "parse", name: "parse", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$20], [$emptyInterface, $error], false)}, {prop: "parseRuleWrap", name: "parseRuleWrap", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$2], [$emptyInterface, $Bool], false)}, {prop: "parseExprWrap", name: "parseExprWrap", pkg: "github.com/sealdice/dicescript", typ: $funcType([$emptyInterface], [$emptyInterface, $Bool], false)}, {prop: "parseActionExpr", name: "parseActionExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$27], [$emptyInterface, $Bool], false)}, {prop: "parseAndCodeExpr", name: "parseAndCodeExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$28], [$emptyInterface, $Bool], false)}, {prop: "parseAndExpr", name: "parseAndExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$29], [$emptyInterface, $Bool], false)}, {prop: "parseAndLogicalExpr", name: "parseAndLogicalExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$30], [$emptyInterface, $Bool], false)}, {prop: "parseAndExprBase", name: "parseAndExprBase", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$29, $Bool], [$emptyInterface, $Bool], false)}, {prop: "parseAnyMatcher", name: "parseAnyMatcher", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$31], [$emptyInterface, $Bool], false)}, {prop: "parseCharClassMatcher", name: "parseCharClassMatcher", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$32], [$emptyInterface, $Bool], false)}, {prop: "parseChoiceExpr", name: "parseChoiceExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$33], [$emptyInterface, $Bool], false)}, {prop: "parseLabeledExpr", name: "parseLabeledExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$35], [$emptyInterface, $Bool], false)}, {prop: "parseCodeExpr", name: "parseCodeExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$34], [$emptyInterface, $Bool], false)}, {prop: "parseLitMatcher", name: "parseLitMatcher", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$36], [$emptyInterface, $Bool], false)}, {prop: "parseNotCodeExpr", name: "parseNotCodeExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$37], [$emptyInterface, $Bool], false)}, {prop: "parseNotExpr", name: "parseNotExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$38], [$emptyInterface, $Bool], false)}, {prop: "parseNotLogicalExpr", name: "parseNotLogicalExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$39], [$emptyInterface, $Bool], false)}, {prop: "parseNotExprBase", name: "parseNotExprBase", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$38, $Bool], [$emptyInterface, $Bool], false)}, {prop: "parseOneOrMoreExpr", name: "parseOneOrMoreExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$40], [$emptyInterface, $Bool], false)}, {prop: "parseRecoveryExpr", name: "parseRecoveryExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$41], [$emptyInterface, $Bool], false)}, {prop: "parseRuleRefExpr", name: "parseRuleRefExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$42], [$emptyInterface, $Bool], false)}, {prop: "parseRuleIRefExpr", name: "parseRuleIRefExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$43], [$emptyInterface, $Bool], false)}, {prop: "parseSeqExpr", name: "parseSeqExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$44], [$emptyInterface, $Bool], false)}, {prop: "parseThrowExpr", name: "parseThrowExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$45], [$emptyInterface, $Bool], false)}, {prop: "parseZeroOrMoreExpr", name: "parseZeroOrMoreExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$46], [$emptyInterface, $Bool], false)}, {prop: "parseZeroOrOneExpr", name: "parseZeroOrOneExpr", pkg: "github.com/sealdice/dicescript", typ: $funcType([ptrType$47], [$emptyInterface, $Bool], false)}];
 	ptrType$53.methods = [{prop: "LoopBegin", name: "LoopBegin", pkg: "", typ: $funcType([], [], false)}, {prop: "LoopEnd", name: "LoopEnd", pkg: "", typ: $funcType([], [], false)}, {prop: "checkStackOverflow", name: "checkStackOverflow", pkg: "github.com/sealdice/dicescript", typ: $funcType([], [$Bool], false)}, {prop: "WriteCode", name: "WriteCode", pkg: "", typ: $funcType([CodeType, $emptyInterface], [], false)}, {prop: "AddDiceDetail", name: "AddDiceDetail", pkg: "", typ: $funcType([IntType, IntType], [], false)}, {prop: "AddOp", name: "AddOp", pkg: "", typ: $funcType([CodeType], [], false)}, {prop: "AddLoadName", name: "AddLoadName", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushIntNumber", name: "PushIntNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushStr", name: "PushStr", pkg: "", typ: $funcType([$String], [], false)}, {prop: "PushArray", name: "PushArray", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "PushDict", name: "PushDict", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "PushNull", name: "PushNull", pkg: "", typ: $funcType([], [], false)}, {prop: "PushThis", name: "PushThis", pkg: "", typ: $funcType([], [], false)}, {prop: "PushGlobal", name: "PushGlobal", pkg: "", typ: $funcType([], [], false)}, {prop: "AddFormatString", name: "AddFormatString", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "PushFloatNumber", name: "PushFloatNumber", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStName", name: "AddStName", pkg: "", typ: $funcType([], [], false)}, {prop: "AddStModify", name: "AddStModify", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStore", name: "AddStore", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreGlobal", name: "AddStoreGlobal", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreLocal", name: "AddStoreLocal", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePush", name: "NamePush", pkg: "", typ: $funcType([$String], [], false)}, {prop: "NamePop", name: "NamePop", pkg: "", typ: $funcType([], [$String], false)}, {prop: "OffsetPush", name: "OffsetPush", pkg: "", typ: $funcType([], [], false)}, {prop: "ContinuePush", name: "ContinuePush", pkg: "", typ: $funcType([], [$error], false)}, {prop: "ContinueSet", name: "ContinueSet", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "BreakSet", name: "BreakSet", pkg: "", typ: $funcType([], [], false)}, {prop: "BreakPush", name: "BreakPush", pkg: "", typ: $funcType([], [$error], false)}, {prop: "OffsetPopAndSet", name: "OffsetPopAndSet", pkg: "", typ: $funcType([], [], false)}, {prop: "OffsetPopN", name: "OffsetPopN", pkg: "", typ: $funcType([$Int], [], false)}, {prop: "OffsetJmpSetX", name: "OffsetJmpSetX", pkg: "", typ: $funcType([$Int, $Int, $Bool], [], false)}, {prop: "CounterPush", name: "CounterPush", pkg: "", typ: $funcType([], [], false)}, {prop: "CounterAdd", name: "CounterAdd", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "CounterPop", name: "CounterPop", pkg: "", typ: $funcType([], [IntType], false)}, {prop: "FlagsPush", name: "FlagsPush", pkg: "", typ: $funcType([], [], false)}, {prop: "FlagsPop", name: "FlagsPop", pkg: "", typ: $funcType([], [], false)}, {prop: "AddInvokeMethod", name: "AddInvokeMethod", pkg: "", typ: $funcType([$String, IntType], [], false)}, {prop: "AddInvoke", name: "AddInvoke", pkg: "", typ: $funcType([IntType], [], false)}, {prop: "AddStoreComputed", name: "AddStoreComputed", pkg: "", typ: $funcType([$String, $String], [], false)}, {prop: "AddStoreComputedOnStack", name: "AddStoreComputedOnStack", pkg: "", typ: $funcType([$String], [], false)}, {prop: "AddStoreFunction", name: "AddStoreFunction", pkg: "", typ: $funcType([$String, sliceType$5, $String], [], false)}, {prop: "AddAttrSet", name: "AddAttrSet", pkg: "", typ: $funcType([$String, $String, $Bool], [], false)}, {prop: "CodePush", name: "CodePush", pkg: "", typ: $funcType([], [], false)}, {prop: "CodePop", name: "CodePop", pkg: "", typ: $funcType([], [sliceType$9, $Int], false)}];
 	ptrType$54.methods = [{prop: "CodeString", name: "CodeString", pkg: "", typ: $funcType([], [$String], false)}];
 	ValueMap.init("github.com/sealdice/dicescript", [{prop: "mu", name: "mu", embedded: false, exported: false, typ: sync.Mutex, tag: ""}, {prop: "read", name: "read", embedded: false, exported: false, typ: atomic.Value, tag: ""}, {prop: "dirty", name: "dirty", embedded: false, exported: false, typ: mapType$2, tag: ""}, {prop: "misses", name: "misses", embedded: false, exported: false, typ: $Int, tag: ""}]);
@@ -46540,7 +46622,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	option.init([ptrType$3], [option], false);
 	position.init("github.com/sealdice/dicescript", [{prop: "line", name: "line", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "col", name: "col", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "offset", name: "offset", embedded: false, exported: false, typ: $Int, tag: ""}]);
 	savepoint.init("github.com/sealdice/dicescript", [{prop: "position", name: "position", embedded: true, exported: false, typ: position, tag: ""}, {prop: "rn", name: "rn", embedded: false, exported: false, typ: $Int32, tag: ""}, {prop: "w", name: "w", embedded: false, exported: false, typ: $Int, tag: ""}]);
-	current.init("github.com/sealdice/dicescript", [{prop: "pos", name: "pos", embedded: false, exported: false, typ: position, tag: ""}, {prop: "text", name: "text", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "data", name: "data", embedded: false, exported: false, typ: ptrType$22, tag: ""}]);
+	current.init("github.com/sealdice/dicescript", [{prop: "pos", name: "pos", embedded: false, exported: false, typ: position, tag: ""}, {prop: "text", name: "text", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "data", name: "data", embedded: false, exported: false, typ: ptrType$23, tag: ""}]);
 	grammar.init("github.com/sealdice/dicescript", [{prop: "rules", name: "rules", embedded: false, exported: false, typ: sliceType$1, tag: ""}]);
 	rule.init("github.com/sealdice/dicescript", [{prop: "name", name: "name", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "displayName", name: "displayName", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "expr", name: "expr", embedded: false, exported: false, typ: $emptyInterface, tag: ""}, {prop: "varExists", name: "varExists", embedded: false, exported: false, typ: $Bool, tag: ""}]);
 	choiceExpr.init("github.com/sealdice/dicescript", [{prop: "alternatives", name: "alternatives", embedded: false, exported: false, typ: sliceType$2, tag: ""}]);
@@ -46568,11 +46650,12 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	parserError.init("github.com/sealdice/dicescript", [{prop: "Inner", name: "Inner", embedded: false, exported: true, typ: $error, tag: ""}, {prop: "pos", name: "pos", embedded: false, exported: false, typ: position, tag: ""}, {prop: "prefix", name: "prefix", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "expected", name: "expected", embedded: false, exported: false, typ: sliceType$5, tag: ""}]);
 	resultTuple.init("github.com/sealdice/dicescript", [{prop: "v", name: "v", embedded: false, exported: false, typ: $emptyInterface, tag: ""}, {prop: "b", name: "b", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: savepoint, tag: ""}]);
 	Stats.init("", [{prop: "ExprCnt", name: "ExprCnt", embedded: false, exported: true, typ: $Uint64, tag: ""}, {prop: "ChoiceAltCnt", name: "ChoiceAltCnt", embedded: false, exported: true, typ: mapType$6, tag: ""}]);
-	parser.init("github.com/sealdice/dicescript", [{prop: "filename", name: "filename", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "pt", name: "pt", embedded: false, exported: false, typ: savepoint, tag: ""}, {prop: "cur", name: "cur", embedded: false, exported: false, typ: current, tag: ""}, {prop: "data", name: "data", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "errs", name: "errs", embedded: false, exported: false, typ: ptrType$21, tag: ""}, {prop: "depth", name: "depth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "recover", name: "recover", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "memo1", name: "memo1", embedded: false, exported: false, typ: mapType$8, tag: ""}, {prop: "memo2", name: "memo2", embedded: false, exported: false, typ: mapType$8, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: mapType$9, tag: ""}, {prop: "rulesArray", name: "rulesArray", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "vstack", name: "vstack", embedded: false, exported: false, typ: sliceType$20, tag: ""}, {prop: "rstack", name: "rstack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "maxFailPos", name: "maxFailPos", embedded: false, exported: false, typ: position, tag: ""}, {prop: "maxFailExpected", name: "maxFailExpected", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "maxFailInvertExpected", name: "maxFailInvertExpected", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "maxExprCnt", name: "maxExprCnt", embedded: false, exported: false, typ: $Uint64, tag: ""}, {prop: "entrypoint", name: "entrypoint", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "allowInvalidUTF8", name: "allowInvalidUTF8", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "Stats", name: "Stats", embedded: true, exported: true, typ: ptrType$23, tag: ""}, {prop: "choiceNoMatch", name: "choiceNoMatch", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "recoveryStack", name: "recoveryStack", embedded: false, exported: false, typ: sliceType$20, tag: ""}, {prop: "_errPos", name: "_errPos", embedded: false, exported: false, typ: ptrType$24, tag: ""}, {prop: "scStack", name: "scStack", embedded: false, exported: false, typ: sliceType$21, tag: ""}, {prop: "spStack", name: "spStack", embedded: false, exported: false, typ: parserStack, tag: ""}]);
+	parser.init("github.com/sealdice/dicescript", [{prop: "filename", name: "filename", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "pt", name: "pt", embedded: false, exported: false, typ: savepoint, tag: ""}, {prop: "cur", name: "cur", embedded: false, exported: false, typ: current, tag: ""}, {prop: "data", name: "data", embedded: false, exported: false, typ: sliceType$7, tag: ""}, {prop: "errs", name: "errs", embedded: false, exported: false, typ: ptrType$22, tag: ""}, {prop: "depth", name: "depth", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "recover", name: "recover", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "memo1", name: "memo1", embedded: false, exported: false, typ: mapType$8, tag: ""}, {prop: "memo2", name: "memo2", embedded: false, exported: false, typ: mapType$8, tag: ""}, {prop: "rules", name: "rules", embedded: false, exported: false, typ: mapType$9, tag: ""}, {prop: "rulesArray", name: "rulesArray", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "vstack", name: "vstack", embedded: false, exported: false, typ: sliceType$20, tag: ""}, {prop: "rstack", name: "rstack", embedded: false, exported: false, typ: sliceType$1, tag: ""}, {prop: "maxFailPos", name: "maxFailPos", embedded: false, exported: false, typ: position, tag: ""}, {prop: "maxFailExpected", name: "maxFailExpected", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "maxFailInvertExpected", name: "maxFailInvertExpected", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "maxExprCnt", name: "maxExprCnt", embedded: false, exported: false, typ: $Uint64, tag: ""}, {prop: "entrypoint", name: "entrypoint", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "allowInvalidUTF8", name: "allowInvalidUTF8", embedded: false, exported: false, typ: $Bool, tag: ""}, {prop: "Stats", name: "Stats", embedded: true, exported: true, typ: ptrType$24, tag: ""}, {prop: "choiceNoMatch", name: "choiceNoMatch", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "recoveryStack", name: "recoveryStack", embedded: false, exported: false, typ: sliceType$20, tag: ""}, {prop: "_errPos", name: "_errPos", embedded: false, exported: false, typ: ptrType$25, tag: ""}, {prop: "scStack", name: "scStack", embedded: false, exported: false, typ: sliceType$21, tag: ""}, {prop: "spStack", name: "spStack", embedded: false, exported: false, typ: parserStack, tag: ""}]);
 	ParserData.init("github.com/sealdice/dicescript", [{prop: "code", name: "code", embedded: false, exported: false, typ: sliceType$9, tag: ""}, {prop: "codeIndex", name: "codeIndex", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "Config", name: "Config", embedded: false, exported: true, typ: RollConfig, tag: ""}, {prop: "flagsStack", name: "flagsStack", embedded: false, exported: false, typ: sliceType$22, tag: ""}, {prop: "counterStack", name: "counterStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "varnameStack", name: "varnameStack", embedded: false, exported: false, typ: sliceType$5, tag: ""}, {prop: "jmpStack", name: "jmpStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "breakStack", name: "breakStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "continueStack", name: "continueStack", embedded: false, exported: false, typ: sliceType$17, tag: ""}, {prop: "loopInfo", name: "loopInfo", embedded: false, exported: false, typ: sliceType$23, tag: ""}, {prop: "loopLayer", name: "loopLayer", embedded: false, exported: false, typ: $Int, tag: ""}, {prop: "codeStack", name: "codeStack", embedded: false, exported: false, typ: sliceType$24, tag: ""}]);
 	BufferSpan.init("", [{prop: "Begin", name: "Begin", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "End", name: "End", embedded: false, exported: true, typ: IntType, tag: ""}, {prop: "Ret", name: "Ret", embedded: false, exported: true, typ: ptrType, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Tag", name: "Tag", embedded: false, exported: true, typ: $String, tag: ""}]);
 	StInfo.init("", [{prop: "Op", name: "Op", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}]);
 	ByteCode.init("", [{prop: "T", name: "T", embedded: false, exported: true, typ: CodeType, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $emptyInterface, tag: ""}]);
+	Group.init("github.com/sealdice/dicescript", [{prop: "begin", name: "begin", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "end", name: "end", embedded: false, exported: false, typ: IntType, tag: ""}, {prop: "tag", name: "tag", embedded: false, exported: false, typ: $String, tag: ""}, {prop: "spans", name: "spans", embedded: false, exported: false, typ: sliceType$11, tag: ""}, {prop: "val", name: "val", embedded: false, exported: false, typ: ptrType, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
