@@ -38561,7 +38561,6 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* if (!isRaw && (ret.TypeId === 5)) { */ case 2:
 			_r$29 = ret.ComputedExecute(ctx); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			ret = _r$29;
-			ctx.IsComputedLoaded = true;
 			if (!($interfaceIsEqual(ctx.Error, $ifaceNil))) {
 				$s = -1; return ptrType.nil;
 			}
@@ -40000,9 +39999,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 			ret = NewNullVal();
 		}
 		ctx.NumOpCount = vm.NumOpCount;
-		if (vm.IsComputedLoaded) {
-			ctx.IsComputedLoaded = true;
-		}
+		ctx.IsComputedLoaded = true;
 		$s = -1; return ret;
 		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.ComputedExecute, $c: true, $r, _r$28, _tuple, cd, ctx, ret, v, vm, x, x$1, $s};return $f;
 	};
@@ -40087,9 +40084,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (!useUpCtxLocal) {
 			vm.Attrs = new ValueMap.ptr(new sync.Mutex.ptr(0, 0), new atomic.Value.ptr($ifaceNil), false, 0);
 		}
-		if (vm.IsComputedLoaded) {
-			ctx.IsComputedLoaded = true;
-		}
+		ctx.IsComputedLoaded = true;
 		$s = -1; return ret;
 		/* */ } return; } var $f = {$blk: VMValue.ptr.prototype.FuncInvokeRaw, $c: true, $r, _i, _r$28, _r$29, _ref, _tuple, cd, ctx, i, index, params, ret, useUpCtxLocal, v, vm, x, x$1, $s};return $f;
 	};
