@@ -44611,8 +44611,8 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	funcType$1 = $funcType([$String, ptrType], [$Bool], false);
 	mapType$2 = $mapType($String, ptrType$6);
 	funcType$2 = $funcType([ptrType$1, $String, ptrType], [ptrType, $Bool], false);
-	funcType$3 = $funcType([$String], [$String, ptrType], false);
-	funcType$4 = $funcType([$String, ptrType, ptrType$11], [ptrType], false);
+	funcType$3 = $funcType([ptrType$1, $String], [$String, ptrType], false);
+	funcType$4 = $funcType([ptrType$1, $String, ptrType, ptrType$11], [ptrType], false);
 	funcType$5 = $funcType([$String, $String, ptrType, ptrType, $String, $String], [], false);
 	funcType$6 = $funcType([ptrType$1, sliceType$11, sliceType$7], [$String], false);
 	ptrType$48 = $ptrType(RollConfig);
@@ -46090,7 +46090,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ $s = 2; continue;
 		/* if (useHook && !(ctx.Config.HookFuncValueLoad === $throwNilPointerError)) { */ case 1:
 			overwrite = ptrType.nil;
-			_r$28 = ctx.Config.HookFuncValueLoad(name); /* */ $s = 3; case 3: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+			_r$28 = ctx.Config.HookFuncValueLoad(ctx, name); /* */ $s = 3; case 3: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
 			_tuple = _r$28;
 			name = _tuple[0];
 			overwrite = _tuple[1];
@@ -48070,7 +48070,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 	};
 	$ptrType(spanByEnd).prototype.Less = function(i, j) { return this.$get().Less(i, j); };
 	Context.ptr.prototype.makeDetailStr = function(details) {
-		var {$24r, _1, _i, _r$28, _r$29, _r$30, _ref, buf, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, offset, partRet, size, span, subDetailsText, writeBuf, writeBufStr, x, x$1, x$2, x$3, x$4, x$5, x$6, $s, $r, $c} = $restore(this, {details});
+		var {$24r, _1, _i, _r$28, _r$29, _r$30, _ref, baseExprText, buf, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, offset, partRet, size, span, subDetailsText, writeBuf, writeBufStr, x, x$1, x$2, x$3, x$4, x$5, x$6, $s, $r, $c} = $restore(this, {details});
 		/* */ $s = $s || 0; s: while (true) { switch ($s) { case 0:
 		ctx = this;
 		/* */ if (!(ctx.Config.CustomMakeDetailFunc === $throwNilPointerError)) { $s = 1; continue; }
@@ -48144,8 +48144,9 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				case 11:
 			/* } */ case 9:
 			exprText = last.Expr;
+			baseExprText = ($bytesToString($subslice(detailResult, item.begin, item.end)));
 			if (last.Expr === "") {
-				exprText = ($bytesToString($subslice(detailResult, item.begin, item.end)));
+				exprText = baseExprText;
 			}
 			$r = writeBuf($subslice(detailResult, 0, item.begin)); /* */ $s = 13; case 13: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 			_r$30 = last.Ret.ToString(); /* */ $s = 14; case 14: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
@@ -48159,7 +48160,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 				detail = detail + ("=" + partRet);
 			}
 			detail = detail + (subDetailsText + "]");
-			if ((m.$length === 1) && detail === "[" + exprText + "]") {
+			if ((m.$length === 1) && detail === "[" + baseExprText + "]") {
 				detail = "";
 			}
 			if (detail.length > 400) {
@@ -48172,7 +48173,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$s = 5; continue;
 		case 6:
 		$s = -1; return ($bytesToString(detailResult));
-		/* */ } return; } var $f = {$blk: Context.ptr.prototype.makeDetailStr, $c: true, $r, $24r, _1, _i, _r$28, _r$29, _r$30, _ref, buf, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, offset, partRet, size, span, subDetailsText, writeBuf, writeBufStr, x, x$1, x$2, x$3, x$4, x$5, x$6, $s};return $f;
+		/* */ } return; } var $f = {$blk: Context.ptr.prototype.makeDetailStr, $c: true, $r, $24r, _1, _i, _r$28, _r$29, _r$30, _ref, baseExprText, buf, ctx, curPoint, detail, detailResult, details, exprText, i, i$1, item, j, last, lastEnd, m, offset, partRet, size, span, subDetailsText, writeBuf, writeBufStr, x, x$1, x$2, x$3, x$4, x$5, x$6, $s};return $f;
 	};
 	Context.prototype.makeDetailStr = function(details) { return this.$val.makeDetailStr(details); };
 	Context.ptr.prototype.evaluate = function() {
@@ -48829,7 +48830,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 					/* */ $s = 233; continue;
 					/* if (!(ctx[0].Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { */ case 232:
 						oldRet = (x$15 = details[0].$length - 1 >> 0, ((x$15 < 0 || x$15 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$15])).Ret;
-						_r$83 = ctx[0].Config.HookFuncValueLoadOverwrite(name, val$5, (x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16]))); /* */ $s = 234; case 234: if($c) { $c = false; _r$83 = _r$83.$blk(); } if (_r$83 && _r$83.$blk !== undefined) { break s; }
+						_r$83 = ctx[0].Config.HookFuncValueLoadOverwrite(ctx[0], name, val$5, (x$16 = details[0].$length - 1 >> 0, ((x$16 < 0 || x$16 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$16]))); /* */ $s = 234; case 234: if($c) { $c = false; _r$83 = _r$83.$blk(); } if (_r$83 && _r$83.$blk !== undefined) { break s; }
 						val$5 = _r$83;
 						if (oldRet === (x$17 = details[0].$length - 1 >> 0, ((x$17 < 0 || x$17 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$17])).Ret) {
 							(x$18 = details[0].$length - 1 >> 0, ((x$18 < 0 || x$18 >= details[0].$length) ? ($throwRuntimeError("index out of range"), undefined) : details[0].$array[details[0].$offset + x$18])).Ret = val$5;
@@ -54149,7 +54150,7 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		/* */ if (!(ctx.Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { $s = 2; continue; }
 		/* */ $s = 3; continue;
 		/* if (!(ctx.Config.HookFuncValueLoadOverwrite === $throwNilPointerError)) { */ case 2:
-			_r$29 = ctx.Config.HookFuncValueLoadOverwrite(name, val, ptrType$11.nil); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+			_r$29 = ctx.Config.HookFuncValueLoadOverwrite(ctx, name, val, ptrType$11.nil); /* */ $s = 4; case 4: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
 			val = _r$29;
 		/* } */ case 3:
 		$s = -1; return val.Clone();
