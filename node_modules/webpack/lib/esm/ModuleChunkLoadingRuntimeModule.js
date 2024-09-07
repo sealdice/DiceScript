@@ -17,6 +17,7 @@ const { getInitialChunkIds } = require("../javascript/StartupHelpers");
 const compileBooleanMatcher = require("../util/compileBooleanMatcher");
 const { getUndoPath } = require("../util/identifier");
 
+/** @typedef {import("../../declarations/WebpackOptions").Environment} Environment */
 /** @typedef {import("../Chunk")} Chunk */
 /** @typedef {import("../ChunkGraph")} ChunkGraph */
 /** @typedef {import("../Module").ReadOnlyRuntimeRequirements} ReadOnlyRuntimeRequirements */
@@ -87,9 +88,12 @@ class ModuleChunkLoadingRuntimeModule extends RuntimeModule {
 		const compilation = /** @type {Compilation} */ (this.compilation);
 		const chunkGraph = /** @type {ChunkGraph} */ (this.chunkGraph);
 		const chunk = /** @type {Chunk} */ (this.chunk);
+		const environment =
+			/** @type {Environment} */
+			(compilation.outputOptions.environment);
 		const {
 			runtimeTemplate,
-			outputOptions: { environment, importFunctionName, crossOriginLoading }
+			outputOptions: { importFunctionName, crossOriginLoading }
 		} = compilation;
 		const fn = RuntimeGlobals.ensureChunkHandlers;
 		const withBaseURI = this._runtimeRequirements.has(RuntimeGlobals.baseURI);
@@ -219,10 +223,10 @@ class ModuleChunkLoadingRuntimeModule extends RuntimeModule {
 														]
 													)});`,
 													`var promise = Promise.race([promise, new Promise(${runtimeTemplate.expressionFunction(
-														`installedChunkData = installedChunks[chunkId] = [resolve]`,
+														"installedChunkData = installedChunks[chunkId] = [resolve]",
 														"resolve"
 													)})])`,
-													`promises.push(installedChunkData[1] = promise);`
+													"promises.push(installedChunkData[1] = promise);"
 												]),
 												hasJsMatcher === true
 													? "}"

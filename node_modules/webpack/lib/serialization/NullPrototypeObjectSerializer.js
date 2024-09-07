@@ -21,9 +21,10 @@ class NullPrototypeObjectSerializer {
 		}
 		context.write(null);
 		for (const key of keys) {
-			context.write(obj[key]);
+			context.write(obj[/** @type {keyof T} */ (key)]);
 		}
 	}
+
 	/**
 	 * @template {object} T
 	 * @param {ObjectDeserializerContext} context context
@@ -41,7 +42,7 @@ class NullPrototypeObjectSerializer {
 			key = context.read();
 		}
 		for (const key of keys) {
-			obj[key] = context.read();
+			obj[/** @type {keyof T} */ (key)] = context.read();
 		}
 		return obj;
 	}

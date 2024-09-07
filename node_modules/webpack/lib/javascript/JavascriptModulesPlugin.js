@@ -38,17 +38,23 @@ const { intersectRuntime } = require("../util/runtime");
 const JavascriptGenerator = require("./JavascriptGenerator");
 const JavascriptParser = require("./JavascriptParser");
 
+/** @typedef {import("eslint-scope").Scope} Scope */
 /** @typedef {import("eslint-scope").Variable} Variable */
 /** @typedef {import("webpack-sources").Source} Source */
+/** @typedef {import("../../declarations/WebpackOptions").Output} OutputOptions */
 /** @typedef {import("../Chunk")} Chunk */
 /** @typedef {import("../ChunkGraph")} ChunkGraph */
 /** @typedef {import("../CodeGenerationResults")} CodeGenerationResults */
 /** @typedef {import("../Compilation").ChunkHashContext} ChunkHashContext */
 /** @typedef {import("../Compiler")} Compiler */
 /** @typedef {import("../DependencyTemplates")} DependencyTemplates */
+/** @typedef {import("../Entrypoint")} Entrypoint */
 /** @typedef {import("../Module")} Module */
+/** @typedef {import("../Module").BuildInfo} BuildInfo */
 /** @typedef {import("../ModuleGraph")} ModuleGraph */
 /** @typedef {import("../RuntimeTemplate")} RuntimeTemplate */
+/** @typedef {import("../TemplatedPathPlugin").TemplatePath} TemplatePath */
+/** @typedef {import("../javascript/JavascriptParser").Range} Range */
 /** @typedef {import("../util/Hash")} Hash */
 
 /**
@@ -59,9 +65,9 @@ const JavascriptParser = require("./JavascriptParser");
 const chunkHasJs = (chunk, chunkGraph) => {
 	if (chunkGraph.getNumberOfEntryModules(chunk) > 0) return true;
 
-	return chunkGraph.getChunkModulesIterableBySourceType(chunk, "javascript")
-		? true
-		: false;
+	return Boolean(
+		chunkGraph.getChunkModulesIterableBySourceType(chunk, "javascript")
+	);
 };
 
 /**
@@ -96,7 +102,7 @@ const printGeneratedCodeForStack = (module, code) => {
  * @property {ModuleGraph} moduleGraph the module graph
  * @property {ChunkGraph} chunkGraph the chunk graph
  * @property {CodeGenerationResults} codeGenerationResults results of code generation
- * @property {boolean} strictMode rendering in strict context
+ * @property {boolean | undefined} strictMode rendering in strict context
  */
 
 /**
@@ -108,7 +114,7 @@ const printGeneratedCodeForStack = (module, code) => {
  * @property {ChunkGraph} chunkGraph the chunk graph
  * @property {CodeGenerationResults} codeGenerationResults results of code generation
  * @property {string} hash hash to be used for render call
- * @property {boolean} strictMode rendering in strict context
+ * @property {boolean | undefined} strictMode rendering in strict context
  */
 
 /**
@@ -120,7 +126,7 @@ const printGeneratedCodeForStack = (module, code) => {
  * @property {ChunkGraph} chunkGraph the chunk graph
  * @property {CodeGenerationResults} codeGenerationResults results of code generation
  * @property {InitFragment<ChunkRenderContext>[]} chunkInitFragments init fragments for the chunk
- * @property {boolean} strictMode rendering in strict context
+ * @property {boolean | undefined} strictMode rendering in strict context
  */
 
 /**
@@ -157,6 +163,8 @@ const printGeneratedCodeForStack = (module, code) => {
 const compilationHooksMap = new WeakMap();
 
 const PLUGIN_NAME = "JavascriptModulesPlugin";
+
+/** @typedef {{ header: string[], beforeStartup: string[], startup: string[], afterStartup: string[], allowInlineStartup: boolean }} Bootstrap */
 
 class JavascriptModulesPlugin {
 	/**
@@ -226,34 +234,22 @@ class JavascriptModulesPlugin {
 				const hooks = JavascriptModulesPlugin.getCompilationHooks(compilation);
 				normalModuleFactory.hooks.createParser
 					.for(JAVASCRIPT_MODULE_TYPE_AUTO)
-					.tap(PLUGIN_NAME, options => {
-						return new JavascriptParser("auto");
-					});
+					.tap(PLUGIN_NAME, options => new JavascriptParser("auto"));
 				normalModuleFactory.hooks.createParser
 					.for(JAVASCRIPT_MODULE_TYPE_DYNAMIC)
-					.tap(PLUGIN_NAME, options => {
-						return new JavascriptParser("script");
-					});
+					.tap(PLUGIN_NAME, options => new JavascriptParser("script"));
 				normalModuleFactory.hooks.createParser
 					.for(JAVASCRIPT_MODULE_TYPE_ESM)
-					.tap(PLUGIN_NAME, options => {
-						return new JavascriptParser("module");
-					});
+					.tap(PLUGIN_NAME, options => new JavascriptParser("module"));
 				normalModuleFactory.hooks.createGenerator
 					.for(JAVASCRIPT_MODULE_TYPE_AUTO)
-					.tap(PLUGIN_NAME, () => {
-						return new JavascriptGenerator();
-					});
+					.tap(PLUGIN_NAME, () => new JavascriptGenerator());
 				normalModuleFactory.hooks.createGenerator
 					.for(JAVASCRIPT_MODULE_TYPE_DYNAMIC)
-					.tap(PLUGIN_NAME, () => {
-						return new JavascriptGenerator();
-					});
+					.tap(PLUGIN_NAME, () => new JavascriptGenerator());
 				normalModuleFactory.hooks.createGenerator
 					.for(JAVASCRIPT_MODULE_TYPE_ESM)
-					.tap(PLUGIN_NAME, () => {
-						return new JavascriptGenerator();
-					});
+					.tap(PLUGIN_NAME, () => new JavascriptGenerator());
 				compilation.hooks.renderManifest.tap(PLUGIN_NAME, (result, options) => {
 					const {
 						hash,
@@ -460,12 +456,13 @@ class JavascriptModulesPlugin {
 							moduleObject.exports,
 							context.__webpack_require__
 						);
-					} catch (e) {
-						e.stack += printGeneratedCodeForStack(
+					} catch (err) {
+						/** @type {Error} */
+						(err).stack += printGeneratedCodeForStack(
 							options.module,
 							/** @type {string} */ (code)
 						);
-						throw e;
+						throw err;
 					}
 				});
 				compilation.hooks.executeModule.tap(PLUGIN_NAME, (options, context) => {
@@ -482,26 +479,32 @@ class JavascriptModulesPlugin {
 						}
 					);
 					try {
+						// eslint-disable-next-line no-useless-call
 						fn.call(null, context.__webpack_require__);
-					} catch (e) {
-						e.stack += printGeneratedCodeForStack(options.module, code);
-						throw e;
+					} catch (err) {
+						/** @type {Error} */
+						(err).stack += printGeneratedCodeForStack(options.module, code);
+						throw err;
 					}
 				});
 			}
 		);
 	}
 
+	/**
+	 * @param {Chunk} chunk chunk
+	 * @param {OutputOptions} outputOptions output options
+	 * @returns {TemplatePath} used filename template
+	 */
 	static getChunkFilenameTemplate(chunk, outputOptions) {
 		if (chunk.filenameTemplate) {
 			return chunk.filenameTemplate;
 		} else if (chunk instanceof HotUpdateChunk) {
-			return outputOptions.hotUpdateChunkFilename;
+			return /** @type {TemplatePath} */ (outputOptions.hotUpdateChunkFilename);
 		} else if (chunk.canBeInitial()) {
-			return outputOptions.filename;
-		} else {
-			return outputOptions.chunkFilename;
+			return /** @type {TemplatePath} */ (outputOptions.filename);
 		}
+		return /** @type {TemplatePath} */ (outputOptions.chunkFilename);
 	}
 
 	/**
@@ -509,7 +512,7 @@ class JavascriptModulesPlugin {
 	 * @param {ChunkRenderContext} renderContext options object
 	 * @param {CompilationHooks} hooks hooks
 	 * @param {boolean} factory true: renders as factory method, false: pure module content
-	 * @returns {Source} the newly generated source from rendering
+	 * @returns {Source | null} the newly generated source from rendering
 	 */
 	renderModule(module, renderContext, hooks, factory) {
 		const {
@@ -549,7 +552,9 @@ class JavascriptModulesPlugin {
 				const needThisAsExports = runtimeRequirements.has(
 					RuntimeGlobals.thisAsExports
 				);
-				const needStrict = module.buildInfo.strict && !strictMode;
+				const needStrict =
+					/** @type {BuildInfo} */
+					(module.buildInfo).strict && !strictMode;
 				const cacheEntry = this._moduleFactoryCache.get(
 					moduleSourcePostContent
 				);
@@ -570,19 +575,19 @@ class JavascriptModulesPlugin {
 						args.push(
 							needModule
 								? module.moduleArgument
-								: "__unused_webpack_" + module.moduleArgument
+								: `__unused_webpack_${module.moduleArgument}`
 						);
 					if (needExports || needRequire)
 						args.push(
 							needExports
 								? module.exportsArgument
-								: "__unused_webpack_" + module.exportsArgument
+								: `__unused_webpack_${module.exportsArgument}`
 						);
 					if (needRequire) args.push(RuntimeGlobals.require);
 					if (!needThisAsExports && runtimeTemplate.supportsArrowFunction()) {
-						factorySource.add("/***/ ((" + args.join(", ") + ") => {\n\n");
+						factorySource.add(`/***/ ((${args.join(", ")}) => {\n\n`);
 					} else {
-						factorySource.add("/***/ (function(" + args.join(", ") + ") {\n\n");
+						factorySource.add(`/***/ (function(${args.join(", ")}) {\n\n`);
 					}
 					if (needStrict) {
 						factorySource.add('"use strict";\n');
@@ -615,9 +620,9 @@ class JavascriptModulesPlugin {
 					),
 				"JavascriptModulesPlugin.getCompilationHooks().renderModulePackage"
 			);
-		} catch (e) {
-			e.module = module;
-			throw e;
+		} catch (err) {
+			err.module = module;
+			throw err;
 		}
 	}
 
@@ -636,7 +641,10 @@ class JavascriptModulesPlugin {
 		const allModules = modules ? Array.from(modules) : [];
 		let strictHeader;
 		let allStrict = renderContext.strictMode;
-		if (!allStrict && allModules.every(m => m.buildInfo.strict)) {
+		if (
+			!allStrict &&
+			allModules.every(m => /** @type {BuildInfo} */ (m.buildInfo).strict)
+		) {
 			const strictBailout = hooks.strictRuntimeBailout.call(renderContext);
 			strictHeader = strictBailout
 				? `// runtime can't be in strict mode because ${strictBailout}.\n`
@@ -718,7 +726,7 @@ class JavascriptModulesPlugin {
 			inlinedModules = new Set(chunkGraph.getChunkEntryModulesIterable(chunk));
 		}
 
-		let source = new ConcatSource();
+		const source = new ConcatSource();
 		let prefix;
 		if (iife) {
 			if (runtimeTemplate.supportsArrowFunction()) {
@@ -731,16 +739,20 @@ class JavascriptModulesPlugin {
 			prefix = "/******/ ";
 		}
 		let allStrict = renderContext.strictMode;
-		if (!allStrict && allModules.every(m => m.buildInfo.strict)) {
+		if (
+			!allStrict &&
+			allModules.every(m => /** @type {BuildInfo} */ (m.buildInfo).strict)
+		) {
 			const strictBailout = hooks.strictRuntimeBailout.call(renderContext);
 			if (strictBailout) {
 				source.add(
-					prefix +
-						`// runtime can't be in strict mode because ${strictBailout}.\n`
+					`${
+						prefix
+					}// runtime can't be in strict mode because ${strictBailout}.\n`
 				);
 			} else {
 				allStrict = true;
-				source.add(prefix + '"use strict";\n');
+				source.add(`${prefix}"use strict";\n`);
 			}
 		}
 
@@ -767,7 +779,7 @@ class JavascriptModulesPlugin {
 			runtimeRequirements.has(RuntimeGlobals.moduleFactoriesAddOnly) ||
 			runtimeRequirements.has(RuntimeGlobals.require)
 		) {
-			source.add(prefix + "var __webpack_modules__ = (");
+			source.add(`${prefix}var __webpack_modules__ = (`);
 			source.add(chunkModules || "{}");
 			source.add(");\n");
 			source.add(
@@ -776,7 +788,7 @@ class JavascriptModulesPlugin {
 		}
 
 		if (bootstrap.header.length > 0) {
-			const header = Template.asString(bootstrap.header) + "\n";
+			const header = `${Template.asString(bootstrap.header)}\n`;
 			source.add(
 				new PrefixSource(
 					prefix,
@@ -810,7 +822,7 @@ class JavascriptModulesPlugin {
 		}
 		if (inlinedModules) {
 			if (bootstrap.beforeStartup.length > 0) {
-				const beforeStartup = Template.asString(bootstrap.beforeStartup) + "\n";
+				const beforeStartup = `${Template.asString(bootstrap.beforeStartup)}\n`;
 				source.add(
 					new PrefixSource(
 						prefix,
@@ -820,7 +832,7 @@ class JavascriptModulesPlugin {
 					)
 				);
 			}
-			const lastInlinedModule = last(inlinedModules);
+			const lastInlinedModule = /** @type {Module} */ (last(inlinedModules));
 			const startupSource = new ConcatSource();
 
 			if (runtimeRequirements.has(RuntimeGlobals.exports)) {
@@ -841,7 +853,8 @@ class JavascriptModulesPlugin {
 					this.renderModule(m, chunkRenderContext, hooks, false);
 
 				if (renderedModule) {
-					const innerStrict = !allStrict && m.buildInfo.strict;
+					const innerStrict =
+						!allStrict && /** @type {BuildInfo} */ (m.buildInfo).strict;
 					const runtimeRequirements = chunkGraph.getModuleRuntimeRequirements(
 						m,
 						chunk.runtime
@@ -849,7 +862,7 @@ class JavascriptModulesPlugin {
 					const exports = runtimeRequirements.has(RuntimeGlobals.exports);
 					const webpackExports =
 						exports && m.exportsArgument === RuntimeGlobals.exports;
-					let iife = innerStrict
+					const iife = innerStrict
 						? "it need to be in strict mode."
 						: inlinedModules.size > 1
 							? // TODO check globals and top-level declarations of other entries and chunk modules
@@ -899,7 +912,7 @@ class JavascriptModulesPlugin {
 				})
 			);
 			if (bootstrap.afterStartup.length > 0) {
-				const afterStartup = Template.asString(bootstrap.afterStartup) + "\n";
+				const afterStartup = `${Template.asString(bootstrap.afterStartup)}\n`;
 				source.add(
 					new PrefixSource(
 						prefix,
@@ -910,9 +923,10 @@ class JavascriptModulesPlugin {
 				);
 			}
 		} else {
-			const lastEntryModule = last(
-				chunkGraph.getChunkEntryModulesIterable(chunk)
-			);
+			const lastEntryModule =
+				/** @type {Module} */
+				(last(chunkGraph.getChunkEntryModulesIterable(chunk)));
+			/** @type {function(string[], string): Source} */
 			const toSource = useSourceMap
 				? (content, name) =>
 						new OriginalSource(Template.asString(content), name)
@@ -992,7 +1006,8 @@ class JavascriptModulesPlugin {
 	 */
 	updateHashWithBootstrap(hash, renderContext, hooks) {
 		const bootstrap = this.renderBootstrap(renderContext, hooks);
-		for (const key of Object.keys(bootstrap)) {
+		for (const _k of Object.keys(bootstrap)) {
+			const key = /** @type {keyof Bootstrap} */ (_k);
 			hash.update(key);
 			if (Array.isArray(bootstrap[key])) {
 				for (const line of bootstrap[key]) {
@@ -1007,7 +1022,7 @@ class JavascriptModulesPlugin {
 	/**
 	 * @param {RenderBootstrapContext} renderContext options object
 	 * @param {CompilationHooks} hooks hooks
-	 * @returns {{ header: string[], beforeStartup: string[], startup: string[], afterStartup: string[], allowInlineStartup: boolean }} the generated source of the bootstrap code
+	 * @returns {Bootstrap} the generated source of the bootstrap code
 	 */
 	renderBootstrap(renderContext, hooks) {
 		const {
@@ -1047,7 +1062,7 @@ class JavascriptModulesPlugin {
 			allowInlineStartup: true
 		};
 
-		let { header: buf, startup, beforeStartup, afterStartup } = result;
+		const { header: buf, startup, beforeStartup, afterStartup } = result;
 
 		if (result.allowInlineStartup && moduleFactories) {
 			startup.push(
@@ -1117,7 +1132,9 @@ class JavascriptModulesPlugin {
 					entryModule,
 					entrypoint
 				] of chunkGraph.getChunkEntryModulesWithChunkGroupIterable(chunk)) {
-					const chunks = entrypoint.chunks.filter(c => c !== chunk);
+					const chunks =
+						/** @type {Entrypoint} */
+						(entrypoint).chunks.filter(c => c !== chunk);
 					if (result.allowInlineStartup && chunks.length > 0) {
 						buf2.push(
 							"// This entry module depends on other loaded chunks and execution need to be delayed"
@@ -1414,7 +1431,9 @@ class JavascriptModulesPlugin {
 	) {
 		const { runtimeTemplate } = renderContext;
 
-		/** @type {Map<Module, { source: Source, ast: any, variables: Set<Variable>, usedInNonInlined: Set<Variable>}>} */
+		/** @typedef {{ source: Source, ast: any, variables: Set<Variable>, usedInNonInlined: Set<Variable>}} InlinedModulesInfo */
+
+		/** @type {Map<Module, InlinedModulesInfo>} */
 		const inlinedModulesToInfo = new Map();
 		/** @type {Set<string>} */
 		const nonInlinedModuleThroughIdentifiers = new Set();
@@ -1427,7 +1446,7 @@ class JavascriptModulesPlugin {
 				m,
 				chunkRenderContext,
 				hooks,
-				isInlinedModule ? false : true
+				!isInlinedModule
 			);
 
 			if (!moduleSource) continue;
@@ -1443,7 +1462,7 @@ class JavascriptModulesPlugin {
 				ignoreEval: true
 			});
 
-			const globalScope = scopeManager.acquire(ast);
+			const globalScope = /** @type {Scope} */ (scopeManager.acquire(ast));
 			if (inlinedModules && inlinedModules.has(m)) {
 				const moduleScope = globalScope.childScopes[0];
 				inlinedModulesToInfo.set(m, {
@@ -1476,7 +1495,10 @@ class JavascriptModulesPlugin {
 			}
 
 			const usedNames = new Set(
-				Array.from(inlinedModulesToInfo.get(m).variables).map(v => v.name)
+				Array.from(
+					/** @type {InlinedModulesInfo} */
+					(inlinedModulesToInfo.get(m)).variables
+				).map(v => v.name)
 			);
 
 			for (const variable of usedInNonInlined) {
@@ -1492,7 +1514,7 @@ class JavascriptModulesPlugin {
 				);
 				usedNames.add(newName);
 				for (const identifier of allIdentifiers) {
-					const r = identifier.range;
+					const r = /** @type {Range} */ (identifier.range);
 					const path = getPathInAst(ast, identifier);
 					if (path && path.length > 1) {
 						const maybeProperty =
@@ -1530,7 +1552,7 @@ class JavascriptModulesPlugin {
 		);
 		const splittedInfo = extraInfo.split("/");
 		while (splittedInfo.length) {
-			name = splittedInfo.pop() + (name ? "_" + name : "");
+			name = splittedInfo.pop() + (name ? `_${name}` : "");
 			const nameIdent = Template.toIdentifier(name);
 			if (!usedName.has(nameIdent)) {
 				return nameIdent;

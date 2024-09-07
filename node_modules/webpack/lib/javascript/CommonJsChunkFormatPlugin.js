@@ -51,7 +51,7 @@ class CommonJsChunkFormatPlugin {
 						const source = new ConcatSource();
 						source.add(`exports.id = ${JSON.stringify(chunk.id)};\n`);
 						source.add(`exports.ids = ${JSON.stringify(chunk.ids)};\n`);
-						source.add(`exports.modules = `);
+						source.add("exports.modules = ");
 						source.add(modules);
 						source.add(";\n");
 						const runtimeModules =
@@ -85,7 +85,8 @@ class CommonJsChunkFormatPlugin {
 							const runtimeOutputName = compilation
 								.getPath(
 									getChunkFilenameTemplate(
-										runtimeChunk,
+										/** @type {Chunk} */
+										(runtimeChunk),
 										compilation.outputOptions
 									),
 									{

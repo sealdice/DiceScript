@@ -16,7 +16,7 @@
  * @template T
  * @template R
  * @typedef {object} GroupConfig
- * @property {function(T): string[]} getKeys
+ * @property {function(T): string[] | undefined} getKeys
  * @property {function(string, (R | T)[], T[]): R} createGroup
  * @property {function(string, T[]): GroupOptions=} getOptions
  */
@@ -111,10 +111,10 @@ const smartGrouping = (items, groupConfigs) => {
 		const results = [];
 		for (;;) {
 			/** @type {Group<T, R> | undefined} */
-			let bestGroup = undefined;
+			let bestGroup;
 			let bestGroupSize = -1;
-			let bestGroupItems = undefined;
-			let bestGroupOptions = undefined;
+			let bestGroupItems;
+			let bestGroupOptions;
 			for (const [group, state] of groupMap) {
 				const { items, used } = state;
 				let options = state.options;
@@ -138,7 +138,7 @@ const smartGrouping = (items, groupConfigs) => {
 					}
 				}
 				const targetGroupCount = (options && options.targetGroupCount) || 4;
-				let sizeValue = force
+				const sizeValue = force
 					? items.size
 					: Math.min(
 							items.size,

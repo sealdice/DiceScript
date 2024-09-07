@@ -45,7 +45,7 @@ class SerializerMiddleware {
 	 * @param {any=} serializedValue serialized value
 	 * @returns {function(): Promise<any> | any} lazy function
 	 */
-	static createLazy(value, target, options = {}, serializedValue) {
+	static createLazy(value, target, options = {}, serializedValue = undefined) {
 		if (SerializerMiddleware.isLazy(value, target)) return value;
 		const fn = typeof value === "function" ? value : () => value;
 		fn[LAZY_TARGET] = target;
@@ -62,24 +62,24 @@ class SerializerMiddleware {
 	static isLazy(fn, target) {
 		if (typeof fn !== "function") return false;
 		const t = fn[LAZY_TARGET];
-		return target ? t === target : !!t;
+		return target ? t === target : Boolean(t);
 	}
 
 	/**
 	 * @param {function(): Promise<any> | any} fn lazy function
-	 * @returns {object} options
+	 * @returns {object | undefined} options
 	 */
 	static getLazyOptions(fn) {
-		if (typeof fn !== "function") return undefined;
+		if (typeof fn !== "function") return;
 		return /** @type {any} */ (fn).options;
 	}
 
 	/**
 	 * @param {function(): Promise<any> | any} fn lazy function
-	 * @returns {any} serialized value
+	 * @returns {any | undefined} serialized value
 	 */
 	static getLazySerializedValue(fn) {
-		if (typeof fn !== "function") return undefined;
+		if (typeof fn !== "function") return;
 		return fn[LAZY_SERIALIZED_VALUE];
 	}
 
