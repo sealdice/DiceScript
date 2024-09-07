@@ -43778,7 +43778,7 @@ $packages["regexp"] = (function() {
 	return $pkg;
 })();
 $packages["github.com/sealdice/dicescript"] = (function() {
-	var $pkg = {}, $init, bytes, json, errors, fmt, rand$1, math, rand, reflect, regexp, sort, strconv, strings, sync, atomic, time, unicode, utf8, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, IntType, RollConfig, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, NativeObjectData, recursionInfo, spanByBegin, spanByEnd, ParserCustomData, parserStack, option, position, savepoint, current, grammar, rule, choiceExpr, actionExpr, recoveryExpr, seqExpr, throwExpr, labeledExpr, andExpr, notExpr, andLogicalExpr, notLogicalExpr, zeroOrOneExpr, zeroOrMoreExpr, oneOrMoreExpr, ruleRefExpr, ruleIRefExpr, andCodeExpr, notCodeExpr, litMatcher, codeExpr, charClassMatcher, anyMatcher, errList, parserError, resultTuple, Stats, parser, ParserData, BufferSpan, StInfo, CodeType, ByteCode, Group, ptrType, ptrType$1, funcType, sliceType, ptrType$2, sliceType$1, ptrType$3, sliceType$2, sliceType$3, ptrType$4, sliceType$4, sliceType$5, sliceType$6, ptrType$5, ptrType$6, ptrType$7, sliceType$7, sliceType$8, mapType, ptrType$8, structType, structType$1, structType$2, ptrType$9, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, sliceType$9, structType$11, structType$12, structType$13, structType$14, structType$15, structType$16, ptrType$10, ptrType$11, sliceType$10, sliceType$11, ptrType$12, ptrType$13, ptrType$14, ptrType$15, ptrType$16, ptrType$17, ptrType$18, ptrType$19, ptrType$20, mapType$1, sliceType$12, ptrType$21, ptrType$22, sliceType$13, sliceType$14, sliceType$15, ptrType$23, sliceType$16, sliceType$17, ptrType$24, sliceType$18, ptrType$25, structType$17, sliceType$19, structType$18, structType$19, arrayType, sliceType$20, sliceType$21, sliceType$22, structType$20, sliceType$23, structType$21, sliceType$24, structType$22, ptrType$26, ptrType$27, ptrType$28, ptrType$29, ptrType$30, ptrType$31, ptrType$32, ptrType$33, ptrType$34, ptrType$35, ptrType$36, ptrType$37, ptrType$38, ptrType$39, ptrType$40, ptrType$41, ptrType$42, ptrType$43, ptrType$44, ptrType$45, ptrType$46, ptrType$47, funcType$1, mapType$2, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, funcType$7, ptrType$48, funcType$8, funcType$9, funcType$10, funcType$11, mapType$3, ptrType$49, funcType$12, funcType$13, funcType$14, funcType$15, funcType$16, funcType$17, mapType$4, ptrType$50, ptrType$51, funcType$18, funcType$19, ptrType$52, mapType$5, mapType$6, mapType$7, mapType$8, mapType$9, ptrType$53, ptrType$54, expungedValueMap, builtinProto, binOperator, randSource, g, errNoRule, errInvalidEntrypoint, errInvalidEncoding, errMaxExprCnt, nnf, builtinValues, _r, _arg, _r$1, _arg$1, _r$2, _arg$2, _r$3, _arg$3, _arg$4, _r$4, _arg$5, _arg$6, _r$5, _arg$7, _arg$8, _r$6, _arg$9, _arg$10, _r$7, _arg$11, _arg$12, _r$8, _arg$13, _arg$14, _r$9, _arg$15, _arg$16, _r$10, _arg$17, _arg$18, _r$11, _arg$19, _arg$20, _r$12, _arg$21, _r$13, _arg$22, _r$14, _arg$23, _arg$24, _r$15, _arg$25, _arg$26, _r$16, _arg$27, _arg$28, _r$17, _arg$29, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, newEntryValueMap, funcComputedCompute, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, funcDictKeys, funcDictValues, funcDictItems, funcDictLen, getBindMethod, _init2, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, NewIntVal, NewFloatVal, NewStrVal, vmValueNewLocal, NewNullVal, NewArrayValRaw, NewArrayVal, NewDictVal, NewDictValWithArray, NewDictValWithArrayMust, NewComputedValRaw, NewFunctionValRaw, NewNativeFunctionVal, NewNativeObjectVal, NewVM, getSource, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, toStr, stringsJoin, newParser, listJoin, fixCodeByOffset, funcCeil, funcRound, funcFloor, funcAbs, funcBool, funcInt, funcFloat, funcStr, funcRepr, funcTypeId, funcLoadBase, funcLoad, funcLoadRaw, funcStore, funcDir, _init;
+	var $pkg = {}, $init, bytes, json, errors, fmt, rand$1, math, rand, reflect, regexp, sort, strconv, strings, sync, atomic, time, unicode, utf8, ValueMap, readOnlyValueMap, entryValueMap, VMValueType, IntType, RollConfig, customDiceItem, Context, VMValue, VMDictValue, ArrayData, DictData, ComputedData, FunctionData, NativeFunctionDef, NativeFunctionData, NativeObjectData, recursionInfo, spanByBegin, spanByEnd, ParserCustomData, parserStack, option, position, savepoint, current, grammar, rule, choiceExpr, actionExpr, recoveryExpr, seqExpr, throwExpr, labeledExpr, andExpr, notExpr, andLogicalExpr, notLogicalExpr, zeroOrOneExpr, zeroOrMoreExpr, oneOrMoreExpr, ruleRefExpr, ruleIRefExpr, andCodeExpr, notCodeExpr, litMatcher, codeExpr, charClassMatcher, anyMatcher, errList, parserError, resultTuple, Stats, parser, ParserData, BufferSpan, StInfo, CodeType, ByteCode, Group, ptrType, ptrType$1, funcType, sliceType, ptrType$2, sliceType$1, ptrType$3, sliceType$2, sliceType$3, ptrType$4, sliceType$4, sliceType$5, sliceType$6, ptrType$5, ptrType$6, ptrType$7, sliceType$7, sliceType$8, mapType, ptrType$8, structType, structType$1, structType$2, ptrType$9, structType$3, structType$4, structType$5, structType$6, structType$7, structType$8, structType$9, structType$10, sliceType$9, structType$11, structType$12, structType$13, structType$14, structType$15, structType$16, ptrType$10, ptrType$11, sliceType$10, sliceType$11, ptrType$12, ptrType$13, ptrType$14, ptrType$15, ptrType$16, ptrType$17, ptrType$18, ptrType$19, ptrType$20, mapType$1, sliceType$12, ptrType$21, ptrType$22, sliceType$13, sliceType$14, sliceType$15, ptrType$23, sliceType$16, sliceType$17, ptrType$24, sliceType$18, ptrType$25, structType$17, sliceType$19, structType$18, structType$19, arrayType, sliceType$20, sliceType$21, sliceType$22, structType$20, sliceType$23, structType$21, sliceType$24, structType$22, ptrType$26, ptrType$27, ptrType$28, ptrType$29, ptrType$30, ptrType$31, ptrType$32, ptrType$33, ptrType$34, ptrType$35, ptrType$36, ptrType$37, ptrType$38, ptrType$39, ptrType$40, ptrType$41, ptrType$42, ptrType$43, ptrType$44, ptrType$45, ptrType$46, ptrType$47, funcType$1, mapType$2, funcType$2, funcType$3, funcType$4, funcType$5, funcType$6, funcType$7, ptrType$48, funcType$8, funcType$9, funcType$10, funcType$11, mapType$3, ptrType$49, funcType$12, funcType$13, funcType$14, funcType$15, funcType$16, funcType$17, mapType$4, ptrType$50, ptrType$51, funcType$18, funcType$19, ptrType$52, mapType$5, mapType$6, mapType$7, mapType$8, mapType$9, ptrType$53, ptrType$54, expungedValueMap, builtinProto, binOperator, randSource, g, errNoRule, errInvalidEntrypoint, errInvalidEncoding, errMaxExprCnt, nnf, builtinValues, _r, _arg, _r$1, _arg$1, _r$2, _arg$2, _r$3, _arg$3, _arg$4, _r$4, _arg$5, _arg$6, _r$5, _arg$7, _arg$8, _r$6, _arg$9, _arg$10, _r$7, _arg$11, _arg$12, _r$8, _arg$13, _arg$14, _r$9, _arg$15, _arg$16, _r$10, _arg$17, _arg$18, _r$11, _arg$19, _arg$20, _r$12, _arg$21, _r$13, _arg$22, _r$14, _arg$23, _arg$24, _r$15, _arg$25, _arg$26, _r$16, _arg$27, _arg$28, _r$17, _arg$29, _r$18, _r$19, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$30, _r$31, _r$32, _r$33, newEntryValueMap, funcComputedCompute, funcArrayKeepLow, funcArrayKeepHigh, funcArraySum, funcArrayLen, funcArrayShuttle, funcArrayRand, funcArrayRandSize, funcArrayPop, funcArrayShift, funcArrayPush, funcDictKeys, funcDictValues, funcDictItems, funcDictLen, getBindMethod, _init2, boolToVMValue, getRealIndex, getClampRealIndex, ValueEqual, NewIntVal, NewFloatVal, NewStrVal, vmValueNewLocal, NewNullVal, NewArrayValRaw, NewArrayVal, NewDictVal, NewDictValWithArray, NewDictValWithArrayMust, NewComputedValRaw, NewFunctionValRaw, NewNativeFunctionVal, NewNativeObjectVal, NewVM, getSource, _roll32, _roll64, Roll, wodCheck, RollWoD, doubleCrossCheck, RollDoubleCross, RollCommon, RollCoC, RollFate, toStr, stringsJoin, newParser, listJoin, fixCodeByOffset, funcCeil, funcRound, funcFloor, funcAbs, funcBool, funcInt, funcFloat, funcStr, funcRepr, funcTypeId, funcLoadBase, funcLoad, funcLoadRaw, funcStore, funcDir, _init;
 	bytes = $packages["bytes"];
 	json = $packages["encoding/json"];
 	errors = $packages["errors"];
@@ -49417,12 +49417,47 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		$s = -1; return s;
 		/* */ } return; } var $f = {$blk: getSource, $c: true, $r, _r$34, _r$35, s, x, $s};return $f;
 	};
-	Roll = function(src, dicePoints, mod) {
-		var ceiling, dicePoints, mod, n, src, v, x, x$1, x$2, x$3, x$4, x$5, x$6;
-		if (dicePoints === 0) {
+	_roll32 = function(src, dicePoints) {
+		var _r$34, _r$35, ceiling, dicePoints, n, src, v;
+		if (dicePoints > 2147483646) {
 			return 0;
 		}
-		if (dicePoints > 2147483646) {
+		v = (($shiftRightUint64(src.Uint64(), 32).$low >>> 0));
+		n = ((dicePoints >>> 0));
+		if (((n & ((n - 1 >>> 0))) >>> 0) === 0) {
+			return (((((v & ((n - 1 >>> 0))) >>> 0) + 1 >>> 0) >> 0));
+		}
+		if (v > (4294967295 - n >>> 0)) {
+			ceiling = 4294967295 - (_r$34 = 4294967295 % n, _r$34 === _r$34 ? _r$34 : $throwRuntimeError("integer divide by zero")) >>> 0;
+			while (true) {
+				if (!(v >= ceiling)) { break; }
+				v = (($shiftRightUint64(src.Uint64(), 32).$low >>> 0));
+			}
+		}
+		return ((((_r$35 = v % n, _r$35 === _r$35 ? _r$35 : $throwRuntimeError("integer divide by zero")) + 1 >>> 0) >> 0));
+	};
+	_roll64 = function(src, dicePoints, mod) {
+		var ceiling, dicePoints, mod, n, src, v, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8;
+		if ((dicePoints.$high > 2147483647 || (dicePoints.$high === 2147483647 && dicePoints.$low > 4294967294))) {
+			return new $Int64(0, 0);
+		}
+		v = src.Uint64();
+		n = (new $Uint64(dicePoints.$high, dicePoints.$low));
+		if ((x = (x$1 = new $Uint64(n.$high - 0, n.$low - 1), new $Uint64(n.$high & x$1.$high, (n.$low & x$1.$low) >>> 0)), (x.$high === 0 && x.$low === 0))) {
+			return ((x$2 = (x$3 = (x$4 = new $Uint64(n.$high - 0, n.$low - 1), new $Uint64(v.$high & x$4.$high, (v.$low & x$4.$low) >>> 0)), new $Uint64(x$3.$high + 0, x$3.$low + 1)), new $Int64(x$2.$high, x$2.$low)));
+		}
+		if ((x$5 = new $Uint64(4294967295 - n.$high, 4294967295 - n.$low), (v.$high > x$5.$high || (v.$high === x$5.$high && v.$low > x$5.$low)))) {
+			ceiling = (x$6 = $div64(new $Uint64(4294967295, 4294967295), n, true), new $Uint64(4294967295 - x$6.$high, 4294967295 - x$6.$low));
+			while (true) {
+				if (!((v.$high > ceiling.$high || (v.$high === ceiling.$high && v.$low >= ceiling.$low)))) { break; }
+				v = src.Uint64();
+			}
+		}
+		return ((x$7 = (x$8 = $div64(v, n, true), new $Uint64(x$8.$high + 0, x$8.$low + 1)), new $Int64(x$7.$high, x$7.$low)));
+	};
+	Roll = function(src, dicePoints, mod) {
+		var dicePoints, mod, src, x;
+		if (dicePoints === 0) {
 			return 0;
 		}
 		if (mod === -1) {
@@ -49434,19 +49469,10 @@ $packages["github.com/sealdice/dicescript"] = (function() {
 		if (src === ptrType$12.nil) {
 			src = randSource;
 		}
-		v = src.Uint64();
-		n = (new $Uint64(0, dicePoints));
-		if ((x = (x$1 = new $Uint64(n.$high - 0, n.$low - 1), new $Uint64(n.$high & x$1.$high, (n.$low & x$1.$low) >>> 0)), (x.$high === 0 && x.$low === 0))) {
-			return (((x$2 = (x$3 = new $Uint64(n.$high - 0, n.$low - 1), new $Uint64(v.$high & x$3.$high, (v.$low & x$3.$low) >>> 0)), new $Uint64(x$2.$high + 0, x$2.$low + 1)).$low >> 0));
+		if (false) {
+			return (((x = _roll64(src, (new $Int64(0, dicePoints)), mod), x.$low + ((x.$high >> 31) * 4294967296)) >> 0));
 		}
-		if ((x$4 = new $Uint64(4294967295 - n.$high, 4294967295 - n.$low), (v.$high > x$4.$high || (v.$high === x$4.$high && v.$low > x$4.$low)))) {
-			ceiling = (x$5 = $div64(new $Uint64(4294967295, 4294967295), n, true), new $Uint64(4294967295 - x$5.$high, 4294967295 - x$5.$low));
-			while (true) {
-				if (!((v.$high > ceiling.$high || (v.$high === ceiling.$high && v.$low >= ceiling.$low)))) { break; }
-				v = src.Uint64();
-			}
-		}
-		return (((x$6 = $div64(v, n, true), new $Uint64(x$6.$high + 0, x$6.$low + 1)).$low >> 0));
+		return ((_roll32(src, ((dicePoints >> 0))) >> 0));
 	};
 	$pkg.Roll = Roll;
 	wodCheck = function(e, addLine, pool, points, threshold) {
